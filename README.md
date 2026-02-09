@@ -8,7 +8,6 @@ Une plateforme web mobile-friendly pour pratiquer, apprendre et suivre la régul
 <img src="img/logo.png" alt="Logo" style="display:block; margin:0 auto; width:150px;" />
 
 
-
 ## Technologies utilisées
 ![HTML5](https://img.shields.io/badge/HTML5-orange)
 ![CSS3](https://img.shields.io/badge/CSS3-blue)
