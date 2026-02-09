@@ -1,11 +1,11 @@
 # Projet_Web_2026
 # Plateforme Web Islamique
 
-![Logo](img/logo.png)
 
 Une plateforme web mobile-friendly pour pratiquer, apprendre et suivre la régularité spirituelle.
 
 ---
+![logo](img/logo.png)
 
 ## Technologies utilisées
 - **Frontend** : HTML, CSS, JavaScript
@@ -38,7 +38,7 @@ Une plateforme web mobile-friendly pour pratiquer, apprendre et suivre la régul
 
 ## methodologie_choisi_scrum:
 
-![workflow](img/sc.png)
+![sc](img/sc.png)
 
  ## exemple interface
  ![ex](img/ex.png)
