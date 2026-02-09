@@ -5,7 +5,8 @@
 Une plateforme web mobile-friendly pour pratiquer, apprendre et suivre la régularité spirituelle.
 
 ---
-<img src="img/logo.png" alt="Logo" align="centre style="width:150px;"/>
+<img src="img/logo.png" alt="Logo" style="display:block; margin:0 auto; width:150px;" />
+
 
 
 ## Technologies utilisées
@@ -35,7 +36,8 @@ Une plateforme web mobile-friendly pour pratiquer, apprendre et suivre la régul
 5. Contenu interactif spécifique à chaque fonctionnalité
 6. Suivi de la continuité et progression spirituelle
 7. 
-<img src="img/=workflow.png" alt="workflow" align="centre style="width:600px;"/>
+<img src="img/workflow.png" alt="workflow" style="display:block; margin:0 auto; width:600px;" />
+
 
 ## methodologie_choisi_scrum:
 
