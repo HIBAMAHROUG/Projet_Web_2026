@@ -25,7 +25,7 @@ Une plateforme web mobile-friendly pour pratiquer, apprendre et suivre la régul
              │ CSS                   │
              │ JavaScript            │
              └─────────┬─────────────┘
-                       │
+                       │(REST API)
                        ▼
              ┌───────────────────────┐
              │   Backend Layer        │
@@ -42,11 +42,11 @@ Une plateforme web mobile-friendly pour pratiquer, apprendre et suivre la régul
                        │
                        ▼
              ┌───────────────────────┐
-             │ Optional Tools / Libs │
+             │ Optional Tools / Libs(
+             │we may use )
              ├───────────────────────┤
-             │ Bootstrap (UI)        │
-             │ Lucide / Font Awesome  │
-             │ JS Libraries (Charts) │
+             │ Bootstrap             │
+             │tailwind │...
              └───────────────────────┘
 
 
