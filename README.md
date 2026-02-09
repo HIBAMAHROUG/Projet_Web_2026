@@ -68,7 +68,7 @@ Une plateforme web mobile-friendly pour pratiquer, apprendre et suivre la régul
 4. Navigation par icônes vers chaque module
 5. Contenu interactif spécifique à chaque fonctionnalité
 6. Suivi de la continuité et progression spirituelle
-7. 
+#      voila notre workflow 
 <img src="img/workflow.png" alt="workflow" style="display:block; margin:0 auto; width:600px;" />
 
 
