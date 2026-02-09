@@ -17,22 +17,29 @@ Une plateforme web mobile-friendly pour pratiquer, apprendre et suivre la régul
 ![MySQL](https://img.shields.io/badge/MySQL-blue)
 
 
-  ```mermaid
-graph TD
-    subgraph Frontend
-        A[HTML / CSS / JS] 
-    end
+                +----------------+
+               |  Frontend      |
+               | HTML / CSS / JS|
+               +--------+-------+
+                        |
+                        v
+               +----------------+
+               |  Backend       |
+               | PHP            |
+               +--------+-------+
+                        |
+                        v
+               +----------------+
+               |  Database      |
+               | MySQL          |
+               +----------------+
+                        |
+                        v
+             +----------------------+
+             | Optional Libraries   |
+             | Bootstrap / Icons   |
+             +----------------------+
 
-    subgraph Backend
-        B[PHP]
-    end
-
-    subgraph Database
-        C[MySQL]
-    end
-
-    A --> B --> C
----
 
 ## Fonctionnalités principales
 - 🕌 **Prayer Time** : horaires et validation des prières
