@@ -40,10 +40,9 @@ Une plateforme web mobile-friendly pour pratiquer, apprendre et suivre la régul
 
 
 ## methodologie_choisi_scrum:
-
-![sc](img/sc.png)
+<img src="img/sc.png" alt="sc" style="display:block; margin:0 auto; width:600px;" />
 
  ## exemple interface
- ![ex](img/ex.png)
+<img src="img/ex.png" alt="ex" style="display:block; margin:0 auto; width:600px;" />
 
 
