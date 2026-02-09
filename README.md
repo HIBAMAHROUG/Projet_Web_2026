@@ -5,7 +5,8 @@
 Une plateforme web mobile-friendly pour pratiquer, apprendre et suivre la régularité spirituelle.
 
 ---
-![logo](img/logo.png)
+<img src="img/logo.png" alt="Logo" style="width:150px;"/>
+
 
 ## Technologies utilisées
 - **Frontend** : HTML, CSS, JavaScript
