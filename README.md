@@ -17,8 +17,6 @@ Une plateforme web mobile-friendly pour pratiquer, apprendre et suivre la régul
 ![MySQL](https://img.shields.io/badge/MySQL-blue)
 
 
----
-             ┌───────────────────────┐
   ```mermaid
 graph TD
     subgraph Frontend
@@ -34,6 +32,7 @@ graph TD
     end
 
     A --> B --> C
+---
 
 ## Fonctionnalités principales
 - 🕌 **Prayer Time** : horaires et validation des prières
