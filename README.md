@@ -10,12 +10,45 @@ Une plateforme web mobile-friendly pour pratiquer, apprendre et suivre la régul
 
 
 ## Technologies utilisées
-- **Frontend** : HTML, CSS, JavaScript
-- **Backend** : PHP
-- **Base de données** : MySQL
-- **Design** : Mobile-first, thème vert, UI/UX minimaliste
+![HTML5](https://img.shields.io/badge/HTML5-orange)
+![CSS3](https://img.shields.io/badge/CSS3-blue)
+![JavaScript](https://img.shields.io/badge/JavaScript-yellow)
+![PHP](https://img.shields.io/badge/PHP-purple)
+![MySQL](https://img.shields.io/badge/MySQL-blue)
+
 
 ---
+             ┌───────────────────────┐
+             │   Frontend Layer       │
+             ├───────────────────────┤
+             │ HTML                  │
+             │ CSS                   │
+             │ JavaScript            │
+             └─────────┬─────────────┘
+                       │
+                       ▼
+             ┌───────────────────────┐
+             │   Backend Layer        │
+             ├───────────────────────┤
+             │ PHP                   │
+             └─────────┬─────────────┘
+                       │
+                       ▼
+             ┌───────────────────────┐
+             │   Database Layer       │
+             ├───────────────────────┤
+             │ MySQL                  │
+             └─────────┬─────────────┘
+                       │
+                       ▼
+             ┌───────────────────────┐
+             │ Optional Tools / Libs │
+             ├───────────────────────┤
+             │ Bootstrap (UI)        │
+             │ Lucide / Font Awesome  │
+             │ JS Libraries (Charts) │
+             └───────────────────────┘
+
 
 ## Fonctionnalités principales
 - 🕌 **Prayer Time** : horaires et validation des prières
