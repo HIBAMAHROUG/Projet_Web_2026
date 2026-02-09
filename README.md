@@ -14,6 +14,7 @@ Une plateforme web mobile-friendly pour pratiquer, apprendre et suivre la régul
 ![JavaScript](https://img.shields.io/badge/JavaScript-yellow)
 ![PHP](https://img.shields.io/badge/PHP-purple)
 ![MySQL](https://img.shields.io/badge/MySQL-blue)
+![REST API](https://img.shields.io/badge/REST_API-lightgrey)
 
 
                 +----------------+
