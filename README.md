@@ -19,36 +19,21 @@ Une plateforme web mobile-friendly pour pratiquer, apprendre et suivre la régul
 
 ---
              ┌───────────────────────┐
-             │   Frontend Layer       │
-             ├───────────────────────┤
-             │ HTML                  │
-             │ CSS                   │
-             │ JavaScript            │
-             └─────────┬─────────────┘
-                       │(REST API)
-                       ▼
-             ┌───────────────────────┐
-             │   Backend Layer        │
-             ├───────────────────────┤
-             │ PHP                   │
-             └─────────┬─────────────┘
-                       │
-                       ▼
-             ┌───────────────────────┐
-             │   Database Layer       │
-             ├───────────────────────┤
-             │ MySQL                  │
-             └─────────┬─────────────┘
-                       │
-                       ▼
-             ┌───────────────────────┐
-             │ Optional Tools / Libs(
-             │we may use )
-             ├───────────────────────┤
-             │ Bootstrap             │
-             │tailwind │...
-             └───────────────────────┘
+  ```mermaid
+graph TD
+    subgraph Frontend
+        A[HTML / CSS / JS] 
+    end
 
+    subgraph Backend
+        B[PHP]
+    end
+
+    subgraph Database
+        C[MySQL]
+    end
+
+    A --> B --> C
 
 ## Fonctionnalités principales
 - 🕌 **Prayer Time** : horaires et validation des prières
