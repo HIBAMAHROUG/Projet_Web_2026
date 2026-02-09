@@ -21,7 +21,7 @@ Une plateforme web mobile-friendly pour pratiquer, apprendre et suivre la régul
                |  Frontend      |
                | HTML / CSS / JS|
                +--------+-------+
-                        |
+                        | (REST API)
                         v
                +----------------+
                |  Backend       |
