@@ -1,7 +1,7 @@
 # Projet_Web_2026
 # Plateforme Web Islamique
 
-## introduction generale:
+#1. introduction generale:
 ---
 Dans un monde où la spiritualité et la technologie convergent de plus en plus, les plateformes numériques jouent un rôle essentiel dans l'accompagnement des individus sur leur chemin de foi. Face à la multitude de ressources religieuses disponibles en ligne, les utilisateurs cherchent des expériences personnalisées qui répondent à leurs besoins spirituels quotidiens tout en s'intégrant harmonieusement dans leur vie moderne.
  Nous avons conçu et développé FaithPath, une application web innovante dédiée à l'accompagnement spirituel des musulmans dans leur vie quotidienne.
