@@ -1,0 +1,442 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700&family=Noto+Kufi+Arabic:wght@400;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --emerald-900: #0f3d2e;
+  --emerald-800: #145a3f;
+  --emerald-700: #1d6b4a;
+  --emerald-600: #2a7b57;
+  --emerald-500: #3f8f67;
+  --emerald-200: #cfe2d5;
+  --sand-50: #fbf7f0;
+  --sand-100: #f2eadf;
+  --sand-200: #e7d8c8;
+  --bronze-400: #9f7a55;
+}
+
+body {
+  font-family: 'Cairo', sans-serif;
+  background: radial-gradient(circle at 20% 15%, rgba(255, 255, 255, 0.9), transparent 45%),
+    radial-gradient(circle at 80% 10%, rgba(207, 226, 213, 0.55), transparent 50%),
+    linear-gradient(140deg, #fcfaf6 0%, #f1e8dc 55%, #e8d8c8 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2e2a28;
+  padding: 1.5rem;
+  position: relative;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 12px 12px, rgba(20, 90, 63, 0.08) 0, rgba(20, 90, 63, 0.08) 2px, transparent 2px),
+    radial-gradient(circle at 28px 28px, rgba(20, 90, 63, 0.06) 0, rgba(20, 90, 63, 0.06) 2px, transparent 2px),
+    linear-gradient(45deg, rgba(20, 90, 63, 0.04) 25%, transparent 25%, transparent 75%, rgba(20, 90, 63, 0.04) 75%, rgba(20, 90, 63, 0.04)),
+    linear-gradient(-45deg, rgba(20, 90, 63, 0.04) 25%, transparent 25%, transparent 75%, rgba(20, 90, 63, 0.04) 75%, rgba(20, 90, 63, 0.04));
+  background-size: 40px 40px, 40px 40px, 80px 80px, 80px 80px;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+body::after {
+  content: "";
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  border-radius: 45% 55% 70% 30% / 60% 30% 70% 40%;
+  top: -140px;
+  left: -100px;
+  background: radial-gradient(circle, rgba(29, 107, 74, 0.22), transparent 70%);
+  filter: blur(10px);
+  pointer-events: none;
+}
+.faith-container {
+  max-width: 600px;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.faith-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 3.5rem 3.5rem 3.5rem 0.5rem;
+  box-shadow: 0 30px 50px rgba(0, 0, 0, 0.1), 0 12px 22px rgba(98, 65, 38, 0.12), inset 2px 2px 5px rgba(255, 245, 235, 0.8);
+  border: 1px solid rgba(207, 226, 213, 0.8);
+  width: 100%;
+  padding: 2.7rem 2.3rem 2.8rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.faith-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 36px 60px rgba(0, 0, 0, 0.12), 0 15px 24px rgba(98, 65, 38, 0.12);
+}
+
+.card-aura {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 15% 15%, rgba(255, 255, 255, 0.6), transparent 45%),
+    radial-gradient(circle at 85% 15%, rgba(207, 226, 213, 0.6), transparent 55%),
+    radial-gradient(circle at 50% 85%, rgba(29, 107, 74, 0.18), transparent 60%);
+  opacity: 0.8;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.faith-card::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  right: 30px;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, rgba(207, 226, 213, 0.6) 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.faith-card::after {
+  content: "☾";
+  font-size: 6rem;
+  color: rgba(63, 143, 103, 0.12);
+  position: absolute;
+  bottom: 0;
+  left: 20px;
+  transform: rotate(15deg);
+  font-family: 'Amiri', serif;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.brand-circle {
+  width: 80px;
+  height: 80px;
+  background: var(--emerald-700);
+  background: linear-gradient(135deg, var(--emerald-600), var(--emerald-800));
+  border-radius: 50% 50% 30% 70% / 60% 40% 60% 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 0.5rem;
+  box-shadow: 0 10px 18px -6px rgba(15, 61, 46, 0.6), 0 0 0 2px rgba(251, 247, 240, 0.8) inset;
+  position: relative;
+  z-index: 1;
+}
+
+.brand-circle i {
+  font-size: 3.2rem;
+  color: #fef7e9;
+  filter: drop-shadow(2px 4px 4px rgba(0,0,0,0.2));
+}
+
+h1 {
+  font-family: 'Noto Kufi Arabic', 'Amiri', serif;
+  font-weight: 700;
+  font-size: 2.4rem;
+  color: var(--emerald-900);
+  text-shadow: 2px 2px 0 #e2d5c0, 4px 4px 0 rgba(0,0,0,0.02);
+  letter-spacing: -0.5px;
+  margin-bottom: 0.6rem;
+  line-height: 1.45;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.bismillah {
+  font-family: 'Noto Kufi Arabic', sans-serif;
+  font-size: 1rem;
+  color: var(--emerald-700);
+  letter-spacing: 0.6px;
+  text-align: center;
+  margin-bottom: 0.6rem;
+  position: relative;
+  z-index: 1;
+}
+
+.sub-brand {
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: #5b4d42;
+  background: rgba(207, 226, 213, 0.55);
+  display: inline-block;
+  padding: 0.2rem 2rem 0.3rem 2rem;
+  border-radius: 40px;
+  backdrop-filter: blur(4px);
+  margin-bottom: 1rem;
+  border: 1px solid rgba(173, 200, 186, 0.8);
+  letter-spacing: 0.5px;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  z-index: 1;
+}
+
+.welcome-text {
+  text-align: center;
+  color: #4e463f;
+  font-size: 1.05rem;
+  margin: 0 0 1.6rem;
+  position: relative;
+  z-index: 1;
+}
+
+.sub-brand i {
+  margin: 0 0.3rem;
+  color: var(--bronze-400);
+  font-size: 0.9rem;
+}
+
+.input-group-creative {
+  background: white;
+  border-radius: 60px;
+  box-shadow: 0 8px 18px -8px rgba(63, 143, 103, 0.2), 0 0 0 1px rgba(207, 226, 213, 0.9) inset;
+  padding: 0.15rem 0.15rem 0.15rem 0.4rem;
+  transition: box-shadow 0.2s;
+  direction: rtl;
+  position: relative;
+  z-index: 1;
+}
+
+.input-group-creative:focus-within {
+  box-shadow: 0 10px 22px -6px rgba(20, 90, 63, 0.35), 0 0 0 2px rgba(207, 226, 213, 0.9) inset;
+}
+
+.input-group-creative .form-control {
+  border: none;
+  background: transparent;
+  font-size: 1.1rem;
+  padding: 0.9rem 1.5rem 0.9rem 0.8rem;
+  direction: rtl;
+  color: #352f2a;
+}
+
+.input-group-creative .form-control::placeholder {
+  color: #9c8b7a;
+  font-weight: 300;
+  opacity: 0.8;
+}
+
+.input-group-creative .input-group-text {
+  background: transparent;
+  border: none;
+  color: var(--emerald-700);
+  padding-right: 1rem;
+}
+
+.input-group-creative i {
+  color: var(--emerald-700);
+  font-size: 1.1rem;
+}
+
+.helper-text {
+  font-size: 0.95rem;
+  color: #7b6a5a;
+  margin-bottom: 1.2rem;
+  text-align: right;
+  position: relative;
+  z-index: 1;
+}
+
+.form-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.8rem;
+  position: relative;
+  z-index: 1;
+}
+
+.forgot-link {
+  color: var(--emerald-700);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.forgot-link:hover {
+  color: var(--emerald-900);
+  text-decoration: underline;
+}
+
+.btn-creative {
+  background: var(--emerald-700);
+  border: none;
+  border-radius: 50px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: white;
+  box-shadow: 0 8px 14px -6px rgba(15, 61, 46, 0.6), 0 2px 4px rgba(255,255,240,0.6) inset;
+  transition: all 0.15s;
+  border: 1px solid rgba(63, 143, 103, 0.7);
+}
+
+.btn-creative:hover {
+  background: var(--emerald-800);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 20px -8px rgba(15, 61, 46, 0.7);
+  border-color: rgba(63, 143, 103, 0.9);
+}
+
+.btn-creative-outline {
+  background: transparent;
+  border: 2px solid rgba(63, 143, 103, 0.55);
+  border-radius: 50px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: var(--emerald-900);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+  transition: all 0.15s;
+}
+
+.human-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(207, 226, 213, 0.9);
+  border-radius: 20px;
+  padding: 0.8rem 1rem;
+  font-size: 0.98rem;
+  color: #5b4d42;
+  margin-bottom: 1.6rem;
+  position: relative;
+  z-index: 1;
+}
+
+.human-note i {
+  color: var(--emerald-700);
+}
+
+.btn-creative-outline:hover {
+  background: rgba(207, 226, 213, 0.6);
+  border-color: var(--emerald-700);
+  color: #2e2a28;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 18px -8px #ab947e;
+}
+
+.faithpath-signature {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2.2rem;
+  font-size: 1rem;
+  color: #7f6f60;
+  letter-spacing: 1px;
+  position: relative;
+  z-index: 1;
+}
+
+.faithpath-icon {
+  color: rgba(63, 143, 103, 0.6);
+  font-size: 1.3rem;
+  opacity: 0.6;
+}
+
+.faithpath-text {
+  font-family: 'Noto Kufi Arabic', 'Amiri', serif;
+  font-size: 1.6rem;
+  font-weight: 400;
+  background: linear-gradient(135deg, var(--emerald-700), #86a98f);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 2px 5px rgba(155, 130, 100, 0.2);
+  margin: 0 0.2rem;
+  text-transform: lowercase;
+}
+
+.flourish {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background: repeating-linear-gradient(45deg, rgba(29, 107, 74, 0.05) 0px, rgba(29, 107, 74, 0.05) 10px, transparent 10px, transparent 20px);
+  border-radius: 40% 60% 70% 30% / 50% 60% 40% 50%;
+  z-index: -2;
+}
+
+.flourish-1 {
+  top: -40px;
+  left: -40px;
+  transform: rotate(20deg);
+  background: radial-gradient(circle at 30% 30%, rgba(29, 107, 74, 0.1), transparent 60%);
+}
+
+.flourish-2 {
+  bottom: -30px;
+  right: -30px;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle at 70% 70%, rgba(29, 107, 74, 0.08), transparent 70%);
+  border-radius: 70% 30% 50% 50%;
+}
+
+@media (max-width: 480px) {
+  .faith-card {
+    padding: 1.9rem 1.3rem;
+    border-radius: 2.6rem 2.6rem 2.6rem 0.5rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .sub-brand {
+    font-size: 1rem;
+    padding: 0.2rem 1.2rem;
+  }
+
+  .btn-creative, .btn-creative-outline {
+    font-size: 1rem;
+    padding: 0.6rem 1rem;
+  }
+
+  .form-meta {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.fade-stagger .fade-item {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: fadeUp 0.8s ease forwards;
+  animation-delay: var(--delay, 0ms);
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-stagger .fade-item {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
