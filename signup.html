@@ -63,5 +63,53 @@
 	</div>
 </div>
 
+<script>
+	const signupForm = document.querySelector('.signup-form');
+
+	if (signupForm) {
+		signupForm.addEventListener('submit', (event) => {
+			event.preventDefault();
+
+			const fullNameInput = document.getElementById('fullname');
+			const emailInput = document.getElementById('signup-email');
+			const passwordInput = document.getElementById('signup-password');
+			const confirmPasswordInput = document.getElementById('confirm-password');
+
+			const fullName = fullNameInput.value.trim();
+			const email = emailInput.value.trim().toLowerCase();
+			const password = passwordInput.value;
+			const confirmPassword = confirmPasswordInput.value;
+
+			if (!fullName || !email || !password || !confirmPassword) {
+				alert('يرجى تعبئة جميع الحقول.');
+				return;
+			}
+
+			if (password !== confirmPassword) {
+				alert('كلمتا المرور غير متطابقتين.');
+				return;
+			}
+
+			const accounts = JSON.parse(localStorage.getItem('faithpathAccounts') || '[]');
+			const existingAccount = accounts.find((account) => account.email === email);
+
+			if (existingAccount) {
+				alert('هذا البريد الإلكتروني مستخدم بالفعل.');
+				return;
+			}
+
+			accounts.push({
+				fullName,
+				email,
+				password
+			});
+
+			localStorage.setItem('faithpathAccounts', JSON.stringify(accounts));
+			alert('تم إنشاء الحساب بنجاح.');
+			window.location.href = 'start.html';
+		});
+	}
+</script>
+
 </body>
 </html>

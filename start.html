@@ -17,7 +17,6 @@
       </div>
       <p class="bismillah fade" style="--delay: 120ms;">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
       <h1 class="fade" style="--delay: 220ms;">فَاذْكُرُونِي أَذْكُرْكُمْ</h1>
-      <p class="welcome fade" style="--delay: 420ms;">مرحبًا بك في طريق الإيمان</p>
 
       <form class="form fade" style="--delay: 520ms;">
         <div class="group">
@@ -66,5 +65,45 @@
       <div class="decor decor-2"></div>
     </div>
   </div>
+
+  <script>
+    const loginForm = document.querySelector('.form');
+
+    if (loginForm) {
+      loginForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const emailValue = emailInput.value.trim().toLowerCase();
+        const passwordValue = passwordInput.value;
+
+        if (!emailValue || !passwordValue) {
+          alert('يرجى إدخال البريد الإلكتروني وكلمة المرور.');
+          return;
+        }
+
+        const accounts = JSON.parse(localStorage.getItem('faithpathAccounts') || '[]');
+        const account = accounts.find((item) => item.email === emailValue);
+
+        if (!account) {
+          alert('البريد الإلكتروني غير موجود.');
+          return;
+        }
+
+        if (account.password !== passwordValue) {
+          alert('كلمة المرور غير صحيحة.');
+          return;
+        }
+
+        localStorage.setItem('faithpathCurrentUser', JSON.stringify({
+          fullName: account.fullName,
+          email: account.email
+        }));
+
+        window.location.href = 'page_acceuil.html';
+      });
+    }
+  </script>
 </body>
 </html>
