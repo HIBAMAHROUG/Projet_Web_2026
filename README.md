@@ -35,22 +35,6 @@ Plateforme web orientée contenu islamique avec pages d’authentification, page
 		- أذكار الصباح والمساء
 	- Sections contenu: القرآن / حديث / خدمات / footer complet
 
-- Page Horaires de prière:
-	- Géolocalisation navigateur automatique
-	- Reverse geocoding (ville/pays)
-	- Recherche manuelle par ville/pays
-	- Chargement des horaires via API AlAdhan
-	- Affichage des prières: الفجر، الشروق، الظهر، العصر، المغرب، العشاء
-	- Carte de la prochaine prière + compte à rebours temps réel
-	- Mise en évidence visuelle de la prochaine prière
-	- Cache local des données du jour pour accélérer l’affichage
-	- États UI complets: chargement, erreur, fallback manuel
-
-- Expérience UI/UX globale:
-	- Design responsive (mobile/tablette/desktop)
-	- Identité graphique unifiée dans un seul fichier CSS
-	- Icônes et cartes thématiques (croissant, mosquée, palette verte/or)
-	- Animations légères et transitions fluides
 
 ## Structure du projet
 
