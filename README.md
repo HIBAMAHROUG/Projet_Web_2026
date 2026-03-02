@@ -46,7 +46,6 @@ Plateforme web orientée contenu islamique avec pages d’authentification, page
 - [prayertime.js](prayertime.js): logique API + rendu des horaires
 - [styles.css](styles.css): feuille de style globale
 - [img](img): ressources visuelles
-- [data](data): données statiques éventuelles
 
 ## Lancer le projet en local
 
