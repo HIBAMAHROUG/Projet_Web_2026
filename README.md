@@ -10,17 +10,47 @@ Plateforme web orientée contenu islamique avec pages d’authentification, page
 
 ## Fonctionnalités actuelles
 
-- Authentification front (localStorage):
-	- Connexion
-	- Création de compte
-	- Restauration mot de passe (interface)
-- Page d’accueil avec sections de découverte.
+- Authentification (front, localStorage):
+	- Inscription avec validation des champs
+	- Vérification email déjà existant
+	- Connexion avec contrôle email/mot de passe
+	- Persistance de session utilisateur courante
+	- Page de restauration mot de passe (interface)
+
+- Page d’accueil (FaithPath):
+	- Header + navigation responsive
+	- Affichage du nom utilisateur connecté
+	- Hero en arabe avec identité visuelle islamique
+	- Grille de fonctionnalités:
+		- القرآن الكريم
+		- أسماء الله الحسنى
+		- مسار الأنبياء
+		- التقويم الهجري
+		- أوقات الصلاة
+		- المسبحة الإلكترونية
+		- قصة الصحابة
+		- حاسب نفسك
+		- اختبارات دينية
+		- صدقة جارية
+		- أذكار الصباح والمساء
+	- Sections contenu: القرآن / حديث / خدمات / footer complet
+
 - Page Horaires de prière:
-	- Détection de localisation
-	- Chargement des horaires du jour
-	- Prochaine prière + compte à rebours
-	- Saisie de ville en fallback
-	- Mise en cache locale des données
+	- Géolocalisation navigateur automatique
+	- Reverse geocoding (ville/pays)
+	- Recherche manuelle par ville/pays
+	- Chargement des horaires via API AlAdhan
+	- Affichage des prières: الفجر، الشروق، الظهر، العصر، المغرب، العشاء
+	- Carte de la prochaine prière + compte à rebours temps réel
+	- Mise en évidence visuelle de la prochaine prière
+	- Cache local des données du jour pour accélérer l’affichage
+	- États UI complets: chargement, erreur, fallback manuel
+
+- Expérience UI/UX globale:
+	- Design responsive (mobile/tablette/desktop)
+	- Identité graphique unifiée dans un seul fichier CSS
+	- Icônes et cartes thématiques (croissant, mosquée, palette verte/or)
+	- Animations légères et transitions fluides
 
 ## Structure du projet
 
