@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FaithPath · القرآن الكريم | Quran Page</title>
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700;900&family=Cairo:wght@300;400;600;700;900&family=Noto+Kufi+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header with navigation -->
+  <header class="header">
+    <div class="navbar">
+      <div class="nav-container">
+        <div class="logo">
+          <i class="fas fa-mosque logo-img"></i>
+          <span class="logo-text">Faith<span class="logo-highlight">Path</span></span>
+        </div>
+        <div class="nav-menu">
+          <a href="#" class="nav-link">Home</a>
+          <a href="#" class="nav-link active">Quran</a>
+          <a href="#" class="nav-link">Prayer</a>
+          <a href="#" class="nav-link">Charity</a>
+          <a href="#" class="nav-link">More</a>
+        </div>
+        <div class="nav-actions">
+          <div class="search-box">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" placeholder="Search" class="search-input">
+          </div>
+          <div class="user-profile">
+            <i class="far fa-bell notification-icon"></i>
+            <div class="profile-badge">
+              <i class="fas fa-user-circle profile-icon"></i>
+              <span class="profile-name">Omar</span>
+            </div>
+          </div>
+          <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quran Hero Section -->
+    <div class="quran-hero">
+      <div class="hero-badge">
+        <i class="fas fa-quran"></i>
+        <span> القرآن الكريم </span>
+        <i class="fas fa-quran"></i>
+      </div>
+      <div class="hero-title-arabic">سُوَرُ الْقُرْآنِ</div>
+      <div class="hero-sub">Read & reflect — choose a Surah</div>
+    </div>
+    
+    <!-- Wave SVG -->
+    <div class="header-wave">
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+        <path class="wave-fill" d="M0,32L48,37.3C96,43,192,53,288,58.7C384,64,480,64,576,58.7C672,53,768,43,864,48C960,53,1056,75,1152,80C1248,85,1344,75,1392,69.3L1440,64L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z"></path>
+      </svg>
+    </div>
+  </header>
+
+  <!-- Main Quran Page Content -->
+  <main class="main-content">
+    <div class="container">
+      <!-- Page Header -->
+      <div class="quran-page-header">
+        <div class="section-icon">
+          <i class="fas fa-quran"></i>
+        </div>
+        <h2 class="section-title">اختر السورة</h2>
+        <p class="section-subtitle">Choose a Surah to read</p>
+        <div class="souar-count" id="souarCount">114 سورة</div>
+      </div>
+
+      <!-- Filter Bar -->
+      <div class="surah-filter-bar">
+        <div class="filter-search">
+          <i class="fas fa-search"></i>
+          <input type="text" id="searchInput" placeholder="Search surah (name or translit)" aria-label="search surah">
+        </div>
+        <div class="filter-type" id="filterTypeContainer">
+          <span class="type-btn active" data-type="all">All</span>
+          <span class="type-btn" data-type="مكية">Makki</span>
+          <span class="type-btn" data-type="مدنية">Madani</span>
+        </div>
+      </div>
+
+      <!-- Surah Grid (loaded by JavaScript) -->
+      <div id="surahGrid" class="surah-grid"></div>
+
+      <!-- Tasbih Counter -->
+      <div class="quran-tasbih">
+        <div class="tasbih-text">
+          <i class="fas fa-hand-sparkles" style="font-size: 2rem; color: var(--gold);"></i>
+          <span>سُبْحَانَ اللَّهِ</span>
+        </div>
+        <div class="tasbih-counter-box">
+          <span id="tasbihDisplay">33</span>
+          <button class="tasbih-btn" id="tasbihPlus">+</button>
+          <button class="tasbih-btn" id="tasbihMinus">-</button>
+        </div>
+        <button class="tasbih-reset" id="tasbihReset"><i class="fas fa-undo-alt"></i> إعادة</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>FaithPath · Quran Page · جميع الحقوق محفوظة</p>
+    <p style="opacity:0.8; margin-top:0.5rem;">
+      <i class="fas fa-star"></i> وَرَتِّلِ الْقُرْآنَ تَرْتِيلًا <i class="fas fa-star"></i>
+    </p>
+  </footer>
+
+  <!-- Main JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
