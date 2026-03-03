@@ -1,8 +1,4 @@
-// =====================================================
-// script.js - Quran Page Functionality (Filter & Tasbih)
-// =====================================================
 
-// Complete list of Surahs (you can extend to 114)
 const surahList = [
   { id: 1, name: "الفاتحة", translit: "Al-Fātiḥah", verses: 7, type: "مكية", arabicAyah: "ٱلْحَمْدُ لِلَّهِ رَبِّ ٱلْعَٰلَمِينَ", translation: "Praise be to Allah, Lord of the worlds" },
   { id: 2, name: "البقرة", translit: "Al-Baqarah", verses: 286, type: "مدنية", arabicAyah: "ذَٰلِكَ ٱلْكِتَٰبُ لَا رَيْبَ ۛ فِيهِ ۛ هُدًۭى لِّلْمُتَّقِينَ", translation: "This is the Book about which there is no doubt, a guidance for the righteous" },
@@ -27,17 +23,17 @@ const surahList = [
   { id: 21, name: "الناس", translit: "An-Nās", verses: 6, type: "مكية", arabicAyah: "مِنَ ٱلْجِنَّةِ وَٱلنَّاسِ", translation: "From among the jinn and mankind" }
 ];
 
-// Update Surah count
+
 document.getElementById('souarCount').innerText = surahList.length + ' سورة';
 
-// DOM Elements
+
 const grid = document.getElementById('surahGrid');
 const searchInput = document.getElementById('searchInput');
 const filterTypeContainer = document.getElementById('filterTypeContainer');
 let currentType = 'all';
 let searchTerm = '';
 
-// Render cards based on filters
+
 function renderSouar() {
   const filtered = surahList.filter(s => {
     const matchesType = currentType === 'all' || s.type === currentType;
@@ -76,7 +72,7 @@ function renderSouar() {
   });
   grid.innerHTML = html;
 
-  // Add click effect to cards
+  
   document.querySelectorAll('.surah-card').forEach(card => {
     card.addEventListener('click', function() {
       this.style.backgroundColor = 'var(--emerald-100)';
@@ -85,13 +81,13 @@ function renderSouar() {
   });
 }
 
-// Search input listener
+
 searchInput.addEventListener('input', (e) => {
   searchTerm = e.target.value;
   renderSouar();
 });
 
-// Filter type listeners
+
 filterTypeContainer.querySelectorAll('.type-btn').forEach(btn => {
   btn.addEventListener('click', function() {
     filterTypeContainer.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
@@ -101,7 +97,7 @@ filterTypeContainer.querySelectorAll('.type-btn').forEach(btn => {
   });
 });
 
-// Tasbih counter logic
+
 let tasbihCount = 0;
 const tasbihDisplay = document.getElementById('tasbihDisplay');
 const tasbihPlus = document.getElementById('tasbihPlus');
@@ -118,5 +114,5 @@ tasbihPlus.addEventListener('click', () => updateTasbih(tasbihCount + 1));
 tasbihMinus.addEventListener('click', () => updateTasbih(tasbihCount - 1));
 tasbihReset.addEventListener('click', () => updateTasbih(0));
 
-// Initial render
+
 renderSouar();

@@ -1,6 +1,4 @@
-/* ===================================================== */
-/* style.css - FaithPath Professional Quran Page Design  */
-/* ===================================================== */
+
 
 * {
   margin: 0;
@@ -43,7 +41,7 @@ body {
   line-height: 1.6;
 }
 
-/* ===== HEADER ===== */
+
 .header {
   position: relative;
   background: linear-gradient(135deg, var(--emerald-900), var(--emerald-700));
@@ -70,7 +68,7 @@ body {
   fill: var(--sand-50);
 }
 
-/* Navbar */
+
 .navbar {
   position: relative;
   z-index: 10;
@@ -231,7 +229,7 @@ body {
   color: white;
 }
 
-/* Quran Hero Section */
+
 .quran-hero {
   max-width: 1000px;
   margin: 1rem auto 0;
@@ -276,7 +274,7 @@ body {
   margin: 0.5rem 0 1rem;
 }
 
-/* ===== MAIN QURAN PAGE CONTENT ===== */
+
 .main-content {
   background: var(--sand-50);
   position: relative;
@@ -289,7 +287,7 @@ body {
   padding: 3rem 2rem 5rem;
 }
 
-/* Quran Page Header */
+
 .quran-page-header {
   text-align: center;
   margin-bottom: 3rem;
@@ -336,7 +334,7 @@ body {
   border: 1px solid var(--emerald-300);
 }
 
-/* Filter Bar */
+
 .surah-filter-bar {
   display: flex;
   flex-wrap: wrap;
@@ -400,7 +398,7 @@ body {
   border-color: var(--emerald-800);
 }
 
-/* Surah Grid */
+
 .surah-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -537,7 +535,7 @@ body {
   color: var(--bronze-400);
 }
 
-/* Tasbih Counter */
+
 .quran-tasbih {
   background: linear-gradient(135deg, var(--emerald-800), var(--emerald-600));
   border-radius: 100px 100px 30px 30px;
@@ -622,7 +620,7 @@ body {
   box-shadow: 0 1px 0 var(--emerald-700);
 }
 
-/* Footer */
+
 .footer {
   background: var(--emerald-900);
   color: white;
