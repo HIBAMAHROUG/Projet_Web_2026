@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>FaithPath – السيرة النبوية</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700&family=Noto+Kufi+Arabic:wght@400;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="quizz.css"/>
+</head>
+<body>
+<header class="header">
+<nav class="navbar">
+<div class="logo"><div class="logo-icon"><i class="fa-solid fa-star-and-crescent"></i></div><span class="logo-text">Faith<span>Path</span></span></div>
+<div class="nav-badge"><i class="fa-solid fa-mosque"></i> السيرة النبوية</div>
+</nav>
+</header>
+<div class="pw">
+<div id="sq" class="screen active">
+<div class="qh">
+<div style="display:flex;flex-direction:column;gap:.35rem">
+<div class="qm"><i class="fa-solid fa-mosque" style="color:var(--gd)"></i><span id="qtl" class="bdg">السيرة النبوية</span></div>
+<div class="qm"><i class="fa-solid fa-list-ol" style="color:var(--e6)"></i><span>السؤال <span id="qcur">1</span> من <span id="qtot">20</span></span></div>
+<div class="qm"><i class="fa-solid fa-check" style="color:#27ae60"></i><span id="scr">0</span> صحيح &nbsp;<i class="fa-solid fa-xmark" style="color:#e74c3c"></i><span id="wrg">0</span> خطأ</div>
+</div>
+<div class="trr" id="trr">
+<svg width="64" height="64" viewBox="0 0 64 64"><circle class="tbg" cx="32" cy="32" r="27"/><circle class="tfg" id="tfc" cx="32" cy="32" r="27" stroke-dasharray="169.6" stroke-dashoffset="0"/></svg>
+<span class="tt" id="ttxt">20</span>
+</div>
+</div>
+<div class="pb"><div class="pbi" id="pb" style="width:0%"></div></div>
+<div class="qc"><p class="qnum" id="qnum">السؤال 1</p><p class="qtxt" id="qtxt">…</p></div>
+<div class="ft" id="ft"><i id="fi"></i><span id="fm"></span></div>
+<div class="cr" id="crv"><i class="fa-solid fa-lightbulb"></i><span id="crt"></span></div>
+<div class="og" id="og"></div>
+<button class="nb" id="nb" onclick="nextQ()" style="display:none"><span id="nbt">السؤال التالي</span><i class="fa-solid fa-arrow-left"></i></button>
+</div>
+<div id="sres" class="screen">
+<div class="rc">
+<div class="riw" id="riw"><i id="ric"></i></div>
+<h2 class="rtit" id="rtit">أحسنت!</h2>
+<div class="sd" id="sdisp">0/20</div>
+<p class="sl">درجتك النهائية</p>
+<div class="ss">
+<div class="ssi"><span class="ssn cn" id="rsc">0</span><span class="ssl">إجابات صحيحة</span></div>
+<div class="ssi"><span class="ssn wn" id="rwc">0</span><span class="ssl">إجابات خاطئة</span></div>
+<div class="ssi"><span class="ssn tn2" id="rtoc">0</span><span class="ssl">انتهى الوقت</span></div>
+</div>
+<div class="gm"><i class="fa-solid fa-star"></i><span id="gtxt">—</span></div>
+</div>
+<div class="ra">
+<button class="ab rp" onclick="replay()"><i class="fa-solid fa-rotate-right"></i><span>إعادة المسابقة</span></button>
+<button class="ab" onclick="window.location.href='accueil_quizz.html'"><i class="fa-solid fa-house"></i><span>الصفحة الرئيسية</span></button>
+</div>
+<div class="rvs">
+<p class="rvt"><i class="fa-solid fa-clipboard-list"></i> مراجعة الأسئلة</p>
+<div id="rvl"></div>
+</div>
+<div class="sig"><i class="fa-solid fa-star-and-crescent" style="color:rgba(63,143,103,.5)"></i><span class="sigt">FaithPath</span><i class="fa-solid fa-star-and-crescent" style="color:rgba(63,143,103,.5)"></i></div>
+</div>
+</div>
+<script>
+const cq=[
+{q:"في أي عام وُلد النبي محمد ﷺ؟",o:["570م","571م","572م","575م"],a:0},
+{q:"ما اسم والد النبي ﷺ؟",o:["عبد المطلب","عبد الله","أبو طالب","الحارث"],a:1},
+{q:"ما اسم والدة النبي ﷺ؟",o:["خديجة","فاطمة","آمنة","حليمة"],a:2},
+{q:"في كم سنة من عمره نبّئ النبي ﷺ؟",o:["35","40","45","50"],a:1},
+{q:"ما اسم الغار الذي تلقى فيه النبي ﷺ أول الوحي؟",o:["ثور","حراء","عرفات","الحجون"],a:1},
+{q:"ما اسم أول زوجة للنبي ﷺ؟",o:["عائشة","حفصة","خديجة","سودة"],a:2},
+{q:"من هو أول الخلفاء الراشدين؟",o:["عمر","عثمان","علي","أبو بكر"],a:3},
+{q:"في أي عام كانت الهجرة النبوية؟",o:["610م","615م","622م","630م"],a:2},
+{q:"في أي غزوة أُصيب النبي ﷺ في وجهه؟",o:["بدر","أحد","الخندق","خيبر"],a:1},
+{q:"ما اسم الصحابي الذي رافق النبي ﷺ في الهجرة؟",o:["علي","عمر","أبو بكر","عثمان"],a:2},
+{q:"في أي عام فتح النبي ﷺ مكة؟",o:["7هـ","8هـ","9هـ","10هـ"],a:1},
+{q:"ما اسم مُتبنَّى النبي ﷺ الذي أُعتق؟",o:["زيد بن حارثة","بلال","عمار","صهيب"],a:0},
+{q:"كم سنة دامت الدعوة في مكة قبل الهجرة؟",o:["7 سنوات","10 سنوات","13 سنة","15 سنة"],a:2},
+{q:"في أي يوم تُوفي النبي ﷺ؟",o:["الاثنين","الثلاثاء","الجمعة","السبت"],a:0},
+{q:"كم عمر النبي ﷺ عند وفاته؟",o:["60","63","65","70"],a:1},
+{q:"ما اسم ناقة النبي ﷺ؟",o:["ذلول","قصواء","عضباء","بُراق"],a:1},
+{q:"ما اسم عم النبي ﷺ الشهيد في أحد؟",o:["أبو لهب","العباس","حمزة","أبو طالب"],a:2},
+{q:"من هو كاتب الوحي الذي جمع القرآن؟",o:["أبو موسى","زيد بن ثابت","معاذ","جابر"],a:1},
+{q:"كم عدد أبناء النبي ﷺ الذكور؟",o:["2","3","4","5"],a:1},
+{q:"ما اسم عاصمة الدولة الإسلامية في عهد النبي ﷺ؟",o:["مكة","الطائف","المدينة المنورة","القدس"],a:2}
+];
+let ci=0,sc=0,wc=0,toc=0,ans=false,ti=null,tl=20,ua=[];
+const C=2*Math.PI*27;
+function shuf(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
+function loadQ(){
+  const q=cq[ci];ans=false;
+  document.getElementById("qcur").textContent=ci+1;
+  document.getElementById("scr").textContent=sc;
+  document.getElementById("wrg").textContent=wc;
+  document.getElementById("pb").style.width=((ci/cq.length)*100)+"%";
+  document.getElementById("qnum").textContent="السؤال "+(ci+1);
+  document.getElementById("qtxt").textContent=q.q;
+  document.getElementById("ft").className="ft";
+  document.getElementById("crv").className="cr";
+  document.getElementById("nb").style.display="none";
+  const L=["أ","ب","ج","د"];
+  const sh=shuf(q.o.map((t,i)=>({t,i})));
+  const g=document.getElementById("og");g.innerHTML="";
+  sh.forEach((op,p)=>{
+    const b=document.createElement("button");
+    b.className="ob";
+    b.innerHTML='<span class="ol">'+L[p]+'</span><span>'+op.t+'</span>';
+    b.dataset.orig=op.i;
+    b.onclick=()=>selA(b,op.i,q.a);
+    g.appendChild(b);
+  });
+  startT();
+}
+function startT(){clearInterval(ti);tl=20;updT(20);document.getElementById("trr").classList.remove("danger");ti=setInterval(()=>{tl--;updT(tl);if(tl<=5)document.getElementById("trr").classList.add("danger");if(tl<=0){clearInterval(ti);timeout();}},1000);}
+function updT(t){document.getElementById("ttxt").textContent=t;document.getElementById("tfc").style.strokeDashoffset=C*(1-t/20);}
+function timeout(){if(ans)return;ans=true;toc++;const q=cq[ci];document.querySelectorAll(".ob").forEach(b=>{b.disabled=true;if(parseInt(b.dataset.orig)===q.a)b.classList.add("correct");});ua.push({q:q.q,u:null,c:q.o[q.a],ok:false,to:true});toast(false,"⏰ انتهى الوقت! لم تُجب في الوقت المحدد.");reveal(q.o[q.a]);showNxt(ci===cq.length-1);}
+function selA(b,ch,ca){if(ans)return;ans=true;clearInterval(ti);const q=cq[ci];const ok=ch===ca;document.querySelectorAll(".ob").forEach(btn=>{btn.disabled=true;if(parseInt(btn.dataset.orig)===ca)btn.classList.add("correct");else if(btn===b&&!ok)btn.classList.add("wrong");});if(ok){sc++;toast(true,"✅ إجابة صحيحة! أحسنت 🌟");ua.push({q:q.q,u:q.o[ch],c:q.o[ca],ok:true,to:false});}else{wc++;toast(false,"❌ إجابة خاطئة، لا تحزن وتابع!");reveal(q.o[ca]);ua.push({q:q.q,u:q.o[ch],c:q.o[ca],ok:false,to:false});}document.getElementById("scr").textContent=sc;document.getElementById("wrg").textContent=wc;showNxt(ci===cq.length-1);}
+function toast(ok,msg){const f=document.getElementById("ft");f.className="ft "+(ok?"ok":"ko");document.getElementById("fi").className=ok?"fa-solid fa-circle-check":"fa-solid fa-circle-xmark";document.getElementById("fm").textContent=msg;}
+function reveal(t){const r=document.getElementById("crv");r.className="cr show";document.getElementById("crt").textContent="الإجابة الصحيحة: "+t;}
+function showNxt(last){const b=document.getElementById("nb");b.style.display="flex";document.getElementById("nbt").textContent=last?"عرض النتيجة":"السؤال التالي";}
+function nextQ(){ci++;if(ci>=cq.length)result();else loadQ();}
+function result(){
+  clearInterval(ti);
+  document.getElementById("pb").style.width="100%";
+  document.getElementById("rsc").textContent=sc;
+  document.getElementById("rwc").textContent=wc;
+  document.getElementById("rtoc").textContent=toc;
+  document.getElementById("sdisp").textContent=sc+"/20";
+  const p=(sc/20)*100;
+  let tit,gt,ic,gic;
+  if(p>=90){tit="ممتاز! أحسنت 🏆";gt="درجة ممتازة – واصل التعلم!";ic="gg";gic="fa-trophy";}
+  else if(p>=70){tit="جيد جداً 👏";gt="درجة جيدة جداً – أنت على الطريق الصحيح!";ic="sg";gic="fa-medal";}
+  else if(p>=50){tit="جيد 🙂";gt="يمكنك التحسن أكثر، حاول مرة أخرى!";ic="bg2";gic="fa-star-half-stroke";}
+  else{tit="تحتاج إلى مراجعة 📚";gt="لا تيأس! راجع المادة وأعد المحاولة.";ic="lg";gic="fa-book-open";}
+  document.getElementById("rtit").textContent=tit;
+  document.getElementById("gtxt").textContent=gt;
+  const iw=document.getElementById("riw");iw.className="riw "+ic;
+  document.getElementById("ric").className="fa-solid "+gic;
+  const l=document.getElementById("rvl");l.innerHTML="";
+  ua.forEach((x,i)=>{
+    const d=document.createElement("div");
+    d.className="rvi "+(x.ok?"ci":"wi");
+    let ah=x.ok?'<span class="rok"><i class="fa-solid fa-check"></i> إجابتك: '+x.u+' ✓</span>':x.to?'<span class="ru"><i class="fa-solid fa-clock"></i> انتهى الوقت</span><span class="rco"><i class="fa-solid fa-check"></i> الصحيح: '+x.c+'</span>':'<span class="ru"><i class="fa-solid fa-xmark"></i> إجابتك: '+x.u+'</span><span class="rco"><i class="fa-solid fa-check"></i> الصحيح: '+x.c+'</span>';
+    d.innerHTML='<div class="rvq">'+(i+1)+'. '+x.q+'</div><div class="rva">'+ah+'</div>';
+    l.appendChild(d);
+  });
+  show("sres");
+}
+function show(id){document.querySelectorAll(".screen").forEach(s=>s.classList.remove("active"));document.getElementById(id).classList.add("active");window.scrollTo({top:0,behavior:"smooth"});}
+function replay(){ci=0;sc=0;wc=0;toc=0;ua=[];show("sq");loadQ();}
+loadQ();
+</script>
+</body>
+</html>
