@@ -30,12 +30,14 @@
         <div class="nav-menu" id="navMenu">
           <a href="page_acceuil.html" class="nav-link">الرئيسية</a>
           <a href="#quran" class="nav-link">القرآن الكريم</a>
-          <a href="#features" class="nav-link">أسماء الله الحسنى</a>
+          <a href="asmaa_allah_alhousnaa_3d.html" class="nav-link">أسماء الله الحسنى</a>
           <a href="#features" class="nav-link">مسار الأنبياء</a>
           <a href="#features" class="nav-link">التقويم الهجري</a>
-          <a href="prayertime.html" class="nav-link active">أوقات الصلاة</a>
           <a href="#features" class="nav-link">المسبحة الإلكترونية</a>
           <a href="#features" class="nav-link">قصة الصحابة</a>
+          <a href="#features" class="nav-link">حاسب نفسك</a>
+          <a href="#features" class="nav-link">صدقة جارية</a>
+          <a href="#features" class="nav-link">أذكار</a>
           <a href="#contact" class="nav-link">اتصل بنا</a>
         </div>
         
@@ -159,6 +161,7 @@
 
   <!-- JavaScript -->
   <script src="prayertime.js"></script>
+  <script src="hamburger-menu.js"></script>
   <script>
     // Script pour le nom d'utilisateur (identique à votre page)
     const currentUser = JSON.parse(localStorage.getItem('faithpathCurrentUser') || 'null');
@@ -166,11 +169,6 @@
     if (currentUser && currentUser.fullName && profileNameElement) {
       profileNameElement.textContent = currentUser.fullName;
     }
-
-    // Menu toggle
-    document.getElementById('menuToggle').addEventListener('click', function() {
-      document.getElementById('navMenu').classList.toggle('active');
-    });
   </script>
 </body>
 </html> 

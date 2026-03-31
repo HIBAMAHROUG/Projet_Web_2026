@@ -10,6 +10,48 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body class="home-page">
+  
+  <!-- ==================== ASIDE HAMBURGER NAVIGATION (MENU LATÉRAL) ==================== -->
+  <aside class="aside-nav" id="asideNav">
+    <div class="aside-header">
+      <div class="aside-logo">
+        <i class="fas fa-mosque"></i>
+        <span>Faith<span>Path</span></span>
+      </div>
+      <button class="close-aside" id="closeAsideBtn">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <ul class="aside-menu">
+      <li><a href="#accueil" class="aside-link active">الرئيسية</a></li>
+      <li><a href="#quran" class="aside-link">القرآن الكريم</a></li>
+      <li><a href="asmaa_allah_alhousnaa_3d.html" class="aside-link">أسماء الله الحسنى</a></li>
+      <li><a href="#features" class="aside-link">مسار الأنبياء</a></li>
+      <li><a href="#features" class="aside-link">التقويم الهجري</a></li>
+      <li><a href="prayertime.html" class="aside-link">أوقات الصلاة</a></li>
+      <li><a href="#features" class="aside-link">المسبحة الإلكترونية</a></li>
+      <li><a href="#features" class="aside-link">قصة الصحابة</a></li>
+      <li><a href="#features" class="aside-link">حاسب نفسك</a></li>
+      <li><a href="#features" class="aside-link">اختبارات دينية</a></li>
+      <li><a href="#features" class="aside-link">صدقة جارية</a></li>
+      <li><a href="#features" class="aside-link">أذكار الصباح والمساء</a></li>
+      <li><a href="#contact" class="aside-link">تواصل معنا</a></li>
+    </ul>
+    <div class="aside-footer">
+      <div class="aside-search">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="بحث...">
+      </div>
+      <div class="aside-profile">
+        <i class="far fa-user-circle"></i>
+        <span id="asideProfileName">أحمد</span>
+      </div>
+    </div>
+  </aside>
+  
+  <!-- Overlay pour fermer le menu latéral -->
+  <div class="aside-overlay" id="asideOverlay"></div>
+
   <!-- ===== HEADER ===== -->
   <header class="header">
     <div class="header-wave">
@@ -20,41 +62,31 @@
       </svg>
     </div>
     
-    <nav class="navbar">
+    <!-- Barre de navigation principale avec bouton hamburger -->
+    <nav class="top-navbar">
       <div class="nav-container">
         <div class="logo">
-          <img src="img/m.png" alt="Mosquée" class="logo-img">
+          <img src="img/m.png" alt="FaithPath" class="logo-img">
           <span class="logo-text">Faith<span class="logo-highlight">Path</span></span>
         </div>
         
-        <div class="nav-menu" id="navMenu">
-          <a href="#accueil" class="nav-link active">الرئيسية</a>
-          <a href="#quran" class="nav-link">القرآن الكريم</a>
-          <a href="#features" class="nav-link">أسماء الله الحسنى</a>
-          <a href="#features" class="nav-link">مسار الأنبياء</a>
-          <a href="#features" class="nav-link">التقويم الهجري</a>
-          <a href="#features" class="nav-link">المسبحة الإلكترونية</a>
-          <a href="#features" class="nav-link">قصة الصحابة</a>
-          <a href="#features" class="nav-link">حاسب نفسك</a>
-          <a href="#features" class="nav-link">صدقة جارية</a>
-          <a href="#features" class="nav-link">أذكار  </a>
-          <a href="#contact" class="nav-link">اتصل بنا</a>
-        </div>
-        
+        <!-- Hamburger Button (ouvre le menu latéral) -->
+        <button class="hamburger" id="hamburgerBtn" aria-label="القائمة">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <!-- Actions de droite (recherche + profil) -->
         <div class="nav-actions">
           <div class="search-box">
             <i class="fas fa-search search-icon"></i>
             <input type="text" placeholder="بحث..." class="search-input">
           </div>
-          <div class="user-profile">
-            <i class="fas fa-bell notification-icon"></i>
-            <div class="profile-badge">
-              <i class="fas fa-user-circle profile-icon"></i>
-                <span class="profile-name" id="profileName">المستخدم</span>
-            </div>
-          </div>
-          <div class="menu-toggle" id="menuToggle">
-            <i class="fas fa-bars"></i>
+          <i class="far fa-bell notification-icon"></i>
+          <div class="profile-badge">
+            <i class="far fa-user-circle profile-icon"></i>
+            <span class="profile-name" id="profileName">أحمد</span>
           </div>
         </div>
       </div>
@@ -129,7 +161,7 @@
             </div>
             <h3 class="feature-title">أسماء الله الحسنى</h3>
             <p class="feature-desc">٩٩ اسمًا مع شرح وتأمل</p>
-            <a href="#" class="feature-link">تأمل <i class="fas fa-arrow-left"></i></a>
+            <a href="asmaa_allah_alhousnaa_3d.html" class="feature-link">تأمل <i class="fas fa-arrow-left"></i></a>
           </div>
           
           <!-- Axe des prophètes - Third -->
@@ -155,7 +187,7 @@
           <!-- Prayer Times -->
           <div class="feature-card">
             <div class="feature-img">
-              <img src="img\téléchargement.jpg" alt="أوقات الصلاة" class="feature-icon-img">
+              <img src="img/téléchargement.jpg" alt="أوقات الصلاة" class="feature-icon-img">
             </div>
             <h3 class="feature-title">أوقات الصلاة</h3>
             <p class="feature-desc">اعرف مواقيت الصلاة حسب موقعك بدقة</p>
@@ -175,7 +207,7 @@
           <!-- Shaba's story -->
           <div class="feature-card">
             <div class="feature-img">
-              <img src="img/images.jpg" alt="قصة الصحابة" class="feature-icon-img" style="filter: brightness(1.1) hue-rotate(120deg);">
+              <img src="img/images.jpg" alt="قصة الصحابة" class="feature-icon-img">
             </div>
             <h3 class="feature-title">قصة الصحابة</h3>
             <p class="feature-desc">مواقف ملهمة من حياة الصحابة رضي الله عنهم</p>
@@ -365,27 +397,61 @@
   <script>
     const currentUser = JSON.parse(localStorage.getItem('faithpathCurrentUser') || 'null');
     const profileNameElement = document.getElementById('profileName');
+    const asideProfileName = document.getElementById('asideProfileName');
 
-    if (currentUser && currentUser.fullName && profileNameElement) {
-      profileNameElement.textContent = currentUser.fullName;
+    if (currentUser && currentUser.fullName) {
+      if (profileNameElement) profileNameElement.textContent = currentUser.fullName;
+      if (asideProfileName) asideProfileName.textContent = currentUser.fullName;
     }
 
-    const startJourneyBtn = document.getElementById('startJourneyBtn');
-
-    if (startJourneyBtn) {
-      startJourneyBtn.addEventListener('click', function(event) {
-        event.preventDefault();
-        const mainBody = document.getElementById('mainContent');
-        if (mainBody) {
-          mainBody.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // ==================== ASIDE HAMBURGER MENU (menu latéral) ====================
+    (function() {
+      const hamburger = document.getElementById('hamburgerBtn');
+      const asideNav = document.getElementById('asideNav');
+      const asideOverlay = document.getElementById('asideOverlay');
+      const closeAsideBtn = document.getElementById('closeAsideBtn');
+      
+      function closeAside() {
+        if (asideNav) asideNav.classList.remove('active');
+        if (asideOverlay) asideOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+      
+      function openAside() {
+        if (asideNav) asideNav.classList.add('active');
+        if (asideOverlay) asideOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+      
+      function toggleAside() {
+        if (asideNav && asideNav.classList.contains('active')) {
+          closeAside();
+        } else {
+          openAside();
         }
+      }
+      
+      if (hamburger) {
+        hamburger.addEventListener('click', toggleAside);
+      }
+      
+      if (closeAsideBtn) {
+        closeAsideBtn.addEventListener('click', closeAside);
+      }
+      
+      if (asideOverlay) {
+        asideOverlay.addEventListener('click', closeAside);
+      }
+      
+      const asideLinks = document.querySelectorAll('.aside-link');
+      asideLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          asideLinks.forEach(l => l.classList.remove('active'));
+          this.classList.add('active');
+          closeAside();
+        });
       });
-    }
-
-    // Mobile menu toggle
-    document.getElementById('menuToggle').addEventListener('click', function() {
-      document.getElementById('navMenu').classList.toggle('active');
-    });
+    })();
   </script>
 </body>
 </html>

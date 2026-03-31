@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Hamburger Menu - FaithPath</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #0f3d2e, #1d6b4a);
+      min-height: 100vh;
+    }
+    
+    .test-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      color: white;
+    }
+    
+    .test-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      margin-top: 2rem;
+    }
+    
+    .test-header h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .test-header p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+    
+    .test-info {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2rem;
+      border-radius: 15px;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(10px);
+    }
+    
+    .test-info li {
+      margin: 0.5rem 0;
+      font-size: 1rem;
+    }
+    
+    .test-instructions {
+      background: rgba(255, 215, 0, 0.1);
+      border: 2px solid var(--gold);
+      padding: 2rem;
+      border-radius: 15px;
+      margin-bottom: 2rem;
+    }
+    
+    .test-instructions h3 {
+      color: var(--gold);
+      margin-bottom: 1rem;
+    }
+    
+    .screen-size {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 1rem;
+      border-radius: 8px;
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- ===== HEADER ===== -->
+  <header class="header">
+    <div class="header-wave">
+      <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="wave-fill"></path>
+        <path d="M0,0V15.81C13,21.25,27.93,25.68,44.5,28.41c69.53,11.11,139.8,6.43,209.31-2.47,69.42-8.91,138.39-22.4,207.76-21.18C511.39,6.9,575.37,22.63,639,38.83c73.11,18.62,147.28,32.45,222.05,21C951.31,48.69,1076.37,20.67,1200,47.42V0Z" opacity=".5" class="wave-fill"></path>
+        <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="wave-fill"></path>
+      </svg>
+    </div>
+    
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="logo">
+          <img src="img/m.png" alt="Mosquée" class="logo-img">
+          <span class="logo-text">Faith<span class="logo-highlight">Path</span></span>
+        </div>
+        
+        <div class="nav-menu" id="navMenu">
+          <a href="#" class="nav-link active">الرئيسية</a>
+          <a href="#" class="nav-link">القرآن الكريم</a>
+          <a href="#" class="nav-link">أسماء الله الحسنى</a>
+          <a href="#" class="nav-link">مسار الأنبياء</a>
+          <a href="#" class="nav-link">التقويم الهجري</a>
+          <a href="#" class="nav-link">أوقات الصلاة</a>
+          <a href="#" class="nav-link">اختبر نفسك</a>
+          <a href="#" class="nav-link">اتصل بنا</a>
+        </div>
+        
+        <div class="nav-actions">
+          <div class="search-box">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" placeholder="بحث..." class="search-input">
+          </div>
+          <div class="user-profile">
+            <i class="fas fa-bell notification-icon"></i>
+            <div class="profile-badge">
+              <i class="fas fa-user-circle profile-icon"></i>
+              <span class="profile-name">المستخدم</span>
+            </div>
+          </div>
+          <div class="menu-toggle" id="menuToggle">
+            <i class="fas fa-bars"></i>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ===== TEST CONTENT ===== -->
+  <main class="test-container">
+    <div class="test-header">
+      <h1>✅ اختبار قائمة الهامبرجر</h1>
+      <p>اختبر القائمة على جهازك</p>
+    </div>
+    
+    <div class="test-instructions">
+      <h3>📱 كيفية الاختبار:</h3>
+      <ul>
+        <li>👆 <strong>انقر على رمز ≡ (الهامبرجر)</strong> في الأعلى لفتح/إغلاق القائمة</li>
+        <li>📱 <strong>غيّر حجم نافذتك</strong> - سيظهر الهامبرجر على الشاشات الصغيرة ≤ 992px</li>
+        <li>🔗 <strong>انقر على أي رابط قائمة</strong> - سيغلق القائمة تلقائياً</li>
+        <li>👆 <strong>انقر خارج القائمة</strong> - سيغلق القائمة</li>
+      </ul>
+    </div>
+
+    <section class="features-section" id="features">
+      <div class="container">
+        <div class="section-header">
+          <div class="section-icon">
+            <i class="fas fa-compass"></i>
+          </div>
+          <h2 class="section-title">مرافقك في الرحلة الإيمانية</h2>
+          <p class="section-subtitle">أدوات ومنافع تعينك على الطاعة</p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-img">
+              <img src="img/holy-quran-logo-book-design-260nw-2321481509.webp" alt="القرآن الكريم" class="feature-icon-img">
+            </div>
+            <h3 class="feature-title">القرآن الكريم</h3>
+            <p class="feature-desc">استمع واقرأ السور بدون تفسير</p>
+            <a href="#" class="feature-link">اقرأ <i class="fas fa-arrow-left"></i></a>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-img">
+              <img src="img/allah_names.png" alt="أسماء الله الحسنى" class="feature-icon-img">
+            </div>
+            <h3 class="feature-title">أسماء الله الحسنى</h3>
+            <p class="feature-desc">٩٩ اسمًا مع شرح وتأمل</p>
+            <a href="asmaa_allah_alhousnaa_3d.html" class="feature-link">تأمل <i class="fas fa-arrow-left"></i></a>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-img">
+              <img src="img/12344848-calligraphie-arabe-et-islamique-du-prophete-muhammad-la-paix-soit-sur-lui-l-art-islamique-traditionnel-et-moderne-peut-etre-utilise-pour-de-nombreux-sujets-comme-le-mawlid-el-nabawi-traduction-le-prophete-mu.jpg" alt="مسار الأنبياء" class="feature-icon-img">
+            </div>
+            <h3 class="feature-title">مسار الأنبياء</h3>
+            <p class="feature-desc">قصص الأنبياء عبر العصور وحكم وعبر</p>
+            <a href="#" class="feature-link">استمع <i class="fas fa-arrow-left"></i></a>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-img">
+              <img src="img/hijri-year-icon-vector-image-can-be-used-islamic-new-year_120816-139975.avif" alt="التقويم الهجري" class="feature-icon-img">
+            </div>
+            <h3 class="feature-title">التقويم الهجري</h3>
+            <p class="feature-desc">تابع الأيام والأشهر الهجرية والمناسبات الإسلامية</p>
+            <a href="#" class="feature-link">اكتشف <i class="fas fa-arrow-left"></i></a>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-img">
+              <img src="img/téléchargement.jpg" alt="أوقات الصلاة" class="feature-icon-img">
+            </div>
+            <h3 class="feature-title">أوقات الصلاة</h3>
+            <p class="feature-desc">اعرف مواقيت الصلاة حسب موقعك بدقة</p>
+            <a href="prayertime.html" class="feature-link">عرض المواقيت <i class="fas fa-arrow-left"></i></a>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-img">
+              <img src="img/depositphotos_310285520-stock-illustration-rosary-isolated-on-white-background.jpg" alt="المسبحة الإلكترونية" class="feature-icon-img">
+            </div>
+            <h3 class="feature-title">المسبحة الإلكترونية</h3>
+            <p class="feature-desc">سبح واذكر الله بعدد دقيق</p>
+            <a href="#" class="feature-link">ابدأ التسبيح <i class="fas fa-arrow-left"></i></a>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-img">
+              <img src="img/images.jpg" alt="قصة الصحابة" class="feature-icon-img">
+            </div>
+            <h3 class="feature-title">قصة الصحابة</h3>
+            <p class="feature-desc">مواقف ملهمة من حياة الصحابة رضي الله عنهم</p>
+            <a href="#" class="feature-link">اقرأ القصة <i class="fas fa-arrow-left"></i></a>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-img">
+              <img src="img/test.jpg" alt="حاسب نفسك" class="feature-icon-img">
+            </div>
+            <h3 class="feature-title">حاسب نفسك</h3>
+            <p class="feature-desc">دفتر يومي لمحاسبة النفس على الطاعات</p>
+            <a href="#" class="feature-link">سجل <i class="fas fa-arrow-left"></i></a>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-img">
+              <img src="img/unnamed (1).png" alt="اختبارات دينية" class="feature-icon-img">
+            </div>
+            <h3 class="feature-title">اختبارات دينية</h3>
+            <p class="feature-desc">اختبر معرفتك في السيرة والفقه</p>
+            <a href="#" class="feature-link">ابدأ الاختبار <i class="fas fa-arrow-left"></i></a>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-img">
+              <img src="img/59_500.png" alt="صدقة جارية" class="feature-icon-img">
+            </div>
+            <h3 class="feature-title">صدقة جارية</h3>
+            <p class="feature-desc">تبرع لمشاريع خيرية وماء سبيل</p>
+            <a href="#" class="feature-link">تصدق الآن <i class="fas fa-arrow-left"></i></a>
+          </div>
+
+          <div class="feature-card">
+            <div class="feature-img">
+              <img src="img/400x400bb-75.webp" alt="أذكار" class="feature-icon-img">
+            </div>
+            <h3 class="feature-title">أذكار الصباح والمساء</h3>
+            <p class="feature-desc">أذكار يومية لحفظك وتقربك إلى الله</p>
+            <a href="#" class="feature-link">اقرأ الآن <i class="fas fa-arrow-left"></i></a>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <div class="test-info">
+      <h3>✨ الميزات المتوفرة:</h3>
+      <ul>
+        <li>✅ يظهر الهامبرجر على جميع أحجام الشاشات الصغيرة</li>
+        <li>✅ توافق كامل مع اللغة العربية واتجاه RTL</li>
+        <li>✅ حركات سلسة وانتقالات ناعمة</li>
+        <li>✅ يغلق تلقائياً عند النقر على رابط</li>
+        <li>✅ يغلق تلقائياً عند النقر خارجه</li>
+        <li>✅ ذهبي لامع للروابط النشطة</li>
+        <li>✅ يتناسب تماماً مع تصميم الموقع</li>
+      </ul>
+    </div>
+    
+    <div class="test-info">
+      <h3>📄 الملفات المحدثة:</h3>
+      <ul>
+        <li>✅ hamburger-menu.js - سكريبت القائمة</li>
+        <li>✅ styles.css - أنماط القائمة</li>
+        <li>✅ page_acceuil.html</li>
+        <li>✅ asmaa_allah_alhousnaa_3d.html</li>
+        <li>✅ prayertime.html</li>
+      </ul>
+    </div>
+    
+    <div class="screen-size">
+      <strong>حجم الشاشة الحالي:</strong> <span id="screenSize"></span>
+      <p style="margin-top: 0.5rem; opacity: 0.7;">الهامبرجر يظهر على الشاشات ≤ 992px</p>
+    </div>
+  </main>
+
+  <!-- Scripts -->
+  <script src="hamburger-menu.js"></script>
+  <script>
+    // Display current screen size
+    function updateScreenSize() {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      const isMobile = width <= 992;
+      document.getElementById('screenSize').textContent = 
+        `${width}×${height}px (${isMobile ? '📱 موبايل' : '🖥️ ديسكتوب'})`;
+    }
+    
+    updateScreenSize();
+    window.addEventListener('resize', updateScreenSize);
+  </script>
+</body>
+</html>
