@@ -37,7 +37,7 @@ Plateforme web orientée contenu islamique avec pages d’authentification, page
 
 
 ## conception global
-![diagramme use case ](chemin/vers/image.png)
+![diagramme use case ](Diagramme sans nom.drawio.png)
 
 ## Notes techniques
 
