@@ -1,69 +1,68 @@
 <?php
-// forgot_password.php — reçoit le formulaire "j'ai oublié mon mot de passe"
-require 'config.php';
+require 'confi.php';
 
-$message = '';
-$error   = '';
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = trim($_POST['email'] ?? '');
-
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $error = "Adresse email invalide.";
-    } else {
-        $pdo = getDB();
-
-        // Vérifie si l'email existe
-        $stmt = $pdo->prepare("SELECT id FROM users WHERE email = ?");
-        $stmt->execute([$email]);
-        $user = $stmt->fetch();
-
-        if ($user) {
-            // Génère un token sécurisé
-            $token     = bin2hex(random_bytes(32));
-            $expiresAt = date('Y-m-d H:i:s', strtotime('+1 hour'));
-
-            // Supprime les anciens tokens non utilisés pour cet email
-            $pdo->prepare("DELETE FROM password_resets WHERE email = ? AND used = 0")
-                ->execute([$email]);
-
-            // Insère le nouveau token
-            $pdo->prepare(
-                "INSERT INTO password_resets (email, token, expires_at) VALUES (?, ?, ?)"
-            )->execute([$email, $token, $expiresAt]);
-
-            // Envoie l'email
-            $resetLink = BASE_URL . "/reset_password.php?token=" . $token;
-            sendResetEmail($email, $resetLink);
-        }
-
-        // Message générique — ne pas révéler si l'email existe ou non
-        $message = "Si cet email est enregistré, un lien de réinitialisation vous a été envoyé.";
-    }
+function respondJson($success, $message, $status = 200, $extra = []) {
+    http_response_code($status);
+    header('Content-Type: application/json; charset=UTF-8');
+    echo json_encode(array_merge([
+        'success' => $success,
+        'message' => $message,
+    ], $extra), JSON_UNESCAPED_UNICODE);
+    exit;
 }
 
 function sendResetEmail($email, $resetLink) {
-    $subject = "Réinitialisation de votre mot de passe";
-
-    // Charge le template HTML
-    $body = file_get_contents('email_template.html');
-    $body = str_replace('{{RESET_LINK}}', $resetLink, $body);
-    $body = str_replace('{{YEAR}}', date('Y'), $body);
+    $subject = "Reinitialisation de votre mot de passe";
+    $body = "
+      <div style='font-family:Arial,sans-serif;line-height:1.6'>
+        <h2>Reinitialisation du mot de passe</h2>
+        <p>Pour definir un nouveau mot de passe, cliquez sur ce lien :</p>
+        <p><a href='{$resetLink}'>{$resetLink}</a></p>
+        <p>Ce lien expire dans 1 heure.</p>
+      </div>
+    ";
 
     $headers  = "From: " . MAIL_FROM_NAME . " <" . MAIL_FROM . ">\r\n";
     $headers .= "Reply-To: " . MAIL_FROM . "\r\n";
     $headers .= "MIME-Version: 1.0\r\n";
     $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 
-    mail($email, $subject, $body, $headers);
-    // En production, remplace mail() par PHPMailer ou Mailgun pour plus de fiabilité
+    @mail($email, $subject, $body, $headers);
 }
-?>
-<!DOCTYPE html>
-<html lang="fr">
-<head><meta charset="UTF-8"><title>Mot de passe oublié</title>
-<link rel="stylesheet" href="style.css"></head>
-<body>
-<?php include 'forgot_form.html'; ?>
-</body>
-</html>
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    respondJson(false, 'Methode non autorisee.', 405);
+}
+
+$payload = json_decode(file_get_contents('php://input'), true);
+$email = trim($payload['email'] ?? ($_POST['email'] ?? ''));
+
+if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    respondJson(false, 'Adresse email invalide.', 422);
+}
+
+$pdo = getDB();
+$stmt = $pdo->prepare("SELECT id FROM users WHERE email = ?");
+$stmt->execute([$email]);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if ($user) {
+    $token = bin2hex(random_bytes(32));
+    $expiresAt = date('Y-m-d H:i:s', strtotime('+1 hour'));
+
+    $pdo->prepare("DELETE FROM password_resets WHERE email = ? AND used = 0")
+        ->execute([$email]);
+
+    $pdo->prepare("INSERT INTO password_resets (email, token, expires_at) VALUES (?, ?, ?)")
+        ->execute([$email, $token, $expiresAt]);
+
+    $scheme = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https' : 'http';
+    $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+    $scriptPath = str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'] ?? '/backend'));
+    $projectPath = rtrim(dirname($scriptPath), '/');
+    $resetLink = $scheme . '://' . $host . ($projectPath ?: '') . '/reset-password.html?token=' . urlencode($token);
+
+    sendResetEmail($email, $resetLink);
+}
+
+respondJson(true, 'Si cet email est enregistre, un lien de reinitialisation a ete envoye.');

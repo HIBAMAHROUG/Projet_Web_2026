@@ -2994,6 +2994,27 @@ body {
   color: var(--bronze-400);
 }
 
+.locked-features-panel {
+  margin: 1rem auto 0;
+  max-width: 980px;
+  background: linear-gradient(135deg, rgba(15, 61, 46, 0.06), rgba(15, 61, 46, 0.12));
+  border: 1px solid rgba(15, 61, 46, 0.2);
+  border-radius: 14px;
+  padding: 0.75rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  color: var(--emerald-900);
+}
+
+.locked-features-panel strong {
+  font-size: 0.95rem;
+}
+
+.locked-features-panel span {
+  font-size: 0.9rem;
+}
+
 /* Prayer Section */
 .prayer-section {
   background: linear-gradient(135deg, white, var(--emerald-100));
@@ -3110,6 +3131,61 @@ body {
   border: 1px solid var(--emerald-100);
   position: relative;
   overflow: hidden;
+}
+
+.locked-feature {
+  border-color: rgba(159, 122, 85, 0.42);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08), inset 0 0 0 1px rgba(159, 122, 85, 0.14);
+  background: linear-gradient(165deg, #ffffff 0%, #fdf8f2 65%, #fbf2e6 100%);
+}
+
+.lock-badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.33rem 0.68rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(122, 87, 52, 0.18), rgba(212, 173, 120, 0.28));
+  color: #5f3f20;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border: 1px solid rgba(159, 122, 85, 0.4);
+  box-shadow: 0 8px 18px rgba(78, 54, 31, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(3px);
+  animation: pulse-lock 2.4s ease-in-out infinite;
+}
+
+.locked-feature .feature-img {
+  filter: saturate(0.72) contrast(0.92);
+}
+
+.locked-feature .feature-link {
+  background: rgba(159, 122, 85, 0.12);
+  border: 1px solid rgba(159, 122, 85, 0.3);
+  color: #6f4c2b;
+  border-radius: 999px;
+  padding: 0.5rem 0.95rem;
+}
+
+.locked-feature:hover .feature-link {
+  background: rgba(159, 122, 85, 0.2);
+  border-color: rgba(159, 122, 85, 0.5);
+}
+
+@keyframes pulse-lock {
+  0%,
+  100% {
+    transform: translateY(0);
+    box-shadow: 0 8px 18px rgba(78, 54, 31, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  }
+  50% {
+    transform: translateY(-1px);
+    box-shadow: 0 12px 22px rgba(78, 54, 31, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.55);
+  }
 }
 
 .feature-card:hover {
@@ -5153,6 +5229,19 @@ ol.asma-list {
   transform: translateX(-5px);
 }
 
+.aside-link[data-access="locked"] {
+  background: linear-gradient(145deg, rgba(255, 221, 184, 0.14), rgba(122, 87, 52, 0.2));
+  border: 1px dashed rgba(255, 215, 160, 0.45);
+  color: #ffe9cf;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.aside-link[data-access="locked"]:hover {
+  background: linear-gradient(145deg, rgba(255, 234, 206, 0.95), rgba(232, 195, 143, 0.95));
+  color: #4a321b;
+  border-style: solid;
+}
+
 .aside-footer {
   padding-top: 1.5rem;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
@@ -5313,6 +5402,49 @@ body.home-page .nav-actions {
   display: flex;
   align-items: center;
   gap: 1.2rem;
+}
+
+.auth-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 999px;
+  padding: 0.45rem 1rem;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.85rem;
+  transition: 0.2s ease;
+  white-space: nowrap;
+}
+
+.auth-action-btn:hover {
+  background: var(--gold);
+  color: var(--emerald-900);
+}
+
+.auth-action-btn.is-logged-in {
+  background: linear-gradient(135deg, rgba(207, 226, 213, 0.9), rgba(255, 247, 225, 0.92));
+  color: var(--emerald-900);
+  border-color: rgba(255, 215, 0, 0.5);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.auth-action-btn.is-logged-in:hover {
+  background: linear-gradient(135deg, rgba(255, 247, 225, 0.96), rgba(207, 226, 213, 0.96));
+  color: #0f3d2e;
+}
+
+body.is-authenticated .lock-badge,
+body.is-authenticated .locked-features-panel {
+  display: none !important;
+}
+
+body.is-authenticated .locked-feature {
+  border-color: rgba(63, 143, 103, 0.25);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08), inset 0 0 0 1px rgba(63, 143, 103, 0.1);
 }
 
 .search-box {

@@ -1,7 +1,7 @@
 <?php
 // config.php — à inclure dans tous les fichiers
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'ton_projet');
+define('DB_NAME', 'PROJET_WEB_2026');
 define('DB_USER', 'root');
 define('DB_PASS', '');
 define('BASE_URL', 'http://localhost/ton_projet');

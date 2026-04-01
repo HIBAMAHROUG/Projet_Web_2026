@@ -3,53 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FaithPath </title>
+  <title>تسجيل الدخول - FaithPath</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <nav class="navbar fp-navbar-floating">
-    <div class="nav-container">
-      <div class="logo">
-        <img src="img/m.png" alt="FaithPath" class="logo-img">
-        <span class="logo-text">Faith<span class="logo-highlight">Path</span></span>
-      </div>
-      <div class="nav-menu" id="navMenu">
-        <a href="page_acceuil.html#accueil" class="nav-link">الرئيسية</a>
-        <a href="page_acceuil.html#quran" class="nav-link">القرآن الكريم</a>
-        <a href="asmaa_allah_alhousnaa_3d.html" class="nav-link">أسماء الله الحسنى</a>
-        <a href="page_acceuil.html#features" class="nav-link">مسار الأنبياء</a>
-        <a href="page_acceuil.html#features" class="nav-link">التقويم الهجري</a>
-        <a href="page_acceuil.html#features" class="nav-link">المسبحة الإلكترونية</a>
-        <a href="page_acceuil.html#features" class="nav-link">قصة الصحابة</a>
-        <a href="page_acceuil.html#features" class="nav-link">حاسب نفسك</a>
-        <a href="page_acceuil.html#features" class="nav-link">صدقة جارية</a>
-        <a href="page_acceuil.html#features" class="nav-link">أذكار</a>
-        <a href="page_acceuil.html#contact" class="nav-link">اتصل بنا</a>
-      </div>
-      <div class="nav-actions">
-        <div class="search-box">
-          <span class="search-icon">S</span>
-          <input type="text" placeholder="بحث..." class="search-input">
-        </div>
-        <div class="user-profile">
-          <span class="notification-icon">N</span>
-          <div class="profile-badge">
-            <span class="profile-icon">P</span>
-            <span class="profile-name">المستخدم</span>
-          </div>
-        </div>
-        <button class="menu-toggle" id="menuToggle" type="button" aria-label="فتح القائمة">☰</button>
-      </div>
-    </div>
-  </nav>
-  <div class="nav-overlay" id="navOverlay"></div>
-  <section class="navbar-demo-section fp-page-offset" aria-label="روابط التنقل">
-    <h2>روابط التنقل المتاحة</h2>
-    <div class="navbar-demo-list">
-      <span>الرئيسية</span><span>القرآن الكريم</span><span>أسماء الله الحسنى</span><span>مسار الأنبياء</span><span>التقويم الهجري</span><span>المسبحة الإلكترونية</span><span>قصة الصحابة</span><span>حاسب نفسك</span><span>صدقة جارية</span><span>أذكار</span><span>اتصل بنا</span>
-    </div>
-  </section>
   <div class="wrapper">
     <div class="card fade">
       <div class="glow"></div>
@@ -57,44 +15,46 @@
       <div class="icon fade" style="--delay: 0ms;">
         <i class="fas fa-mosque"></i>
       </div>
-      <p class="bismillah fade" style="--delay: 120ms;">Ø¨ÙØ³Ù’Ù…Ù Ø§Ù„Ù„ÙŽÙ‘Ù‡Ù Ø§Ù„Ø±ÙŽÙ‘Ø­Ù’Ù…ÙŽÙ°Ù†Ù Ø§Ù„Ø±ÙŽÙ‘Ø­ÙÙŠÙ…Ù</p>
-      <h1 class="fade" style="--delay: 220ms;">ÙÙŽØ§Ø°Ù’ÙƒÙØ±ÙÙˆÙ†ÙÙŠ Ø£ÙŽØ°Ù’ÙƒÙØ±Ù’ÙƒÙÙ…Ù’</h1>
+
+      <p class="bismillah fade" style="--delay: 120ms;">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+      <h1 class="fade" style="--delay: 220ms;">فَاذْكُرُونِي أَذْكُرْكُمْ</h1>
 
       <form class="form fade" style="--delay: 520ms;">
         <div class="group">
           <span class="icon-prepend">
             <i class="fas fa-envelope"></i>
           </span>
-          <label class="hidden" for="email">Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ</label>
-          <input id="email" type="text" class="field" placeholder="Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ Ø£Ùˆ Ø§Ø³Ù… Ø§Ù„Ù…Ø³ØªØ®Ø¯Ù…" autocomplete="username" required>
+          <label class="hidden" for="email">البريد الإلكتروني</label>
+          <input id="email" type="text" class="field" placeholder="البريد الإلكتروني أو اسم المستخدم" autocomplete="username" required>
         </div>
 
         <div class="group">
           <span class="icon-prepend">
             <i class="fas fa-lock"></i>
           </span>
-          <label class="hidden" for="password">ÙƒÙ„Ù…Ø© Ø§Ù„Ù…Ø±ÙˆØ±</label>
-          <input id="password" type="password" class="field" placeholder="ÙƒÙ„Ù…Ø© Ø§Ù„Ù…Ø±ÙˆØ±" autocomplete="current-password" required>
+          <label class="hidden" for="password">كلمة المرور</label>
+          <input id="password" type="password" class="field" placeholder="كلمة المرور" autocomplete="current-password" required>
         </div>
-        <p class="hint">Ø³Ø¬Ù‘Ù„ Ø§Ù„Ø¯Ø®ÙˆÙ„ Ø¨Ø§Ø³ØªØ®Ø¯Ø§Ù… Ø­Ø³Ø§Ø¨Ùƒ Ø§Ù„Ù…Ø¹ØªØ§Ø¯ Ø£Ùˆ Ø§Ø³Ù… Ø§Ù„Ù…Ø³ØªØ®Ø¯Ù….</p>
+
+        <p class="hint">سجّل الدخول باستخدام حسابك المعتاد أو اسم المستخدم.</p>
 
         <div class="meta">
           <div class="check">
             <input class="checkbox" type="checkbox" id="remember">
-            <label class="check-label" for="remember">ØªØ°ÙƒØ±Ù†ÙŠ</label>
+            <label class="check-label" for="remember">تذكّرني</label>
           </div>
-          <a class="link" href="request-otp.html">Ù†Ø³ÙŠØª ÙƒÙ„Ù…Ø© Ø§Ù„Ù…Ø±ÙˆØ±ØŸ</a>
+          <a class="link" href="forgot-password.html">نسيت كلمة المرور؟</a>
         </div>
 
         <div class="actions">
-          <button class="btn primary" type="submit">ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø¯Ø®ÙˆÙ„</button>
-          <a href="signup.html" class="btn secondary">Ø¥Ù†Ø´Ø§Ø¡ Ø­Ø³Ø§Ø¨</a>
+          <button class="btn primary" type="submit">تسجيل الدخول</button>
+          <a href="signup.html" class="btn secondary">إنشاء حساب</a>
         </div>
       </form>
 
       <div class="note fade" style="--delay: 640ms;">
         <i class="fas fa-hands-praying"></i>
-        <span>Ø¹ÙØ¯Ù’ Ø¥Ù„Ù‰ Ø§Ù„Ù„Ù‡... ÙŠØ¹ÙˆØ¯ Ù„Ùƒ ÙƒÙ„Ù‘ Ø´ÙŠØ¡.</span>
+        <span>عُد إلى الله... يعود لك كل شيء.</span>
       </div>
 
       <div class="signature fade" style="--delay: 740ms;">
@@ -121,7 +81,7 @@
         const passwordValue = passwordInput.value;
 
         if (!emailValue || !passwordValue) {
-          alert('ÙŠØ±Ø¬Ù‰ Ø¥Ø¯Ø®Ø§Ù„ Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ ÙˆÙƒÙ„Ù…Ø© Ø§Ù„Ù…Ø±ÙˆØ±.');
+          alert('يرجى إدخال البريد الإلكتروني وكلمة المرور.');
           return;
         }
 
@@ -129,12 +89,12 @@
         const account = accounts.find((item) => item.email === emailValue);
 
         if (!account) {
-          alert('Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ ØºÙŠØ± Ù…ÙˆØ¬ÙˆØ¯.');
+          alert('البريد الإلكتروني غير موجود.');
           return;
         }
 
         if (account.password !== passwordValue) {
-          alert('ÙƒÙ„Ù…Ø© Ø§Ù„Ù…Ø±ÙˆØ± ØºÙŠØ± ØµØ­ÙŠØ­Ø©.');
+          alert('كلمة المرور غير صحيحة.');
           return;
         }
 
@@ -147,6 +107,5 @@
       });
     }
   </script>
-  <script src="hamburger-menu.js"></script>
 </body>
 </html>

@@ -23,21 +23,22 @@
       </button>
     </div>
     <ul class="aside-menu">
-      <li><a href="#accueil" class="aside-link active">الرئيسية</a></li>
-      <li><a href="#quran" class="aside-link">القرآن الكريم</a></li>
-      <li><a href="asmaa_allah_alhousnaa_3d.html" class="aside-link">أسماء الله الحسنى</a></li>
-      <li><a href="#features" class="aside-link">مسار الأنبياء</a></li>
-      <li><a href="#features" class="aside-link">التقويم الهجري</a></li>
-      <li><a href="prayertime.html" class="aside-link">أوقات الصلاة</a></li>
-      <li><a href="#features" class="aside-link">المسبحة الإلكترونية</a></li>
-      <li><a href="#features" class="aside-link">قصة الصحابة</a></li>
-      <li><a href="#features" class="aside-link">حاسب نفسك</a></li>
-      <li><a href="#features" class="aside-link">اختبارات دينية</a></li>
-      <li><a href="#features" class="aside-link">صدقة جارية</a></li>
-      <li><a href="#features" class="aside-link">أذكار الصباح والمساء</a></li>
-      <li><a href="#contact" class="aside-link">تواصل معنا</a></li>
+      <li><a href="#accueil" class="aside-link active" data-access="free">🔓 الرئيسية</a></li>
+      <li><a href="#quran" class="aside-link" data-access="free">🔓 القرآن الكريم</a></li>
+      <li><a href="asmaa_allah_alhousnaa_3d.html" class="aside-link" data-access="free">🔓 أسماء الله الحسنى</a></li>
+      <li><a href="#features" class="aside-link" data-access="locked">🔒 مسار الأنبياء</a></li>
+      <li><a href="#features" class="aside-link" data-access="free">🔓 التقويم الهجري</a></li>
+      <li><a href="prayertime.html" class="aside-link" data-access="free">🔓 أوقات الصلاة</a></li>
+      <li><a href="#features" class="aside-link" data-access="free">🔓 المسبحة الإلكترونية</a></li>
+      <li><a href="#features" class="aside-link" data-access="locked">🔒 قصة الصحابة</a></li>
+      <li><a href="#features" class="aside-link" data-access="locked">🔒 حاسب نفسك</a></li>
+      <li><a href="#features" class="aside-link" data-access="locked">🔒 اختبارات دينية</a></li>
+      <li><a href="#features" class="aside-link" data-access="locked">🔒 صدقة جارية</a></li>
+      <li><a href="#features" class="aside-link" data-access="free">🔓 أذكار الصباح والمساء</a></li>
+      <li><a href="#contact" class="aside-link" data-access="free">🔓 تواصل معنا</a></li>
     </ul>
     <div class="aside-footer">
+      <a href="start.html" id="asideAuthActionBtn" class="aside-link" data-access="free">🔓 تسجيل الدخول</a>
       <div class="aside-search">
         <i class="fas fa-search"></i>
         <input type="text" placeholder="بحث...">
@@ -79,6 +80,7 @@
 
         <!-- Actions de droite (recherche + profil) -->
         <div class="nav-actions">
+          <a href="start.html" id="authActionBtn" class="auth-action-btn"><i class="fas fa-right-to-bracket"></i><span>إنشاء حساب / تسجيل الدخول</span></a>
           <div class="search-box">
             <i class="fas fa-search search-icon"></i>
             <input type="text" placeholder="بحث..." class="search-input">
@@ -141,6 +143,10 @@
           </div>
           <h2 class="section-title">مرافقك في الرحلة الإيمانية</h2>
           <p class="section-subtitle">أدوات ومنافع تعينك على الطاعة</p>
+          <div class="locked-features-panel" id="lockedFeaturesPanel">
+            <strong><i class="fas fa-lock"></i> المزايا المقفلة للزائر</strong>
+            <span>مسار الأنبياء • قصة الصحابة • حاسب نفسك • اختبارات دينية • صدقة جارية</span>
+          </div>
         </div>
         
         <div class="features-grid">
@@ -151,7 +157,7 @@
             </div>
             <h3 class="feature-title">القرآن الكريم</h3>
             <p class="feature-desc">استمع واقرأ السور بدون تفسير</p>
-            <a href="#" class="feature-link">اقرأ <i class="fas fa-arrow-left"></i></a>
+            <a href="#quran" class="feature-link" data-access="free">اقرأ <i class="fas fa-arrow-left"></i></a>
           </div>
           
           <!-- Asma Allah - Second -->
@@ -161,17 +167,18 @@
             </div>
             <h3 class="feature-title">أسماء الله الحسنى</h3>
             <p class="feature-desc">٩٩ اسمًا مع شرح وتأمل</p>
-            <a href="asmaa_allah_alhousnaa_3d.html" class="feature-link">تأمل <i class="fas fa-arrow-left"></i></a>
+            <a href="asmaa_allah_alhousnaa_3d.html" class="feature-link" data-access="free">تأمل <i class="fas fa-arrow-left"></i></a>
           </div>
           
           <!-- Axe des prophètes - Third -->
-          <div class="feature-card">
+          <div class="feature-card locked-feature">
+            <span class="lock-badge"><i class="fas fa-lock"></i> مقفلة</span>
             <div class="feature-img">
               <img src="img/12344848-calligraphie-arabe-et-islamique-du-prophete-muhammad-la-paix-soit-sur-lui-l-art-islamique-traditionnel-et-moderne-peut-etre-utilise-pour-de-nombreux-sujets-comme-le-mawlid-el-nabawi-traduction-le-prophete-mu.jpg" alt="مسار الأنبياء" class="feature-icon-img">
             </div>
             <h3 class="feature-title">مسار الأنبياء</h3>
             <p class="feature-desc">قصص الأنبياء عبر العصور وحكم وعبر</p>
-            <a href="#" class="feature-link">استمع <i class="fas fa-arrow-left"></i></a>
+            <a href="#features" class="feature-link" data-access="locked">استمع <i class="fas fa-arrow-left"></i></a>
           </div>
           
           <!-- Calendrier hijri -->
@@ -181,7 +188,7 @@
             </div>
             <h3 class="feature-title">التقويم الهجري</h3>
             <p class="feature-desc">تابع الأيام والأشهر الهجرية والمناسبات الإسلامية</p>
-            <a href="#" class="feature-link">اكتشف <i class="fas fa-arrow-left"></i></a>
+            <a href="#features" class="feature-link" data-access="free">اكتشف <i class="fas fa-arrow-left"></i></a>
           </div>
 
           <!-- Prayer Times -->
@@ -191,7 +198,7 @@
             </div>
             <h3 class="feature-title">أوقات الصلاة</h3>
             <p class="feature-desc">اعرف مواقيت الصلاة حسب موقعك بدقة</p>
-            <a href="prayertime.html" class="feature-link">عرض المواقيت <i class="fas fa-arrow-left"></i></a>
+            <a href="prayertime.html" class="feature-link" data-access="free">عرض المواقيت <i class="fas fa-arrow-left"></i></a>
           </div>
           
           <!-- Tasbih -->
@@ -201,47 +208,51 @@
             </div>
             <h3 class="feature-title">المسبحة الإلكترونية</h3>
             <p class="feature-desc">سبح واذكر الله بعدد دقيق</p>
-            <a href="#" class="feature-link">ابدأ التسبيح <i class="fas fa-arrow-left"></i></a>
+            <a href="#features" class="feature-link" data-access="free">ابدأ التسبيح <i class="fas fa-arrow-left"></i></a>
           </div>
           
           <!-- Shaba's story -->
-          <div class="feature-card">
+          <div class="feature-card locked-feature">
+            <span class="lock-badge"><i class="fas fa-lock"></i> مقفلة</span>
             <div class="feature-img">
               <img src="img/images.jpg" alt="قصة الصحابة" class="feature-icon-img">
             </div>
             <h3 class="feature-title">قصة الصحابة</h3>
             <p class="feature-desc">مواقف ملهمة من حياة الصحابة رضي الله عنهم</p>
-            <a href="#" class="feature-link">اقرأ القصة <i class="fas fa-arrow-left"></i></a>
+            <a href="#features" class="feature-link" data-access="locked">اقرأ القصة <i class="fas fa-arrow-left"></i></a>
           </div>
           
           <!-- Hasib nafssek -->
-          <div class="feature-card">
+          <div class="feature-card locked-feature">
+            <span class="lock-badge"><i class="fas fa-lock"></i> مقفلة</span>
             <div class="feature-img">
               <img src="img/test.jpg" alt="حاسب نفسك" class="feature-icon-img">
             </div>
             <h3 class="feature-title">حاسب نفسك</h3>
             <p class="feature-desc">دفتر يومي لمحاسبة النفس على الطاعات</p>
-            <a href="#" class="feature-link">سجل <i class="fas fa-arrow-left"></i></a>
+            <a href="#features" class="feature-link" data-access="locked">سجل <i class="fas fa-arrow-left"></i></a>
           </div>
           
           <!-- Quiz -->
-          <div class="feature-card">
+          <div class="feature-card locked-feature">
+            <span class="lock-badge"><i class="fas fa-lock"></i> مقفلة</span>
             <div class="feature-img">
               <img src="img/unnamed (1).png" alt="اختبارات دينية" class="feature-icon-img">
             </div>
             <h3 class="feature-title">اختبارات دينية</h3>
             <p class="feature-desc">اختبر معرفتك في السيرة والفقه</p>
-            <a href="#" class="feature-link">ابدأ الاختبار <i class="fas fa-arrow-left"></i></a>
+            <a href="#features" class="feature-link" data-access="locked">ابدأ الاختبار <i class="fas fa-arrow-left"></i></a>
           </div>
           
           <!-- Don -->
-          <div class="feature-card">
+          <div class="feature-card locked-feature">
+            <span class="lock-badge"><i class="fas fa-lock"></i> مقفلة</span>
             <div class="feature-img">
               <img src="img/59_500.png" alt="صدقة جارية" class="feature-icon-img">
             </div>
             <h3 class="feature-title">صدقة جارية</h3>
             <p class="feature-desc">تبرع لمشاريع خيرية وماء سبيل</p>
-            <a href="#" class="feature-link">تصدق الآن <i class="fas fa-arrow-left"></i></a>
+            <a href="#features" class="feature-link" data-access="locked">تصدق الآن <i class="fas fa-arrow-left"></i></a>
           </div>
           
           <!-- Adhkar -->
@@ -251,7 +262,7 @@
             </div>
             <h3 class="feature-title">أذكار الصباح والمساء</h3>
             <p class="feature-desc">أذكار يومية لحفظك وتقربك إلى الله</p>
-            <a href="#" class="feature-link">اقرأ الآن <i class="fas fa-arrow-left"></i></a>
+            <a href="#features" class="feature-link" data-access="free">اقرأ الآن <i class="fas fa-arrow-left"></i></a>
           </div>
         </div>
       </div>
@@ -398,11 +409,80 @@
     const currentUser = JSON.parse(localStorage.getItem('faithpathCurrentUser') || 'null');
     const profileNameElement = document.getElementById('profileName');
     const asideProfileName = document.getElementById('asideProfileName');
+    const authActionBtn = document.getElementById('authActionBtn');
+    const asideAuthActionBtn = document.getElementById('asideAuthActionBtn');
+    const isAuthenticated = !!(currentUser && currentUser.email);
 
-    if (currentUser && currentUser.fullName) {
+    if (isAuthenticated) {
+      document.body.classList.add('is-authenticated');
+    }
+
+    if (isAuthenticated && currentUser.fullName) {
       if (profileNameElement) profileNameElement.textContent = currentUser.fullName;
       if (asideProfileName) asideProfileName.textContent = currentUser.fullName;
     }
+
+    if (authActionBtn) {
+      if (isAuthenticated) {
+        authActionBtn.innerHTML = '<i class="fas fa-right-from-bracket"></i><span>تسجيل الخروج</span>';
+        authActionBtn.classList.add('is-logged-in');
+        authActionBtn.href = '#';
+        authActionBtn.addEventListener('click', function(event) {
+          event.preventDefault();
+          localStorage.removeItem('faithpathCurrentUser');
+          window.location.href = 'page_acceuil.html';
+        });
+      } else {
+        authActionBtn.innerHTML = '<i class="fas fa-right-to-bracket"></i><span>إنشاء حساب / تسجيل الدخول</span>';
+        authActionBtn.classList.remove('is-logged-in');
+        authActionBtn.href = 'start.html';
+      }
+    }
+
+    if (asideAuthActionBtn) {
+      if (isAuthenticated) {
+        asideAuthActionBtn.textContent = '🔓 تسجيل الخروج';
+        asideAuthActionBtn.href = '#';
+        asideAuthActionBtn.addEventListener('click', function(event) {
+          event.preventDefault();
+          localStorage.removeItem('faithpathCurrentUser');
+          window.location.href = 'page_acceuil.html';
+        });
+      } else {
+        asideAuthActionBtn.textContent = '🔓 تسجيل الدخول';
+        asideAuthActionBtn.href = 'start.html';
+      }
+    }
+
+    if (isAuthenticated) {
+      const lockedPanel = document.getElementById('lockedFeaturesPanel');
+      if (lockedPanel) {
+        lockedPanel.style.display = 'none';
+      }
+
+      document.querySelectorAll('.lock-badge').forEach((badge) => badge.remove());
+      document.querySelectorAll('.locked-feature').forEach((card) => card.classList.remove('locked-feature'));
+
+      document.querySelectorAll('[data-access="locked"]').forEach((el) => {
+        el.dataset.access = 'free';
+
+        if (el.classList.contains('aside-link')) {
+          el.textContent = el.textContent.replace('🔒', '🔓');
+        }
+      });
+    }
+
+    function blockIfLocked(event) {
+      if (this.dataset.access === 'locked' && !isAuthenticated) {
+        event.preventDefault();
+        alert('يرجى إنشاء حساب للوصول إلى هذه الميزة');
+        window.location.href = 'signup.html';
+      }
+    }
+
+    document.querySelectorAll('[data-access="locked"]').forEach((el) => {
+      el.addEventListener('click', blockIfLocked);
+    });
 
     // ==================== ASIDE HAMBURGER MENU (menu latéral) ====================
     (function() {
