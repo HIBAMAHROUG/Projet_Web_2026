@@ -37,7 +37,7 @@ Plateforme web orientée contenu islamique avec pages d’authentification, page
 
 
 ## conception global
-![diagramme use case ](Projet_Web_2026/Diagramme.png)
+![diagramme use case ](Diagramme.png)
 
 ## Notes techniques
 
