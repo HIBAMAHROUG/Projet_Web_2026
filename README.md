@@ -36,22 +36,8 @@ Plateforme web orientée contenu islamique avec pages d’authentification, page
 	- Sections contenu: القرآن / حديث / خدمات / footer complet
 
 
-## Structure du projet
-
-- [start.html](start.html): page de connexion
-- [signup.html](signup.html): création de compte
-- [restaurationmdp.html](restaurationmdp.html): récupération mot de passe
-- [page_acceuil.html](page_acceuil.html): page d’accueil
-- [prayertime.html](prayertime.html): page des horaires de prière
-- [prayertime.js](prayertime.js): logique API + rendu des horaires
-- [styles.css](styles.css): feuille de style globale
-- [img](img): ressources visuelles
-
-## Lancer le projet en local
-
-- Ouvrir le dossier projet dans VS Code
-- Clic droit sur [start.html](start.html) ou [page_acceuil.html](page_acceuil.html)
-- Ouvrir avec Live Server
+## conception global
+![diagramme use case ](chemin/vers/image.png)
 
 ## Notes techniques
 
