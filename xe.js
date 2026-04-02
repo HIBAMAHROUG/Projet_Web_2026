@@ -1,407 +1,333 @@
- // Données des prophètes (ordre chronologique selon la tradition islamique)
-          const prophets = [
-            {
-              id: 1,
-              nameAr: "آدَم",
-              nameFr: "Adam",
-              order: 1,
-              people: "Premier homme",
-              descendants: "Toute l'humanité",
-              miracles: "Création par Allah",
-              desc: "Adam est le premier prophète et le père de l'humanité. Allah l'a créé de ses mains et lui a enseigné tous les noms.",
-              category: "early",
-            },
-            {
-              id: 2,
-              nameAr: "إِدْرِيس",
-              nameFr: "Idris",
-              order: 2,
-              people: "Anciens peuples",
-              descendants: "Peu nombreux",
-              miracles: "Sagesse et connaissance",
-              desc: "Idris est connu pour sa sagesse et sa véracité. Il est mentionné comme un homme de vérité et un prophète.",
-              category: "early",
-            },
-            {
-              id: 3,
-              nameAr: "نُوح",
-              nameFr: "Noé",
-              order: 3,
-              people: "Peuple de Noé",
-              descendants: "Shem, Ham, Japheth",
-              miracles: "L'Arche",
-              desc: "Noé a appelé son peuple pendant 950 ans. Allah l'a sauvé avec les croyants dans l'arche lors du déluge.",
-              category: "ululazm",
-            },
-            {
-              id: 4,
-              nameAr: "هُود",
-              nameFr: "Houd",
-              order: 4,
-              people: "ʿĀd",
-              descendants: "Peuple de ʿĀd",
-              miracles: "Vent destructeur",
-              desc: "Envoyé au peuple de ʿĀd qui était puissant mais arrogant. Ils furent détruits par un vent violent.",
-              category: "early",
-            },
-            {
-              id: 5,
-              nameAr: "صَالِح",
-              nameFr: "Salih",
-              order: 5,
-              people: "Thamūd",
-              descendants: "Peuple de Thamūd",
-              miracles: "La chamelle",
-              desc: "Envoyé au peuple de Thamūd qui exigea un miracle. Allah leur donna une chamelle, mais ils la tuèrent et furent anéantis.",
-              category: "early",
-            },
-            {
-              id: 6,
-              nameAr: "إِبْرَاهِيم",
-              nameFr: "Abraham",
-              order: 6,
-              people: "Peuple de Babylone",
-              descendants: "Ismaël, Isaac",
-              miracles: "Non brûlé par le feu, résurrection des oiseaux",
-              desc: "Le père des monothéistes, ami intime d'Allah. Il a brisé les idoles et construit la Kaaba avec son fils Ismaël.",
-              category: "ululazm",
-            },
-            {
-              id: 7,
-              nameAr: "لُوط",
-              nameFr: "Lot",
-              order: 7,
-              people: "Peuple de Sodome",
-              descendants: "Peu nombreux",
-              miracles: "Ville renversée",
-              desc: "Neveu d'Abraham, envoyé à un peuple corrompu. Allah sauva Lot et sa famille, mais détruisit les autres.",
-              category: "early",
-            },
-            {
-              id: 8,
-              nameAr: "إِسْمَاعِيل",
-              nameFr: "Ismaël",
-              order: 8,
-              people: "Peuple d'Arabie",
-              descendants: "Arabes (Adnān)",
-              miracles: "Source Zamzam",
-              desc: "Fils d'Abraham, prophète en Arabie. Participa à la construction de la Kaaba avec son père.",
-              category: "early",
-            },
-            {
-              id: 9,
-              nameAr: "إِسْحَاق",
-              nameFr: "Isaac",
-              order: 9,
-              people: "Peuple de Canaan",
-              descendants: "Tribus d'Israël",
-              miracles: "Naissance miraculeuse",
-              desc: "Fils d'Abraham, père de Jacob. Prophète en Canaan.",
-              category: "early",
-            },
-            {
-              id: 10,
-              nameAr: "يَعْقُوب",
-              nameFr: "Jacob",
-              order: 10,
-              people: "Peuple de Canaan",
-              descendants: "12 tribus d'Israël",
-              miracles: "Vision prophétique",
-              desc: "Fils d'Isaac, père des 12 tribus. Surnommé Israël (serviteur d'Allah).",
-              category: "early",
-            },
-            {
-              id: 11,
-              nameAr: "يُوسُف",
-              nameFr: "Joseph",
-              order: 11,
-              people: "Égypte",
-              descendants: "Tribus d'Israël",
-              miracles: "Interprétation des rêves",
-              desc: "Fils de Jacob, vendu comme esclave puis devint ministre d'Égypte. Connu pour sa beauté et sa patience.",
-              category: "early",
-            },
-            {
-              id: 12,
-              nameAr: "أَيُّوب",
-              nameFr: "Job",
-              order: 12,
-              people: "Peuple de Hauran",
-              descendants: "Peu nombreux",
-              miracles: "Guérison miraculeuse",
-              desc: "Connu pour sa patience extraordinaire face à la maladie et l'épreuve.",
-              category: "early",
-            },
-            {
-              id: 13,
-              nameAr: "شُعَيْب",
-              nameFr: "Chouayb",
-              order: 13,
-              people: "Madyan",
-              descendants: "Peuple de Madyan",
-              miracles: "Ombre du nuage",
-              desc: "Envoyé aux habitants de Madyan qui trichaient dans les mesures. Appelé le 'prédicateur'.",
-              category: "early",
-            },
-            {
-              id: 14,
-              nameAr: "مُوسَى",
-              nameFr: "Moïse",
-              order: 14,
-              people: "Pharaon et les Hébreux",
-              descendants: "Tribus d'Israël",
-              miracles: "Bâton, main lumineuse, mer ouverte",
-              desc: "Prophète majeur, reçut la Torah. Libéra les Hébreux d'Égypte. Allah lui parla directement.",
-              category: "ululazm",
-            },
-            {
-              id: 15,
-              nameAr: "هَارُون",
-              nameFr: "Aaron",
-              order: 15,
-              people: "Pharaon et les Hébreux",
-              descendants: "Prêtres",
-              miracles: "Bâton",
-              desc: "Frère de Moïse, son assistant. Prophète éloquent qui soutint Moïse.",
-              category: "early",
-            },
-            {
-              id: 16,
-              nameAr: "دَاوُود",
-              nameFr: "David",
-              order: 16,
-              people: "Israélites",
-              descendants: "Salomon",
-              miracles: "Montagnes en célébration, forge",
-              desc: "Roi et prophète, reçut les Psaumes (Zabur). Vainqueur de Goliath.",
-              category: "ululazm",
-            },
-            {
-              id: 17,
-              nameAr: "سُلَيْمَان",
-              nameFr: "Salomon",
-              order: 17,
-              people: "Israélites et djinns",
-              descendants: "Peu nombreux",
-              miracles: "Parle aux animaux, maîtrise du vent",
-              desc: "Fils de David, roi puissant qui commandait aux hommes, aux djinns et aux oiseaux.",
-              category: "early",
-            },
-            {
-              id: 18,
-              nameAr: "إِلْيَاس",
-              nameFr: "Élie",
-              order: 18,
-              people: "Peuple de Baalbek",
-              descendants: "Peu nombreux",
-              miracles: "Pluie après sécheresse",
-              desc: "Envoyé à son peuple qui adorait Baal. Appelait à adorer Allah seul.",
-              category: "early",
-            },
-            {
-              id: 19,
-              nameAr: "الْيَسَع",
-              nameFr: "Élisée",
-              order: 19,
-              people: "Israélites",
-              descendants: "Peu nombreux",
-              miracles: "Guérisons",
-              desc: "Successeur d'Élie, continua l'appel à l'adoration d'Allah.",
-              category: "early",
-            },
-            {
-              id: 20,
-              nameAr: "يُونُس",
-              nameFr: "Jonas",
-              order: 20,
-              people: "Peuple de Ninive",
-              descendants: "Peu nombreux",
-              miracles: "Survie dans le ventre du poisson",
-              desc: "Quitta son peuple par impatience, fut avalé par un grand poisson, puis délivré après s'être repenti.",
-              category: "early",
-            },
-            {
-              id: 21,
-              nameAr: "ذُو الْكِفْل",
-              nameFr: "Dhu al-Kifl",
-              order: 21,
-              people: "Israélites",
-              descendants: "Peu nombreux",
-              miracles: "Patience",
-              desc: "Prophète connu pour sa patience et sa droiture. Certains l'identifient à Ézéchiel.",
-              category: "early",
-            },
-            {
-              id: 22,
-              nameAr: "زَكَرِيَّا",
-              nameFr: "Zacharie",
-              order: 22,
-              people: "Israélites",
-              descendants: "Jean",
-              miracles: "Prière exaucée pour un enfant",
-              desc: "Gardien de Marie, père de Jean. Demanda un enfant malgré son âge avancé.",
-              category: "early",
-            },
-            {
-              id: 23,
-              nameAr: "يَحْيَى",
-              nameFr: "Jean",
-              order: 23,
-              people: "Israélites",
-              descendants: "Sans enfants",
-              miracles: "Sagesse dès l'enfance",
-              desc: "Fils de Zacharie, pur et pieux. Appelait à la repentance.",
-              category: "early",
-            },
-            {
-              id: 24,
-              nameAr: "عِيسَى",
-              nameFr: "Jésus",
-              order: 24,
-              people: "Enfants d'Israël",
-              descendants: "Sans enfants",
-              miracles:
-                "Guérit les malades, ressuscite les morts, parle au berceau",
-              desc: "Messie, fils de Marie. Né miraculeusement, il annonça la venue de Muhammad. Ne fut pas crucifié.",
-              category: "ululazm",
-            },
-            {
-              id: 25,
-              nameAr: "مُحَمَّد",
-              nameFr: "Muhammad",
-              order: 25,
-              people: "Toute l'humanité",
-              descendants: "Descendants par Fatima",
-              miracles: "Coran, voyage nocturne, lune fendue",
-              desc: "Dernier prophète, envoyé à toute l'humanité. Reçut le Coran. Sceau des prophètes.",
-              category: "ululazm",
-            },
-          ];
+const prophets = [
+  {
+    id: 1,
+    nameAr: "آدَم عليه السلام",
+    order: 1,
+    people: "أبو البشر",
+    miracles: "الخلق بيد الله وتعليم الأسماء",
+    desc: "آدم هو أول نبي وأبو البشرية. خلقه الله بيديه وعلّمه أسماء كل شيء، ثم أسكنه الجنة ثم أنزله إلى الأرض.",
+    category: "early",
+  },
+  {
+    id: 2,
+    nameAr: "إِدْرِيس عليه السلام",
+    order: 2,
+    people: "الأقوام القديمة",
+    miracles: "الحكمة والعلم",
+    desc: "إدريس عُرف بصدقه وحكمته. ذكره الله في القرآن بأنه كان صدّيقًا نبيًّا ورفعه مكانًا عليًّا.",
+    category: "early",
+  },
+  {
+    id: 3,
+    nameAr: "نُوح عليه السلام",
+    order: 3,
+    people: "قوم نوح",
+    miracles: "السفينة والطوفان",
+    desc: "دعا نوح قومه تسعمائة وخمسين سنة. أنجاه الله مع المؤمنين في السفينة من الطوفان العظيم.",
+    category: "ululazm",
+  },
+  {
+    id: 4,
+    nameAr: "هُود عليه السلام",
+    order: 4,
+    people: "قوم عاد",
+    miracles: "الريح الصرصر",
+    desc: "أُرسل إلى قوم عاد الأقوياء المتجبرين. رفضوا دعوته فأهلكهم الله بريح صرصر عاتية.",
+    category: "early",
+  },
+  {
+    id: 5,
+    nameAr: "صَالِح عليه السلام",
+    order: 5,
+    people: "قوم ثمود",
+    miracles: "الناقة",
+    desc: "أُرسل إلى ثمود الذين طلبوا آية، فأخرج الله الناقة من الصخرة، فعقروها فأخذتهم الصيحة.",
+    category: "early",
+  },
+  {
+    id: 6,
+    nameAr: "إِبْرَاهِيم عليه السلام",
+    order: 6,
+    people: "قوم بابل والعراق",
+    miracles: "النار لم تحرقه، إحياء الطير",
+    desc: "أبو الأنبياء وخليل الرحمن. كسر الأصنام وبنى الكعبة مع ابنه إسماعيل. امتُحن بعظائم الأمور فصبر.",
+    category: "ululazm",
+  },
+  {
+    id: 7,
+    nameAr: "لُوط عليه السلام",
+    order: 7,
+    people: "أهل سدوم",
+    miracles: "قلب المدينة",
+    desc: "ابن أخي إبراهيم، أُرسل إلى قوم منحرفين. أنجاه الله وأهلك قومه بقلب المدائن وإمطار الحجارة.",
+    category: "early",
+  },
+  {
+    id: 8,
+    nameAr: "إِسْمَاعِيل عليه السلام",
+    order: 8,
+    people: "أهل الحجاز",
+    miracles: "بئر زمزم",
+    desc: "ابن إبراهيم، نبيٌّ في بلاد الحجاز. شارك أباه في بناء الكعبة المشرفة وكان صادق الوعد.",
+    category: "early",
+  },
+  {
+    id: 9,
+    nameAr: "إِسْحَاق عليه السلام",
+    order: 9,
+    people: "أهل كنعان",
+    miracles: "الولادة المعجزة",
+    desc: "ابن إبراهيم من سارة، وُلد بشارةً من الملائكة. أبو يعقوب، نبيٌّ في أرض كنعان.",
+    category: "early",
+  },
+  {
+    id: 10,
+    nameAr: "يَعْقُوب عليه السلام",
+    order: 10,
+    people: "أهل كنعان",
+    miracles: "الرؤيا النبوية",
+    desc: "ابن إسحاق، أبو الأسباط الاثني عشر. لُقِّب بإسرائيل. امتُحن بفراق ابنه يوسف فصبر حتى عادت بصيرته.",
+    category: "early",
+  },
+  {
+    id: 11,
+    nameAr: "يُوسُف عليه السلام",
+    order: 11,
+    people: "مصر الفرعونية",
+    miracles: "تأويل الأحلام",
+    desc: "ابن يعقوب، بِيع عبدًا ثم أصبح عزيز مصر. آتاه الله الحسن والحكمة وعلّمه تأويل الأحاديث.",
+    category: "early",
+  },
+  {
+    id: 12,
+    nameAr: "أَيُّوب عليه السلام",
+    order: 12,
+    people: "أهل حوران",
+    miracles: "الشفاء المعجز",
+    desc: "ضُرب به المثل في الصبر. ابتلاه الله بالمرض والفقر وفراق الأهل فصبر حتى كشف الله ضره.",
+    category: "early",
+  },
+  {
+    id: 13,
+    nameAr: "شُعَيْب عليه السلام",
+    order: 13,
+    people: "أهل مدين",
+    miracles: "ظل الغمام",
+    desc: "أُرسل إلى أهل مدين الذين كانوا يبخسون المكيال والميزان. لُقِّب بخطيب الأنبياء.",
+    category: "early",
+  },
+  {
+    id: 14,
+    nameAr: "مُوسَى عليه السلام",
+    order: 14,
+    people: "فرعون وبني إسرائيل",
+    miracles: "العصا، اليد البيضاء، فلق البحر",
+    desc: "أحد أعظم الأنبياء، كلّمه الله تكليمًا. أُنزلت عليه التوراة. أنقذ بني إسرائيل من فرعون.",
+    category: "ululazm",
+  },
+  {
+    id: 15,
+    nameAr: "هَارُون عليه السلام",
+    order: 15,
+    people: "فرعون وبني إسرائيل",
+    miracles: "العصا",
+    desc: "أخو موسى ووزيره. أعانه في تبليغ الرسالة، كان فصيح اللسان رحيم القلب.",
+    category: "early",
+  },
+  {
+    id: 16,
+    nameAr: "دَاوُود عليه السلام",
+    order: 16,
+    people: "بني إسرائيل",
+    miracles: "تسبيح الجبال، صناعة الدروع",
+    desc: "نبيٌّ وملك، أُنزل عليه الزبور. قتل جالوت شابًّا. سخّر الله له الجبال والطير تسبّح معه.",
+    category: "early",
+  },
+  {
+    id: 17,
+    nameAr: "سُلَيْمَان عليه السلام",
+    order: 17,
+    people: "الإنس والجن",
+    miracles: "منطق الطير، تسخير الريح والجن",
+    desc: "ابن داود، ملكٌ لا يُضاهى سخّر الله له الجن والإنس والريح والطير. أوتي علم منطق الحيوانات.",
+    category: "early",
+  },
+  {
+    id: 18,
+    nameAr: "إِلْيَاس عليه السلام",
+    order: 18,
+    people: "أهل بعلبك",
+    miracles: "المطر بعد القحط",
+    desc: "أُرسل إلى قوم يعبدون البعل. دعاهم إلى توحيد الله فكذّبوه، فأُنجي من بينهم.",
+    category: "early",
+  },
+  {
+    id: 19,
+    nameAr: "الْيَسَع عليه السلام",
+    order: 19,
+    people: "بني إسرائيل",
+    miracles: "الشفاء",
+    desc: "خليفة إلياس ووارث نبوته. واصل الدعوة إلى توحيد الله في بني إسرائيل.",
+    category: "early",
+  },
+  {
+    id: 20,
+    nameAr: "يُونُس عليه السلام",
+    order: 20,
+    people: "أهل نينوى",
+    miracles: "النجاة في بطن الحوت",
+    desc: "ذهب مغاضبًا فابتلعه الحوت، فسبّح في الظلمات فنجّاه الله، وعاد إلى قومه فآمنوا.",
+    category: "early",
+  },
+  {
+    id: 21,
+    nameAr: "ذُو الْكِفْل عليه السلام",
+    order: 21,
+    people: "بني إسرائيل",
+    miracles: "الصبر والاستقامة",
+    desc: "نبيٌّ معروف بالصبر والثبات. يُرجَّح أنه حزقيال. ذكره الله في القرآن مع أيوب وإسماعيل.",
+    category: "early",
+  },
+  {
+    id: 22,
+    nameAr: "زَكَرِيَّا عليه السلام",
+    order: 22,
+    people: "بني إسرائيل",
+    miracles: "الدعاء المستجاب",
+    desc: "كافل مريم وأبو يحيى. دعا ربّه في كبره أن يهبه ولدًا فاستجاب الله له.",
+    category: "early",
+  },
+  {
+    id: 23,
+    nameAr: "يَحْيَى عليه السلام",
+    order: 23,
+    people: "بني إسرائيل",
+    miracles: "الحكمة منذ الصغر",
+    desc: "ابن زكريا، آتاه الله الحكم صبيًّا. كان تقيًّا حصورًا سيدًا. قُتل ظلمًا وهو شهيد.",
+    category: "early",
+  },
+  {
+    id: 24,
+    nameAr: "عِيسَى عليه السلام",
+    order: 24,
+    people: "بني إسرائيل",
+    miracles: "يُكلّم في المهد، يُحيي الموتى، يُبرئ الأكمه والأبرص",
+    desc: "المسيح ابن مريم، وُلد من غير أب، أيّده الله بروح القدس. بشّر بمحمد ولم يُصلب بل رُفع.",
+    category: "ululazm",
+  },
+  {
+    id: 25,
+    nameAr: "مُحَمَّد صلى الله عليه وسلم",
+    order: 25,
+    people: "الإنسانية جمعاء",
+    miracles: "القرآن الكريم، الإسراء والمعراج، انشقاق القمر",
+    desc: "خاتم الأنبياء والمرسلين، بُعث رحمةً للعالمين. أُنزل عليه القرآن. أتمّ الله به الرسالة.",
+    category: "ululazm",
+  },
+];
 
-          let currentFilter = "all";
-          let currentSearch = "";
+let currentFilter = "all";
+let currentSearch = "";
 
-          function renderProphets() {
-            const grid = document.getElementById("prophetsGrid");
+function renderProphets() {
+  const grid = document.getElementById("prophetsGrid");
 
-            let filtered = prophets.filter((p) => {
-              // Filtre par catégorie
-              if (currentFilter === "ululazm" && p.category !== "ululazm")
-                return false;
-              if (currentFilter === "early" && p.id > 13) return false;
+  const filtered = prophets.filter((p) => {
+    if (currentFilter === "ululazm" && p.category !== "ululazm") return false;
+    if (currentFilter === "early" && p.category === "ululazm") return false;
+    if (currentSearch) {
+      const s = currentSearch;
+      return (
+        p.nameAr.includes(s) || p.people.includes(s) || p.miracles.includes(s)
+      );
+    }
+    return true;
+  });
 
-              // Recherche
-              if (currentSearch) {
-                const searchLower = currentSearch.toLowerCase();
-                return (
-                  p.nameFr.toLowerCase().includes(searchLower) ||
-                  p.nameAr.includes(searchLower) ||
-                  p.desc.toLowerCase().includes(searchLower)
-                );
-              }
-              return true;
-            });
+  if (filtered.length === 0) {
+    grid.innerHTML =
+      '<div class="no-results">😔 لم يُعثر على نبيٍّ بهذا الاسم</div>';
+    return;
+  }
 
-            if (filtered.length === 0) {
-              grid.innerHTML =
-                '<div class="no-results">😔 Aucun prophète trouvé</div>';
-              return;
-            }
+  grid.innerHTML = filtered
+    .map(
+      (p, i) => `
+    <div class="prophet-card" onclick="showDetails(${p.id})" style="animation-delay:${i * 0.04}s">
+      <div class="card-stripe ${p.category}"></div>
+      <div class="card-header">
+        <div class="prophet-number">${p.order}</div>
+        <div class="prophet-name-ar">${p.nameAr}</div>
+        ${p.category === "ululazm" ? '<span class="ululazm-badge">أولو العزم</span>' : ""}
+      </div>
+      <div class="card-body">
+        <div class="prophet-info"><strong>👥 القوم :</strong>&nbsp;${p.people}</div>
+        <div class="prophet-info"><strong>✨ المعجزات :</strong>&nbsp;${p.miracles.length > 36 ? p.miracles.substring(0, 36) + "…" : p.miracles}</div>
+      </div>
+    </div>
+  `,
+    )
+    .join("");
+}
 
-            grid.innerHTML = filtered
-              .map(
-                (prophet) => `
-                <div class="prophet-card" onclick="showDetails(${prophet.id})">
-                    <div class="card-header">
-                        <div class="prophet-number">${prophet.order}</div>
-                        <div class="prophet-name-ar">${prophet.nameAr}</div>
-                        <div class="prophet-name-fr">${prophet.nameFr}</div>
-                    </div>
-                    <div class="card-body">
-                        <div class="prophet-info">
-                            <strong>👥 Peuple :</strong> ${prophet.people}
-                        </div>
-                        <div class="prophet-info">
-                            <strong>✨ Miracles :</strong> ${prophet.miracles.substring(0, 40)}${prophet.miracles.length > 40 ? "..." : ""}
-                        </div>
-                        <div class="prophet-desc">
-                            ${prophet.desc.substring(0, 100)}${prophet.desc.length > 100 ? "..." : ""}
-                        </div>
-                    </div>
-                </div>
-            `,
-              )
-              .join("");
-          }
+function showDetails(id) {
+  const p = prophets.find((x) => x.id === id);
+  if (!p) return;
 
-          function showDetails(id) {
-            const prophet = prophets.find((p) => p.id === id);
-            if (!prophet) return;
+  document.getElementById("modalNameAr").textContent = p.nameAr;
+  document.getElementById("modalBody").innerHTML = `
+    <div class="detail-item">
+      <div class="detail-label">📜 الترتيب</div>
+      <div class="detail-value">النبي رقم ${p.order}</div>
+    </div>
+    <div class="detail-item">
+      <div class="detail-label">👥 القوم</div>
+      <div class="detail-value">${p.people}</div>
+    </div>
+    <div class="detail-item">
+      <div class="detail-label">✨ المعجزات</div>
+      <div class="detail-value">${p.miracles}</div>
+    </div>
+    <div class="detail-item">
+      <div class="detail-label">📖 نبذة</div>
+      <div class="detail-value">${p.desc}</div>
+    </div>
+    <div class="detail-item">
+      <div class="detail-label">⭐ المكانة</div>
+      <div class="detail-value">
+        <span class="status-tag ${p.category}">
+          ${p.category === "ululazm" ? "من أولي العزم من الرسل" : "نبيٌّ مرسل إلى قومه"}
+        </span>
+      </div>
+    </div>
+  `;
+  document.getElementById("modal").classList.add("active");
+}
 
-            document.getElementById("modalNameAr").innerHTML = prophet.nameAr;
-            document.getElementById("modalNameFr").innerHTML = prophet.nameFr;
+document.getElementById("searchInput").addEventListener("input", (e) => {
+  currentSearch = e.target.value;
+  renderProphets();
+});
 
-            const modalBody = document.getElementById("modalBody");
-            modalBody.innerHTML = `
-                <div class="detail-item">
-                    <div class="detail-label">📜 Ordre chronologique</div>
-                    <div>${prophet.order}ème prophète</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">👥 Peuple / Époque</div>
-                    <div>${prophet.people}</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">✨ Miracles</div>
-                    <div>${prophet.miracles}</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">👨‍👩‍👧‍👦 Descendance</div>
-                    <div>${prophet.descendants}</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">📖 Présentation</div>
-                    <div>${prophet.desc}</div>
-                </div>
-                <div class="detail-item">
-                    <div class="detail-label">⭐ Statut</div>
-                    <div>${prophet.category === "ululazm" ? "Parmi les Oulou al-Azm (prophètes majeurs)" : "Prophète envoyé à son peuple"}</div>
-                </div>
-            `;
+document.querySelectorAll(".filter-btn").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    document
+      .querySelectorAll(".filter-btn")
+      .forEach((b) => b.classList.remove("active"));
+    btn.classList.add("active");
+    currentFilter = btn.dataset.filter;
+    renderProphets();
+  });
+});
 
-            document.getElementById("modal").classList.add("active");
-          }
+document
+  .getElementById("closeModal")
+  .addEventListener("click", () =>
+    document.getElementById("modal").classList.remove("active"),
+  );
+document.getElementById("modal").addEventListener("click", (e) => {
+  if (e.target === document.getElementById("modal"))
+    document.getElementById("modal").classList.remove("active");
+});
 
-          // Événements
-          document
-            .getElementById("searchInput")
-            .addEventListener("input", (e) => {
-              currentSearch = e.target.value;
-              renderProphets();
-            });
-
-          document.querySelectorAll(".filter-btn").forEach((btn) => {
-            btn.addEventListener("click", () => {
-              document
-                .querySelectorAll(".filter-btn")
-                .forEach((b) => b.classList.remove("active"));
-              btn.classList.add("active");
-              currentFilter = btn.dataset.filter;
-              renderProphets();
-            });
-          });
-
-          document
-            .getElementById("closeModal")
-            .addEventListener("click", () => {
-              document.getElementById("modal").classList.remove("active");
-            });
-
-          document.getElementById("modal").addEventListener("click", (e) => {
-            if (e.target === document.getElementById("modal")) {
-              document.getElementById("modal").classList.remove("active");
-            }
-          });
-
-          // Initialisation
-          renderProphets();
+renderProphets();
