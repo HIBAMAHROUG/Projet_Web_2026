@@ -71,6 +71,9 @@ body {
   border: none;
   outline: none;
 }
+h1,h2{
+  color:ghostwhite;
+}
 
 .search-box i {
   position: absolute;
