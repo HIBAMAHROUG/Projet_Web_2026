@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>التقويم الهجري | FaithPath</title>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="cal.css" rel="stylesheet">
+  <script defer src="ca.js"></script>
+</head>
+
+<body>
+
+  <!-- ══════════════════════════════════════
+       FAITHPATH HEADER
+  ═════════════════════════════════════ -->
+  <header class="fp-header">
+    <div class="fp-user">
+      <i class="fa-solid fa-user"></i>
+      <span>المستخدم</span>
+    </div>
+    <div class="fp-user-box">
+      <i class="fa-solid fa-bell"></i>
+      <div class="fp-search-box">
+        <input type="text" placeholder="...بحث" />
+        <i class="fa-solid fa-search"></i>
+      </div>
+    </div>
+
+    <nav class="fp-navbar">
+      <a href="#">الرئيسية</a>
+      <a href="#">القرآن الكريم</a>
+      <a href="#">أسماء الله الحسنى</a>
+      <a href="#" class="active">التقويم الهجري</a>
+      <a href="#">المسبحة الإلكترونية</a>
+      <a href="#"></a>
+      <a href="#">قصة الصحابة</a>
+      <a href="#">حاسب نفسك</a>
+      <a href="#">صدقة جارية</a>
+      <a href="#">أذكار</a>
+      <a href="#">اتصل بنا</a>
+    </nav>
+    <a class="fp-logo" href="#">
+      <span>Faith Path</span>
+      <i class="fa-solid fa-mosque"></i>
+    </a>
+  </header>
+
+  <!-- ══════ PAGE TITLE ══════ -->
+  <div class="page-title-section">
+    <h1>التقويم الهجري</h1>
+    <p>تصفّح الأشهر الهجرية وحوّل التواريخ واستعرض المناسبات الإسلامية</p>
+  </div>
+
+  <!-- ══════ CALENDAR ══════ -->
+  <div class="container">
+
+    <!-- HEADER -->
+    <div class="cal-header">
+      <span class="ornament">❧ ✦ ❧</span>
+      <span class="h-month-name" id="hMonthName">رمضان</span>
+      <div class="h-year" id="hYear">١٤٤٧ هـ</div>
+      <div class="greg-range" id="gregRange"></div>
+      <div class="nav-row">
+        <button class="nav-btn" onclick="prevMonth()">◀ السابق</button>
+        <button class="today-btn" onclick="goToToday()">⊙ اليوم</button>
+        <button class="nav-btn" onclick="nextMonth()">التالي ▶</button>
+      </div>
+    </div>
+
+    <!-- TODAY CARD -->
+    <div class="today-card" id="todayCard"></div>
+
+    <!-- GRID -->
+    <div class="cal-body">
+      <div class="days-header" id="daysHeader"></div>
+      <div class="cal-grid" id="calGrid"></div>
+    </div>
+
+    <!-- CONVERTER -->
+    <div class="converter">
+      <span class="section-title">⇄ تحويل التواريخ</span>
+      <div class="conv-tabs">
+        <button class="conv-tab active" id="tab1" onclick="setTab(1)">ميلادي ← هجري</button>
+        <button class="conv-tab" id="tab2" onclick="setTab(2)">هجري ← ميلادي</button>
+      </div>
+
+      <!-- G → H -->
+      <div class="conv-form" id="convForm1">
+        <div class="fg">
+          <label>اليوم</label>
+          <input type="number" id="g_day" min="1" max="31" value="4" style="width:72px" />
+        </div>
+        <div class="fg">
+          <label>الشهر</label>
+          <select id="g_month" style="width:145px">
+            <option value="1">يناير</option>
+            <option value="2">فبراير</option>
+            <option value="3">مارس</option>
+            <option value="4" selected>أبريل</option>
+            <option value="5">مايو</option>
+            <option value="6">يونيو</option>
+            <option value="7">يوليو</option>
+            <option value="8">أغسطس</option>
+            <option value="9">سبتمبر</option>
+            <option value="10">أكتوبر</option>
+            <option value="11">نوفمبر</option>
+            <option value="12">ديسمبر</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>السنة</label>
+          <input type="number" id="g_year" value="2026" style="width:95px" />
+        </div>
+        <button class="conv-btn" onclick="convertGtoH()">تحويل</button>
+      </div>
+
+      <!-- H → G -->
+      <div class="conv-form" id="convForm2" style="display:none">
+        <div class="fg">
+          <label>اليوم</label>
+          <input type="number" id="h_day" min="1" max="30" value="1" style="width:72px" />
+        </div>
+        <div class="fg">
+          <label>الشهر الهجري</label>
+          <select id="h_month" style="width:165px"></select>
+        </div>
+        <div class="fg">
+          <label>السنة الهجرية</label>
+          <input type="number" id="h_year" value="1447" style="width:100px" />
+        </div>
+        <button class="conv-btn" onclick="convertHtoG()">تحويل</button>
+      </div>
+
+      <div class="conv-result" id="convResult">
+        <div class="result-main" id="resultMain"></div>
+        <div class="result-sub" id="resultSub"></div>
+      </div>
+    </div>
+
+    <!-- COUNTDOWN -->
+    <div class="countdown-section" id="countdownSection">
+      <div class="cd-inner">
+        <div class="cd-top">
+          <div>
+            <div class="cd-label">⏳ العد التنازلي للمناسبة القادمة</div>
+            <div class="cd-event-name" id="cdEventName">…</div>
+            <div class="cd-event-date" id="cdEventDate"></div>
+          </div>
+          <div class="cd-icon-wrap" id="cdIcon">🌙</div>
+        </div>
+        <div class="cd-blocks" id="cdBlocks">
+          <div class="cd-block"><span class="cd-num" id="cdDays">00</span><span class="cd-unit">يوم</span></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-block"><span class="cd-num" id="cdHours">00</span><span class="cd-unit">ساعة</span></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-block"><span class="cd-num" id="cdMins">00</span><span class="cd-unit">دقيقة</span></div>
+          <div class="cd-sep">:</div>
+          <div class="cd-block"><span class="cd-num" id="cdSecs">00</span><span class="cd-unit">ثانية</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EVENTS -->
+    <div class="events-section">
+      <span class="section-title">🌙 المناسبات الإسلامية</span>
+      <div class="events-grid" id="eventsGrid"></div>
+    </div>
+    <div class="footer">
+      التقويم الهجري الحسابي — يُنصح بالتحقق من رؤية الهلال لدى المرجعيات
+      الدينية المعتمدة
+    </div>
+</body>
+
+</html>
