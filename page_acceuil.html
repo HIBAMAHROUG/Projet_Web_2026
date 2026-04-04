@@ -10,6 +10,49 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body class="home-page">
+  
+  <!-- ==================== ASIDE HAMBURGER NAVIGATION (MENU LATÉRAL) ==================== -->
+  <aside class="aside-nav" id="asideNav">
+    <div class="aside-header">
+      <div class="aside-logo">
+        <i class="fas fa-mosque"></i>
+        <span>Faith<span>Path</span></span>
+      </div>
+      <button class="close-aside" id="closeAsideBtn">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <ul class="aside-menu">
+      <li><a href="#accueil" class="aside-link active" data-access="free">🔓 الرئيسية</a></li>
+      <li><a href="#quran" class="aside-link" data-access="free">🔓 القرآن الكريم</a></li>
+      <li><a href="asmaa_allah_alhousnaa_3d.html" class="aside-link" data-access="free">🔓 أسماء الله الحسنى</a></li>
+      <li><a href="#features" class="aside-link" data-access="locked">🔒 مسار الأنبياء</a></li>
+      <li><a href="#features" class="aside-link" data-access="free">🔓 التقويم الهجري</a></li>
+      <li><a href="prayertime.html" class="aside-link" data-access="free">🔓 أوقات الصلاة</a></li>
+      <li><a href="#features" class="aside-link" data-access="free">🔓 المسبحة الإلكترونية</a></li>
+      <li><a href="#features" class="aside-link" data-access="locked">🔒 قصة الصحابة</a></li>
+      <li><a href="#features" class="aside-link" data-access="locked">🔒 حاسب نفسك</a></li>
+      <li><a href="#features" class="aside-link" data-access="locked">🔒 اختبارات دينية</a></li>
+      <li><a href="#features" class="aside-link" data-access="locked">🔒 صدقة جارية</a></li>
+      <li><a href="#features" class="aside-link" data-access="free">🔓 أذكار الصباح والمساء</a></li>
+      <li><a href="#contact" class="aside-link" data-access="free">🔓 تواصل معنا</a></li>
+    </ul>
+    <div class="aside-footer">
+      <a href="start.html" id="asideAuthActionBtn" class="aside-link" data-access="free">🔓 تسجيل الدخول</a>
+      <div class="aside-search">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="بحث...">
+      </div>
+      <div class="aside-profile">
+        <i class="far fa-user-circle"></i>
+        <span id="asideProfileName">أحمد</span>
+      </div>
+    </div>
+  </aside>
+  
+  <!-- Overlay pour fermer le menu latéral -->
+  <div class="aside-overlay" id="asideOverlay"></div>
+
   <!-- ===== HEADER ===== -->
   <header class="header">
     <div class="header-wave">
@@ -20,41 +63,32 @@
       </svg>
     </div>
     
-    <nav class="navbar">
+    <!-- Barre de navigation principale avec bouton hamburger -->
+    <nav class="top-navbar">
       <div class="nav-container">
         <div class="logo">
-          <img src="img/m.png" alt="Mosquée" class="logo-img">
+          <img src="img/m.png" alt="FaithPath" class="logo-img">
           <span class="logo-text">Faith<span class="logo-highlight">Path</span></span>
         </div>
         
-        <div class="nav-menu" id="navMenu">
-          <a href="#accueil" class="nav-link active">الرئيسية</a>
-          <a href="#quran" class="nav-link">القرآن الكريم</a>
-          <a href="#features" class="nav-link">أسماء الله الحسنى</a>
-          <a href="#features" class="nav-link">مسار الأنبياء</a>
-          <a href="#features" class="nav-link">التقويم الهجري</a>
-          <a href="#features" class="nav-link">المسبحة الإلكترونية</a>
-          <a href="#features" class="nav-link">قصة الصحابة</a>
-          <a href="#features" class="nav-link">حاسب نفسك</a>
-          <a href="#features" class="nav-link">صدقة جارية</a>
-          <a href="#features" class="nav-link">أذكار  </a>
-          <a href="#contact" class="nav-link">اتصل بنا</a>
-        </div>
-        
+        <!-- Hamburger Button (ouvre le menu latéral) -->
+        <button class="hamburger" id="hamburgerBtn" aria-label="القائمة">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <!-- Actions de droite (recherche + profil) -->
         <div class="nav-actions">
+          <a href="start.html" id="authActionBtn" class="auth-action-btn"><i class="fas fa-right-to-bracket"></i><span>إنشاء حساب / تسجيل الدخول</span></a>
           <div class="search-box">
             <i class="fas fa-search search-icon"></i>
             <input type="text" placeholder="بحث..." class="search-input">
           </div>
-          <div class="user-profile">
-            <i class="fas fa-bell notification-icon"></i>
-            <div class="profile-badge">
-              <i class="fas fa-user-circle profile-icon"></i>
-                <span class="profile-name" id="profileName">المستخدم</span>
-            </div>
-          </div>
-          <div class="menu-toggle" id="menuToggle">
-            <i class="fas fa-bars"></i>
+          <i class="far fa-bell notification-icon"></i>
+          <div class="profile-badge">
+            <i class="far fa-user-circle profile-icon"></i>
+            <span class="profile-name" id="profileName">أحمد</span>
           </div>
         </div>
       </div>
@@ -109,6 +143,10 @@
           </div>
           <h2 class="section-title">مرافقك في الرحلة الإيمانية</h2>
           <p class="section-subtitle">أدوات ومنافع تعينك على الطاعة</p>
+          <div class="locked-features-panel" id="lockedFeaturesPanel">
+            <strong><i class="fas fa-lock"></i> المزايا المقفلة للزائر</strong>
+            <span>مسار الأنبياء • قصة الصحابة • حاسب نفسك • اختبارات دينية • صدقة جارية</span>
+          </div>
         </div>
         
         <div class="features-grid">
@@ -119,7 +157,7 @@
             </div>
             <h3 class="feature-title">القرآن الكريم</h3>
             <p class="feature-desc">استمع واقرأ السور بدون تفسير</p>
-            <a href="#" class="feature-link">اقرأ <i class="fas fa-arrow-left"></i></a>
+            <a href="#quran" class="feature-link" data-access="free">اقرأ <i class="fas fa-arrow-left"></i></a>
           </div>
           
           <!-- Asma Allah - Second -->
@@ -129,17 +167,18 @@
             </div>
             <h3 class="feature-title">أسماء الله الحسنى</h3>
             <p class="feature-desc">٩٩ اسمًا مع شرح وتأمل</p>
-            <a href="#" class="feature-link">تأمل <i class="fas fa-arrow-left"></i></a>
+            <a href="asmaa_allah_alhousnaa_3d.html" class="feature-link" data-access="free">تأمل <i class="fas fa-arrow-left"></i></a>
           </div>
           
           <!-- Axe des prophètes - Third -->
-          <div class="feature-card">
+          <div class="feature-card locked-feature">
+            <span class="lock-badge"><i class="fas fa-lock"></i> مقفلة</span>
             <div class="feature-img">
               <img src="img/12344848-calligraphie-arabe-et-islamique-du-prophete-muhammad-la-paix-soit-sur-lui-l-art-islamique-traditionnel-et-moderne-peut-etre-utilise-pour-de-nombreux-sujets-comme-le-mawlid-el-nabawi-traduction-le-prophete-mu.jpg" alt="مسار الأنبياء" class="feature-icon-img">
             </div>
             <h3 class="feature-title">مسار الأنبياء</h3>
             <p class="feature-desc">قصص الأنبياء عبر العصور وحكم وعبر</p>
-            <a href="#" class="feature-link">استمع <i class="fas fa-arrow-left"></i></a>
+            <a href="#features" class="feature-link" data-access="locked">استمع <i class="fas fa-arrow-left"></i></a>
           </div>
           
           <!-- Calendrier hijri -->
@@ -149,17 +188,17 @@
             </div>
             <h3 class="feature-title">التقويم الهجري</h3>
             <p class="feature-desc">تابع الأيام والأشهر الهجرية والمناسبات الإسلامية</p>
-            <a href="#" class="feature-link">اكتشف <i class="fas fa-arrow-left"></i></a>
+            <a href="#features" class="feature-link" data-access="free">اكتشف <i class="fas fa-arrow-left"></i></a>
           </div>
 
           <!-- Prayer Times -->
           <div class="feature-card">
             <div class="feature-img">
-              <img src="img\téléchargement.jpg" alt="أوقات الصلاة" class="feature-icon-img">
+              <img src="img/téléchargement.jpg" alt="أوقات الصلاة" class="feature-icon-img">
             </div>
             <h3 class="feature-title">أوقات الصلاة</h3>
             <p class="feature-desc">اعرف مواقيت الصلاة حسب موقعك بدقة</p>
-            <a href="prayertime.html" class="feature-link">عرض المواقيت <i class="fas fa-arrow-left"></i></a>
+            <a href="prayertime.html" class="feature-link" data-access="free">عرض المواقيت <i class="fas fa-arrow-left"></i></a>
           </div>
           
           <!-- Tasbih -->
@@ -169,47 +208,51 @@
             </div>
             <h3 class="feature-title">المسبحة الإلكترونية</h3>
             <p class="feature-desc">سبح واذكر الله بعدد دقيق</p>
-            <a href="#" class="feature-link">ابدأ التسبيح <i class="fas fa-arrow-left"></i></a>
+            <a href="#features" class="feature-link" data-access="free">ابدأ التسبيح <i class="fas fa-arrow-left"></i></a>
           </div>
           
           <!-- Shaba's story -->
-          <div class="feature-card">
+          <div class="feature-card locked-feature">
+            <span class="lock-badge"><i class="fas fa-lock"></i> مقفلة</span>
             <div class="feature-img">
-              <img src="img/images.jpg" alt="قصة الصحابة" class="feature-icon-img" style="filter: brightness(1.1) hue-rotate(120deg);">
+              <img src="img/images.jpg" alt="قصة الصحابة" class="feature-icon-img">
             </div>
             <h3 class="feature-title">قصة الصحابة</h3>
             <p class="feature-desc">مواقف ملهمة من حياة الصحابة رضي الله عنهم</p>
-            <a href="#" class="feature-link">اقرأ القصة <i class="fas fa-arrow-left"></i></a>
+            <a href="#features" class="feature-link" data-access="locked">اقرأ القصة <i class="fas fa-arrow-left"></i></a>
           </div>
           
           <!-- Hasib nafssek -->
-          <div class="feature-card">
+          <div class="feature-card locked-feature">
+            <span class="lock-badge"><i class="fas fa-lock"></i> مقفلة</span>
             <div class="feature-img">
               <img src="img/test.jpg" alt="حاسب نفسك" class="feature-icon-img">
             </div>
             <h3 class="feature-title">حاسب نفسك</h3>
             <p class="feature-desc">دفتر يومي لمحاسبة النفس على الطاعات</p>
-            <a href="#" class="feature-link">سجل <i class="fas fa-arrow-left"></i></a>
+            <a href="#features" class="feature-link" data-access="locked">سجل <i class="fas fa-arrow-left"></i></a>
           </div>
           
           <!-- Quiz -->
-          <div class="feature-card">
+          <div class="feature-card locked-feature">
+            <span class="lock-badge"><i class="fas fa-lock"></i> مقفلة</span>
             <div class="feature-img">
               <img src="img/unnamed (1).png" alt="اختبارات دينية" class="feature-icon-img">
             </div>
             <h3 class="feature-title">اختبارات دينية</h3>
             <p class="feature-desc">اختبر معرفتك في السيرة والفقه</p>
-            <a href="#" class="feature-link">ابدأ الاختبار <i class="fas fa-arrow-left"></i></a>
+            <a href="#features" class="feature-link" data-access="locked">ابدأ الاختبار <i class="fas fa-arrow-left"></i></a>
           </div>
           
           <!-- Don -->
-          <div class="feature-card">
+          <div class="feature-card locked-feature">
+            <span class="lock-badge"><i class="fas fa-lock"></i> مقفلة</span>
             <div class="feature-img">
               <img src="img/59_500.png" alt="صدقة جارية" class="feature-icon-img">
             </div>
             <h3 class="feature-title">صدقة جارية</h3>
             <p class="feature-desc">تبرع لمشاريع خيرية وماء سبيل</p>
-            <a href="#" class="feature-link">تصدق الآن <i class="fas fa-arrow-left"></i></a>
+            <a href="#features" class="feature-link" data-access="locked">تصدق الآن <i class="fas fa-arrow-left"></i></a>
           </div>
           
           <!-- Adhkar -->
@@ -219,7 +262,7 @@
             </div>
             <h3 class="feature-title">أذكار الصباح والمساء</h3>
             <p class="feature-desc">أذكار يومية لحفظك وتقربك إلى الله</p>
-            <a href="#" class="feature-link">اقرأ الآن <i class="fas fa-arrow-left"></i></a>
+            <a href="#features" class="feature-link" data-access="free">اقرأ الآن <i class="fas fa-arrow-left"></i></a>
           </div>
         </div>
       </div>
@@ -365,27 +408,130 @@
   <script>
     const currentUser = JSON.parse(localStorage.getItem('faithpathCurrentUser') || 'null');
     const profileNameElement = document.getElementById('profileName');
+    const asideProfileName = document.getElementById('asideProfileName');
+    const authActionBtn = document.getElementById('authActionBtn');
+    const asideAuthActionBtn = document.getElementById('asideAuthActionBtn');
+    const isAuthenticated = !!(currentUser && currentUser.email);
 
-    if (currentUser && currentUser.fullName && profileNameElement) {
-      profileNameElement.textContent = currentUser.fullName;
+    if (isAuthenticated) {
+      document.body.classList.add('is-authenticated');
     }
 
-    const startJourneyBtn = document.getElementById('startJourneyBtn');
+    if (isAuthenticated && currentUser.fullName) {
+      if (profileNameElement) profileNameElement.textContent = currentUser.fullName;
+      if (asideProfileName) asideProfileName.textContent = currentUser.fullName;
+    }
 
-    if (startJourneyBtn) {
-      startJourneyBtn.addEventListener('click', function(event) {
-        event.preventDefault();
-        const mainBody = document.getElementById('mainContent');
-        if (mainBody) {
-          mainBody.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (authActionBtn) {
+      if (isAuthenticated) {
+        authActionBtn.innerHTML = '<i class="fas fa-right-from-bracket"></i><span>تسجيل الخروج</span>';
+        authActionBtn.classList.add('is-logged-in');
+        authActionBtn.href = '#';
+        authActionBtn.addEventListener('click', function(event) {
+          event.preventDefault();
+          localStorage.removeItem('faithpathCurrentUser');
+          window.location.href = 'page_acceuil.html';
+        });
+      } else {
+        authActionBtn.innerHTML = '<i class="fas fa-right-to-bracket"></i><span>إنشاء حساب / تسجيل الدخول</span>';
+        authActionBtn.classList.remove('is-logged-in');
+        authActionBtn.href = 'start.html';
+      }
+    }
+
+    if (asideAuthActionBtn) {
+      if (isAuthenticated) {
+        asideAuthActionBtn.textContent = '🔓 تسجيل الخروج';
+        asideAuthActionBtn.href = '#';
+        asideAuthActionBtn.addEventListener('click', function(event) {
+          event.preventDefault();
+          localStorage.removeItem('faithpathCurrentUser');
+          window.location.href = 'page_acceuil.html';
+        });
+      } else {
+        asideAuthActionBtn.textContent = '🔓 تسجيل الدخول';
+        asideAuthActionBtn.href = 'start.html';
+      }
+    }
+
+    if (isAuthenticated) {
+      const lockedPanel = document.getElementById('lockedFeaturesPanel');
+      if (lockedPanel) {
+        lockedPanel.style.display = 'none';
+      }
+
+      document.querySelectorAll('.lock-badge').forEach((badge) => badge.remove());
+      document.querySelectorAll('.locked-feature').forEach((card) => card.classList.remove('locked-feature'));
+
+      document.querySelectorAll('[data-access="locked"]').forEach((el) => {
+        el.dataset.access = 'free';
+
+        if (el.classList.contains('aside-link')) {
+          el.textContent = el.textContent.replace('🔒', '🔓');
         }
       });
     }
 
-    // Mobile menu toggle
-    document.getElementById('menuToggle').addEventListener('click', function() {
-      document.getElementById('navMenu').classList.toggle('active');
+    function blockIfLocked(event) {
+      if (this.dataset.access === 'locked' && !isAuthenticated) {
+        event.preventDefault();
+        alert('يرجى إنشاء حساب للوصول إلى هذه الميزة');
+        window.location.href = 'signup.html';
+      }
+    }
+
+    document.querySelectorAll('[data-access="locked"]').forEach((el) => {
+      el.addEventListener('click', blockIfLocked);
     });
+
+    // ==================== ASIDE HAMBURGER MENU (menu latéral) ====================
+    (function() {
+      const hamburger = document.getElementById('hamburgerBtn');
+      const asideNav = document.getElementById('asideNav');
+      const asideOverlay = document.getElementById('asideOverlay');
+      const closeAsideBtn = document.getElementById('closeAsideBtn');
+      
+      function closeAside() {
+        if (asideNav) asideNav.classList.remove('active');
+        if (asideOverlay) asideOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+      
+      function openAside() {
+        if (asideNav) asideNav.classList.add('active');
+        if (asideOverlay) asideOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+      
+      function toggleAside() {
+        if (asideNav && asideNav.classList.contains('active')) {
+          closeAside();
+        } else {
+          openAside();
+        }
+      }
+      
+      if (hamburger) {
+        hamburger.addEventListener('click', toggleAside);
+      }
+      
+      if (closeAsideBtn) {
+        closeAsideBtn.addEventListener('click', closeAside);
+      }
+      
+      if (asideOverlay) {
+        asideOverlay.addEventListener('click', closeAside);
+      }
+      
+      const asideLinks = document.querySelectorAll('.aside-link');
+      asideLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          asideLinks.forEach(l => l.classList.remove('active'));
+          this.classList.add('active');
+          closeAside();
+        });
+      });
+    })();
   </script>
 </body>
 </html>
