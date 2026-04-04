@@ -11,24 +11,17 @@ function respondJson($success, $message, $status = 200, $extra = []) {
     exit;
 }
 
-function getResetRecord($pdo, $token) {
-    if (!$token) {
-        return false;
-    }
-
-    $stmt = $pdo->prepare(
-        "SELECT * FROM password_resets
-         WHERE token = ? AND used = 0 AND expires_at > NOW()"
-    );
-    $stmt->execute([$token]);
-    return $stmt->fetch(PDO::FETCH_ASSOC);
+function getResetRecordByToken($token) {
+    return getValidResetByToken($token);
 }
 
-$pdo = getDB();
+function getResetRecordByCode($email, $code) {
+    return getValidResetByCode($email, $code);
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && (($_GET['validate'] ?? '') === '1')) {
     $token = $_GET['token'] ?? '';
-    $reset = getResetRecord($pdo, $token);
+    $reset = getResetRecordByToken($token);
 
     if (!$reset) {
         respondJson(false, 'Lien invalide ou expire.', 400);
@@ -41,12 +34,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $payload = json_decode(file_get_contents('php://input'), true);
 
     $token = trim($payload['token'] ?? ($_POST['token'] ?? ''));
+    $email = trim($payload['email'] ?? ($_POST['email'] ?? ''));
+    $code = trim($payload['code'] ?? ($_POST['code'] ?? ''));
     $password = $payload['password'] ?? ($_POST['password'] ?? '');
     $password2 = $payload['confirmPassword'] ?? ($payload['password2'] ?? ($_POST['password2'] ?? ''));
 
-    $reset = getResetRecord($pdo, $token);
+    $reset = false;
+    if ($token !== '') {
+        $reset = getResetRecordByToken($token);
+    } elseif ($email !== '' || $code !== '') {
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            respondJson(false, 'Adresse email invalide.', 422);
+        }
+
+        if (!preg_match('/^\d{6}$/', $code)) {
+            respondJson(false, 'Code invalide. Il doit contenir 6 chiffres.', 422);
+        }
+
+        $reset = getResetRecordByCode($email, $code);
+    }
+
     if (!$reset) {
-        respondJson(false, 'Lien invalide ou expire.', 400);
+        respondJson(false, 'Code ou lien invalide ou expire.', 400);
     }
 
     if (strlen($password) < 8) {
@@ -59,11 +68,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $hashed = password_hash($password, PASSWORD_BCRYPT);
 
-    $pdo->prepare("UPDATE users SET password = ? WHERE email = ?")
-        ->execute([$hashed, $reset['email']]);
+    $updated = updateUserPasswordByEmail($reset['email'], $hashed);
+    if (!$updated) {
+        respondJson(false, 'Compte utilisateur introuvable.', 404);
+    }
 
-    $pdo->prepare("UPDATE password_resets SET used = 1 WHERE token = ?")
-        ->execute([$token]);
+    markResetUsedById($reset['id']);
 
     respondJson(true, 'Mot de passe mis a jour avec succes.');
 }

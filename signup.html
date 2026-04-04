@@ -77,10 +77,25 @@
   </div>
 
   <script>
+    function getProjectBaseUrl() {
+      const marker = '/projet_web_2026/';
+      const path = window.location.pathname || '';
+      const idx = path.indexOf(marker);
+
+      if (idx !== -1) {
+        return window.location.origin + '/projet_web_2026';
+      }
+
+      return 'http://localhost/projet_web_2026';
+    }
+
+    const API_URL = `${getProjectBaseUrl()}/backend`;
+
     const signupForm = document.querySelector('.form');
+    const submitBtn = signupForm ? signupForm.querySelector('button[type="submit"]') : null;
 
     if (signupForm) {
-      signupForm.addEventListener('submit', (event) => {
+      signupForm.addEventListener('submit', async (event) => {
         event.preventDefault();
 
         const fullNameInput = document.getElementById('fullname');
@@ -103,23 +118,47 @@
           return;
         }
 
-        const accounts = JSON.parse(localStorage.getItem('faithpathAccounts') || '[]');
-        const existingAccount = accounts.find((account) => account.email === email);
-
-        if (existingAccount) {
-          alert('هذا البريد الإلكتروني مستخدم بالفعل.');
-          return;
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.textContent = 'جاري إنشاء الحساب...';
         }
 
-        accounts.push({
-          fullName,
-          email,
-          password
-        });
+        try {
+          const response = await fetch(`${API_URL}/signup.php`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Accept': 'application/json',
+            },
+            body: JSON.stringify({ fullName, email, password, confirmPassword }),
+          });
 
-        localStorage.setItem('faithpathAccounts', JSON.stringify(accounts));
-        alert('تم إنشاء الحساب بنجاح.');
-        window.location.href = 'start.html';
+          const raw = await response.text();
+          let data = {};
+          try {
+            data = JSON.parse(raw);
+          } catch (e) {
+            data = { success: false, message: 'استجابة غير صالحة من الخادم.' };
+          }
+
+          if (!response.ok || !data.success) {
+            alert(data.message || 'تعذر إنشاء الحساب.');
+            if (submitBtn) {
+              submitBtn.disabled = false;
+              submitBtn.textContent = 'إنشاء الحساب';
+            }
+            return;
+          }
+
+          alert('تم إنشاء الحساب بنجاح وإضافته إلى قاعدة البيانات.');
+          window.location.href = 'start.html';
+        } catch (error) {
+          alert('تعذر الاتصال بالخادم. افتح الموقع عبر http://localhost/projet_web_2026/signup.html وتأكد أن Apache يعمل.');
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'إنشاء الحساب';
+          }
+        }
       });
     }
   </script>
