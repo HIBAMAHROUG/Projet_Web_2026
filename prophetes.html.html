@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>أنبياء الإسلام | FaithPath</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="pro.css">
+    <script defer src="prop.js"></script>
+  </head>
+
+  <body>
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+      <div class="user">
+        <i class="fa-solid fa-user"></i>
+        <span>المستخدم</span>
+      </div>
+      <div class="user-box">
+        <i class="fa-solid fa-bell"></i>
+        <div class="search-box">
+          <input type="text" placeholder="...بحث" />
+          <i class="fa-solid fa-search"></i>
+        </div>
+      </div>
+
+      <nav class="navbar">
+        <a href="#">الرئيسية</a>
+        <a href="#">القرآن الكريم</a>
+        <a href="#">أسماء الله الحسنى</a>
+        <a href="#">التقويم الهجري</a>
+        <a href="#">المسبحة الإلكترونية</a>
+        <a href="#">قصة الصحابة</a>
+        <a href="#">حاسب نفسك</a>
+        <a href="#">صدقة جارية</a>
+        <a href="#">أذكار</a>
+        <a href="#">اتصل بنا</a>
+      </nav>
+      <div class="logo">
+        <span class="logo-text">Faith<span>Path</span></span>
+        <i class="fa-solid fa-mosque"></i>
+      </div>
+    </header>
+
+    <!-- ===== PAGE TITLE ===== -->
+    <div class="page-title-section">
+      <h1><span>أنبياء الإسلام</span></h1>
+      <h2>خمسة وعشرون نبيًّا ذُكروا في القرآن الكريم</h2>
+    </div>
+
+    <!-- ===== SUMMARY IMAGE BANNER ===== -->
+    <div class="summary-banner">
+      <div class="summary-banner-inner">
+        <div class="summary-text-col">
+          <h3>📜 ملخص تاريخ الأنبياء</h3>
+          <p>
+            يتضمن هذا الملخص أبرز المعلومات التاريخية عن أنبياء الله الكرام، بما
+            فيها الفترة الزمنية التقريبية لبعثة كل نبي، ومكان البعثة، ومكان
+            الوفاة.
+            <br /><br />
+            انقر على البطاقات أدناه لاستعراض تفاصيل كل نبي، أو اضغط على الصورة
+            لعرضها كاملة.
+          </p>
+          <button
+            class="view-table-btn"
+            onclick="
+              document.getElementById('imgModal').classList.add('active')
+            "
+          >
+            <i class="fa-solid fa-table"></i> عرض الجدول التاريخي
+          </button>
+        </div>
+        <div class="summary-img-col">
+          <img
+            id="summaryThumb"
+            src="ملخص.jpg"
+            alt="ملخص"
+            onclick="
+              document.getElementById('imgModal').classList.add('active')
+            "
+            title="انقر للتكبير"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== MAIN CONTAINER ===== -->
+    <div class="container">
+      <!-- Search & Filters -->
+      <div class="search-section">
+        <div style="display: flex; justify-content: center">
+          <input type="text" id="searchInput" placeholder="🔍 ابحث عن نبي..." />
+        </div>
+        <div class="filter-buttons">
+          <button class="filter-btn active" data-filter="all">📖 الجميع</button>
+          <button class="filter-btn" data-filter="ululazm">
+            ⭐ أولو العزم
+          </button>
+          <button class="filter-btn" data-filter="early">
+            🕋 الأنبياء الأوائل
+          </button>
+        </div>
+      </div>
+
+      <!-- Grid -->
+      <div class="prophets-grid" id="prophetsGrid"></div>
+    </div>
+
+    <!-- ===== PROPHET DETAIL MODAL ===== -->
+    <div class="modal" id="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button class="close-modal" id="closeModal">✕</button>
+          <div class="modal-prophet-name" id="modalNameAr"></div>
+        </div>
+        <div class="modal-body" id="modalBody"></div>
+      </div>
+    </div>
+
+    <!-- ===== IMAGE LIGHTBOX MODAL ===== -->
+    <div class="img-modal" id="imgModal">
+      <button
+        class="img-modal-close"
+        onclick="document.getElementById('imgModal').classList.remove('active')"
+      >
+        ✕
+      </button>
+      <img src="ملخص.jpg" alt="ملخص تاريخ الأنبياء" id="imgModalFull" />
+    </div>
+  </body>
+</html>
