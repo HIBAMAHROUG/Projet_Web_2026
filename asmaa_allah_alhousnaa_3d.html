@@ -27,7 +27,10 @@
 
     body {
       min-height: 100vh;
-      background: linear-gradient(135deg, #f5f1e8 0%, #e8f5e9 50%, #f5f1e8 100%);
+      background:
+        radial-gradient(circle at 18% 10%, rgba(42, 90, 69, 0.22), transparent 30%),
+        radial-gradient(circle at 82% 12%, rgba(212, 175, 55, 0.12), transparent 26%),
+        linear-gradient(180deg, #173528 0%, #214838 32%, #173528 100%);
       color: #1a1a1a;
       display: flex;
       flex-direction: column;
@@ -45,9 +48,9 @@
       position: fixed;
       inset: 0;
       background-image:
-        radial-gradient(circle at 15% 25%, rgba(45, 106, 79, 0.04) 0%, transparent 50%),
-        radial-gradient(circle at 85% 75%, rgba(212, 175, 55, 0.03) 0%, transparent 50%),
-        repeating-linear-gradient(45deg, rgba(212, 175, 55, 0.02) 0px, rgba(212, 175, 55, 0.02) 2px, transparent 2px, transparent 4px);
+        radial-gradient(circle at 15% 25%, rgba(255, 255, 255, 0.04) 0%, transparent 46%),
+        radial-gradient(circle at 85% 75%, rgba(212, 175, 55, 0.05) 0%, transparent 46%),
+        repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.025) 0px, rgba(255, 255, 255, 0.025) 2px, transparent 2px, transparent 6px);
       pointer-events: none;
       z-index: 0;
     }
@@ -491,252 +494,309 @@
       }
     }
 
-    /* FOOTER STYLES */
-    .footer {
-      background: linear-gradient(135deg, #1a3a2a 0%, #2d6a4f 100%);
-      color: white;
-      margin-top: 4rem;
-      position: relative;
+    /* Minimal footer only for this page */
+    .mini-footer {
+      margin-top: 2.4rem;
+      background: linear-gradient(135deg, #1a3a2a, #2d6a4f);
+      color: rgba(255, 255, 255, 0.92);
+      border-top: 2px solid rgba(212, 175, 55, 0.45);
     }
 
-    .footer-wave {
-      position: relative;
-      height: 120px;
-      overflow: hidden;
-    }
-
-    .footer-wave svg {
-      display: block;
-      width: 100%;
-      height: 100%;
-    }
-
-    .wave-fill {
-      fill: var(--islamic-dark);
-    }
-
-    .footer-content {
-      padding: 3rem 0 2rem;
-      position: relative;
-      z-index: 2;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-    }
-
-    .footer-col {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .footer-logo {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      margin-bottom: 0.5rem;
-      font-size: 1.4rem;
-      font-weight: 800;
-    }
-
-    .footer-logo-img {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-    }
-
-    .footer-logo-text {
-      color: white;
-    }
-
-    .footer-about {
-      font-size: 0.95rem;
-      line-height: 1.6;
-      opacity: 0.9;
-      margin-bottom: 1rem;
-    }
-
-    .footer-social {
-      display: flex;
-      gap: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    .social-link {
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(212, 175, 55, 0.15);
-      border-radius: 50%;
-      color: var(--islamic-gold);
-      transition: all 0.3s ease;
-      border: 2px solid transparent;
-    }
-
-    .social-link:hover {
-      background: var(--islamic-gold);
-      color: var(--islamic-dark);
-      transform: translateY(-3px);
-    }
-
-    .footer-title {
-      font-size: 1.1rem;
-      font-weight: 800;
-      color: var(--islamic-gold);
-      margin-bottom: 0.8rem;
-    }
-
-    .footer-links {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.8rem;
-    }
-
-    .footer-link {
-      color: rgba(255, 255, 255, 0.85);
-      text-decoration: none;
-      font-size: 0.95rem;
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .footer-link:hover {
-      color: var(--islamic-gold);
-      transform: translateX(-5px);
-    }
-
-    .footer-newsletter-text {
-      font-size: 0.95rem;
-      margin-bottom: 1rem;
-      opacity: 0.9;
-    }
-
-    .newsletter-form {
-      display: flex;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 8px;
-      overflow: hidden;
-      border: 1px solid rgba(212, 175, 55, 0.3);
-      margin-bottom: 1.2rem;
-    }
-
-    .newsletter-input {
-      flex: 1;
-      border: none;
-      background: transparent;
-      padding: 0.8rem 1rem;
-      color: white;
-      font-size: 0.95rem;
-      outline: none;
-    }
-
-    .newsletter-input::placeholder {
-      color: rgba(255, 255, 255, 0.6);
-    }
-
-    .newsletter-btn {
-      background: var(--islamic-gold);
-      border: none;
-      padding: 0.8rem 1.2rem;
-      color: var(--islamic-dark);
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-weight: 700;
-    }
-
-    .newsletter-btn:hover {
-      background: #c9a227;
-    }
-
-    .footer-apps {
-      display: flex;
-      gap: 1rem;
-      flex-direction: column;
-    }
-
-    .app-badge {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      padding: 0.8rem 1rem;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 8px;
-      color: white;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      border: 1px solid rgba(212, 175, 55, 0.2);
-      font-weight: 600;
-      font-size: 0.9rem;
-    }
-
-    .app-badge:hover {
-      background: var(--islamic-gold);
-      color: var(--islamic-dark);
-      transform: translateY(-2px);
-    }
-
-    .footer-bottom {
-      background: rgba(0, 0, 0, 0.2);
-      padding: 1.5rem 0;
-      border-top: 1px solid rgba(212, 175, 55, 0.2);
-      margin-top: 2rem;
-    }
-
-    .footer-bottom-content {
+    .mini-footer-inner {
+      width: min(1200px, 96vw);
+      margin: 0 auto;
+      padding: 0.95rem 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
       gap: 1rem;
+      flex-wrap: wrap;
+      font-size: 0.92rem;
     }
 
-    .footer-copyright {
-      font-size: 0.9rem;
-      opacity: 0.85;
-    }
-
-    .footer-bottom-links {
+    .mini-footer-links {
       display: flex;
-      gap: 1rem;
       align-items: center;
+      gap: 0.9rem;
       flex-wrap: wrap;
     }
 
-    .footer-bottom-links a {
-      color: rgba(255, 255, 255, 0.85);
+    .mini-footer-links a {
+      color: rgba(255, 255, 255, 0.92);
       text-decoration: none;
-      font-size: 0.9rem;
-      transition: color 0.3s ease;
+      transition: opacity 0.2s ease;
     }
 
-    .footer-bottom-links a:hover {
-      color: var(--islamic-gold);
-    }
-
-    .separator {
-      color: rgba(212, 175, 55, 0.4);
+    .mini-footer-links a:hover {
+      opacity: 0.78;
     }
 
     @media (max-width: 768px) {
-      .footer-grid {
+      .mini-footer-inner {
+        justify-content: center;
+        text-align: center;
+      }
+    }
+
+    /* ------- Page-specific redesign overrides ------- */
+    .hero-section {
+      width: min(96vw, 1180px);
+      margin: 1.05rem auto 0.75rem;
+      padding: 1.15rem 1rem 1rem;
+      border-radius: 20px;
+      background:
+        linear-gradient(135deg, rgba(20, 45, 34, 0.92), rgba(39, 84, 65, 0.84)),
+        radial-gradient(circle at 18% 22%, rgba(212, 175, 55, 0.14), transparent 32%),
+        radial-gradient(circle at 82% 78%, rgba(255, 255, 255, 0.07), transparent 30%);
+      border: 1px solid rgba(212, 175, 55, 0.28);
+      box-shadow: 0 18px 34px rgba(22, 46, 36, 0.18);
+    }
+
+    .hero-content {
+      max-width: 850px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.82rem;
+      color: #f5ead3;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(212, 175, 55, 0.18);
+      border-radius: 999px;
+      padding: 0.3rem 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-title {
+      font-family: 'Noto Kufi Arabic', 'Amiri', serif;
+      font-size: clamp(1.6rem, 3vw, 2.15rem);
+      margin-bottom: 0.45rem;
+      line-height: 1.25;
+      color: #fbf4e7;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.18);
+    }
+
+    .hero-subtitle {
+      font-size: 0.97rem;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-ayah {
+      font-family: 'Noto Kufi Arabic', 'Amiri', serif;
+      font-size: clamp(0.93rem, 1.5vw, 1.06rem);
+      color: #f0d8a2;
+      margin: 0;
+    }
+
+    .ayah-source {
+      font-size: 0.82rem;
+      color: rgba(255, 255, 255, 0.72);
+      margin-top: 0.16rem;
+    }
+
+    .decorative-icons-bottom,
+    .decorative-icons-top {
+      margin: 0.4rem 0;
+      font-size: 0.8rem;
+      opacity: 0.8;
+      color: #f0d8a2;
+      display: flex;
+      justify-content: center;
+      gap: 0.65rem;
+    }
+
+    .asma-container {
+      width: min(96vw, 1180px);
+      margin: 0 auto;
+    }
+
+    .filter-panel {
+      margin: 0 0 1rem;
+      padding: 1rem;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(255, 253, 249, 0.98), rgba(247, 240, 230, 0.96));
+      border: 1px solid rgba(183, 143, 74, 0.16);
+      box-shadow: 0 12px 24px rgba(72, 54, 28, 0.06);
+    }
+
+    .filter-title {
+      font-family: 'Noto Kufi Arabic', 'Amiri', serif;
+      color: #4e4030;
+      text-align: center;
+      margin-bottom: 0.8rem;
+      font-size: 1.05rem;
+    }
+
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      justify-content: center;
+    }
+
+    .filter-pill {
+      border: 1px solid rgba(183, 143, 74, 0.16);
+      background: rgba(255, 255, 255, 0.92);
+      color: #5a4631;
+      padding: 0.55rem 0.95rem;
+      border-radius: 999px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.88rem;
+      font-weight: 700;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .filter-pill:hover {
+      transform: translateY(-1px);
+    }
+
+    .filter-pill.active {
+      background: linear-gradient(135deg, #d4af37, #b88b22);
+      color: #fff;
+      border-color: rgba(212, 175, 55, 0.55);
+    }
+
+    .scene {
+      max-height: none;
+      padding: 1rem;
+      border-radius: 24px;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(250, 246, 238, 0.96));
+      border: 1px solid rgba(183, 143, 74, 0.14);
+      box-shadow: 0 18px 38px rgba(72, 54, 28, 0.06);
+    }
+
+    .line-wrap {
+      height: min(66vh, 720px);
+      padding: 0.5rem;
+    }
+
+    .name-line {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.8rem;
+      padding: 0.4rem;
+    }
+
+    .name-card {
+      aspect-ratio: auto;
+      min-height: 168px;
+      padding: 0.9rem 0.8rem;
+      border-radius: 16px;
+      align-items: flex-start;
+      text-align: right;
+      gap: 0.45rem;
+      background:
+        linear-gradient(180deg, rgba(255, 253, 249, 0.99), rgba(245, 238, 228, 0.96));
+      border: 1px solid rgba(183, 143, 74, 0.16);
+      box-shadow: 0 10px 18px rgba(92, 72, 43, 0.06);
+    }
+
+    .name-index {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: #7e6030;
+      color: #fff;
+      font-size: 0.73rem;
+      font-weight: 700;
+      box-shadow: 0 4px 10px rgba(26, 58, 42, 0.24);
+    }
+
+    .front {
+      font-size: 1.5rem;
+      margin-top: 0.18rem;
+      transform: none !important;
+      color: var(--islamic-dark) !important;
+    }
+
+    .name-latin {
+      font-size: 0.82rem;
+      color: #7c674b;
+      font-weight: 700;
+      direction: ltr;
+    }
+
+    .meaning {
+      opacity: 1 !important;
+      font-size: 0.83rem;
+      color: #6a553c;
+      line-height: 1.45;
+      text-transform: none;
+    }
+
+    .name-category {
+      margin-top: auto;
+      display: inline-block;
+      font-size: 0.74rem;
+      background: rgba(183, 143, 74, 0.14);
+      color: #6f5330;
+      border: 1px solid rgba(183, 143, 74, 0.28);
+      border-radius: 999px;
+      padding: 0.18rem 0.55rem;
+      font-weight: 700;
+    }
+
+    .mini-footer {
+      margin-top: 1.25rem;
+      background: linear-gradient(135deg, #1a3a2a 0%, #2d6a4f 100%);
+      box-shadow: 0 -10px 22px rgba(22, 46, 36, 0.16);
+      border-top: 1px solid rgba(212, 175, 55, 0.35);
+    }
+
+    .mini-footer-inner {
+      width: min(1200px, 96vw);
+      margin: 0 auto;
+      padding: 0.65rem 0;
+      font-size: 0.84rem;
+      justify-content: center;
+      text-align: center;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .mini-footer p {
+      color: rgba(255, 255, 255, 0.9);
+      max-width: none;
+      margin-bottom: 0.2rem;
+    }
+
+    .mini-footer-links a {
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    .mini-footer::before {
+      content: none;
+    }
+
+    @media (max-width: 1200px) {
+      .name-line {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 900px) {
+      .name-line {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 600px) {
+      .name-line {
         grid-template-columns: 1fr;
       }
 
-      .footer-bottom-content {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .footer-bottom-links {
-        justify-content: center;
+      .filter-panel,
+      .meaning-section {
+        padding: 0.85rem;
       }
     }
   </style>
@@ -794,23 +854,20 @@
         <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="wave-fill"></path>
       </svg>
     </div>
-    
-    <!-- Barre de navigation principale avec bouton hamburger -->
+
     <nav class="top-navbar">
       <div class="nav-container">
         <div class="logo">
           <img src="img/m.png" alt="FaithPath" class="logo-img">
           <span class="logo-text">Faith<span class="logo-highlight">Path</span></span>
         </div>
-        
-        <!-- Hamburger Button (ouvre le menu latéral) -->
+
         <button class="hamburger" id="hamburgerBtn" aria-label="القائمة">
           <span></span>
           <span></span>
           <span></span>
         </button>
 
-        <!-- Actions de droite (recherche + profil) -->
         <div class="nav-actions">
           <a href="start.html" id="authActionBtn" class="auth-action-btn"><i class="fas fa-right-to-bracket"></i><span>إنشاء حساب / تسجيل الدخول</span></a>
           <div class="search-box">
@@ -826,25 +883,46 @@
       </div>
     </nav>
 
-    </nav>
-    
     <div class="hero-section" id="accueil">
       <div class="hero-content">
         <div class="decorative-icons-top">
           <i class="fas fa-star"></i>
-          <i class="fas fa-star-of-david"></i>
+          <i class="fas fa-moon"></i>
           <i class="fas fa-star"></i>
         </div>
+        <div class="hero-badge">
+          <i class="fas fa-moon"></i>
+          <span>بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</span>
+          <i class="fas fa-moon"></i>
+        </div>
         <h2 class="hero-title">أسماء الله الحسنى</h2>
-        <p class="hero-subtitle">تعرف على أسماء الله الـ 99 الحسنى وأدعُ الله بها</p>
+        <p class="hero-subtitle"><strong>تعرف على أسماء الله الـ 99 الحسنى وأدعُ الله بها</strong></p>
         <p class="hero-ayah">﴿ وَلِلَّهِ الْأَسْمَاءُ الْحُسْنَىٰ فَادْعُوهُ بِهَا ﴾</p>
         <p class="ayah-source">سورة الأعراف - الآية 180</p>
+        <div class="decorative-icons-bottom">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-mosque"></i>
+          <i class="fas fa-star"></i>
+        </div>
       </div>
     </div>
   </header>
 
   <main class="main-content">
     <section class="asma-container">
+      <div class="filter-panel">
+        <h3 class="filter-title">اختَر معنى واحدًا لعرض الأسماء المرتبطة به</h3>
+        <div class="filter-pills" id="filterPills">
+          <button class="filter-pill active" type="button" data-filter="all">الكل</button>
+          <button class="filter-pill" type="button" data-filter="mercy">رحمة</button>
+          <button class="filter-pill" type="button" data-filter="majesty">جلال</button>
+          <button class="filter-pill" type="button" data-filter="knowledge">علم</button>
+          <button class="filter-pill" type="button" data-filter="power">قدرة</button>
+          <button class="filter-pill" type="button" data-filter="beauty">إحسان</button>
+          <button class="filter-pill" type="button" data-filter="guidance">هداية</button>
+        </div>
+      </div>
+
       <div class="scene">
         <div class="stars" id="stars"></div>
         <div class="line-wrap">
@@ -856,112 +934,126 @@
 
   <script>
     const names99 = [
-      { ar: "ٱلرَّحْمَٰن", meaning: "Ar-Rahman — The Most Compassionate" },
-      { ar: "ٱلرَّحِيم", meaning: "Ar-Rahim — The Most Merciful" },
-      { ar: "ٱلْمَلِك", meaning: "Al-Malik — The King" },
-      { ar: "ٱلْقُدُّوس", meaning: "Al-Quddus — The Most Holy" },
-      { ar: "ٱلسَّلَام", meaning: "As-Salam — The Source of Peace" },
-      { ar: "ٱلْمُؤْمِن", meaning: "Al-Mu'min — The Guardian of Faith" },
-      { ar: "ٱلْمُهَيْمِن", meaning: "Al-Muhaymin — The Protector" },
-      { ar: "ٱلْعَزِيز", meaning: "Al-Aziz — The Mighty" },
-      { ar: "ٱلْجَبَّار", meaning: "Al-Jabbar — The Compeller" },
-      { ar: "ٱلْمُتَكَبِّر", meaning: "Al-Mutakabbir — The Supreme" },
-      { ar: "ٱلْخَالِق", meaning: "Al-Khaliq — The Creator" },
-      { ar: "ٱلْبَارِئ", meaning: "Al-Bari — The Evolver" },
-      { ar: "ٱلْمُصَوِّر", meaning: "Al-Musawwir — The Fashioner" },
-      { ar: "ٱلْغَفَّار", meaning: "Al-Ghaffar — The Great Forgiver" },
-      { ar: "ٱلْقَهَّار", meaning: "Al-Qahhar — The Subduer" },
-      { ar: "ٱلْوَهَّاب", meaning: "Al-Wahhab — The Bestower" },
-      { ar: "ٱلرَّزَّاق", meaning: "Ar-Razzaq — The Provider" },
-      { ar: "ٱلْفَتَّاح", meaning: "Al-Fattah — The Opener" },
-      { ar: "ٱلْعَلِيم", meaning: "Al-Alim — The All-Knowing" },
-      { ar: "ٱلْقَابِض", meaning: "Al-Qabid — The Withholder" },
-      { ar: "ٱلْبَاسِط", meaning: "Al-Basit — The Extender" },
-      { ar: "ٱلْخَافِض", meaning: "Al-Khafid — The Abaser" },
-      { ar: "ٱلرَّافِع", meaning: "Ar-Rafi — The Exalter" },
-      { ar: "ٱلْمُعِزّ", meaning: "Al-Mu'izz — The Honourer" },
-      { ar: "ٱلْمُذِلّ", meaning: "Al-Mudhill — The Humiliator" },
-      { ar: "ٱلسَّمِيع", meaning: "As-Sami — The All-Hearing" },
-      { ar: "ٱلْبَصِير", meaning: "Al-Basir — The All-Seeing" },
-      { ar: "ٱلْحَكَم", meaning: "Al-Hakam — The Judge" },
-      { ar: "ٱلْعَدْل", meaning: "Al-Adl — The Just" },
-      { ar: "ٱللَّطِيف", meaning: "Al-Latif — The Subtle One" },
-      { ar: "ٱلْخَبِير", meaning: "Al-Khabir — The All-Aware" },
-      { ar: "ٱلْحَلِيم", meaning: "Al-Halim — The Forbearing" },
-      { ar: "ٱلْعَظِيم", meaning: "Al-Azim — The Magnificent" },
-      { ar: "ٱلْغَفُور", meaning: "Al-Ghafur — The Forgiving" },
-      { ar: "ٱلشَّكُور", meaning: "Ash-Shakur — The Most Appreciative" },
-      { ar: "ٱلْعَلِيّ", meaning: "Al-Aliyy — The Most High" },
-      { ar: "ٱلْكَبِير", meaning: "Al-Kabir — The Most Great" },
-      { ar: "ٱلْحَفِيظ", meaning: "Al-Hafiz — The Preserver" },
-      { ar: "ٱلْمُقِيت", meaning: "Al-Muqit — The Sustainer" },
-      { ar: "ٱلْحَسِيب", meaning: "Al-Hasib — The Reckoner" },
-      { ar: "ٱلْجَلِيل", meaning: "Al-Jalil — The Majestic" },
-      { ar: "ٱلْكَرِيم", meaning: "Al-Karim — The Most Generous" },
-      { ar: "ٱلرَّقِيب", meaning: "Ar-Raqib — The Watchful" },
-      { ar: "ٱلْمُجِيب", meaning: "Al-Mujib — The Responsive" },
-      { ar: "ٱلْوَاسِع", meaning: "Al-Wasi — The All-Encompassing" },
-      { ar: "ٱلْحَكِيم", meaning: "Al-Hakim — The All-Wise" },
-      { ar: "ٱلْوَدُود", meaning: "Al-Wadud — The Most Loving" },
-      { ar: "ٱلْمَجِيد", meaning: "Al-Majid — The Glorious" },
-      { ar: "ٱلْبَاعِث", meaning: "Al-Ba'ith — The Resurrector" },
-      { ar: "ٱلشَّهِيد", meaning: "Ash-Shahid — The Witness" },
-      { ar: "ٱلْحَقّ", meaning: "Al-Haqq — The Truth" },
-      { ar: "ٱلْوَكِيل", meaning: "Al-Wakil — The Trustee" },
-      { ar: "ٱلْقَوِيّ", meaning: "Al-Qawiyy — The All-Strong" },
-      { ar: "ٱلْمَتِين", meaning: "Al-Matin — The Firm" },
-      { ar: "ٱلْوَلِيّ", meaning: "Al-Waliyy — The Protecting Friend" },
-      { ar: "ٱلْحَمِيد", meaning: "Al-Hamid — The Praiseworthy" },
-      { ar: "ٱلْمُحْصِي", meaning: "Al-Muhsi — The Counter" },
-      { ar: "ٱلْمُبْدِئ", meaning: "Al-Mubdi — The Originator" },
-      { ar: "ٱلْمُعِيد", meaning: "Al-Mu'id — The Restorer" },
-      { ar: "ٱلْمُحْيِي", meaning: "Al-Muhyi — The Giver of Life" },
-      { ar: "ٱلْمُمِيت", meaning: "Al-Mumit — The Bringer of Death" },
-      { ar: "ٱلْحَيّ", meaning: "Al-Hayy — The Ever-Living" },
-      { ar: "ٱلْقَيُّوم", meaning: "Al-Qayyum — The Self-Subsisting" },
-      { ar: "ٱلْوَاجِد", meaning: "Al-Wajid — The Finder" },
-      { ar: "ٱلْمَاجِد", meaning: "Al-Majid — The Noble" },
-      { ar: "ٱلْوَاحِد", meaning: "Al-Wahid — The One" },
-      { ar: "ٱلْأَحَد", meaning: "Al-Ahad — The Unique" },
-      { ar: "ٱلصَّمَد", meaning: "As-Samad — The Eternal Refuge" },
-      { ar: "ٱلْقَادِر", meaning: "Al-Qadir — The All-Powerful" },
-      { ar: "ٱلْمُقْتَدِر", meaning: "Al-Muqtadir — The Omnipotent" },
-      { ar: "ٱلْمُقَدِّم", meaning: "Al-Muqaddim — The Expediter" },
-      { ar: "ٱلْمُؤَخِّر", meaning: "Al-Mu'akhkhir — The Delayer" },
-      { ar: "ٱلْأَوَّل", meaning: "Al-Awwal — The First" },
-      { ar: "ٱلْآخِر", meaning: "Al-Akhir — The Last" },
-      { ar: "ٱلظَّاهِر", meaning: "Az-Zahir — The Manifest" },
-      { ar: "ٱلْبَاطِن", meaning: "Al-Batin — The Hidden" },
-      { ar: "ٱلْوَالِي", meaning: "Al-Wali — The Sole Governor" },
-      { ar: "ٱلْمُتَعَالِي", meaning: "Al-Muta'ali — The Most Exalted" },
-      { ar: "ٱلْبَرّ", meaning: "Al-Barr — The Source of Goodness" },
-      { ar: "ٱلتَّوَّاب", meaning: "At-Tawwab — The Acceptor of Repentance" },
-      { ar: "ٱلْمُنْتَقِم", meaning: "Al-Muntaqim — The Avenger" },
-      { ar: "ٱلْعَفُوّ", meaning: "Al-Afuww — The Pardoner" },
-      { ar: "ٱلرَّؤُوف", meaning: "Ar-Ra'uf — The Most Kind" },
-      { ar: "مَالِكُ ٱلْمُلْك", meaning: "Malik-ul-Mulk — Master of the Kingdom" },
-      { ar: "ذُو ٱلْجَلَالِ وَٱلْإِكْرَام", meaning: "Dhul-Jalali wal-Ikram — Lord of Majesty and Honor" },
-      { ar: "ٱلْمُقْسِط", meaning: "Al-Muqsit — The Equitable" },
-      { ar: "ٱلْجَامِع", meaning: "Al-Jami — The Gatherer" },
-      { ar: "ٱلْغَنِيّ", meaning: "Al-Ghaniyy — The Self-Sufficient" },
-      { ar: "ٱلْمُغْنِي", meaning: "Al-Mughni — The Enricher" },
-      { ar: "ٱلْمَانِع", meaning: "Al-Mani — The Preventer" },
-      { ar: "ٱلضَّار", meaning: "Ad-Darr — The Distresser" },
-      { ar: "ٱلنَّافِع", meaning: "An-Nafi — The Benefactor" },
-      { ar: "ٱلنُّور", meaning: "An-Nur — The Light" },
-      { ar: "ٱلْهَادِي", meaning: "Al-Hadi — The Guide" },
-      { ar: "ٱلْبَدِيع", meaning: "Al-Badi — The Incomparable Originator" },
-      { ar: "ٱلْبَاقِي", meaning: "Al-Baqi — The Everlasting" },
-      { ar: "ٱلْوَارِث", meaning: "Al-Warith — The Inheritor" },
-      { ar: "ٱلرَّشِيد", meaning: "Ar-Rashid — The Guide to the Right Path" },
-      { ar: "ٱلصَّبُور", meaning: "As-Sabur — The Patient" }
+      { ar: "ٱلرَّحْمَٰن", meaning: "Ar-Rahman — The Most Compassionate", category: "mercy" },
+      { ar: "ٱلرَّحِيم", meaning: "Ar-Rahim — The Most Merciful", category: "mercy" },
+      { ar: "ٱلْمَلِك", meaning: "Al-Malik — The King", category: "majesty" },
+      { ar: "ٱلْقُدُّوس", meaning: "Al-Quddus — The Most Holy", category: "majesty" },
+      { ar: "ٱلسَّلَام", meaning: "As-Salam — The Source of Peace", category: "beauty" },
+      { ar: "ٱلْمُؤْمِن", meaning: "Al-Mu'min — The Guardian of Faith", category: "guidance" },
+      { ar: "ٱلْمُهَيْمِن", meaning: "Al-Muhaymin — The Protector", category: "power" },
+      { ar: "ٱلْعَزِيز", meaning: "Al-Aziz — The Mighty", category: "majesty" },
+      { ar: "ٱلْجَبَّار", meaning: "Al-Jabbar — The Compeller", category: "power" },
+      { ar: "ٱلْمُتَكَبِّر", meaning: "Al-Mutakabbir — The Supreme", category: "majesty" },
+      { ar: "ٱلْخَالِق", meaning: "Al-Khaliq — The Creator", category: "power" },
+      { ar: "ٱلْبَارِئ", meaning: "Al-Bari — The Evolver", category: "beauty" },
+      { ar: "ٱلْمُصَوِّر", meaning: "Al-Musawwir — The Fashioner", category: "beauty" },
+      { ar: "ٱلْغَفَّار", meaning: "Al-Ghaffar — The Great Forgiver", category: "mercy" },
+      { ar: "ٱلْقَهَّار", meaning: "Al-Qahhar — The Subduer", category: "power" },
+      { ar: "ٱلْوَهَّاب", meaning: "Al-Wahhab — The Bestower", category: "beauty" },
+      { ar: "ٱلرَّزَّاق", meaning: "Ar-Razzaq — The Provider", category: "mercy" },
+      { ar: "ٱلْفَتَّاح", meaning: "Al-Fattah — The Opener", category: "guidance" },
+      { ar: "ٱلْعَلِيم", meaning: "Al-Alim — The All-Knowing", category: "knowledge" },
+      { ar: "ٱلْقَابِض", meaning: "Al-Qabid — The Withholder", category: "power" },
+      { ar: "ٱلْبَاسِط", meaning: "Al-Basit — The Extender", category: "beauty" },
+      { ar: "ٱلْخَافِض", meaning: "Al-Khafid — The Abaser", category: "majesty" },
+      { ar: "ٱلرَّافِع", meaning: "Ar-Rafi — The Exalter", category: "majesty" },
+      { ar: "ٱلْمُعِزّ", meaning: "Al-Mu'izz — The Honourer", category: "beauty" },
+      { ar: "ٱلْمُذِلّ", meaning: "Al-Mudhill — The Humiliator", category: "power" },
+      { ar: "ٱلسَّمِيع", meaning: "As-Sami — The All-Hearing", category: "knowledge" },
+      { ar: "ٱلْبَصِير", meaning: "Al-Basir — The All-Seeing", category: "knowledge" },
+      { ar: "ٱلْحَكَم", meaning: "Al-Hakam — The Judge", category: "knowledge" },
+      { ar: "ٱلْعَدْل", meaning: "Al-Adl — The Just", category: "majesty" },
+      { ar: "ٱللَّطِيف", meaning: "Al-Latif — The Subtle One", category: "beauty" },
+      { ar: "ٱلْخَبِير", meaning: "Al-Khabir — The All-Aware", category: "knowledge" },
+      { ar: "ٱلْحَلِيم", meaning: "Al-Halim — The Forbearing", category: "mercy" },
+      { ar: "ٱلْعَظِيم", meaning: "Al-Azim — The Magnificent", category: "majesty" },
+      { ar: "ٱلْغَفُور", meaning: "Al-Ghafur — The Forgiving", category: "mercy" },
+      { ar: "ٱلشَّكُور", meaning: "Ash-Shakur — The Most Appreciative", category: "beauty" },
+      { ar: "ٱلْعَلِيّ", meaning: "Al-Aliyy — The Most High", category: "majesty" },
+      { ar: "ٱلْكَبِير", meaning: "Al-Kabir — The Most Great", category: "majesty" },
+      { ar: "ٱلْحَفِيظ", meaning: "Al-Hafiz — The Preserver", category: "guidance" },
+      { ar: "ٱلْمُقِيت", meaning: "Al-Muqit — The Sustainer", category: "mercy" },
+      { ar: "ٱلْحَسِيب", meaning: "Al-Hasib — The Reckoner", category: "knowledge" },
+      { ar: "ٱلْجَلِيل", meaning: "Al-Jalil — The Majestic", category: "majesty" },
+      { ar: "ٱلْكَرِيم", meaning: "Al-Karim — The Most Generous", category: "beauty" },
+      { ar: "ٱلرَّقِيب", meaning: "Ar-Raqib — The Watchful", category: "guidance" },
+      { ar: "ٱلْمُجِيب", meaning: "Al-Mujib — The Responsive", category: "beauty" },
+      { ar: "ٱلْوَاسِع", meaning: "Al-Wasi — The All-Encompassing", category: "beauty" },
+      { ar: "ٱلْحَكِيم", meaning: "Al-Hakim — The All-Wise", category: "knowledge" },
+      { ar: "ٱلْوَدُود", meaning: "Al-Wadud — The Most Loving", category: "beauty" },
+      { ar: "ٱلْمَجِيد", meaning: "Al-Majid — The Glorious", category: "majesty" },
+      { ar: "ٱلْبَاعِث", meaning: "Al-Ba'ith — The Resurrector", category: "guidance" },
+      { ar: "ٱلشَّهِيد", meaning: "Ash-Shahid — The Witness", category: "knowledge" },
+      { ar: "ٱلْحَقّ", meaning: "Al-Haqq — The Truth", category: "knowledge" },
+      { ar: "ٱلْوَكِيل", meaning: "Al-Wakil — The Trustee", category: "guidance" },
+      { ar: "ٱلْقَوِيّ", meaning: "Al-Qawiyy — The All-Strong", category: "power" },
+      { ar: "ٱلْمَتِين", meaning: "Al-Matin — The Firm", category: "power" },
+      { ar: "ٱلْوَلِيّ", meaning: "Al-Waliyy — The Protecting Friend", category: "guidance" },
+      { ar: "ٱلْحَمِيد", meaning: "Al-Hamid — The Praiseworthy", category: "beauty" },
+      { ar: "ٱلْمُحْصِي", meaning: "Al-Muhsi — The Counter", category: "knowledge" },
+      { ar: "ٱلْمُبْدِئ", meaning: "Al-Mubdi — The Originator", category: "beauty" },
+      { ar: "ٱلْمُعِيد", meaning: "Al-Mu'id — The Restorer", category: "guidance" },
+      { ar: "ٱلْمُحْيِي", meaning: "Al-Muhyi — The Giver of Life", category: "beauty" },
+      { ar: "ٱلْمُمِيت", meaning: "Al-Mumit — The Bringer of Death", category: "power" },
+      { ar: "ٱلْحَيّ", meaning: "Al-Hayy — The Ever-Living", category: "majesty" },
+      { ar: "ٱلْقَيُّوم", meaning: "Al-Qayyum — The Self-Subsisting", category: "majesty" },
+      { ar: "ٱلْوَاجِد", meaning: "Al-Wajid — The Finder", category: "guidance" },
+      { ar: "ٱلْمَاجِد", meaning: "Al-Majid — The Noble", category: "majesty" },
+      { ar: "ٱلْوَاحِد", meaning: "Al-Wahid — The One", category: "majesty" },
+      { ar: "ٱلْأَحَد", meaning: "Al-Ahad — The Unique", category: "majesty" },
+      { ar: "ٱلصَّمَد", meaning: "As-Samad — The Eternal Refuge", category: "guidance" },
+      { ar: "ٱلْقَادِر", meaning: "Al-Qadir — The All-Powerful", category: "power" },
+      { ar: "ٱلْمُقْتَدِر", meaning: "Al-Muqtadir — The Omnipotent", category: "power" },
+      { ar: "ٱلْمُقَدِّم", meaning: "Al-Muqaddim — The Expediter", category: "guidance" },
+      { ar: "ٱلْمُؤَخِّر", meaning: "Al-Mu'akhkhir — The Delayer", category: "guidance" },
+      { ar: "ٱلْأَوَّل", meaning: "Al-Awwal — The First", category: "majesty" },
+      { ar: "ٱلْآخِر", meaning: "Al-Akhir — The Last", category: "majesty" },
+      { ar: "ٱلظَّاهِر", meaning: "Az-Zahir — The Manifest", category: "majesty" },
+      { ar: "ٱلْبَاطِن", meaning: "Al-Batin — The Hidden", category: "majesty" },
+      { ar: "ٱلْوَالِي", meaning: "Al-Wali — The Sole Governor", category: "guidance" },
+      { ar: "ٱلْمُتَعَالِي", meaning: "Al-Muta'ali — The Most Exalted", category: "majesty" },
+      { ar: "ٱلْبَرّ", meaning: "Al-Barr — The Source of Goodness", category: "beauty" },
+      { ar: "ٱلتَّوَّاب", meaning: "At-Tawwab — The Acceptor of Repentance", category: "mercy" },
+      { ar: "ٱلْمُنْتَقِم", meaning: "Al-Muntaqim — The Avenger", category: "power" },
+      { ar: "ٱلْعَفُوّ", meaning: "Al-Afuww — The Pardoner", category: "mercy" },
+      { ar: "ٱلرَّؤُوف", meaning: "Ar-Ra'uf — The Most Kind", category: "mercy" },
+      { ar: "مَالِكُ ٱلْمُلْك", meaning: "Malik-ul-Mulk — Master of the Kingdom", category: "majesty" },
+      { ar: "ذُو ٱلْجَلَالِ وَٱلْإِكْرَام", meaning: "Dhul-Jalali wal-Ikram — Lord of Majesty and Honor", category: "majesty" },
+      { ar: "ٱلْمُقْسِط", meaning: "Al-Muqsit — The Equitable", category: "justice" },
+      { ar: "ٱلْجَامِع", meaning: "Al-Jami — The Gatherer", category: "guidance" },
+      { ar: "ٱلْغَنِيّ", meaning: "Al-Ghaniyy — The Self-Sufficient", category: "majesty" },
+      { ar: "ٱلْمُغْنِي", meaning: "Al-Mughni — The Enricher", category: "beauty" },
+      { ar: "ٱلْمَانِع", meaning: "Al-Mani — The Preventer", category: "power" },
+      { ar: "ٱلضَّار", meaning: "Ad-Darr — The Distresser", category: "power" },
+      { ar: "ٱلنَّافِع", meaning: "An-Nafi — The Benefactor", category: "beauty" },
+      { ar: "ٱلنُّور", meaning: "An-Nur — The Light", category: "guidance" },
+      { ar: "ٱلْهَادِي", meaning: "Al-Hadi — The Guide", category: "guidance" },
+      { ar: "ٱلْبَدِيع", meaning: "Al-Badi — The Incomparable Originator", category: "beauty" },
+      { ar: "ٱلْبَاقِي", meaning: "Al-Baqi — The Everlasting", category: "majesty" },
+      { ar: "ٱلْوَارِث", meaning: "Al-Warith — The Inheritor", category: "majesty" },
+      { ar: "ٱلرَّشِيد", meaning: "Ar-Rashid — The Guide to the Right Path", category: "guidance" },
+      { ar: "ٱلصَّبُور", meaning: "As-Sabur — The Patient", category: "mercy" }
     ];
 
+    const categoryLabels = {
+      all: "الكل",
+      mercy: "رحمة",
+      majesty: "جلال",
+      knowledge: "علم",
+      power: "قدرة",
+      beauty: "إحسان",
+      guidance: "هداية",
+      justice: "عدل"
+    };
+
+    const meaningGrid = document.getElementById("meaningGrid");
+    const filterPills = document.getElementById("filterPills");
     const nameLine = document.getElementById("nameLine");
     const stars = document.getElementById("stars");
     const scene = document.querySelector(".scene");
+    let activeFilter = "all";
 
-    for (let index = 0; index < 26; index += 1) {
+    for (let index = 0; index < 24; index += 1) {
       const star = document.createElement("i");
       star.style.left = `${Math.random() * 100}%`;
       star.style.top = `${Math.random() * 100}%`;
@@ -970,23 +1062,47 @@
       stars.appendChild(star);
     }
 
-    names99.forEach((item, index) => {
+    function renderNames() {
+      nameLine.innerHTML = "";
+
+      const filtered = names99.filter((item) => activeFilter === "all" || item.category === activeFilter);
+
+      filtered.forEach((item, index) => {
       const card = document.createElement("article");
+      const [latinName, englishMeaning] = item.meaning.split("—").map((part) => (part || "").trim());
+      const category = categoryLabels[item.category] || "معنى";
+
       card.className = "name-card";
       card.style.setProperty("--item-index", index);
       card.innerHTML = `
+        <span class="name-index">${index + 1}</span>
         <div class="front">${item.ar}</div>
-        <div class="meaning">${item.meaning}</div>
+        <div class="name-latin">${latinName || "Name"}</div>
+        <div class="meaning">${englishMeaning || item.meaning}</div>
+        <span class="name-category">${category}</span>
       `;
       nameLine.appendChild(card);
+      });
+    }
+
+    filterPills.addEventListener("click", (event) => {
+      const pill = event.target.closest(".filter-pill");
+      if (!pill) return;
+
+      filterPills.querySelectorAll(".filter-pill").forEach((button) => button.classList.remove("active"));
+      pill.classList.add("active");
+      activeFilter = pill.dataset.filter || "all";
+      renderNames();
     });
+
+    renderNames();
 
     scene.addEventListener("mousemove", (event) => {
       const rect = scene.getBoundingClientRect();
       const mouseX = event.clientX - rect.left;
       const mouseY = event.clientY - rect.top;
-      const rotateY = ((mouseX / rect.width) - 0.5) * 3;
-      const rotateX = (0.5 - (mouseY / rect.height)) * 2;
+      const rotateY = ((mouseX / rect.width) - 0.5) * 2.4;
+      const rotateX = (0.5 - (mouseY / rect.height)) * 1.8;
       scene.style.transform = `rotateY(${rotateY}deg) rotateX(${rotateX}deg)`;
     });
 
@@ -995,230 +1111,16 @@
     });
   </script>
 
-  <!-- ===== FOOTER ===== -->
-  <footer class="footer">
-    <div class="footer-wave">
-      <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-        <path d="M0,120V49c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V120Z" class="wave-fill"></path>
-      </svg>
-    </div>
-    
-    <div class="footer-content">
-      <div class="footer-grid">
-        <div class="footer-col">
-          <div class="footer-logo">
-            <img src="img/m.png" alt="FaithPath" class="footer-logo-img">
-            <span class="footer-logo-text">FaithPath</span>
-          </div>
-          <p class="footer-about">منصة إسلامية شاملة لتعلم وتطبيق تعاليم الإسلام الحقة. نوفر محتوى قرآني وديني عالي الجودة.</p>
-          <div class="footer-social">
-            <a href="#" class="social-link" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-            <a href="#" class="social-link" title="Twitter"><i class="fab fa-twitter"></i></a>
-            <a href="#" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="#" class="social-link" title="YouTube"><i class="fab fa-youtube"></i></a>
-          </div>
-        </div>
-        
-        <div class="footer-col">
-          <h4 class="footer-title">الرئيسية</h4>
-          <ul class="footer-links">
-            <li><a href="page_acceuil.html" class="footer-link"><i class="fas fa-chevron-right"></i> الرئيسية</a></li>
-            <li><a href="#" class="footer-link"><i class="fas fa-chevron-right"></i> القرآن الكريم</a></li>
-            <li><a href="asmaa_allah_alhousnaa_3d.html" class="footer-link"><i class="fas fa-chevron-right"></i> أسماء الله الحسنى</a></li>
-            <li><a href="#" class="footer-link"><i class="fas fa-chevron-right"></i> مسار الأنبياء</a></li>
-          </ul>
-        </div>
-        
-        <div class="footer-col">
-          <h4 class="footer-title">الموارد</h4>
-          <ul class="footer-links">
-            <li><a href="#" class="footer-link"><i class="fas fa-chevron-right"></i> التقويم الهجري</a></li>
-            <li><a href="prayertime.html" class="footer-link"><i class="fas fa-chevron-right"></i> أوقات الصلاة</a></li>
-            <li><a href="#" class="footer-link"><i class="fas fa-chevron-right"></i> المسبحة الإلكترونية</a></li>
-            <li><a href="#" class="footer-link"><i class="fas fa-chevron-right"></i> الأذكار</a></li>
-          </ul>
-        </div>
-        
-        <div class="footer-col">
-          <h4 class="footer-title">اتصل بنا</h4>
-          <p class="footer-newsletter-text">اشترك في نشرتنا البريدية للحصول على محتوى حصري</p>
-          <form class="newsletter-form">
-            <input type="email" class="newsletter-input" placeholder="بريدك الإلكتروني" required>
-            <button type="submit" class="newsletter-btn"><i class="fas fa-arrow-right"></i></button>
-          </form>
-          <div class="footer-apps">
-            <a href="#" class="app-badge">
-              <i class="fab fa-app-store"></i>
-              <span>تحميل من iOS</span>
-            </a>
-            <a href="#" class="app-badge">
-              <i class="fab fa-google-play"></i>
-              <span>تحميل من Android</span>
-            </a>
-          </div>
-        </div>
-      </div>
-      
-      <div class="footer-bottom">
-        <div class="footer-bottom-content">
-          <p class="footer-copyright">© 2026 FaithPath. جميع الحقوق محفوظة</p>
-          <div class="footer-bottom-links">
-            <a href="#">سياسة الخصوصية</a>
-            <span class="separator">|</span>
-            <a href="#">شروط الاستخدام</a>
-            <span class="separator">|</span>
-            <a href="#">خريطة الموقع</a>
-            <span class="separator">|</span>
-            <a href="#">المساعدة</a>
-          </div>
-        </div>
+  <!-- ===== MINIMAL FOOTER ===== -->
+  <footer class="mini-footer" id="contact">
+    <div class="mini-footer-inner">
+      <p>© 2026 FaithPath. جميع الحقوق محفوظة</p>
+      <div class="mini-footer-links">
+        <a href="page_acceuil.html">الرئيسية</a>
       </div>
     </div>
   </footer>
 
-  <!-- Hamburger Menu Script -->
-  <script src="hamburger-menu.js"></script>
-  
-  <script>
-    // 99 Names rendering
-    const names = [
-      { ar: "الرحمن", en: "Ar-Rahman", meaning: "The Gracious" },
-      { ar: "الرحيم", en: "Ar-Rahim", meaning: "The Merciful" },
-      { ar: "الملك", en: "Al-Malik", meaning: "The Sovereign" },
-      { ar: "القدوس", en: "Al-Quddus", meaning: "The Holy" },
-      { ar: "السلام", en: "As-Salam", meaning: "The Peace" },
-      { ar: "المؤمن", en: "Al-Mu'min", meaning: "The Guardian of Faith" },
-      { ar: "المهيمن", en: "Al-Muhaymin", meaning: "The Overseer" },
-      { ar: "العزيز", en: "Al-Aziz", meaning: "The Mighty" },
-      { ar: "الجبار", en: "Al-Jabbar", meaning: "The Compeller" },
-      { ar: "المتكبر", en: "Al-Mutakabbir", meaning: "The Majestic" },
-      { ar: "الخالق", en: "Al-Khaliq", meaning: "The Creator" },
-      { ar: "البارئ", en: "Al-Bari", meaning: "The Maker" },
-      { ar: "المصور", en: "Al-Musawwir", meaning: "The Fashioner" },
-      { ar: "الغفار", en: "Al-Ghaffar", meaning: "The Pardoner" },
-      { ar: "القهار", en: "Al-Qahhar", meaning: "The Conqueror" },
-      { ar: "الوهاب", en: "Al-Wahhab", meaning: "The Bestower" },
-      { ar: "الرزاق", en: "Ar-Razzaq", meaning: "The Sustainer" },
-      { ar: "الفتاح", en: "Al-Fattah", meaning: "The Opener" },
-      { ar: "العليم", en: "Al-Alim", meaning: "The Knower" },
-      { ar: "القابض", en: "Al-Qabid", meaning: "The Restrictor" },
-      { ar: "الباسط", en: "Al-Basit", meaning: "The Expander" },
-      { ar: "الخافض", en: "Al-Khafid", meaning: "The Reducer" },
-      { ar: "الرافع", en: "Ar-Rafi", meaning: "The Exalter" },
-      { ar: "المعز", en: "Al-Mua'izz", meaning: "The Bestower of Honor" },
-      { ar: "المذل", en: "Al-Mudill", meaning: "The Humiliator" },
-      { ar: "السميع", en: "As-Sami", meaning: "The All-Hearing" },
-      { ar: "البصير", en: "Al-Basir", meaning: "The All-Seeing" },
-      { ar: "الحكم", en: "Al-Hakam", meaning: "The Judge" },
-      { ar: "العدل", en: "Al-Adl", meaning: "The Just" },
-      { ar: "اللطيف", en: "Al-Latif", meaning: "The Subtle" },
-      { ar: "الخبير", en: "Al-Khabir", meaning: "The Aware" },
-      { ar: "الحليم", en: "Al-Halim", meaning: "The Clement" },
-      { ar: "العظيم", en: "Al-Azim", meaning: "The Tremendous" },
-      { ar: "الغفور", en: "Al-Ghafur", meaning: "The Forgiving" },
-      { ar: "الشكور", en: "As-Shakur", meaning: "The Grateful" },
-      { ar: "العلي", en: "Al-Ali", meaning: "The Most High" },
-      { ar: "الكبير", en: "Al-Kabir", meaning: "The Greatest" },
-      { ar: "الحفيظ", en: "Al-Hafiz", meaning: "The Preserver" },
-      { ar: "المقيت", en: "Al-Muqit", meaning: "The Sustaining" },
-      { ar: "الحسيب", en: "Al-Hasib", meaning: "The Reckoner" },
-      { ar: "الجليل", en: "Al-Jalil", meaning: "The Majestic" },
-      { ar: "الكريم", en: "Al-Karim", meaning: "The Generous" },
-      { ar: "الرقيب", en: "Ar-Raqib", meaning: "The Watchful" },
-      { ar: "المجيب", en: "Al-Mujib", meaning: "The Responsive" },
-      { ar: "الواسع", en: "Al-Wasi", meaning: "The All-Encompassing" },
-      { ar: "الحكيم", en: "Al-Hakim", meaning: "The Wise" },
-      { ar: "الودود", en: "Al-Wadud", meaning: "The Loving" },
-      { ar: "المجيد", en: "Al-Majid", meaning: "The Glorious" },
-      { ar: "الباعث", en: "Al-Ba'ith", meaning: "The Resurrector" },
-      { ar: "الشهيد", en: "Ash-Shahid", meaning: "The Witness" },
-      { ar: "الحق", en: "Al-Haqq", meaning: "The Truth" },
-      { ar: "الوكيل", en: "Al-Wakil", meaning: "The Trustee" },
-      { ar: "القوي", en: "Al-Qawi", meaning: "The Strong" },
-      { ar: "المتين", en: "Al-Matin", meaning: "The Firm" },
-      { ar: "الولي", en: "Al-Wali", meaning: "The Ally" },
-      { ar: "الحميد", en: "Al-Hamid", meaning: "The Praiseworthy" },
-      { ar: "المحصي", en: "Al-Muhsi", meaning: "The Counter" },
-      { ar: "المبدئ", en: "Al-Mubdi", meaning: "The Originator" },
-      { ar: "المعيد", en: "Al-Mu'id", meaning: "The Restorer" },
-      { ar: "المحيي", en: "Al-Muhyi", meaning: "The Giver of Life" },
-      { ar: "المميت", en: "Al-Mumit", meaning: "The Bringer of Death" },
-      { ar: "الحي", en: "Al-Hayy", meaning: "The Ever-Living" },
-      { ar: "القيوم", en: "Al-Qayyum", meaning: "The Self-Subsisting" },
-      { ar: "الواجد", en: "Al-Wajid", meaning: "The Finder" },
-      { ar: "الماجد", en: "Al-Majid", meaning: "The Majestic" },
-      { ar: "الواهب", en: "Al-Wahab", meaning: "The Giver" },
-      { ar: "الرزاق", en: "Ar-Razzaq", meaning: "The Provider" },
-      { ar: "الفتاح", en: "Al-Fattah", meaning: "The Victorious" },
-      { ar: "العليم", en: "Al-Alim", meaning: "The All-Knowing" },
-      { ar: "القابض", en: "Al-Qabid", meaning: "The Restricter" },
-      { ar: "الباسط", en: "Al-Basit", meaning: "The Extender" },
-      { ar: "الخافض", en: "Al-Khafid", meaning: "The Lowerer" },
-      { ar: "الرافع", en: "Ar-Rafi", meaning: "The Raiser" },
-      { ar: "المعز", en: "Al-Mua'izz", meaning: "The Giver of Honor" },
-      { ar: "المذل", en: "Al-Mudill", meaning: "The Giver of Dishonor" },
-      { ar: "السميع", en: "As-Sami", meaning: "The Hearing" },
-      { ar: "البصير", en: "Al-Basir", meaning: "The Seeing" },
-      { ar: "الحكم", en: "Al-Hakam", meaning: "The Judger" },
-      { ar: "العدل", en: "Al-Adl", meaning: "The Equitable" },
-      { ar: "اللطيف", en: "Al-Latif", meaning: "The Tender" },
-      { ar: "الخبير", en: "Al-Khabir", meaning: "The Acquainted" },
-      { ar: "الحليم", en: "Al-Halim", meaning: "The Forbearing" },
-      { ar: "العظيم", en: "Al-Azim", meaning: "The Infinite" },
-      { ar: "الغفور", en: "Al-Ghafur", meaning: "The Pardoning" },
-      { ar: "الشكور", en: "As-Shakur", meaning: "The Appreciative" },
-      { ar: "العلي", en: "Al-Ali", meaning: "The Most High One" },
-      { ar: "الكبير", en: "Al-Kabir", meaning: "The Greatest One" },
-      { ar: "الحفيظ", en: "Al-Hafiz", meaning: "The Preserver of" },
-      { ar: "المقيت", en: "Al-Muqit", meaning: "The Nourisher" },
-      { ar: "الحسيب", en: "Al-Hasib", meaning: "The Sufficient" },
-      { ar: "الجليل", en: "Al-Jalil", meaning: "The Mighty" },
-      { ar: "الكريم", en: "Al-Karim", meaning: "The Bountiful" },
-      { ar: "الرقيب", en: "Ar-Raqib", meaning: "The Watchman" },
-      { ar: "المجيب", en: "Al-Mujib", meaning: "The Answerer" },
-      { ar: "الواسع", en: "Al-Wasi", meaning: "The Vast" },
-      { ar: "الحكيم", en: "Al-Hakim", meaning: "The Wisest" },
-      { ar: "الودود", en: "Al-Wadud", meaning: "The Affectionate" },
-      { ar: "المجيد", en: "Al-Majid", meaning: "The Glorious One" },
-      { ar: "الباعث", en: "Al-Ba'ith", meaning: "The Raiser of the Dead" },
-      { ar: "الشهيد", en: "Ash-Shahid", meaning: "The Testifier" },
-      { ar: "الحق", en: "Al-Haqq", meaning: "The True" },
-      { ar: "الوكيل", en: "Al-Wakil", meaning: "The Trustworthy" },
-      { ar: "القوي", en: "Al-Qawi", meaning: "The Powerful" },
-      { ar: "المتين", en: "Al-Matin", meaning: "The Steadfast" },
-      { ar: "الولي", en: "Al-Wali", meaning: "The Guardian" },
-      { ar: "الحميد", en: "Al-Hamid", meaning: "The Praised" }
-    ];
-
-    const nameLine = document.getElementById('nameLine');
-    const starsContainer = document.getElementById('stars');
-
-    // Render names
-    names.forEach((item, idx) => {
-      const card = document.createElement('div');
-      card.className = 'name-card';
-      card.setAttribute('style', `--item-index: ${idx}`);
-      card.innerHTML = `
-        <div class="front">${item.ar}</div>
-        <div class="meaning">${item.meaning}</div>
-      `;
-      nameLine.appendChild(card);
-    });
-
-    // Create atmospheric stars
-    for (let i = 0; i < 15; i++) {
-      const star = document.createElement('i');
-      star.className = 'fas fa-star';
-      star.setAttribute('style', `
-        --dur: ${2 + Math.random() * 3}s;
-        --delay: ${Math.random() * 2}s;
-        left: ${Math.random() * 100}%;
-        top: ${Math.random() * 100}%;
-      `);
-      starsContainer.appendChild(star);
-    }
-  </script>
-  
   <!-- Hamburger Menu Script -->
   <script src="hamburger-menu.js"></script>
 
