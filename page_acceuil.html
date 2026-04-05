@@ -1,537 +1,1 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FaithPath โ€ข ุจูุงุจุฉ ุงูุฅูู…ุงู</title>
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- CSS principal -->
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body class="home-page">
-  
-  <!-- ==================== ASIDE HAMBURGER NAVIGATION (MENU LATรRAL) ==================== -->
-  <aside class="aside-nav" id="asideNav">
-    <div class="aside-header">
-      <div class="aside-logo">
-        <i class="fas fa-mosque"></i>
-        <span>Faith<span>Path</span></span>
-      </div>
-      <button class="close-aside" id="closeAsideBtn">
-        <i class="fas fa-times"></i>
-      </button>
-    </div>
-    <ul class="aside-menu">
-      <li><a href="#accueil" class="aside-link active" data-access="free">๐”“ ุงูุฑุฆูุณูุฉ</a></li>
-      <li><a href="#quran" class="aside-link" data-access="free">๐”“ ุงููุฑุขู ุงููุฑูู…</a></li>
-      <li><a href="asmaa_allah_alhousnaa_3d.html" class="aside-link" data-access="free">๐”“ ุฃุณู…ุงุก ุงููู ุงูุญุณูู</a></li>
-      <li><a href="#features" class="aside-link" data-access="locked">๐”’ ู…ุณุงุฑ ุงูุฃูุจูุงุก</a></li>
-      <li><a href="#features" class="aside-link" data-access="free">๐”“ ุงูุชูููู… ุงููุฌุฑู</a></li>
-      <li><a href="prayertime.html" class="aside-link" data-access="free">๐”“ ุฃููุงุช ุงูุตูุงุฉ</a></li>
-      <li><a href="#features" class="aside-link" data-access="free">๐”“ ุงูู…ุณุจุญุฉ ุงูุฅููุชุฑูููุฉ</a></li>
-      <li><a href="#features" class="aside-link" data-access="locked">๐”’ ูุตุฉ ุงูุตุญุงุจุฉ</a></li>
-      <li><a href="#features" class="aside-link" data-access="locked">๐”’ ุญุงุณุจ ููุณู</a></li>
-      <li><a href="#features" class="aside-link" data-access="locked">๐”’ ุงุฎุชุจุงุฑุงุช ุฏูููุฉ</a></li>
-      <li><a href="#features" class="aside-link" data-access="locked">๐”’ ุตุฏูุฉ ุฌุงุฑูุฉ</a></li>
-      <li><a href="#features" class="aside-link" data-access="free">๐”“ ุฃุฐูุงุฑ ุงูุตุจุงุญ ูุงูู…ุณุงุก</a></li>
-      <li><a href="#contact" class="aside-link" data-access="free">๐”“ ุชูุงุตู ู…ุนูุง</a></li>
-    </ul>
-    <div class="aside-footer">
-      <a href="start.html" id="asideAuthActionBtn" class="aside-link" data-access="free">๐”“ ุชุณุฌูู ุงูุฏุฎูู</a>
-      <div class="aside-search">
-        <i class="fas fa-search"></i>
-        <input type="text" placeholder="ุจุญุซ...">
-      </div>
-      <div class="aside-profile">
-        <i class="far fa-user-circle"></i>
-        <span id="asideProfileName">ุฃุญู…ุฏ</span>
-      </div>
-    </div>
-  </aside>
-  
-  <!-- Overlay pour fermer le menu latรฉral -->
-  <div class="aside-overlay" id="asideOverlay"></div>
-
-  <!-- ===== HEADER ===== -->
-  <header class="header">
-    <div class="header-wave">
-      <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-        <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="wave-fill"></path>
-        <path d="M0,0V15.81C13,21.25,27.93,25.68,44.5,28.41c69.53,11.11,139.8,6.43,209.31-2.47,69.42-8.91,138.39-22.4,207.76-21.18C511.39,6.9,575.37,22.63,639,38.83c73.11,18.62,147.28,32.45,222.05,21C951.31,48.69,1076.37,20.67,1200,47.42V0Z" opacity=".5" class="wave-fill"></path>
-        <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="wave-fill"></path>
-      </svg>
-    </div>
-    
-    <!-- Barre de navigation principale avec bouton hamburger -->
-    <nav class="top-navbar">
-      <div class="nav-container">
-        <div class="logo">
-          <img src="img/m.png" alt="FaithPath" class="logo-img">
-          <span class="logo-text">Faith<span class="logo-highlight">Path</span></span>
-        </div>
-        
-        <!-- Hamburger Button (ouvre le menu latรฉral) -->
-        <button class="hamburger" id="hamburgerBtn" aria-label="ุงููุงุฆู…ุฉ">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-
-        <!-- Actions de droite (recherche + profil) -->
-        <div class="nav-actions">
-          <a href="start.html" id="authActionBtn" class="auth-action-btn"><i class="fas fa-right-to-bracket"></i><span>ุฅูุดุงุก ุญุณุงุจ / ุชุณุฌูู ุงูุฏุฎูู</span></a>
-          <div class="search-box">
-            <i class="fas fa-search search-icon"></i>
-            <input type="text" placeholder="ุจุญุซ..." class="search-input">
-          </div>
-          <i class="far fa-bell notification-icon"></i>
-          <div class="profile-badge">
-            <i class="far fa-user-circle profile-icon"></i>
-            <span class="profile-name" id="profileName">ุฃุญู…ุฏ</span>
-          </div>
-        </div>
-      </div>
-    </nav>
-    
-    <div class="hero-section" id="accueil">
-      <div class="hero-content">
-        <div class="decorative-icons-top">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-moon"></i>
-          <i class="fas fa-star"></i>
-        </div>
-        <div class="hero-badge">
-          <i class="fas fa-moon"></i>
-          <span>ุจูุณู’ู…ู ุงูููู‘ูู ุงูุฑูู‘ุญู’ู…ููฐูู ุงูุฑูู‘ุญููู…ู</span>
-          <i class="fas fa-moon"></i>
-        </div>
-        <h1 class="hero-title">ุชููููู‘ูููู ู…ูุณู’ููู…ูุง ููุฃููู’ุญููู’ููู ุจูุงูุตู‘ูุงููุญูููู</h1>
-        <p class="hero-subtitle"><strong>ู…ุฑุญุจุง ุจู ูุง ู…ุฒูุงู ุฒุงุฑุชูุง ุงูุจุฑูุฉ ๐ค—</strong></p>
-        <div class="decorative-icons-bottom">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-mosque"></i>
-          <i class="fas fa-star"></i>
-        </div>
-        <div class="hero-stats">
-          <div class="stat-item">
-            <span class="stat-number">+50</span>
-            <span class="stat-label">ุณูุฑุฉ ู…ุชุงุญุฉ</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-number">+10K</span>
-            <span class="stat-label">ู…ุณุชุฎุฏู…</span>
-          </div>
-          <div class="stat-item">
-            <span class="stat-number">24/7</span>
-            <span class="stat-label">ุชุฐููุฑ ุจุงูุตูุงุฉ</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- ===== BODY ===== -->
-  <main class="main-content" id="mainContent">
-
-    <!-- Section Fonctionnalitรฉs - Grille des tuiles -->
-    <section class="features-section" id="features">
-      <div class="container">
-        <div class="section-header">
-          <div class="section-icon">
-            <i class="fas fa-compass"></i>
-          </div>
-          <h2 class="section-title">ู…ุฑุงููู ูู ุงูุฑุญูุฉ ุงูุฅูู…ุงููุฉ</h2>
-          <p class="section-subtitle">ุฃุฏูุงุช ูู…ูุงูุน ุชุนููู ุนูู ุงูุทุงุนุฉ</p>
-          <div class="locked-features-panel" id="lockedFeaturesPanel">
-            <strong><i class="fas fa-lock"></i> ุงูู…ุฒุงูุง ุงูู…ูููุฉ ููุฒุงุฆุฑ</strong>
-            <span>ู…ุณุงุฑ ุงูุฃูุจูุงุก โ€ข ูุตุฉ ุงูุตุญุงุจุฉ โ€ข ุญุงุณุจ ููุณู โ€ข ุงุฎุชุจุงุฑุงุช ุฏูููุฉ โ€ข ุตุฏูุฉ ุฌุงุฑูุฉ</span>
-          </div>
-        </div>
-        
-        <div class="features-grid">
-          <!-- Quran - First -->
-          <div class="feature-card">
-            <div class="feature-img">
-              <img src="img/holy-quran-logo-book-design-260nw-2321481509.webp" alt="ุงููุฑุขู ุงููุฑูู…" class="feature-icon-img">
-            </div>
-            <h3 class="feature-title">ุงููุฑุขู ุงููุฑูู…</h3>
-            <p class="feature-desc">ุงุณุชู…ุน ูุงูุฑุฃ ุงูุณูุฑ ุจุฏูู ุชูุณูุฑ</p>
-            <a href="#quran" class="feature-link" data-access="free">ุงูุฑุฃ <i class="fas fa-arrow-left"></i></a>
-          </div>
-          
-          <!-- Asma Allah - Second -->
-          <div class="feature-card">
-            <div class="feature-img">
-              <img src="img/allah_names.png" alt="ุฃุณู…ุงุก ุงููู ุงูุญุณูู" class="feature-icon-img">
-            </div>
-            <h3 class="feature-title">ุฃุณู…ุงุก ุงููู ุงูุญุณูู</h3>
-            <p class="feature-desc">ูฉูฉ ุงุณู…ูุง ู…ุน ุดุฑุญ ูุชุฃู…ู</p>
-            <a href="asmaa_allah_alhousnaa_3d.html" class="feature-link" data-access="free">ุชุฃู…ู <i class="fas fa-arrow-left"></i></a>
-          </div>
-          
-          <!-- Axe des prophรจtes - Third -->
-          <div class="feature-card locked-feature">
-            <span class="lock-badge"><i class="fas fa-lock"></i> ู…ูููุฉ</span>
-            <div class="feature-img">
-              <img src="img/12344848-calligraphie-arabe-et-islamique-du-prophete-muhammad-la-paix-soit-sur-lui-l-art-islamique-traditionnel-et-moderne-peut-etre-utilise-pour-de-nombreux-sujets-comme-le-mawlid-el-nabawi-traduction-le-prophete-mu.jpg" alt="ู…ุณุงุฑ ุงูุฃูุจูุงุก" class="feature-icon-img">
-            </div>
-            <h3 class="feature-title">ู…ุณุงุฑ ุงูุฃูุจูุงุก</h3>
-            <p class="feature-desc">ูุตุต ุงูุฃูุจูุงุก ุนุจุฑ ุงูุนุตูุฑ ูุญูู… ูุนุจุฑ</p>
-            <a href="#features" class="feature-link" data-access="locked">ุงุณุชู…ุน <i class="fas fa-arrow-left"></i></a>
-          </div>
-          
-          <!-- Calendrier hijri -->
-          <div class="feature-card">
-            <div class="feature-img">
-              <img src="img/hijri-year-icon-vector-image-can-be-used-islamic-new-year_120816-139975.avif" alt="ุงูุชูููู… ุงููุฌุฑู" class="feature-icon-img">
-            </div>
-            <h3 class="feature-title">ุงูุชูููู… ุงููุฌุฑู</h3>
-            <p class="feature-desc">ุชุงุจุน ุงูุฃูุงู… ูุงูุฃุดูุฑ ุงููุฌุฑูุฉ ูุงูู…ูุงุณุจุงุช ุงูุฅุณูุงู…ูุฉ</p>
-            <a href="#features" class="feature-link" data-access="free">ุงูุชุดู <i class="fas fa-arrow-left"></i></a>
-          </div>
-
-          <!-- Prayer Times -->
-          <div class="feature-card">
-            <div class="feature-img">
-              <img src="img/tรฉlรฉchargement.jpg" alt="ุฃููุงุช ุงูุตูุงุฉ" class="feature-icon-img">
-            </div>
-            <h3 class="feature-title">ุฃููุงุช ุงูุตูุงุฉ</h3>
-            <p class="feature-desc">ุงุนุฑู ู…ูุงููุช ุงูุตูุงุฉ ุญุณุจ ู…ููุนู ุจุฏูุฉ</p>
-            <a href="prayertime.html" class="feature-link" data-access="free">ุนุฑุถ ุงูู…ูุงููุช <i class="fas fa-arrow-left"></i></a>
-          </div>
-          
-          <!-- Tasbih -->
-          <div class="feature-card">
-            <div class="feature-img">
-              <img src="img/depositphotos_310285520-stock-illustration-rosary-isolated-on-white-background.jpg" alt="ุงูู…ุณุจุญุฉ ุงูุฅููุชุฑูููุฉ" class="feature-icon-img">
-            </div>
-            <h3 class="feature-title">ุงูู…ุณุจุญุฉ ุงูุฅููุชุฑูููุฉ</h3>
-            <p class="feature-desc">ุณุจุญ ูุงุฐูุฑ ุงููู ุจุนุฏุฏ ุฏููู</p>
-            <a href="#features" class="feature-link" data-access="free">ุงุจุฏุฃ ุงูุชุณุจูุญ <i class="fas fa-arrow-left"></i></a>
-          </div>
-          
-          <!-- Shaba's story -->
-          <div class="feature-card locked-feature">
-            <span class="lock-badge"><i class="fas fa-lock"></i> ู…ูููุฉ</span>
-            <div class="feature-img">
-              <img src="img/images.jpg" alt="ูุตุฉ ุงูุตุญุงุจุฉ" class="feature-icon-img">
-            </div>
-            <h3 class="feature-title">ูุตุฉ ุงูุตุญุงุจุฉ</h3>
-            <p class="feature-desc">ู…ูุงูู ู…ููู…ุฉ ู…ู ุญูุงุฉ ุงูุตุญุงุจุฉ ุฑุถู ุงููู ุนููู…</p>
-            <a href="#features" class="feature-link" data-access="locked">ุงูุฑุฃ ุงููุตุฉ <i class="fas fa-arrow-left"></i></a>
-          </div>
-          
-          <!-- Hasib nafssek -->
-          <div class="feature-card locked-feature">
-            <span class="lock-badge"><i class="fas fa-lock"></i> ู…ูููุฉ</span>
-            <div class="feature-img">
-              <img src="img/test.jpg" alt="ุญุงุณุจ ููุณู" class="feature-icon-img">
-            </div>
-            <h3 class="feature-title">ุญุงุณุจ ููุณู</h3>
-            <p class="feature-desc">ุฏูุชุฑ ููู…ู ูู…ุญุงุณุจุฉ ุงูููุณ ุนูู ุงูุทุงุนุงุช</p>
-            <a href="#features" class="feature-link" data-access="locked">ุณุฌู <i class="fas fa-arrow-left"></i></a>
-          </div>
-          
-          <!-- Quiz -->
-          <div class="feature-card locked-feature">
-            <span class="lock-badge"><i class="fas fa-lock"></i> ู…ูููุฉ</span>
-            <div class="feature-img">
-              <img src="img/unnamed (1).png" alt="ุงุฎุชุจุงุฑุงุช ุฏูููุฉ" class="feature-icon-img">
-            </div>
-            <h3 class="feature-title">ุงุฎุชุจุงุฑุงุช ุฏูููุฉ</h3>
-            <p class="feature-desc">ุงุฎุชุจุฑ ู…ุนุฑูุชู ูู ุงูุณูุฑุฉ ูุงูููู</p>
-            <a href="#features" class="feature-link" data-access="locked">ุงุจุฏุฃ ุงูุงุฎุชุจุงุฑ <i class="fas fa-arrow-left"></i></a>
-          </div>
-          
-          <!-- Don -->
-          <div class="feature-card locked-feature">
-            <span class="lock-badge"><i class="fas fa-lock"></i> ู…ูููุฉ</span>
-            <div class="feature-img">
-              <img src="img/59_500.png" alt="ุตุฏูุฉ ุฌุงุฑูุฉ" class="feature-icon-img">
-            </div>
-            <h3 class="feature-title">ุตุฏูุฉ ุฌุงุฑูุฉ</h3>
-            <p class="feature-desc">ุชุจุฑุน ูู…ุดุงุฑูุน ุฎูุฑูุฉ ูู…ุงุก ุณุจูู</p>
-            <a href="#features" class="feature-link" data-access="locked">ุชุตุฏู ุงูุขู <i class="fas fa-arrow-left"></i></a>
-          </div>
-          
-          <!-- Adhkar -->
-          <div class="feature-card">
-            <div class="feature-img">
-              <img src="img/400x400bb-75.webp" alt="ุฃุฐูุงุฑ" class="feature-icon-img">
-            </div>
-            <h3 class="feature-title">ุฃุฐูุงุฑ ุงูุตุจุงุญ ูุงูู…ุณุงุก</h3>
-            <p class="feature-desc">ุฃุฐูุงุฑ ููู…ูุฉ ูุญูุธู ูุชูุฑุจู ุฅูู ุงููู</p>
-            <a href="#features" class="feature-link" data-access="free">ุงูุฑุฃ ุงูุขู <i class="fas fa-arrow-left"></i></a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section Quran du jour -->
-    <section class="quran-section" id="quran">
-      <div class="container">
-        <div class="quran-card">
-          <div class="quran-content">
-            <div class="quran-icon">
-              <i class="fas fa-book-quran"></i>
-            </div>
-            <h2 class="quran-title">ุขูุฉ ุงูููู…</h2>
-            <div class="quran-verse">
-              ุฃูููุญู’ุณูุจู ุงูู’ุฅููุณูุงูู ุฃูู ููุชู’ุฑููู ุณูุฏูู
-            </div>
-            <div class="quran-translation">
-              "Does man think that he will be left neglected?"
-            </div>
-            <a href="#" class="btn btn-primary btn-small">
-              <i class="fas fa-headphones"></i>
-              ุงุณุชู…ุน ููุชูุงูุฉ
-            </a>
-          </div>
-          <div class="quran-decoration">
-            <img src="img/โ€”Pngtreeโ€”quran vector icon design_6213269.png" alt="Quran decoration" class="quran-mosque">
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section Hadith -->
-    <section class="hadith-section">
-      <div class="container">
-        <div class="hadith-wrapper">
-          <i class="fas fa-quote-right hadith-quote"></i>
-          <blockquote class="hadith-text">
-            ู…ูุซููู ุงููู‘ุฐูู ููุฐู’ููุฑู ุฑูุจูู‘ูู ููุงููู‘ุฐูู ููุง ููุฐู’ููุฑู ุฑูุจูู‘ูู ู…ูุซููู ุงูู’ุญูููู‘ ููุงูู’ู…ูููู‘ุชู
-          </blockquote>
-          <div class="hadith-narrator">ุฑูุงู ุงูุจุฎุงุฑู</div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- ===== FOOTER ===== -->
-  <footer class="footer" id="contact">
-    <div class="footer-wave">
-      <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-        <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="wave-fill"></path>
-      </svg>
-    </div>
-    
-    <div class="footer-content">
-      <div class="container">
-        <div class="footer-grid">
-          <div class="footer-col">
-            <div class="footer-logo">
-              <img src="img/m.png" alt="Mosquรฉe" class="footer-logo-img">
-              <span class="footer-logo-text">Faith<span style="color: var(--gold);">Path</span></span>
-            </div>
-            <p class="footer-about">
-              ู…ูุตุฉ ุฅุณูุงู…ูุฉ ุชุณุนู ูุชูุฑูุจ ุงูุนููู… ุงูุดุฑุนูุฉ ุจุฃุญุฏุซ ุงูุชูููุงุชุ ูู…ุณุงุนุฏุฉ ุงูู…ุณูู…ูู ุนูู ุงูุซุจุงุช ูุงูุทุงุนุฉ.
-            </p>
-            <div class="footer-social">
-              <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
-              <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
-              <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
-              <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
-              <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
-            </div>
-          </div>
-          
-          <div class="footer-col">
-            <h4 class="footer-title">ุฑูุงุจุท ุณุฑูุนุฉ</h4>
-            <ul class="footer-links">
-              <li><a href="#" class="footer-link"><i class="fas fa-chevron-left"></i> ุงููุฑุขู ุงููุฑูู…</a></li>
-              <li><a href="#" class="footer-link"><i class="fas fa-chevron-left"></i> ูุตุฉ ุงูุตุญุงุจุฉ</a></li>
-              <li><a href="#" class="footer-link"><i class="fas fa-chevron-left"></i> ุฃุฐูุงุฑ ุงูุตุจุงุญ ูุงูู…ุณุงุก</a></li>
-              <li><a href="#" class="footer-link"><i class="fas fa-chevron-left"></i> ูุตุต ุงูุฃูุจูุงุก</a></li>
-            </ul>
-          </div>
-          
-          <div class="footer-col">
-            <h4 class="footer-title">ุงูุฏุนู…</h4>
-            <ul class="footer-links">
-              <li><a href="#quran" class="footer-link"><i class="fas fa-chevron-left"></i> ุงููุฑุขู ุงููุฑูู…</a></li>
-              <li><a href="#features" class="footer-link"><i class="fas fa-chevron-left"></i> ุฃุณู…ุงุก ุงููู ุงูุญุณูู</a></li>
-              <li><a href="#features" class="footer-link"><i class="fas fa-chevron-left"></i> ู…ุณุงุฑ ุงูุฃูุจูุงุก</a></li>
-              <li><a href="#features" class="footer-link"><i class="fas fa-chevron-left"></i> ุงูุชูููู… ุงููุฌุฑู</a></li>
-              <li><a href="#features" class="footer-link"><i class="fas fa-chevron-left"></i> ุงูู…ุณุจุญุฉ ุงูุฅููุชุฑูููุฉ</a></li>
-              <li><a href="#features" class="footer-link"><i class="fas fa-chevron-left"></i> ูุตุฉ ุงูุตุญุงุจุฉ</a></li>
-              <li><a href="#features" class="footer-link"><i class="fas fa-chevron-left"></i> ุญุงุณุจ ููุณู</a></li>
-              <li><a href="#features" class="footer-link"><i class="fas fa-chevron-left"></i> ุงุฎุชุจุงุฑุงุช ุฏูููุฉ</a></li>
-              <li><a href="#features" class="footer-link"><i class="fas fa-chevron-left"></i> ุตุฏูุฉ ุฌุงุฑูุฉ</a></li>
-              <li><a href="#features" class="footer-link"><i class="fas fa-chevron-left"></i> ุฃุฐูุงุฑ ุงูุตุจุงุญ ูุงูู…ุณุงุก</a></li>
-            </ul>
-          </div>
-          
-          <div class="footer-col">
-            <h4 class="footer-title">ุงููุดุฑุฉ ุงูุจุฑูุฏูุฉ</h4>
-            <p class="footer-newsletter-text">ุงุดุชุฑู ููุตูู ูู ุฌุฏูุฏ: ุขูุงุชุ ุฃุญุงุฏูุซุ ูู…ูุงุนุธ</p>
-            <form class="newsletter-form">
-              <input type="email" placeholder="ุจุฑูุฏู ุงูุฅููุชุฑููู" class="newsletter-input">
-              <button type="submit" class="newsletter-btn">
-                <i class="fas fa-paper-plane"></i>
-              </button>
-            </form>
-            <div class="footer-apps">
-              <a href="#" class="app-badge">
-                <i class="fab fa-google-play"></i>
-                <span>Google Play</span>
-              </a>
-              <a href="#" class="app-badge">
-                <i class="fab fa-apple"></i>
-                <span>App Store</span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    
-    <div class="footer-bottom">
-      <div class="container">
-        <div class="footer-bottom-content">
-          <div class="footer-copyright">
-            ยฉ ูขู ูขูฆ FaithPath. ุฌู…ูุน ุงูุญููู ู…ุญููุธุฉ
-          </div>
-          <div class="footer-bottom-links">
-            <a href="#">ุฎุฑูุทุฉ ุงูู…ููุน</a>
-            <span class="separator">|</span>
-            <a href="#">ุดุฑูุท ุงูุงุณุชุฎุฏุงู…</a>
-            <span class="separator">|</span>
-            <a href="#">ุงูู…ุณุงุนุฏุฉ</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    const currentUser = JSON.parse(localStorage.getItem('faithpathCurrentUser') || 'null');
-    const profileNameElement = document.getElementById('profileName');
-    const asideProfileName = document.getElementById('asideProfileName');
-    const authActionBtn = document.getElementById('authActionBtn');
-    const asideAuthActionBtn = document.getElementById('asideAuthActionBtn');
-    const isAuthenticated = !!(currentUser && currentUser.email);
-
-    if (isAuthenticated) {
-      document.body.classList.add('is-authenticated');
-    }
-
-    if (isAuthenticated && currentUser.fullName) {
-      if (profileNameElement) profileNameElement.textContent = currentUser.fullName;
-      if (asideProfileName) asideProfileName.textContent = currentUser.fullName;
-    }
-
-    if (authActionBtn) {
-      if (isAuthenticated) {
-        authActionBtn.innerHTML = '<i class="fas fa-right-from-bracket"></i><span>ุชุณุฌูู ุงูุฎุฑูุฌ</span>';
-        authActionBtn.classList.add('is-logged-in');
-        authActionBtn.href = '#';
-        authActionBtn.addEventListener('click', function(event) {
-          event.preventDefault();
-          localStorage.removeItem('faithpathCurrentUser');
-          window.location.href = 'page_acceuil.html';
-        });
-      } else {
-        authActionBtn.innerHTML = '<i class="fas fa-right-to-bracket"></i><span>ุฅูุดุงุก ุญุณุงุจ / ุชุณุฌูู ุงูุฏุฎูู</span>';
-        authActionBtn.classList.remove('is-logged-in');
-        authActionBtn.href = 'start.html';
-      }
-    }
-
-    if (asideAuthActionBtn) {
-      if (isAuthenticated) {
-        asideAuthActionBtn.textContent = '๐”“ ุชุณุฌูู ุงูุฎุฑูุฌ';
-        asideAuthActionBtn.href = '#';
-        asideAuthActionBtn.addEventListener('click', function(event) {
-          event.preventDefault();
-          localStorage.removeItem('faithpathCurrentUser');
-          window.location.href = 'page_acceuil.html';
-        });
-      } else {
-        asideAuthActionBtn.textContent = '๐”“ ุชุณุฌูู ุงูุฏุฎูู';
-        asideAuthActionBtn.href = 'start.html';
-      }
-    }
-
-    if (isAuthenticated) {
-      const lockedPanel = document.getElementById('lockedFeaturesPanel');
-      if (lockedPanel) {
-        lockedPanel.style.display = 'none';
-      }
-
-      document.querySelectorAll('.lock-badge').forEach((badge) => badge.remove());
-      document.querySelectorAll('.locked-feature').forEach((card) => card.classList.remove('locked-feature'));
-
-      document.querySelectorAll('[data-access="locked"]').forEach((el) => {
-        el.dataset.access = 'free';
-
-        if (el.classList.contains('aside-link')) {
-          el.textContent = el.textContent.replace('๐”’', '๐”“');
-        }
-      });
-    }
-
-    function blockIfLocked(event) {
-      if (this.dataset.access === 'locked' && !isAuthenticated) {
-        event.preventDefault();
-        alert('ูุฑุฌู ุฅูุดุงุก ุญุณุงุจ ูููุตูู ุฅูู ูุฐู ุงูู…ูุฒุฉ');
-        window.location.href = 'signup.html';
-      }
-    }
-
-    document.querySelectorAll('[data-access="locked"]').forEach((el) => {
-      el.addEventListener('click', blockIfLocked);
-    });
-
-    // ==================== ASIDE HAMBURGER MENU (menu latรฉral) ====================
-    (function() {
-      const hamburger = document.getElementById('hamburgerBtn');
-      const asideNav = document.getElementById('asideNav');
-      const asideOverlay = document.getElementById('asideOverlay');
-      const closeAsideBtn = document.getElementById('closeAsideBtn');
-      
-      function closeAside() {
-        if (asideNav) asideNav.classList.remove('active');
-        if (asideOverlay) asideOverlay.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-      
-      function openAside() {
-        if (asideNav) asideNav.classList.add('active');
-        if (asideOverlay) asideOverlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      }
-      
-      function toggleAside() {
-        if (asideNav && asideNav.classList.contains('active')) {
-          closeAside();
-        } else {
-          openAside();
-        }
-      }
-      
-      if (hamburger) {
-        hamburger.addEventListener('click', toggleAside);
-      }
-      
-      if (closeAsideBtn) {
-        closeAsideBtn.addEventListener('click', closeAside);
-      }
-      
-      if (asideOverlay) {
-        asideOverlay.addEventListener('click', closeAside);
-      }
-      
-      const asideLinks = document.querySelectorAll('.aside-link');
-      asideLinks.forEach(link => {
-        link.addEventListener('click', function() {
-          asideLinks.forEach(l => l.classList.remove('active'));
-          this.classList.add('active');
-          closeAside();
-        });
-      });
-    })();
-  </script>
-</body>
-</html>
+<!DOCTYPE html><html lang="ar" dir="rtl"><head>  <meta charset="UTF-8">  <meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>FaithPath Gว๓ +ฟ+๊+บ+ฟ+ฌ +บ+ไ+ั+่+เ+บ+ๅ</title>  <!-- Font Awesome -->  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">  <!-- CSS principal -->  <link rel="stylesheet" href="styles.css"></head><body class="home-page">    <!-- ==================== ASIDE HAMBURGER NAVIGATION (MENU LAT+๋RAL) ==================== -->  <aside class="aside-nav" id="asideNav">    <div class="aside-header">      <div class="aside-logo">        <i class="fas fa-mosque"></i>        <span>Faith<span>Path</span></span>      </div>      <button class="close-aside" id="closeAsideBtn">        <i class="fas fa-times"></i>      </button>    </div>    <ul class="aside-menu">      <li><a href="#accueil" class="aside-link active" data-access="free">=๖๔ +บ+ไ+ฆ+ช+่+ฆ+่+ฌ</a></li>      <li><a href="#quran" class="aside-link" data-access="free">=๖๔ +บ+ไ+้+ฆ+๓+ๅ +บ+ไ+โ+ฆ+่+เ</a></li>      <li><a href="asmaa_allah_alhousnaa_3d.html" class="aside-link" data-access="free">=๖๔ +๚+ฆ+เ+บ+ํ +บ+ไ+ไ+็ +บ+ไ+ก+ฆ+ๅ+๋</a></li>      <li><a href="#features" class="aside-link" data-access="locked">=๖ฦ +เ+ฆ+บ+ฆ +บ+ไ+๚+ๅ+ฟ+่+บ+ํ</a></li>      <li><a href="#features" class="aside-link" data-access="free">=๖๔ +บ+ไ+ฌ+้+๊+่+เ +บ+ไ+็+ผ+ฆ+่</a></li>      <li><a href="prayertime.html" class="aside-link" data-access="free">=๖๔ +๚+๊+้+บ+ฌ +บ+ไ+ฆ+ไ+บ+ฌ</a></li>      <li><a href="#features" class="aside-link" data-access="free">=๖๔ +บ+ไ+เ+ฆ+ฟ+ก+ฌ +บ+ไ+ั+ไ+โ+ฌ+ฆ+๊+ๅ+่+ฌ</a></li>      <li><a href="#features" class="aside-link" data-access="locked">=๖ฦ +้+ฆ+ฌ +บ+ไ+ฆ+ก+บ+ฟ+ฌ</a></li>      <li><a href="#features" class="aside-link" data-access="locked">=๖ฦ +ก+บ+ฆ+ฟ +ๅ+ü+ฆ+โ</a></li>      <li><a href="#features" class="aside-link" data-access="locked">=๖ฦ +บ+ซ+ฌ+ฟ+บ+ฆ+บ+ฌ +ป+่+ๅ+่+ฌ</a></li>      <li><a href="#features" class="aside-link" data-access="locked">=๖ฦ +ฆ+ป+้+ฌ +ผ+บ+ฆ+่+ฌ</a></li>      <li><a href="#features" class="aside-link" data-access="free">=๖๔ +๚+ฆ+โ+บ+ฆ +บ+ไ+ฆ+ฟ+บ+ก +๊+บ+ไ+เ+ฆ+บ+ํ</a></li>      <li><a href="#contact" class="aside-link" data-access="free">=๖๔ +ฌ+๊+บ+ฆ+ไ +เ+ฆ+ๅ+บ</a></li>    </ul>    <div class="aside-footer">      <a href="start.html" id="asideAuthActionBtn" class="aside-link" data-access="free">=๖๔ +ฌ+ฆ+ผ+่+ไ +บ+ไ+ป+ซ+๊+ไ</a>      <div class="aside-search">        <i class="fas fa-search"></i>        <input type="text" placeholder="+ฟ+ก+ฝ...">      </div>      <div class="aside-profile">        <i class="far fa-user-circle"></i>        <span id="asideProfileName">+๚+ก+เ+ป</span>      </div>    </div>  </aside>    <!-- Overlay pour fermer le menu lat+ฌral -->  <div class="aside-overlay" id="asideOverlay"></div>  <!-- ===== HEADER ===== -->  <header class="header">    <div class="header-wave">      <svg viewBox="0 0 1200 120" preserveAspectRatio="none">        <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="wave-fill"></path>        <path d="M0,0V15.81C13,21.25,27.93,25.68,44.5,28.41c69.53,11.11,139.8,6.43,209.31-2.47,69.42-8.91,138.39-22.4,207.76-21.18C511.39,6.9,575.37,22.63,639,38.83c73.11,18.62,147.28,32.45,222.05,21C951.31,48.69,1076.37,20.67,1200,47.42V0Z" opacity=".5" class="wave-fill"></path>        <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="wave-fill"></path>      </svg>    </div>        <!-- Barre de navigation principale avec bouton hamburger -->    <nav class="top-navbar">      <div class="nav-container">        <div class="logo">          <img src="img/m.png" alt="FaithPath" class="logo-img">          <span class="logo-text">Faith<span class="logo-highlight">Path</span></span>        </div>                <!-- Hamburger Button (ouvre le menu lat+ฌral) -->        <button class="hamburger" id="hamburgerBtn" aria-label="+บ+ไ+้+บ+ช+เ+ฌ">          <span></span>          <span></span>          <span></span>        </button>        <!-- Actions de droite (recherche + profil) -->        <div class="nav-actions">          <a href="start.html" id="authActionBtn" class="auth-action-btn"><i class="fas fa-right-to-bracket"></i><span>+ั+ๅ+ฆ+บ+ํ +ก+ฆ+บ+ฟ / +ฌ+ฆ+ผ+่+ไ +บ+ไ+ป+ซ+๊+ไ</span></a>          <div class="search-box">            <i class="fas fa-search search-icon"></i>            <input type="text" placeholder="+ฟ+ก+ฝ..." class="search-input">          </div>          <i class="far fa-bell notification-icon"></i>          <div class="profile-badge">            <i class="far fa-user-circle profile-icon"></i>            <span class="profile-name" id="profileName">+๚+ก+เ+ป</span>          </div>        </div>      </div>    </nav>        <div class="hero-section" id="accueil">      <div class="hero-content">        <div class="decorative-icons-top">          <i class="fas fa-star"></i>          <i class="fas fa-moon"></i>          <i class="fas fa-star"></i>        </div>        <div class="hero-badge">          <i class="fas fa-moon"></i>          <span>+ฟ+ษ+ฆ+ฦ+เ+ษ +บ+ไ+ไ+ฤ+ๆ+็+ษ +บ+ไ+ฆ+ฤ+ๆ+ก+ฦ+เ+ฤ+ฆ+ๅ+ษ +บ+ไ+ฆ+ฤ+ๆ+ก+ษ+่+เ+ษ</span>          <i class="fas fa-moon"></i>        </div>        <h1 class="hero-title">+ฌ+ฤ+๊+ฤ+ü+ๆ+ฤ+ๅ+ษ+่ +เ+ล+ฆ+ฦ+ไ+ษ+เ+๏+บ +๊+ฤ+๚+ฤ+ไ+ฦ+ก+ษ+้+ฦ+ๅ+ษ+่ +ฟ+ษ+บ+ไ+ฆ+ๆ+ฤ+บ+ไ+ษ+ก+ษ+่+ๅ+ฤ</h1>        <p class="hero-subtitle"><strong>+เ+ฆ+ก+ฟ+บ +ฟ+โ +่+บ +เ+ฆ+่+บ+ๅ +ฆ+บ+ฆ+ฌ+ๅ+บ +บ+ไ+ฟ+ฆ+โ+ฌ =๑๙</strong></p>        <div class="decorative-icons-bottom">          <i class="fas fa-star"></i>          <i class="fas fa-mosque"></i>          <i class="fas fa-star"></i>        </div>        <div class="hero-stats">          <div class="stat-item">            <span class="stat-number">+50</span>            <span class="stat-label">+ฆ+๊+ฆ+ฌ +เ+ฌ+บ+ก+ฌ</span>          </div>          <div class="stat-item">            <span class="stat-number">+10K</span>            <span class="stat-label">+เ+ฆ+ฌ+ซ+ป+เ</span>          </div>          <div class="stat-item">            <span class="stat-number">24/7</span>            <span class="stat-label">+ฌ+ฆ+โ+่+ฆ +ฟ+บ+ไ+ฆ+ไ+บ+ฌ</span>          </div>        </div>      </div>    </div>  </header>  <!-- ===== BODY ===== -->  <main class="main-content" id="mainContent">    <!-- Section Fonctionnalit+ฌs - Grille des tuiles -->    <section class="features-section" id="features">      <div class="container">        <div class="section-header">          <div class="section-icon">            <i class="fas fa-compass"></i>          </div>          <h2 class="section-title">+เ+ฆ+บ+ü+้+โ +ü+่ +บ+ไ+ฆ+ก+ไ+ฌ +บ+ไ+ั+่+เ+บ+ๅ+่+ฌ</h2>          <p class="section-subtitle">+๚+ป+๊+บ+ฌ +๊+เ+ๅ+บ+ü+ฆ +ฌ+ฆ+่+ๅ+โ +ฆ+ไ+๋ +บ+ไ+++บ+ฆ+ฌ</p>          <div class="locked-features-panel" id="lockedFeaturesPanel">            <strong><i class="fas fa-lock"></i> +บ+ไ+เ+ฆ+บ+่+บ +บ+ไ+เ+้+ü+ไ+ฌ +ไ+ไ+ฆ+บ+ช+ฆ</strong>            <span>+เ+ฆ+บ+ฆ +บ+ไ+๚+ๅ+ฟ+่+บ+ํ Gว๓ +้+ฆ+ฌ +บ+ไ+ฆ+ก+บ+ฟ+ฌ Gว๓ +ก+บ+ฆ+ฟ +ๅ+ü+ฆ+โ Gว๓ +บ+ซ+ฌ+ฟ+บ+ฆ+บ+ฌ +ป+่+ๅ+่+ฌ Gว๓ +ฆ+ป+้+ฌ +ผ+บ+ฆ+่+ฌ</span>          </div>        </div>                <div class="features-grid">          <!-- Quran - First -->          <div class="feature-card">            <div class="feature-img">              <img src="img/holy-quran-logo-book-design-260nw-2321481509.webp" alt="+บ+ไ+้+ฆ+๓+ๅ +บ+ไ+โ+ฆ+่+เ" class="feature-icon-img">            </div>            <h3 class="feature-title">+บ+ไ+้+ฆ+๓+ๅ +บ+ไ+โ+ฆ+่+เ</h3>            <p class="feature-desc">+บ+ฆ+ฌ+เ+ฆ +๊+บ+้+ฆ+๚ +บ+ไ+ฆ+๊+ฆ +ฟ+ป+๊+ๅ +ฌ+ü+ฆ+่+ฆ</p>            <a href="#quran" class="feature-link" data-access="free">+บ+้+ฆ+๚ <i class="fas fa-arrow-left"></i></a>          </div>                    <!-- Asma Allah - Second -->          <div class="feature-card">            <div class="feature-img">              <img src="img/allah_names.png" alt="+๚+ฆ+เ+บ+ํ +บ+ไ+ไ+็ +บ+ไ+ก+ฆ+ๅ+๋" class="feature-icon-img">            </div>            <h3 class="feature-title">+๚+ฆ+เ+บ+ํ +บ+ไ+ไ+็ +บ+ไ+ก+ฆ+ๅ+๋</h3>            <p class="feature-desc">+ฌ+ฌ +บ+ฆ+เ+๏+บ +เ+ฆ +ฆ+ฆ+ก +๊+ฌ+๚+เ+ไ</p>            <a href="asmaa_allah_alhousnaa_3d.html" class="feature-link" data-access="free">+ฌ+๚+เ+ไ <i class="fas fa-arrow-left"></i></a>          </div>                    <!-- Axe des proph+ฟtes - Third -->          <div class="feature-card locked-feature">            <span class="lock-badge"><i class="fas fa-lock"></i> +เ+้+ü+ไ+ฌ</span>            <div class="feature-img">              <img src="img/12344848-calligraphie-arabe-et-islamique-du-prophete-muhammad-la-paix-soit-sur-lui-l-art-islamique-traditionnel-et-moderne-peut-etre-utilise-pour-de-nombreux-sujets-comme-le-mawlid-el-nabawi-traduction-le-prophete-mu.jpg" alt="+เ+ฆ+บ+ฆ +บ+ไ+๚+ๅ+ฟ+่+บ+ํ" class="feature-icon-img">            </div>            <h3 class="feature-title">+เ+ฆ+บ+ฆ +บ+ไ+๚+ๅ+ฟ+่+บ+ํ</h3>            <p class="feature-desc">+้+ฆ+ฆ +บ+ไ+๚+ๅ+ฟ+่+บ+ํ +ฆ+ฟ+ฆ +บ+ไ+ฆ+ฆ+๊+ฆ +๊+ก+โ+เ +๊+ฆ+ฟ+ฆ</p>            <a href="#features" class="feature-link" data-access="locked">+บ+ฆ+ฌ+เ+ฆ <i class="fas fa-arrow-left"></i></a>          </div>                    <!-- Calendrier hijri -->          <div class="feature-card">            <div class="feature-img">              <img src="img/hijri-year-icon-vector-image-can-be-used-islamic-new-year_120816-139975.avif" alt="+บ+ไ+ฌ+้+๊+่+เ +บ+ไ+็+ผ+ฆ+่" class="feature-icon-img">            </div>            <h3 class="feature-title">+บ+ไ+ฌ+้+๊+่+เ +บ+ไ+็+ผ+ฆ+่</h3>            <p class="feature-desc">+ฌ+บ+ฟ+ฆ +บ+ไ+๚+่+บ+เ +๊+บ+ไ+๚+ฆ+็+ฆ +บ+ไ+็+ผ+ฆ+่+ฌ +๊+บ+ไ+เ+ๅ+บ+ฆ+ฟ+บ+ฌ +บ+ไ+ั+ฆ+ไ+บ+เ+่+ฌ</p>            <a href="#features" class="feature-link" data-access="free">+บ+โ+ฌ+ฆ+ü <i class="fas fa-arrow-left"></i></a>          </div>          <!-- Prayer Times -->          <div class="feature-card">            <div class="feature-img">              <img src="img/t+ฌl+ฌchargement.jpg" alt="+๚+๊+้+บ+ฌ +บ+ไ+ฆ+ไ+บ+ฌ" class="feature-icon-img">            </div>            <h3 class="feature-title">+๚+๊+้+บ+ฌ +บ+ไ+ฆ+ไ+บ+ฌ</h3>            <p class="feature-desc">+บ+ฆ+ฆ+ü +เ+๊+บ+้+่+ฌ +บ+ไ+ฆ+ไ+บ+ฌ +ก+ฆ+ฟ +เ+๊+้+ฆ+โ +ฟ+ป+้+ฌ</p>            <a href="prayertime.html" class="feature-link" data-access="free">+ฆ+ฆ+ฆ +บ+ไ+เ+๊+บ+้+่+ฌ <i class="fas fa-arrow-left"></i></a>          </div>                    <!-- Tasbih -->          <div class="feature-card">            <div class="feature-img">              <img src="img/depositphotos_310285520-stock-illustration-rosary-isolated-on-white-background.jpg" alt="+บ+ไ+เ+ฆ+ฟ+ก+ฌ +บ+ไ+ั+ไ+โ+ฌ+ฆ+๊+ๅ+่+ฌ" class="feature-icon-img">            </div>            <h3 class="feature-title">+บ+ไ+เ+ฆ+ฟ+ก+ฌ +บ+ไ+ั+ไ+โ+ฌ+ฆ+๊+ๅ+่+ฌ</h3>            <p class="feature-desc">+ฆ+ฟ+ก +๊+บ+ฆ+โ+ฆ +บ+ไ+ไ+็ +ฟ+ฆ+ป+ป +ป+้+่+้</p>            <a href="#features" class="feature-link" data-access="free">+บ+ฟ+ป+๚ +บ+ไ+ฌ+ฆ+ฟ+่+ก <i class="fas fa-arrow-left"></i></a>          </div>                    <!-- Shaba's story -->          <div class="feature-card locked-feature">            <span class="lock-badge"><i class="fas fa-lock"></i> +เ+้+ü+ไ+ฌ</span>            <div class="feature-img">              <img src="img/images.jpg" alt="+้+ฆ+ฌ +บ+ไ+ฆ+ก+บ+ฟ+ฌ" class="feature-icon-img">            </div>            <h3 class="feature-title">+้+ฆ+ฌ +บ+ไ+ฆ+ก+บ+ฟ+ฌ</h3>            <p class="feature-desc">+เ+๊+บ+้+ü +เ+ไ+็+เ+ฌ +เ+ๅ +ก+่+บ+ฌ +บ+ไ+ฆ+ก+บ+ฟ+ฌ +ฆ+ฆ+่ +บ+ไ+ไ+็ +ฆ+ๅ+็+เ</p>            <a href="#features" class="feature-link" data-access="locked">+บ+้+ฆ+๚ +บ+ไ+้+ฆ+ฌ <i class="fas fa-arrow-left"></i></a>          </div>                    <!-- Hasib nafssek -->          <div class="feature-card locked-feature">            <span class="lock-badge"><i class="fas fa-lock"></i> +เ+้+ü+ไ+ฌ</span>            <div class="feature-img">              <img src="img/test.jpg" alt="+ก+บ+ฆ+ฟ +ๅ+ü+ฆ+โ" class="feature-icon-img">            </div>            <h3 class="feature-title">+ก+บ+ฆ+ฟ +ๅ+ü+ฆ+โ</h3>            <p class="feature-desc">+ป+ü+ฌ+ฆ +่+๊+เ+่ +ไ+เ+ก+บ+ฆ+ฟ+ฌ +บ+ไ+ๅ+ü+ฆ +ฆ+ไ+๋ +บ+ไ+++บ+ฆ+บ+ฌ</p>            <a href="#features" class="feature-link" data-access="locked">+ฆ+ผ+ไ <i class="fas fa-arrow-left"></i></a>          </div>                    <!-- Quiz -->          <div class="feature-card locked-feature">            <span class="lock-badge"><i class="fas fa-lock"></i> +เ+้+ü+ไ+ฌ</span>            <div class="feature-img">              <img src="img/unnamed (1).png" alt="+บ+ซ+ฌ+ฟ+บ+ฆ+บ+ฌ +ป+่+ๅ+่+ฌ" class="feature-icon-img">            </div>            <h3 class="feature-title">+บ+ซ+ฌ+ฟ+บ+ฆ+บ+ฌ +ป+่+ๅ+่+ฌ</h3>            <p class="feature-desc">+บ+ซ+ฌ+ฟ+ฆ +เ+ฆ+ฆ+ü+ฌ+โ +ü+่ +บ+ไ+ฆ+่+ฆ+ฌ +๊+บ+ไ+ü+้+็</p>            <a href="#features" class="feature-link" data-access="locked">+บ+ฟ+ป+๚ +บ+ไ+บ+ซ+ฌ+ฟ+บ+ฆ <i class="fas fa-arrow-left"></i></a>          </div>                    <!-- Don -->          <div class="feature-card locked-feature">            <span class="lock-badge"><i class="fas fa-lock"></i> +เ+้+ü+ไ+ฌ</span>            <div class="feature-img">              <img src="img/59_500.png" alt="+ฆ+ป+้+ฌ +ผ+บ+ฆ+่+ฌ" class="feature-icon-img">            </div>            <h3 class="feature-title">+ฆ+ป+้+ฌ +ผ+บ+ฆ+่+ฌ</h3>            <p class="feature-desc">+ฌ+ฟ+ฆ+ฆ +ไ+เ+ฆ+บ+ฆ+่+ฆ +ซ+่+ฆ+่+ฌ +๊+เ+บ+ํ +ฆ+ฟ+่+ไ</p>            <a href="#features" class="feature-link" data-access="locked">+ฌ+ฆ+ป+้ +บ+ไ+๓+ๅ <i class="fas fa-arrow-left"></i></a>          </div>                    <!-- Adhkar -->          <div class="feature-card">            <div class="feature-img">              <img src="img/400x400bb-75.webp" alt="+๚+ฆ+โ+บ+ฆ" class="feature-icon-img">            </div>            <h3 class="feature-title">+๚+ฆ+โ+บ+ฆ +บ+ไ+ฆ+ฟ+บ+ก +๊+บ+ไ+เ+ฆ+บ+ํ</h3>            <p class="feature-desc">+๚+ฆ+โ+บ+ฆ +่+๊+เ+่+ฌ +ไ+ก+ü+++โ +๊+ฌ+้+ฆ+ฟ+โ +ั+ไ+๋ +บ+ไ+ไ+็</p>            <a href="#features" class="feature-link" data-access="free">+บ+้+ฆ+๚ +บ+ไ+๓+ๅ <i class="fas fa-arrow-left"></i></a>          </div>        </div>      </div>    </section>    <!-- Section Quran du jour -->    <section class="quran-section" id="quran">      <div class="container">        <div class="quran-card">          <div class="quran-content">            <div class="quran-icon">              <i class="fas fa-book-quran"></i>            </div>            <h2 class="quran-title">+๓+่+ฌ +บ+ไ+่+๊+เ</h2>            <div class="quran-verse">              +๚+ฤ+่+ฤ+ก+ฦ+ฆ+ฤ+ฟ+ล +บ+ไ+ฦ+ั+ษ+ๅ+ฆ+ฤ+บ+ๅ+ล +๚+ฤ+ๅ +่+ล+ฌ+ฦ+ฆ+ฤ+โ+ฤ +ฆ+ล+ป+๏+๋            </div>            <div class="quran-translation">              "Does man think that he will be left neglected?"            </div>            <a href="#" class="btn btn-primary btn-small">              <i class="fas fa-headphones"></i>              +บ+ฆ+ฌ+เ+ฆ +ไ+ไ+ฌ+ไ+บ+๊+ฌ            </a>          </div>          <div class="quran-decoration">            <img src="img/Gว๖PngtreeGว๖quran vector icon design_6213269.png" alt="Quran decoration" class="quran-mosque">          </div>        </div>      </div>    </section>    <!-- Section Hadith -->    <section class="hadith-section">      <div class="container">        <div class="hadith-wrapper">          <i class="fas fa-quote-right hadith-quote"></i>          <blockquote class="hadith-text">            +เ+ฤ+ฝ+ฤ+ไ+ล +บ+ไ+ฤ+ๆ+ฆ+ษ+่ +่+ฤ+ฆ+ฦ+โ+ล+ฆ+ล +ฆ+ฤ+ฟ+ฤ+ๆ+็+ล +๊+ฤ+บ+ไ+ฤ+ๆ+ฆ+ษ+่ +ไ+ฤ+บ +่+ฤ+ฆ+ฦ+โ+ล+ฆ+ล +ฆ+ฤ+ฟ+ฤ+ๆ+็+ล +เ+ฤ+ฝ+ฤ+ไ+ล +บ+ไ+ฦ+ก+ฤ+่+ษ+ๆ +๊+ฤ+บ+ไ+ฦ+เ+ฤ+่+ษ+ๆ+ฌ+ษ          </blockquote>          <div class="hadith-narrator">+ฆ+๊+บ+็ +บ+ไ+ฟ+ซ+บ+ฆ+่</div>        </div>      </div>    </section>  </main>  <!-- ===== FOOTER ===== -->  <footer class="footer" id="contact">    <div class="footer-wave">      <svg viewBox="0 0 1200 120" preserveAspectRatio="none">        <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="wave-fill"></path>      </svg>    </div>        <div class="footer-content">      <div class="container">        <div class="footer-grid">          <div class="footer-col">            <div class="footer-logo">              <img src="img/m.png" alt="Mosqu+ฌe" class="footer-logo-img">              <span class="footer-logo-text">Faith<span style="color: var(--gold);">Path</span></span>            </div>            <p class="footer-about">              +เ+ๅ+ฆ+ฌ +ั+ฆ+ไ+บ+เ+่+ฌ +ฌ+ฆ+ฆ+๋ +ไ+ฌ+้+ฆ+่+ฟ +บ+ไ+ฆ+ไ+๊+เ +บ+ไ+ฆ+ฆ+ฆ+่+ฌ +ฟ+๚+ก+ป+ฝ +บ+ไ+ฌ+้+ๅ+่+บ+ฌ+๎ +๊+เ+ฆ+บ+ฆ+ป+ฌ +บ+ไ+เ+ฆ+ไ+เ+่+ๅ +ฆ+ไ+๋ +บ+ไ+ฝ+ฟ+บ+ฌ +๊+บ+ไ+++บ+ฆ+ฌ.            </p>            <div class="footer-social">              <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>              <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>              <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>              <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>              <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>            </div>          </div>                    <div class="footer-col">            <h4 class="footer-title">+ฆ+๊+บ+ฟ++ +ฆ+ฆ+่+ฆ+ฌ</h4>            <ul class="footer-links">              <li><a href="#" class="footer-link"><i class="fas fa-chevron-left"></i> +บ+ไ+้+ฆ+๓+ๅ +บ+ไ+โ+ฆ+่+เ</a></li>              <li><a href="#" class="footer-link"><i class="fas fa-chevron-left"></i> +้+ฆ+ฌ +บ+ไ+ฆ+ก+บ+ฟ+ฌ</a></li>              <li><a href="#" class="footer-link"><i class="fas fa-chevron-left"></i> +๚+ฆ+โ+บ+ฆ +บ+ไ+ฆ+ฟ+บ+ก +๊+บ+ไ+เ+ฆ+บ+ํ</a></li>              <li><a href="#" class="footer-link"><i class="fas fa-chevron-left"></i> +้+ฆ+ฆ +บ+ไ+๚+ๅ+ฟ+่+บ+ํ</a></li>            </ul>          </div>                    <div class="footer-col">            <h4 class="footer-title">+บ+ไ+ป+ฆ+เ</h4>            <ul class="footer-links">              <li><a href="#quran" class="footer-link"><i class="fas fa-chevron-left"></i> +บ+ไ+้+ฆ+๓+ๅ +บ+ไ+โ+ฆ+่+เ</a></li>              <li><a href="#features" class="footer-link"><i class="fas fa-chevron-left"></i> +๚+ฆ+เ+บ+ํ +บ+ไ+ไ+็ +บ+ไ+ก+ฆ+ๅ+๋</a></li>              <li><a href="#features" class="footer-link"><i class="fas fa-chevron-left"></i> +เ+ฆ+บ+ฆ +บ+ไ+๚+ๅ+ฟ+่+บ+ํ</a></li>              <li><a href="#features" class="footer-link"><i class="fas fa-chevron-left"></i> +บ+ไ+ฌ+้+๊+่+เ +บ+ไ+็+ผ+ฆ+่</a></li>              <li><a href="#features" class="footer-link"><i class="fas fa-chevron-left"></i> +บ+ไ+เ+ฆ+ฟ+ก+ฌ +บ+ไ+ั+ไ+โ+ฌ+ฆ+๊+ๅ+่+ฌ</a></li>              <li><a href="#features" class="footer-link"><i class="fas fa-chevron-left"></i> +้+ฆ+ฌ +บ+ไ+ฆ+ก+บ+ฟ+ฌ</a></li>              <li><a href="#features" class="footer-link"><i class="fas fa-chevron-left"></i> +ก+บ+ฆ+ฟ +ๅ+ü+ฆ+โ</a></li>              <li><a href="#features" class="footer-link"><i class="fas fa-chevron-left"></i> +บ+ซ+ฌ+ฟ+บ+ฆ+บ+ฌ +ป+่+ๅ+่+ฌ</a></li>              <li><a href="#features" class="footer-link"><i class="fas fa-chevron-left"></i> +ฆ+ป+้+ฌ +ผ+บ+ฆ+่+ฌ</a></li>              <li><a href="#features" class="footer-link"><i class="fas fa-chevron-left"></i> +๚+ฆ+โ+บ+ฆ +บ+ไ+ฆ+ฟ+บ+ก +๊+บ+ไ+เ+ฆ+บ+ํ</a></li>            </ul>          </div>                    <div class="footer-col">            <h4 class="footer-title">+บ+ไ+ๅ+ฆ+ฆ+ฌ +บ+ไ+ฟ+ฆ+่+ป+่+ฌ</h4>            <p class="footer-newsletter-text">+บ+ฆ+ฌ+ฆ+โ +ไ+่+ฆ+ไ+โ +โ+ไ +ผ+ป+่+ป: +๓+่+บ+ฌ+๎ +๚+ก+บ+ป+่+ฝ+๎ +๊+เ+๊+บ+ฆ++</p>            <form class="newsletter-form">              <input type="email" placeholder="+ฟ+ฆ+่+ป+โ +บ+ไ+ั+ไ+โ+ฌ+ฆ+๊+ๅ+่" class="newsletter-input">              <button type="submit" class="newsletter-btn">                <i class="fas fa-paper-plane"></i>              </button>            </form>            <div class="footer-apps">              <a href="#" class="app-badge">                <i class="fab fa-google-play"></i>                <span>Google Play</span>              </a>              <a href="#" class="app-badge">                <i class="fab fa-apple"></i>                <span>App Store</span>              </a>            </div>          </div>        </div>      </div>    </div>        <div class="footer-bottom">      <div class="container">        <div class="footer-bottom-content">          <div class="footer-copyright">            -ฌ +๓+แ+๓+ช FaithPath. +ผ+เ+่+ฆ +บ+ไ+ก+้+๊+้ +เ+ก+ü+๊+++ฌ          </div>          <div class="footer-bottom-links">            <a href="#">+ซ+ฆ+่+++ฌ +บ+ไ+เ+๊+้+ฆ</a>            <span class="separator">|</span>            <a href="#">+ฆ+ฆ+๊++ +บ+ไ+บ+ฆ+ฌ+ซ+ป+บ+เ</a>            <span class="separator">|</span>            <a href="#">+บ+ไ+เ+ฆ+บ+ฆ+ป+ฌ</a>          </div>        </div>      </div>    </div>  </footer>  <script>    const currentUser = JSON.parse(localStorage.getItem('faithpathCurrentUser') || 'null');    const profileNameElement = document.getElementById('profileName');    const asideProfileName = document.getElementById('asideProfileName');    const authActionBtn = document.getElementById('authActionBtn');    const asideAuthActionBtn = document.getElementById('asideAuthActionBtn');    const isAuthenticated = !!(currentUser && currentUser.email);    if (isAuthenticated) {      document.body.classList.add('is-authenticated');    }    if (isAuthenticated && currentUser.fullName) {      if (profileNameElement) profileNameElement.textContent = currentUser.fullName;      if (asideProfileName) asideProfileName.textContent = currentUser.fullName;    }    if (authActionBtn) {      if (isAuthenticated) {        authActionBtn.innerHTML = '<i class="fas fa-right-from-bracket"></i><span>+ฌ+ฆ+ผ+่+ไ +บ+ไ+ซ+ฆ+๊+ผ</span>';        authActionBtn.classList.add('is-logged-in');        authActionBtn.href = '#';        authActionBtn.addEventListener('click', function(event) {          event.preventDefault();          localStorage.removeItem('faithpathCurrentUser');          window.location.href = 'page_acceuil.html';        });      } else {        authActionBtn.innerHTML = '<i class="fas fa-right-to-bracket"></i><span>+ั+ๅ+ฆ+บ+ํ +ก+ฆ+บ+ฟ / +ฌ+ฆ+ผ+่+ไ +บ+ไ+ป+ซ+๊+ไ</span>';        authActionBtn.classList.remove('is-logged-in');        authActionBtn.href = 'start.html';      }    }    if (asideAuthActionBtn) {      if (isAuthenticated) {        asideAuthActionBtn.textContent = '=๖๔ +ฌ+ฆ+ผ+่+ไ +บ+ไ+ซ+ฆ+๊+ผ';        asideAuthActionBtn.href = '#';        asideAuthActionBtn.addEventListener('click', function(event) {          event.preventDefault();          localStorage.removeItem('faithpathCurrentUser');          window.location.href = 'page_acceuil.html';        });      } else {        asideAuthActionBtn.textContent = '=๖๔ +ฌ+ฆ+ผ+่+ไ +บ+ไ+ป+ซ+๊+ไ';        asideAuthActionBtn.href = 'start.html';      }    }    if (isAuthenticated) {      const lockedPanel = document.getElementById('lockedFeaturesPanel');      if (lockedPanel) {        lockedPanel.style.display = 'none';      }      document.querySelectorAll('.lock-badge').forEach((badge) => badge.remove());      document.querySelectorAll('.locked-feature').forEach((card) => card.classList.remove('locked-feature'));      document.querySelectorAll('[data-access="locked"]').forEach((el) => {        el.dataset.access = 'free';        if (el.classList.contains('aside-link')) {          el.textContent = el.textContent.replace('=๖ฦ', '=๖๔');        }      });    }    function blockIfLocked(event) {      if (this.dataset.access === 'locked' && !isAuthenticated) {        event.preventDefault();        alert('+่+ฆ+ผ+๋ +ั+ๅ+ฆ+บ+ํ +ก+ฆ+บ+ฟ +ไ+ไ+๊+ฆ+๊+ไ +ั+ไ+๋ +็+ฆ+็ +บ+ไ+เ+่+ฆ+ฌ');        window.location.href = 'signup.html';      }    }    document.querySelectorAll('[data-access="locked"]').forEach((el) => {      el.addEventListener('click', blockIfLocked);    });    // ==================== ASIDE HAMBURGER MENU (menu lat+ฌral) ====================    (function() {      const hamburger = document.getElementById('hamburgerBtn');      const asideNav = document.getElementById('asideNav');      const asideOverlay = document.getElementById('asideOverlay');      const closeAsideBtn = document.getElementById('closeAsideBtn');            function closeAside() {        if (asideNav) asideNav.classList.remove('active');        if (asideOverlay) asideOverlay.classList.remove('active');        document.body.style.overflow = '';      }            function openAside() {        if (asideNav) asideNav.classList.add('active');        if (asideOverlay) asideOverlay.classList.add('active');        document.body.style.overflow = 'hidden';      }            function toggleAside() {        if (asideNav && asideNav.classList.contains('active')) {          closeAside();        } else {          openAside();        }      }            if (hamburger) {        hamburger.addEventListener('click', toggleAside);      }            if (closeAsideBtn) {        closeAsideBtn.addEventListener('click', closeAside);      }            if (asideOverlay) {        asideOverlay.addEventListener('click', closeAside);      }            const asideLinks = document.querySelectorAll('.aside-link');      asideLinks.forEach(link => {        link.addEventListener('click', function() {          asideLinks.forEach(l => l.classList.remove('active'));          this.classList.add('active');          closeAside();        });      });    })();  </script></body></html>
