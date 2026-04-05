@@ -7,8 +7,52 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-  <div class="wrapper">
+<body class="auth-page">
+  <header class="header auth-header">
+    <div class="header-wave">
+      <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="wave-fill"></path>
+        <path d="M0,0V15.81C13,21.25,27.93,25.68,44.5,28.41c69.53,11.11,139.8,6.43,209.31-2.47,69.42-8.91,138.39-22.4,207.76-21.18C511.39,6.9,575.37,22.63,639,38.83c73.11,18.62,147.28,32.45,222.05,21C951.31,48.69,1076.37,20.67,1200,47.42V0Z" opacity=".5" class="wave-fill"></path>
+        <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="wave-fill"></path>
+      </svg>
+    </div>
+
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="logo">
+          <img src="../img/m.png" alt="Mosquée" class="logo-img">
+          <span class="logo-text">Faith<span class="logo-highlight">Path</span></span>
+        </div>
+
+        <a href="page_acceuil.html" class="nav-link active">الرئيسية</a>
+      </div>
+    </nav>
+
+    <div class="hero-section" id="accueil">
+      <div class="hero-content">
+        <div class="decorative-icons-top">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-moon"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <div class="hero-badge">
+          <i class="fas fa-moon"></i>
+          <span>بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</span>
+          <i class="fas fa-moon"></i>
+        </div>
+        <h2 class="hero-title">إنشاء حساب</h2>
+        <p class="hero-subtitle"><strong>ابدأ رحلتك مع FaithPath في خطوات بسيطة.</strong></p>
+        <div class="decorative-icons-bottom">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-moon"></i>
+          <i class="fas fa-star"></i>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="auth-main">
+    <div class="wrapper">
     <div class="card fade">
       <div class="glow"></div>
 
@@ -74,7 +118,16 @@
       <div class="decor decor-1"></div>
       <div class="decor decor-2"></div>
     </div>
-  </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-simple">
+      <div class="footer-line-1">
+        <a href="page_acceuil.html">الرئيسية</a>
+      </div>
+    </div>
+  </footer>
 
   <script>
     function getProjectBaseUrl() {
