@@ -48,6 +48,21 @@
             "email": "new43515@gmail.com",
             "password": "$2y$10$G89D4MJlzsr6DAPVpU07TO7ZTZa24RFBCDXrHN.UMLoNwSSvn7pmC",
             "created_at": "2026-04-04 15:29:39"
+        },
+        {
+            "id": 8,
+            "full_name": "janna",
+            "email": "hebamahroug@gmail.com",
+            "password": "$2y$10$se3L1dHeh37yUN1OxNS5wOE9s8fDt0vKbbbnffF.G7TxLUqjKWe3m",
+            "created_at": "2026-04-05 15:31:02"
+        },
+        {
+            "id": 9,
+            "full_name": "azroo",
+            "email": "hibamahroug649@gmail.com",
+            "password": "$2y$10$CAjjWSKzZdjFOSlEHCUOjOVVxrso2Z3wvaevt9mCfbBzkmciLJKCy",
+            "created_at": "2026-04-05 15:38:47",
+            "last_login_at": "2026-04-05 15:42:36"
         }
     ],
     "password_resets": [
@@ -60,22 +75,104 @@
             "created_at": "2026-04-04 15:14:50"
         },
         {
-            "id": 8,
-            "email": "zarouihiba@gmail.com",
-            "token": "$2y$10$a6rSbD.0HWfSYGUgMLhkkuVkbY8fgca0i9mt65cL35zGGJM\/eTNjy",
-            "expires_at": "2026-04-04 15:24:54",
-            "used": 0,
-            "created_at": "2026-04-04 15:14:54"
-        },
-        {
             "id": 9,
             "email": "auto30913@example.com",
             "token": "$2y$10$SRt9STaw7Eux3CwW8x9gC.yGvB8RjCAreeYA24BG7PmTMkKU4uVTu",
             "expires_at": "2026-04-04 15:24:55",
             "used": 0,
             "created_at": "2026-04-04 15:14:55"
+        },
+        {
+            "id": 10,
+            "email": "zarouihiba@gmail.com",
+            "token": "$2y$10$BYOeHBBH7zJ.ymhh4CpTne1swGO1njfXtnk0IVhLzZ4hCo4tYhawC",
+            "expires_at": "2026-04-05 15:46:49",
+            "used": 0,
+            "created_at": "2026-04-05 15:36:49"
+        },
+        {
+            "id": 11,
+            "email": "hibamahroug649@gmail.com",
+            "token": "$2y$10$4BwDnT9234MNxkimFKhEwO7TsIgicg4CL2byOdySylAl7rPXHu9fu",
+            "expires_at": "2026-04-05 15:50:04",
+            "used": 1,
+            "created_at": "2026-04-05 15:40:04"
         }
     ],
-    "next_user_id": 8,
-    "next_reset_id": 10
+    "next_user_id": 10,
+    "next_reset_id": 12,
+    "signup_submissions": [
+        {
+            "id": 1,
+            "full_name": "janna",
+            "email": "hebamahroug@gmail.com",
+            "success": 0,
+            "note": "Le mot de passe doit contenir au moins 8 caracteres.",
+            "created_at": "2026-04-05 15:30:42"
+        },
+        {
+            "id": 2,
+            "full_name": "janna",
+            "email": "hebamahroug@gmail.com",
+            "success": 1,
+            "note": "Compte cree avec succes.",
+            "created_at": "2026-04-05 15:31:02"
+        },
+        {
+            "id": 4,
+            "full_name": "hiba",
+            "email": "zarouihiba@gmail.com",
+            "success": 0,
+            "note": "Le mot de passe doit contenir au moins 8 caracteres.",
+            "created_at": "2026-04-05 15:33:56"
+        },
+        {
+            "id": 5,
+            "full_name": "hiba",
+            "email": "zarouihiba@gmail.com",
+            "success": 0,
+            "note": "Cet email est deja utilise.",
+            "created_at": "2026-04-05 15:34:06"
+        },
+        {
+            "id": 6,
+            "full_name": "ZAROUI hiba",
+            "email": "zarouihiba@gmail.com",
+            "success": 0,
+            "note": "Cet email est deja utilise.",
+            "created_at": "2026-04-05 15:36:25"
+        },
+        {
+            "id": 8,
+            "full_name": "azroo",
+            "email": "hibamahroug649@gmail.com",
+            "success": 1,
+            "note": "Compte cree avec succes.",
+            "created_at": "2026-04-05 15:38:47"
+        }
+    ],
+    "start_submissions": [
+        {
+            "id": 3,
+            "identifier": "zarouihiba@gmail.com",
+            "success": 0,
+            "note": "Identifiants invalides.",
+            "created_at": "2026-04-05 15:33:34"
+        },
+        {
+            "id": 7,
+            "identifier": "zarouihiba@gmail.com",
+            "success": 0,
+            "note": "Identifiants invalides.",
+            "created_at": "2026-04-05 15:36:38"
+        },
+        {
+            "id": 9,
+            "identifier": "hibamahroug649@gmail.com",
+            "success": 1,
+            "note": "Connexion reussie.",
+            "created_at": "2026-04-05 15:42:36"
+        }
+    ],
+    "next_submission_id": 10
 }

@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>الأسماء الحسنى 99 | Asma' Allah Al-Husna</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>أسماء الله الحسنى | FaithPath</title>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="stylesheet" href="styles.css" />
+  <!-- CSS principal -->
+  <link rel="stylesheet" href="styles.css">
   <style>
     :root {
       --islamic-dark: #1a3a2a;
@@ -740,7 +741,50 @@
     }
   </style>
 </head>
-<body>
+<body class="home-page">
+  
+  <!-- ==================== ASIDE HAMBURGER NAVIGATION (MENU LATÉRAL) ==================== -->
+  <aside class="aside-nav" id="asideNav">
+    <div class="aside-header">
+      <div class="aside-logo">
+        <i class="fas fa-mosque"></i>
+        <span>Faith<span>Path</span></span>
+      </div>
+      <button class="close-aside" id="closeAsideBtn">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <ul class="aside-menu">
+      <li><a href="page_acceuil.html" class="aside-link" data-access="free">🔓 الرئيسية</a></li>
+      <li><a href="#quran" class="aside-link" data-access="free">🔓 القرآن الكريم</a></li>
+      <li><a href="asmaa_allah_alhousnaa_3d.html" class="aside-link active" data-access="free">🔓 أسماء الله الحسنى</a></li>
+      <li><a href="#features" class="aside-link" data-access="locked">🔒 مسار الأنبياء</a></li>
+      <li><a href="#features" class="aside-link" data-access="free">🔓 التقويم الهجري</a></li>
+      <li><a href="prayertime.html" class="aside-link" data-access="free">🔓 أوقات الصلاة</a></li>
+      <li><a href="#features" class="aside-link" data-access="free">🔓 المسبحة الإلكترونية</a></li>
+      <li><a href="#features" class="aside-link" data-access="locked">🔒 قصة الصحابة</a></li>
+      <li><a href="#features" class="aside-link" data-access="locked">🔒 حاسب نفسك</a></li>
+      <li><a href="#features" class="aside-link" data-access="locked">🔒 اختبارات دينية</a></li>
+      <li><a href="#features" class="aside-link" data-access="locked">🔒 صدقة جارية</a></li>
+      <li><a href="#features" class="aside-link" data-access="free">🔓 أذكار الصباح والمساء</a></li>
+      <li><a href="#contact" class="aside-link" data-access="free">🔓 تواصل معنا</a></li>
+    </ul>
+    <div class="aside-footer">
+      <a href="start.html" id="asideAuthActionBtn" class="aside-link" data-access="free">🔓 تسجيل الدخول</a>
+      <div class="aside-search">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="بحث...">
+      </div>
+      <div class="aside-profile">
+        <i class="far fa-user-circle"></i>
+        <span id="asideProfileName">أحمد</span>
+      </div>
+    </div>
+  </aside>
+  
+  <!-- Overlay pour fermer le menu latéral -->
+  <div class="aside-overlay" id="asideOverlay"></div>
+
   <!-- ===== HEADER ===== -->
   <header class="header">
     <div class="header-wave">
@@ -751,60 +795,61 @@
       </svg>
     </div>
     
-    <nav class="navbar">
+    <!-- Barre de navigation principale avec bouton hamburger -->
+    <nav class="top-navbar">
       <div class="nav-container">
         <div class="logo">
-          <img src="img/m.png" alt="Mosquée" class="logo-img">
+          <img src="img/m.png" alt="FaithPath" class="logo-img">
           <span class="logo-text">Faith<span class="logo-highlight">Path</span></span>
         </div>
         
-        <div class="nav-menu" id="navMenu">
-          <a href="page_acceuil.html" class="nav-link">الرئيسية</a>
-          <a href="#quran" class="nav-link">القرآن الكريم</a>
-          <a href="asmaa_allah_alhousnaa_3d.html" class="nav-link active">أسماء الله الحسنى</a>
-          <a href="#features" class="nav-link">مسار الأنبياء</a>
-          <a href="#features" class="nav-link">التقويم الهجري</a>
-          <a href="#features" class="nav-link">المسبحة الإلكترونية</a>
-          <a href="#features" class="nav-link">قصة الصحابة</a>
-          <a href="#features" class="nav-link">حاسب نفسك</a>
-          <a href="#features" class="nav-link">صدقة جارية</a>
-          <a href="#features" class="nav-link">أذكار</a>
-          <a href="#contact" class="nav-link">اتصل بنا</a>
-        </div>
-        
+        <!-- Hamburger Button (ouvre le menu latéral) -->
+        <button class="hamburger" id="hamburgerBtn" aria-label="القائمة">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <!-- Actions de droite (recherche + profil) -->
         <div class="nav-actions">
+          <a href="start.html" id="authActionBtn" class="auth-action-btn"><i class="fas fa-right-to-bracket"></i><span>إنشاء حساب / تسجيل الدخول</span></a>
           <div class="search-box">
             <i class="fas fa-search search-icon"></i>
             <input type="text" placeholder="بحث..." class="search-input">
           </div>
-          <div class="user-profile">
-            <i class="fas fa-bell notification-icon"></i>
-            <div class="profile-badge">
-              <i class="fas fa-user-circle profile-icon"></i>
-              <span class="profile-name" id="profileName">المستخدم</span>
-            </div>
-          </div>
-          <div class="menu-toggle" id="menuToggle">
-            <i class="fas fa-bars"></i>
+          <i class="far fa-bell notification-icon"></i>
+          <div class="profile-badge">
+            <i class="far fa-user-circle profile-icon"></i>
+            <span class="profile-name" id="profileName">أحمد</span>
           </div>
         </div>
       </div>
     </nav>
+
+    </nav>
+    
+    <div class="hero-section" id="accueil">
+      <div class="hero-content">
+        <div class="decorative-icons-top">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star-of-david"></i>
+          <i class="fas fa-star"></i>
+        </div>
+        <h2 class="hero-title">أسماء الله الحسنى</h2>
+        <p class="hero-subtitle">تعرف على أسماء الله الـ 99 الحسنى وأدعُ الله بها</p>
+        <p class="hero-ayah">﴿ وَلِلَّهِ الْأَسْمَاءُ الْحُسْنَىٰ فَادْعُوهُ بِهَا ﴾</p>
+        <p class="ayah-source">سورة الأعراف - الآية 180</p>
+      </div>
+    </div>
   </header>
 
-  <main class="page-shell">
-    <section class="title-block">
-      <div class="bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
-      <div class="ornaments">✦ ☪ ✦</div>
-      <h1>أَسْمَاءُ اللَّهِ الْحُسْنَى </h1>
-      <p style="font-size: 1.2rem; margin-top: 1rem; color: var(--islamic-green); font-weight: 700;">﴿ وَلِلَّهِ الْأَسْمَاءُ الْحُسْنَىٰ فَادْعُوهُ بِهَا ﴾</p>
-      <p class="hint-text" style="margin-top: 0.8rem;">القرآن الكريم - سورة الأعراف، الآية 180</p>
-    </section>
-
-    <section class="scene">
-      <div class="stars" id="stars"></div>
-      <div class="line-wrap">
-        <div class="name-line" id="nameLine"></div>
+  <main class="main-content">
+    <section class="asma-container">
+      <div class="scene">
+        <div class="stars" id="stars"></div>
+        <div class="line-wrap">
+          <div class="name-line" id="nameLine"></div>
+        </div>
       </div>
     </section>
   </main>
@@ -952,22 +997,81 @@
 
   <!-- ===== FOOTER ===== -->
   <footer class="footer">
-    <div class="footer-simple">
-      <div class="footer-line-1">
-        <span class="footer-logo-minimal">FaithPath</span>
-        <span class="footer-social-minimal">
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
-        </span>
+    <div class="footer-wave">
+      <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M0,120V49c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V120Z" class="wave-fill"></path>
+      </svg>
+    </div>
+    
+    <div class="footer-content">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <div class="footer-logo">
+            <img src="img/m.png" alt="FaithPath" class="footer-logo-img">
+            <span class="footer-logo-text">FaithPath</span>
+          </div>
+          <p class="footer-about">منصة إسلامية شاملة لتعلم وتطبيق تعاليم الإسلام الحقة. نوفر محتوى قرآني وديني عالي الجودة.</p>
+          <div class="footer-social">
+            <a href="#" class="social-link" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-link" title="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-link" title="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        
+        <div class="footer-col">
+          <h4 class="footer-title">الرئيسية</h4>
+          <ul class="footer-links">
+            <li><a href="page_acceuil.html" class="footer-link"><i class="fas fa-chevron-right"></i> الرئيسية</a></li>
+            <li><a href="#" class="footer-link"><i class="fas fa-chevron-right"></i> القرآن الكريم</a></li>
+            <li><a href="asmaa_allah_alhousnaa_3d.html" class="footer-link"><i class="fas fa-chevron-right"></i> أسماء الله الحسنى</a></li>
+            <li><a href="#" class="footer-link"><i class="fas fa-chevron-right"></i> مسار الأنبياء</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h4 class="footer-title">الموارد</h4>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-link"><i class="fas fa-chevron-right"></i> التقويم الهجري</a></li>
+            <li><a href="prayertime.html" class="footer-link"><i class="fas fa-chevron-right"></i> أوقات الصلاة</a></li>
+            <li><a href="#" class="footer-link"><i class="fas fa-chevron-right"></i> المسبحة الإلكترونية</a></li>
+            <li><a href="#" class="footer-link"><i class="fas fa-chevron-right"></i> الأذكار</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-col">
+          <h4 class="footer-title">اتصل بنا</h4>
+          <p class="footer-newsletter-text">اشترك في نشرتنا البريدية للحصول على محتوى حصري</p>
+          <form class="newsletter-form">
+            <input type="email" class="newsletter-input" placeholder="بريدك الإلكتروني" required>
+            <button type="submit" class="newsletter-btn"><i class="fas fa-arrow-right"></i></button>
+          </form>
+          <div class="footer-apps">
+            <a href="#" class="app-badge">
+              <i class="fab fa-app-store"></i>
+              <span>تحميل من iOS</span>
+            </a>
+            <a href="#" class="app-badge">
+              <i class="fab fa-google-play"></i>
+              <span>تحميل من Android</span>
+            </a>
+          </div>
+        </div>
       </div>
-      <div class="footer-line-2">
-        <a href="#">خريطة الموقع</a> | 
-        <a href="#">شروط الاستخدام</a> | 
-        <a href="#">المساعدة</a>
-      </div>
-      <div class="footer-line-3">
-        © ٢٠٢٦ FaithPath. جميع الحقوق محفوظة
+      
+      <div class="footer-bottom">
+        <div class="footer-bottom-content">
+          <p class="footer-copyright">© 2026 FaithPath. جميع الحقوق محفوظة</p>
+          <div class="footer-bottom-links">
+            <a href="#">سياسة الخصوصية</a>
+            <span class="separator">|</span>
+            <a href="#">شروط الاستخدام</a>
+            <span class="separator">|</span>
+            <a href="#">خريطة الموقع</a>
+            <span class="separator">|</span>
+            <a href="#">المساعدة</a>
+          </div>
+        </div>
       </div>
     </div>
   </footer>

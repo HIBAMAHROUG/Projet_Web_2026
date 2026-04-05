@@ -47,9 +47,21 @@ function getInitialStore() {
     return [
         'users' => [],
         'password_resets' => [],
+        'signup_submissions' => [],
+        'start_submissions' => [],
         'next_user_id' => 1,
         'next_reset_id' => 1,
+        'next_submission_id' => 1,
     ];
+}
+
+function ensureStoreSchema(&$store) {
+    $defaults = getInitialStore();
+    foreach ($defaults as $key => $defaultValue) {
+        if (!array_key_exists($key, $store)) {
+            $store[$key] = $defaultValue;
+        }
+    }
 }
 
 function ensureNosqlStoreExists() {
@@ -78,6 +90,8 @@ function withStore($callback) {
         $store = json_decode($raw ?: '{}', true);
         if (!is_array($store) || !isset($store['users']) || !isset($store['password_resets'])) {
             $store = getInitialStore();
+        } else {
+            ensureStoreSchema($store);
         }
 
         $result = $callback($store);
@@ -254,5 +268,53 @@ function verifyUserCredentials($email, $plainPassword) {
         }
 
         return null;
+    });
+}
+
+function appendSignupSubmission($fullName, $email, $success, $note = '') {
+    return withStore(function (&$store) use ($fullName, $email, $success, $note) {
+        $id = (int) ($store['next_submission_id'] ?? 1);
+        $store['next_submission_id'] = $id + 1;
+
+        $store['signup_submissions'][] = [
+            'id' => $id,
+            'full_name' => $fullName,
+            'email' => $email,
+            'success' => $success ? 1 : 0,
+            'note' => $note,
+            'created_at' => date('Y-m-d H:i:s'),
+        ];
+
+        return true;
+    });
+}
+
+function appendStartSubmission($identifier, $success, $note = '') {
+    return withStore(function (&$store) use ($identifier, $success, $note) {
+        $id = (int) ($store['next_submission_id'] ?? 1);
+        $store['next_submission_id'] = $id + 1;
+
+        $store['start_submissions'][] = [
+            'id' => $id,
+            'identifier' => $identifier,
+            'success' => $success ? 1 : 0,
+            'note' => $note,
+            'created_at' => date('Y-m-d H:i:s'),
+        ];
+
+        return true;
+    });
+}
+
+function updateUserLastLoginByEmail($email) {
+    return withStore(function (&$store) use ($email) {
+        foreach ($store['users'] as &$user) {
+            if (($user['email'] ?? '') === $email) {
+                $user['last_login_at'] = date('Y-m-d H:i:s');
+                return true;
+            }
+        }
+
+        return false;
     });
 }

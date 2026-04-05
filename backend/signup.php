@@ -21,32 +21,39 @@ $email = strtolower(trim($payload['email'] ?? ($_POST['email'] ?? '')));
 $password = $payload['password'] ?? ($_POST['password'] ?? '');
 $confirmPassword = $payload['confirmPassword'] ?? ($_POST['confirmPassword'] ?? '');
 
+function failWithLog($fullName, $email, $message, $status) {
+    appendSignupSubmission($fullName, $email, false, $message);
+    respondJson(false, $message, $status);
+}
+
 if ($fullName === '' || $email === '' || $password === '' || $confirmPassword === '') {
-    respondJson(false, 'Tous les champs sont obligatoires.', 422);
+    failWithLog($fullName, $email, 'Tous les champs sont obligatoires.', 422);
 }
 
 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-    respondJson(false, 'Adresse email invalide.', 422);
+    failWithLog($fullName, $email, 'Adresse email invalide.', 422);
 }
 
 if (strlen($password) < 8) {
-    respondJson(false, 'Le mot de passe doit contenir au moins 8 caracteres.', 422);
+    failWithLog($fullName, $email, 'Le mot de passe doit contenir au moins 8 caracteres.', 422);
 }
 
 if ($password !== $confirmPassword) {
-    respondJson(false, 'Les mots de passe ne correspondent pas.', 422);
+    failWithLog($fullName, $email, 'Les mots de passe ne correspondent pas.', 422);
 }
 
 $existing = findUserByEmail($email);
 if ($existing) {
-    respondJson(false, 'Cet email est deja utilise.', 409);
+    failWithLog($fullName, $email, 'Cet email est deja utilise.', 409);
 }
 
 $hashed = password_hash($password, PASSWORD_BCRYPT);
 $user = createUser($fullName, $email, $hashed);
 if (!$user) {
-    respondJson(false, 'Cet email est deja utilise.', 409);
+    failWithLog($fullName, $email, 'Cet email est deja utilise.', 409);
 }
+
+appendSignupSubmission($fullName, $email, true, 'Compte cree avec succes.');
 
 respondJson(true, 'Compte cree avec succes.', 201, [
     'user' => [
