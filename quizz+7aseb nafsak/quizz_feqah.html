@@ -99,8 +99,8 @@ function loadQ(){
 }
 function startT(){clearInterval(ti);tl=20;updT(20);document.getElementById("trr").classList.remove("danger");ti=setInterval(()=>{tl--;updT(tl);if(tl<=5)document.getElementById("trr").classList.add("danger");if(tl<=0){clearInterval(ti);timeout();}},1000);}
 function updT(t){document.getElementById("ttxt").textContent=t;document.getElementById("tfc").style.strokeDashoffset=C*(1-t/20);}
-function timeout(){if(ans)return;ans=true;toc++;const q=cq[ci];document.querySelectorAll(".ob").forEach(b=>{b.disabled=true;if(parseInt(b.dataset.orig)===q.a)b.classList.add("correct");});ua.push({q:q.q,u:null,c:q.o[q.a],ok:false,to:true});toast(false,"⏰ انتهى الوقت!");reveal(q.o[q.a]);showNxt(ci===cq.length-1);}
-function selA(b,ch,ca){if(ans)return;ans=true;clearInterval(ti);const q=cq[ci];const ok=ch===ca;document.querySelectorAll(".ob").forEach(btn=>{btn.disabled=true;if(parseInt(btn.dataset.orig)===ca)btn.classList.add("correct");else if(btn===b&&!ok)btn.classList.add("wrong");});if(ok){sc++;toast(true,"✅ إجابة صحيحة! أحسنت 🌟");ua.push({q:q.q,u:q.o[ch],c:q.o[ca],ok:true,to:false});}else{wc++;toast(false,"❌ إجابة خاطئة!");reveal(q.o[ca]);ua.push({q:q.q,u:q.o[ch],c:q.o[ca],ok:false,to:false});}document.getElementById("scr").textContent=sc;document.getElementById("wrg").textContent=wc;showNxt(ci===cq.length-1);}
+function timeout(){if(ans)return;ans=true;toc++;const q=cq[ci];document.querySelectorAll(".ob").forEach(b=>{b.disabled=true;if(parseInt(b.dataset.orig)===q.a)b.classList.add("correct");});ua.push({q:q.q,u:null,c:q.o[q.a],ok:false,to:true});toast(false,"⏰ انتهى الوقت! حاول متفوتش عشرين ثانية.");reveal(q.o[q.a]);showNxt(ci===cq.length-1);}
+function selA(b,ch,ca){if(ans)return;ans=true;clearInterval(ti);const q=cq[ci];const ok=ch===ca;document.querySelectorAll(".ob").forEach(btn=>{btn.disabled=true;if(parseInt(btn.dataset.orig)===ca)btn.classList.add("correct");else if(btn===b&&!ok)btn.classList.add("wrong");});if(ok){sc++;toast(true,"✅ إجابة صحيحة! صحيتك 🌟");ua.push({q:q.q,u:q.o[ch],c:q.o[ca],ok:true,to:false});}else{wc++;toast(false,"❌ إجابة غالطة، ميسالش كمل!");reveal(q.o[ca]);ua.push({q:q.q,u:q.o[ch],c:q.o[ca],ok:false,to:false});}document.getElementById("scr").textContent=sc;document.getElementById("wrg").textContent=wc;showNxt(ci===cq.length-1);}
 function toast(ok,msg){const f=document.getElementById("ft");f.className="ft "+(ok?"ok":"ko");document.getElementById("fi").className=ok?"fa-solid fa-circle-check":"fa-solid fa-circle-xmark";document.getElementById("fm").textContent=msg;}
 function reveal(t){const r=document.getElementById("crv");r.className="cr show";document.getElementById("crt").textContent="الإجابة الصحيحة: "+t;}
 function showNxt(last){const b=document.getElementById("nb");b.style.display="flex";document.getElementById("nbt").textContent=last?"عرض النتيجة":"السؤال التالي";}
@@ -110,10 +110,10 @@ function result(){
   document.getElementById("rsc").textContent=sc;document.getElementById("rwc").textContent=wc;document.getElementById("rtoc").textContent=toc;
   document.getElementById("sdisp").textContent=sc+"/20";
   const p=(sc/20)*100;let tit,gt,ic,gic;
-  if(p>=90){tit="ممتاز! أحسنت 🏆";gt="درجة ممتازة – واصل التعلم!";ic="gg";gic="fa-trophy";}
-  else if(p>=70){tit="جيد جداً 👏";gt="درجة جيدة جداً – أنت على الطريق الصحيح!";ic="sg";gic="fa-medal";}
-  else if(p>=50){tit="جيد 🙂";gt="يمكنك التحسن أكثر، حاول مرة أخرى!";ic="bg2";gic="fa-star-half-stroke";}
-  else{tit="تحتاج إلى مراجعة 📚";gt="لا تيأس! راجع المادة وأعد المحاولة.";ic="lg";gic="fa-book-open";}
+  if(p>=90){tit="ممتاز! صحيتك 🏆";gt="درجة ممتازة – كمل تعلم راك في ثنية باهية!";ic="gg";gic="fa-trophy";}
+  else if(p>=70){tit=" باهي برشا 👏";gt="درجة باهية برشا – أنت على الطريق الصحيح!";ic="sg";gic="fa-medal";}
+  else if(p>=50){tit="جيد 🙂";gt="تنجم تعمل خير من هكا عاود وزيد ركز";ic="bg2";gic="fa-star-half-stroke";}
+  else{tit=" زيد راجع شويا يا بطل و رد بالك ترخ📚";gt="لا تيأس! راجع المادة وعاود المحاولة.";ic="lg";gic="fa-book-open";}
   document.getElementById("rtit").textContent=tit;document.getElementById("gtxt").textContent=gt;
   const iw=document.getElementById("riw");iw.className="riw "+ic;document.getElementById("ric").className="fa-solid "+gic;
   const l=document.getElementById("rvl");l.innerHTML="";
