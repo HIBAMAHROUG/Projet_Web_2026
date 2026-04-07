@@ -4,9 +4,9 @@
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-  const menuToggle = document.getElementById('menuToggle');
-  const navMenu = document.getElementById('navMenu');
-  let navOverlay = document.getElementById('navOverlay');
+  const menuToggle = document.getElementById('menuToggle') || document.getElementById('hamburgerBtn');
+  const navMenu = document.getElementById('navMenu') || document.getElementById('asideNav');
+  let navOverlay = document.getElementById('navOverlay') || document.getElementById('asideOverlay');
 
   if (!menuToggle || !navMenu) {
     console.warn('Menu toggle or nav menu elements not found');
@@ -20,7 +20,12 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.appendChild(navOverlay);
   }
 
-  menuToggle.textContent = '☰';
+  const hasBurgerSpans = menuToggle.querySelectorAll('span').length >= 3;
+  if (!hasBurgerSpans) {
+    menuToggle.textContent = '☰';
+  }
+
+  const closeAsideBtn = document.getElementById('closeAsideBtn');
 
   const searchIcon = document.querySelector('.search-icon');
   const searchInput = document.querySelector('.search-input');
@@ -30,13 +35,17 @@ document.addEventListener('DOMContentLoaded', function() {
   const openMenu = function() {
     navMenu.classList.add('active');
     navOverlay.classList.add('active');
-    menuToggle.textContent = '✕';
+    if (!hasBurgerSpans) {
+      menuToggle.textContent = '✕';
+    }
   };
 
   const closeMenu = function() {
     navMenu.classList.remove('active');
     navOverlay.classList.remove('active');
-    menuToggle.textContent = '☰';
+    if (!hasBurgerSpans) {
+      menuToggle.textContent = '☰';
+    }
   };
 
   const toggleMenu = function() {
@@ -69,6 +78,9 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   navOverlay.addEventListener('click', closeMenu);
+  if (closeAsideBtn) {
+    closeAsideBtn.addEventListener('click', closeMenu);
+  }
 
   // Close menu on window resize (desktop view)
   window.addEventListener('resize', function() {
