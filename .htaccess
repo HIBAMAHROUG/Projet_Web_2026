@@ -1,0 +1,7 @@
+Options -Indexes
+DirectoryIndex page_acceuil.html start.html index.html index.php
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule ^$ page_acceuil.html [L]
+</IfModule>

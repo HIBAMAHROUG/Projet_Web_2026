@@ -1,0 +1,65 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "full_name": "Test User",
+            "email": "user80671@example.com",
+            "password": "$2y$10$Gt\/gygM6Os4qUX5XmHo4tuC9zh3zJd9XN83AKswgz3xguoVIPl1sO",
+            "created_at": "2026-04-04 14:52:07"
+        },
+        {
+            "id": 3,
+            "full_name": "Auto Test",
+            "email": "auto30913@example.com",
+            "password": "$2y$10$.46AVv3SC3EVPFdAOfa5..K207IsoyGA4.H3JFIa1f2\/nlc13JL\/W",
+            "created_at": "2026-04-04 15:11:31"
+        },
+        {
+            "id": 4,
+            "full_name": "Check Add",
+            "email": "check70915@gmail.com",
+            "password": "$2y$10$9atc0SIwxTuMaQd3xE\/JoOYAbUdOWcMhOMPDsk40Pvl\/GcRgBvKge",
+            "created_at": "2026-04-04 15:18:47"
+        }
+    ],
+    "password_resets": [
+        {
+            "id": 7,
+            "email": "user80671@example.com",
+            "token": "$2y$10$tFLAvfEwLL4v6FxlKj4Aw.XVWAy1eaALXT9t0ET74h1mVRliVdStK",
+            "expires_at": "2026-04-04 15:24:50",
+            "used": 0,
+            "created_at": "2026-04-04 15:14:50"
+        },
+        {
+            "id": 9,
+            "email": "auto30913@example.com",
+            "token": "$2y$10$SRt9STaw7Eux3CwW8x9gC.yGvB8RjCAreeYA24BG7PmTMkKU4uVTu",
+            "expires_at": "2026-04-04 15:24:55",
+            "used": 0,
+            "created_at": "2026-04-04 15:14:55"
+        }
+    ],
+    "next_user_id": 9,
+    "next_reset_id": 10,
+    "signup_submissions": [
+        {
+            "id": 1,
+            "full_name": "janna",
+            "email": "hebamahroug@gmail.com",
+            "success": 0,
+            "note": "Le mot de passe doit contenir au moins 8 caracteres.",
+            "created_at": "2026-04-05 15:30:42"
+        },
+        {
+            "id": 2,
+            "full_name": "janna",
+            "email": "hebamahroug@gmail.com",
+            "success": 1,
+            "note": "Compte cree avec succes.",
+            "created_at": "2026-04-05 15:31:02"
+        }
+    ],
+    "start_submissions": [],
+    "next_submission_id": 3
+}
