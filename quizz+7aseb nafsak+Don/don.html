@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FaithPath – تبرّع ونِل أجرك</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;600;700;900&family=Amiri:wght@400;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --e9:#0f3d2e;--e8:#145a3f;--e7:#1d6b4a;--e6:#2a7b57;
+  --e2:#cfe2d5;--e1:#e7f3ea;--s0:#fbf7f0;--s1:#f2eadf;--s2:#e7d8c8;
+  --br:#9f7a55;--gd:#c9a87c;--tr:all 0.3s cubic-bezier(.25,.46,.45,.94)
+}
+body{
+  font-family:'Cairo',sans-serif;
+  background:
+    radial-gradient(circle at 20% 15%,rgba(255,255,255,.9),transparent 45%),
+    radial-gradient(circle at 80% 10%,rgba(207,226,213,.55),transparent 50%),
+    linear-gradient(140deg,#fcfaf6 0%,#f1e8dc 55%,#e8d8c8 100%);
+  min-height:100vh;color:#2e2a28;overflow-x:hidden
+}
+body::before{
+  content:"";position:fixed;inset:0;
+  background-image:
+    radial-gradient(circle at 12px 12px,rgba(20,90,63,.08) 0,rgba(20,90,63,.08) 2px,transparent 2px),
+    radial-gradient(circle at 28px 28px,rgba(20,90,63,.06) 0,rgba(20,90,63,.06) 2px,transparent 2px);
+  background-size:40px 40px;opacity:.35;pointer-events:none;z-index:0
+}
+.header{background:linear-gradient(135deg,var(--e9),var(--e7));color:#fff;position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(0,0,0,.2)}
+.navbar{padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;max-width:1100px;margin:0 auto}
+.logo{display:flex;align-items:center;gap:.7rem}
+.logo-icon{width:42px;height:42px;background:linear-gradient(135deg,var(--gd),#b88f63);border-radius:50% 50% 30% 70%/60% 40% 60% 40%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:var(--e9);box-shadow:0 6px 14px rgba(0,0,0,.2)}
+.logo-text{font-size:1.6rem;font-weight:700;color:#fff;font-family:'Noto Kufi Arabic',serif}
+.logo-text span{color:var(--gd)}
+.nav-badge{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);padding:.4rem 1.2rem;border-radius:50px;font-size:1rem;font-weight:600;display:flex;align-items:center;gap:.5rem}
+.nav-badge i{color:var(--gd)}
+.pw{max-width:860px;margin:0 auto;padding:2.5rem 1.5rem 4rem;position:relative;z-index:1}
+.screen{display:none;animation:fiu .5s ease}
+.screen.active{display:block}
+@keyframes fiu{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.wh{text-align:center;margin-bottom:2.5rem}
+.bc{width:90px;height:90px;background:linear-gradient(135deg,var(--e6),var(--e8));border-radius:50% 50% 30% 70%/60% 40% 60% 40%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;box-shadow:0 14px 28px -8px rgba(15,61,46,.6),0 0 0 3px rgba(251,247,240,.9) inset}
+.bc i{font-size:3.4rem;color:#fef7e9}
+.bism{font-family:'Noto Kufi Arabic',sans-serif;font-size:1.1rem;color:var(--e7);margin-bottom:.5rem}
+.wtit{font-family:'Noto Kufi Arabic','Amiri',serif;font-size:2.4rem;font-weight:700;color:var(--e9);text-shadow:2px 2px 0 #e2d5c0;margin-bottom:.7rem}
+.wsub{font-size:1.1rem;color:var(--br);background:rgba(207,226,213,.4);display:inline-block;padding:.3rem 1.8rem;border-radius:50px;border:1px solid rgba(173,200,186,.6)}
+.motiv-banner{background:linear-gradient(135deg,var(--e8) 0%,var(--e9) 60%,#0a2d20 100%);border-radius:1.6rem;padding:1.2rem 1.5rem;margin-bottom:2rem;display:flex;align-items:center;gap:1rem;box-shadow:0 12px 28px rgba(15,61,46,.28);position:relative;overflow:hidden}
+.motiv-banner::before{content:'☽';position:absolute;left:-10px;bottom:-10px;font-size:5rem;color:rgba(255,255,255,.05);font-family:'Amiri',serif;pointer-events:none}
+.motiv-icon-wrap{width:46px;height:46px;flex-shrink:0;background:rgba(255,255,255,.13);border-radius:50% 50% 35% 65%/55% 45% 55% 45%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;border:1px solid rgba(255,255,255,.15)}
+.motiv-text{font-family:'Noto Kufi Arabic',serif;font-size:.95rem;line-height:1.75;color:rgba(255,255,255,.92)}
+.motiv-text strong{color:var(--gd)}
+.cause-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-bottom:2rem}
+@media(max-width:620px){.cause-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:380px){.cause-grid{grid-template-columns:1fr}}
+.cause-card{background:rgba(255,255,255,.82);backdrop-filter:blur(10px);border-radius:1.8rem 1.8rem 1.8rem .6rem;border:2px solid var(--e2);padding:1.4rem 1rem;cursor:pointer;transition:var(--tr);text-align:center;box-shadow:0 12px 28px rgba(15,61,46,.08);position:relative;overflow:hidden}
+.cause-card::after{content:"\263E";position:absolute;bottom:-4px;left:12px;font-size:3rem;color:rgba(63,143,103,.1);font-family:'Amiri',serif;pointer-events:none}
+.cause-card:hover,.cause-card.sel{transform:translateY(-6px);border-color:var(--gd);box-shadow:0 20px 40px rgba(15,61,46,.18),0 0 0 3px rgba(201,168,124,.2)}
+.cause-card.sel{background:rgba(231,243,234,.9)}
+.cause-icon{width:62px;height:62px;background:linear-gradient(135deg,var(--e6),var(--e8));border-radius:50% 50% 30% 70%/60% 40% 60% 40%;display:flex;align-items:center;justify-content:center;margin:0 auto .85rem;box-shadow:0 10px 20px -6px rgba(15,61,46,.55);font-size:1.9rem;color:var(--s0);transition:var(--tr)}
+.cause-card:hover .cause-icon,.cause-card.sel .cause-icon{background:linear-gradient(135deg,var(--gd),#b88f63);color:var(--e9)}
+.cause-name{font-size:1rem;font-weight:700;color:var(--e9);margin-bottom:.25rem}
+.cause-desc{font-size:.82rem;color:var(--br)}
+.cause-badge{display:inline-block;margin-top:.6rem;background:var(--e1);color:var(--e7);padding:.2rem .9rem;border-radius:50px;font-size:.8rem;font-weight:600;border:1px solid var(--e2)}
+.cause-card.sel .cause-badge{background:var(--e7);color:#fff;border-color:var(--e7)}
+.section-block{margin-bottom:2.2rem;animation:fiu .5s ease both}
+.section-header{display:flex;align-items:center;gap:.8rem;margin-bottom:1.2rem}
+.sec-num{width:34px;height:34px;background:linear-gradient(135deg,var(--e7),var(--e8));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:700;color:#fff;flex-shrink:0;box-shadow:0 4px 10px rgba(15,61,46,.3)}
+.sec-title-text{font-family:'Noto Kufi Arabic',serif;font-size:1.15rem;font-weight:700;color:var(--e9)}
+.sec-emoji{font-size:1.2rem;margin-right:auto}
+.section-divider{height:1px;background:linear-gradient(90deg,rgba(207,226,213,.8),transparent);margin-bottom:2.2rem}
+.amount-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem;margin-bottom:1.2rem}
+@media(max-width:560px){.amount-grid{grid-template-columns:repeat(2,1fr)}}
+.amount-btn{background:rgba(255,255,255,.82);backdrop-filter:blur(10px);border:2px solid var(--e2);border-radius:1.4rem;padding:1rem .8rem;cursor:pointer;transition:var(--tr);text-align:center;box-shadow:0 8px 20px rgba(15,61,46,.07)}
+.amount-btn:hover,.amount-btn.sel{border-color:var(--gd);transform:translateY(-4px);box-shadow:0 16px 32px rgba(15,61,46,.16)}
+.amount-btn.sel{background:rgba(231,243,234,.95)}
+.amount-val{font-family:'Amiri',serif;font-size:1.7rem;font-weight:700;color:var(--e9);display:block;line-height:1.1}
+.amount-currency{font-size:.8rem;color:var(--br);font-weight:600}
+.amount-btn.sel .amount-val{color:var(--e7)}
+.custom-amount-wrap{background:rgba(255,255,255,.88);backdrop-filter:blur(10px);border:2px solid var(--e2);border-radius:1.4rem;padding:1rem 1.2rem;display:flex;align-items:center;gap:.8rem;box-shadow:0 8px 20px rgba(15,61,46,.06);transition:var(--tr)}
+.custom-amount-wrap:focus-within{border-color:var(--gd);box-shadow:0 12px 28px rgba(15,61,46,.14)}
+.custom-amount-wrap label{font-size:.9rem;font-weight:700;color:var(--br);white-space:nowrap}
+.custom-amount-input{flex:1;border:none;background:transparent;font-family:'Amiri',serif;font-size:1.6rem;font-weight:700;color:var(--e9);outline:none;text-align:left;min-width:0}
+.custom-amount-input::placeholder{color:var(--e2)}
+.curr-label{font-size:.9rem;font-weight:700;color:var(--br)}
+.form-card{background:rgba(255,255,255,.88);backdrop-filter:blur(12px);border-radius:2rem;padding:2rem 1.8rem;box-shadow:0 20px 40px rgba(15,61,46,.1);border:1px solid var(--e2);margin-bottom:1.5rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+@media(max-width:540px){.form-row{grid-template-columns:1fr}}
+.form-group{display:flex;flex-direction:column;gap:.4rem}
+.form-group.full{grid-column:1/-1}
+.form-label{font-size:.88rem;font-weight:700;color:var(--e7);display:flex;align-items:center;gap:.4rem}
+.form-label i{color:var(--gd)}
+.form-input{background:rgba(231,243,234,.5);border:1.5px solid var(--e2);border-radius:1rem;padding:.8rem 1rem;font-family:'Cairo',sans-serif;font-size:1rem;color:var(--e9);outline:none;transition:var(--tr);width:100%}
+.form-input:focus{border-color:var(--gd);background:rgba(255,255,255,.95);box-shadow:0 0 0 3px rgba(201,168,124,.15)}
+.form-input::placeholder{color:#bbb}
+.pay-grid{display:grid;gap:.8rem;margin-bottom:1.2rem}
+.pay-btn{background:rgba(255,255,255,.82);border:2px solid var(--e2);border-radius:1.2rem;padding:.9rem .7rem;cursor:pointer;transition:var(--tr);text-align:center;box-shadow:0 6px 16px rgba(15,61,46,.06)}
+.pay-btn:hover,.pay-btn.sel{border-color:var(--gd);transform:translateY(-3px);background:rgba(231,243,234,.9);box-shadow:0 14px 28px rgba(15,61,46,.14)}
+.pay-icon{font-size:1.6rem;display:block;margin-bottom:.25rem}
+.pay-name{font-size:.82rem;font-weight:700;color:var(--e9)}
+.sb{width:100%;background:var(--e7);color:#fff;border:none;border-radius:50px;padding:1rem 2rem;font-size:1.25rem;font-weight:700;font-family:'Cairo',sans-serif;cursor:pointer;transition:var(--tr);box-shadow:0 10px 20px -6px rgba(15,61,46,.55);display:flex;align-items:center;justify-content:center;gap:.8rem}
+.sb:hover{background:var(--e8);transform:translateY(-3px)}
+.trust-row{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-top:1.2rem;margin-bottom:2rem}
+.trust-item{display:flex;align-items:center;gap:.4rem;font-size:.82rem;font-weight:600;color:var(--br)}
+.trust-item i{color:var(--e7);font-size:.95rem}
+.rc{background:rgba(255,255,255,.88);backdrop-filter:blur(12px);border-radius:3rem 3rem 3rem .8rem;padding:2.8rem 2rem;box-shadow:0 30px 50px rgba(15,61,46,.13);border:1px solid var(--e2);text-align:center;position:relative;overflow:hidden;margin-bottom:2rem}
+.rc::after{content:"\263E";position:absolute;bottom:-4px;left:20px;font-size:6rem;color:rgba(63,143,103,.08);font-family:'Amiri',serif}
+.riw{width:100px;height:100px;border-radius:50% 50% 30% 70%/60% 40% 60% 40%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.2rem;font-size:3.5rem;box-shadow:0 16px 30px -8px rgba(0,0,0,.3)}
+.gg{background:linear-gradient(135deg,var(--gd),#b88f63);color:var(--e9)}
+.rtit{font-family:'Noto Kufi Arabic','Amiri',serif;font-size:2rem;font-weight:700;color:var(--e9);margin-bottom:.5rem}
+.sd{font-family:'Amiri',serif;font-size:4rem;font-weight:700;color:var(--gd);line-height:1;margin:.5rem 0}
+.sl{font-size:1.05rem;color:var(--br);margin-bottom:1.5rem}
+.gm{background:var(--e1);border:1px solid var(--e2);border-radius:1rem;padding:1rem 1.5rem;font-size:1.05rem;font-weight:600;color:var(--e8);display:flex;align-items:center;justify-content:center;gap:.6rem}
+.gm i{color:var(--gd)}
+.receipt-box{background:rgba(255,255,255,.88);border:2px dashed var(--gd);border-radius:1.5rem;padding:1.5rem;margin-bottom:1.5rem;text-align:right}
+.receipt-title{font-family:'Noto Kufi Arabic',serif;font-size:1rem;font-weight:700;color:var(--e9);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+.receipt-row{display:flex;justify-content:space-between;align-items:center;padding:.5rem 0;border-bottom:1px solid var(--e1);font-size:.95rem}
+.receipt-row:last-child{border-bottom:none}
+.receipt-row span:first-child{color:var(--br);font-weight:600}
+.receipt-row span:last-child{color:var(--e9);font-weight:700}
+.ra{display:flex;gap:1rem;justify-content:center;margin-top:1.5rem;flex-wrap:wrap}
+.ab{display:flex;flex-direction:column;align-items:center;gap:.5rem;background:rgba(255,255,255,.82);border:2px solid var(--e2);border-radius:1.5rem;padding:1.5rem 2rem;cursor:pointer;transition:var(--tr);color:var(--e9);box-shadow:0 10px 20px rgba(15,61,46,.08);min-width:130px;font-family:'Cairo',sans-serif}
+.ab:hover{border-color:var(--gd);transform:translateY(-5px);box-shadow:0 16px 32px rgba(15,61,46,.16)}
+.ab i{font-size:2.2rem;color:var(--e7)}
+.ab:hover i{color:var(--gd)}
+.ab span{font-size:.95rem;font-weight:700}
+.campaign-card{background:rgba(255,255,255,.88);backdrop-filter:blur(10px);border-radius:1.8rem;padding:1.4rem 1.8rem;margin-bottom:1.8rem;box-shadow:0 10px 24px rgba(15,61,46,.1);border:1px solid var(--e2)}
+.campaign-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.8rem}
+.campaign-title{font-family:'Noto Kufi Arabic',serif;font-size:1rem;font-weight:700;color:var(--e9)}
+.campaign-goal{font-size:.9rem;color:var(--br)}
+.prog-bar{height:12px;background:var(--e1);border-radius:50px;overflow:hidden;border:1px solid var(--e2)}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--e7),#3aaa6e,var(--gd));border-radius:50px;transition:width .7s ease}
+.campaign-stats{display:flex;gap:1.5rem;margin-top:.8rem;flex-wrap:wrap}
+.camp-stat span:first-child{font-family:'Amiri',serif;font-size:1.3rem;font-weight:700;color:var(--e9);display:block}
+.camp-stat span:last-child{font-size:.78rem;color:var(--br);font-weight:600}
+.sig{display:flex;align-items:center;justify-content:center;gap:.5rem;margin-top:2.5rem;font-size:1rem;color:#7f6f60}
+.sigt{font-family:'Noto Kufi Arabic','Amiri',serif;font-size:1.5rem;background:linear-gradient(135deg,var(--e7),#86a98f);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.section-block:nth-child(1){animation-delay:.00s}
+.section-block:nth-child(2){animation-delay:.07s}
+.section-block:nth-child(3){animation-delay:.14s}
+.section-block:nth-child(4){animation-delay:.21s}
+.section-block:nth-child(5){animation-delay:.28s}
+.err{font-size:.82rem;color:#c0392b;font-weight:600;display:none;margin-top:.3rem;padding:.3rem .6rem;background:rgba(231,76,60,.07);border-radius:.5rem}
+.err.show{display:block}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <nav class="navbar">
+    <div class="logo">
+      <div class="logo-icon">☽</div>
+      <div class="logo-text">Faith<span>Path</span></div>
+    </div>
+    <div style="text-align:center">
+      <div style="font-family:'Noto Kufi Arabic',serif;font-size:.88rem;color:rgba(255,255,255,.75)">بسم الله الرحمن الرحيم</div>
+      <div id="hijriDate" style="font-size:.78rem;color:rgba(255,255,255,.5);font-family:'Amiri',serif"></div>
+    </div>
+    <div class="nav-badge"><i class="fa-solid fa-hand-holding-heart"></i> تبرّع الآن</div>
+  </nav>
+</header>
+
+<div class="pw">
+
+<!-- SCREEN 1 — FORM -->
+<div class="screen active" id="formScreen">
+
+  <div class="wh">
+    <div class="bc"><i class="fa-solid fa-hand-holding-heart"></i></div>
+    <div class="bism">وَمَا تُنفِقُوا مِنْ خَيْرٍ فَإِنَّ اللَّهَ بِهِ عَلِيمٌ</div>
+    <h1 class="wtit">تبرّع ونِل أجرك</h1>
+    <div class="wsub">كل دينار تنفقه في سبيل الله له ثواب لا ينقطع</div>
+  </div>
+
+  <div class="motiv-banner">
+    <div class="motiv-icon-wrap">🤲</div>
+    <div class="motiv-text">
+      قال النبي ﷺ: <strong>« مَا نَقَصَ مَالُ عَبْدٍ مِنْ صَدَقَةٍ»</strong> — تبرّعك اليوم يُضاعفه الله لك في الدنيا والآخرة.
+    </div>
+  </div>
+
+  <div class="campaign-card">
+    <div class="campaign-header">
+      <div class="campaign-title">🎯 حملة رمضان الخيرية 1446</div>
+      <div class="campaign-goal">الهدف: <strong>500,000 د.ت</strong></div>
+    </div>
+    <div class="prog-bar"><div class="prog-fill" style="width:63%"></div></div>
+    <div class="campaign-stats">
+      <div class="camp-stat">
+        <span>315,200 د.ت</span>
+        <span>💰 تم جمعه</span>
+      </div>
+      <div class="camp-stat">
+        <span>1,247</span>
+        <span>🤝 متبرّع</span>
+      </div>
+      <div class="camp-stat">
+        <span>12 يوم</span>
+        <span>⏳ متبقٍّ</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- § 1 -->
+  <div class="section-block">
+    <div class="section-header">
+      <div class="sec-num">1</div>
+      <span class="sec-title-text">اختر وجهة تبرّعك</span>
+      <span class="sec-emoji">🌟</span>
+    </div>
+    <div class="cause-grid">
+      <div class="cause-card sel" data-cause="orphans" onclick="selectCause(this)">
+        <div class="cause-icon">👦</div>
+        <div class="cause-name">كفالة أيتام</div>
+        <div class="cause-desc">رعاية ودراسة</div>
+        <div class="cause-badge">أولوية عالية</div>
+      </div>
+      <div class="cause-card" data-cause="water" onclick="selectCause(this)">
+        <div class="cause-icon">💧</div>
+        <div class="cause-name">حفر آبار</div>
+        <div class="cause-desc">صدقة جارية</div>
+        <div class="cause-badge">صدقة جارية</div>
+      </div>
+      <div class="cause-card" data-cause="food" onclick="selectCause(this)">
+        <div class="cause-icon">🍲</div>
+        <div class="cause-name">إطعام الفقراء</div>
+        <div class="cause-desc">كل يوم جمعة</div>
+        <div class="cause-badge">إطعام فقير</div>
+      </div>
+      <div class="cause-card" data-cause="mosque" onclick="selectCause(this)">
+        <div class="cause-icon">🕌</div>
+        <div class="cause-name">بناء مسجد</div>
+        <div class="cause-desc">دار لله</div>
+        <div class="cause-badge">صدقة جارية</div>
+      </div>
+      <div class="cause-card" data-cause="quran" onclick="selectCause(this)">
+        <div class="cause-icon">📖</div>
+        <div class="cause-name">طباعة مصاحف</div>
+        <div class="cause-desc">نشر القرآن</div>
+        <div class="cause-badge">علم ينتفع به</div>
+      </div>
+      <div class="cause-card" data-cause="general" onclick="selectCause(this)">
+        <div class="cause-icon">💚</div>
+        <div class="cause-name">حيث تُوجَّه</div>
+        <div class="cause-desc">أي وجه خير</div>
+        <div class="cause-badge">تخيير للجمعية</div>
+      </div>
+    </div>
+  </div>
+  <div class="section-divider"></div>
+
+  <!-- § 2 -->
+  <div class="section-block">
+    <div class="section-header">
+      <div class="sec-num">2</div>
+      <span class="sec-title-text">حدّد مبلغ تبرّعك</span>
+      <span class="sec-emoji">💰</span>
+    </div>
+    <div class="amount-grid">
+      <div class="amount-btn" data-amt="20" onclick="selectAmount(this)">
+        <span class="amount-val">20</span>
+        <span class="amount-currency">دينار تونسي</span>
+      </div>
+      <div class="amount-btn sel" data-amt="50" onclick="selectAmount(this)">
+        <span class="amount-val">50</span>
+        <span class="amount-currency">دينار تونسي</span>
+      </div>
+      <div class="amount-btn" data-amt="100" onclick="selectAmount(this)">
+        <span class="amount-val">100</span>
+        <span class="amount-currency">دينار تونسي</span>
+      </div>
+      <div class="amount-btn" data-amt="200" onclick="selectAmount(this)">
+        <span class="amount-val">200</span>
+        <span class="amount-currency">دينار تونسي</span>
+      </div>
+    </div>
+    <div class="custom-amount-wrap">
+      <label for="customAmt">أو أدخل مبلغاً آخر</label>
+      <input id="customAmt" class="custom-amount-input" type="number" min="1"
+             placeholder="0" oninput="onCustomAmt(this)">
+      <span class="curr-label">د.ت</span>
+    </div>
+    <div class="err" id="amtErr">يرجى اختيار مبلغ أو إدخاله</div>
+  </div>
+  <div class="section-divider"></div>
+
+  <!-- § 3 -->
+  <div class="section-block">
+    <div class="section-header">
+      <div class="sec-num">3</div>
+      <span class="sec-title-text">بياناتك الشخصية</span>
+      <span class="sec-emoji">👤</span>
+    </div>
+    <div class="form-card">
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label"><i class="fa-solid fa-user"></i> الاسم الكامل <span style="color:#e74c3c">*</span></label>
+          <input id="fName" class="form-input" type="text" placeholder="محمد بن علي" oninput="clearErr('nameErr')">
+          <div class="err" id="nameErr">يرجى إدخال اسمك</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label"><i class="fa-solid fa-phone"></i> رقم الهاتف <span style="color:#e74c3c">*</span></label>
+          <input id="fPhone" class="form-input" type="tel" placeholder="0021620123456" oninput="clearErr('phoneErr')">
+          <div class="err" id="phoneErr">يرجى إدخال رقم هاتف صحيح</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label"><i class="fa-solid fa-envelope"></i> البريد الإلكتروني</label>
+          <input id="fEmail" class="form-input" type="email" placeholder="email@example.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label"><i class="fa-solid fa-city"></i> المدينة</label>
+          <input id="fCity" class="form-input" type="text" placeholder="تونس العاصمة">
+        </div>
+        <div class="form-group full">
+          <label class="form-label"><i class="fa-solid fa-comment"></i> رسالة أو دعاء (اختياري)</label>
+          <textarea id="fMessage" class="form-input" rows="3"
+            placeholder="اللهم تقبّل منا وممن تبرّع بهذا المال صدقةً جاريةً..."></textarea>
+        </div>
+        <div class="form-group full" style="flex-direction:row;align-items:center;gap:.7rem;cursor:pointer" onclick="toggleAnon()">
+          <div id="anonBox" style="width:22px;height:22px;border-radius:6px;border:2px solid var(--e2);
+               background:var(--e1);display:flex;align-items:center;justify-content:center;
+               flex-shrink:0;transition:var(--tr)"></div>
+          <span style="font-size:.92rem;font-weight:600;color:var(--e9)">
+            أريد أن يكون تبرّعي <strong>مجهول الهوية</strong>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section-divider"></div>
+
+  <!-- § 4 -->
+  <div class="section-block">
+    <div class="section-header">
+      <div class="sec-num">4</div>
+      <span class="sec-title-text">طريقة الدفع</span>
+      <span class="sec-emoji">💳</span>
+    </div>
+    <div class="pay-grid" style="grid-template-columns:repeat(4,1fr)">
+      <div class="pay-btn sel" data-pay="post" onclick="selectPay(this)">
+        <span class="pay-icon">📮</span>
+        <span class="pay-name">بريد تونس</span>
+      </div>
+      <div class="pay-btn" data-pay="bank" onclick="selectPay(this)">
+        <span class="pay-icon">🏛️</span>
+        <span class="pay-name">تحويل بنكي</span>
+      </div>
+      <div class="pay-btn" data-pay="d17" onclick="selectPay(this)">
+        <span class="pay-icon">📱</span>
+        <span class="pay-name">D17</span>
+      </div>
+      <div class="pay-btn" data-pay="other" onclick="selectPay(this)">
+        <span class="pay-icon">🤝</span>
+        <span class="pay-name">أخرى</span>
+      </div>
+    </div>
+    <div class="err" id="payErr">يرجى اختيار طريقة الدفع</div>
+  </div>
+
+  <button class="sb" onclick="submitDonation()">
+    <i class="fa-solid fa-heart"></i> تأكيد التبرّع
+  </button>
+
+  <div class="trust-row">
+    <div class="trust-item"><i class="fa-solid fa-shield-halved"></i> مدفوعات آمنة 100%</div>
+    <div class="trust-item"><i class="fa-solid fa-certificate"></i> جمعية معتمدة رسمياً</div>
+    <div class="trust-item"><i class="fa-solid fa-lock"></i> بياناتك محمية</div>
+  </div>
+
+</div>
+
+<!-- SCREEN 2 — SUCCESS -->
+<div class="screen" id="successScreen">
+
+  <div class="rc">
+    <div class="riw gg">🌟</div>
+    <div class="rtit">جزاك الله خيراً!</div>
+    <div class="sd" id="successAmt">50 د.ت</div>
+    <div class="sl">تبرّعت بـ <span id="successAmtLabel"></span> لصالح <span id="successCause"></span></div>
+    <div class="gm">
+      <i class="fa-solid fa-quote-right"></i>
+      <span>«مَنْ تَصَدَّقَ بِعَدْلِ تَمْرَةٍ مِنْ كَسْبٍ طَيِّبٍ وَلَا يَقْبَلُ اللَّهُ إِلَّا الطَّيِّبَ، فَإِنَّ اللَّهَ يَتَقَبَّلُهَا بِيَمِينِهِ»</span>
+    </div>
+  </div>
+
+  <div class="receipt-box">
+    <div class="receipt-title"><i class="fa-solid fa-receipt" style="color:var(--gd)"></i> إيصال تبرّعك</div>
+    <div class="receipt-row"><span>رقم العملية</span><span id="rcptId" style="color:var(--gd);font-family:'Amiri',serif;font-size:1.1rem"></span></div>
+    <div class="receipt-row"><span>المتبرّع</span><span id="rcptName"></span></div>
+    <div class="receipt-row"><span>وجهة التبرّع</span><span id="rcptCause"></span></div>
+    <div class="receipt-row"><span>المبلغ</span><span id="rcptAmt" style="color:var(--e7)"></span></div>
+    <div class="receipt-row"><span>طريقة الدفع</span><span id="rcptPay"></span></div>
+    <div class="receipt-row"><span>التاريخ</span><span id="rcptDate"></span></div>
+  </div>
+
+  <div class="motiv-banner" style="margin-bottom:1.5rem">
+    <div class="motiv-icon-wrap">🤲</div>
+    <div class="motiv-text">
+      <strong>اللهم تقبّل من المتبرّع صدقته</strong>، وبارك له في ماله وولده، واجعلها له طهوراً وشفاءً ونوراً يوم القيامة.
+    </div>
+  </div>
+
+  <div class="ra">
+    <button class="ab" onclick="printReceipt()"><i class="fa-solid fa-print"></i><span>طباعة الإيصال</span></button>
+    <button class="ab" onclick="resetForm()"><i class="fa-solid fa-rotate-right"></i><span>تبرّع مجدداً</span></button>
+    <button class="ab" onclick="shareNow()"><i class="fa-solid fa-share-nodes"></i><span>شارك الحملة</span></button>
+  </div>
+
+</div>
+
+<div class="sig">
+  <span>✦</span><span class="sigt">FaithPath</span><span>✦</span>
+  <span style="font-size:.88rem;color:#a09080">حاسب نفسك قبل أن تُحاسَب</span>
+</div>
+
+</div>
+
+<script>
+let selectedCause = 'orphans';
+let selectedAmt   = 50;
+let selectedPay   = 'post';
+let isAnon        = false;
+
+const causeLabels = {
+  orphans:'كفالة أيتام', water:'حفر آبار', food:'إطعام الفقراء',
+  mosque:'بناء مسجد', quran:'طباعة مصاحف', general:'حيث توجّهها الجمعية'
+};
+const payLabels = {
+  post:'بريد تونس', bank:'تحويل بنكي', d17:'D17', other:'أخرى'
+};
+
+function selectCause(el) {
+  document.querySelectorAll('.cause-card').forEach(c => c.classList.remove('sel'));
+  el.classList.add('sel');
+  selectedCause = el.dataset.cause;
+}
+function selectAmount(el) {
+  document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('sel'));
+  el.classList.add('sel');
+  selectedAmt = parseInt(el.dataset.amt);
+  document.getElementById('customAmt').value = '';
+  clearErr('amtErr');
+}
+function onCustomAmt(inp) {
+  document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('sel'));
+  selectedAmt = parseInt(inp.value) || 0;
+  clearErr('amtErr');
+}
+function selectPay(el) {
+  document.querySelectorAll('.pay-btn').forEach(b => b.classList.remove('sel'));
+  el.classList.add('sel');
+  selectedPay = el.dataset.pay;
+  clearErr('payErr');
+}
+function toggleAnon() {
+  isAnon = !isAnon;
+  const box = document.getElementById('anonBox');
+  box.style.background  = isAnon ? 'var(--e7)' : 'var(--e1)';
+  box.style.borderColor = isAnon ? 'var(--e7)' : 'var(--e2)';
+  box.innerHTML = isAnon ? '<i class="fa-solid fa-check" style="color:#fff;font-size:.65rem"></i>' : '';
+}
+function clearErr(id) { document.getElementById(id).classList.remove('show'); }
+function showErr(id)   { document.getElementById(id).classList.add('show'); }
+function validate() {
+  let ok = true;
+  if (!document.getElementById('fName').value.trim())  { showErr('nameErr');  ok = false; }
+  if (document.getElementById('fPhone').value.trim().length < 9) { showErr('phoneErr'); ok = false; }
+  if (!selectedAmt || selectedAmt < 1) { showErr('amtErr'); ok = false; }
+  if (!selectedPay) { showErr('payErr'); ok = false; }
+  return ok;
+}
+function submitDonation() {
+  if (!validate()) { window.scrollTo({ top:100, behavior:'smooth' }); return; }
+  const name    = isAnon ? 'متبرّع مجهول الهوية' : document.getElementById('fName').value.trim();
+  const id      = 'FP-' + Date.now().toString(36).toUpperCase();
+  const now     = new Date();
+  const dateStr = now.toLocaleDateString('fr-TN') + '  ' + now.toLocaleTimeString('fr-TN', {hour:'2-digit',minute:'2-digit'});
+  const amtStr  = selectedAmt.toLocaleString('fr-TN') + ' د.ت';
+  document.getElementById('rcptId').textContent    = id;
+  document.getElementById('rcptName').textContent  = name;
+  document.getElementById('rcptCause').textContent = causeLabels[selectedCause];
+  document.getElementById('rcptAmt').textContent   = amtStr;
+  document.getElementById('rcptPay').textContent   = payLabels[selectedPay];
+  document.getElementById('rcptDate').textContent  = dateStr;
+  document.getElementById('successAmt').textContent      = amtStr;
+  document.getElementById('successAmtLabel').textContent = amtStr;
+  document.getElementById('successCause').textContent    = causeLabels[selectedCause];
+  document.getElementById('formScreen').classList.remove('active');
+  document.getElementById('successScreen').classList.add('active');
+  window.scrollTo({ top:0, behavior:'smooth' });
+}
+function resetForm() {
+  ['fName','fPhone','fEmail','fCity','fMessage','customAmt'].forEach(id => document.getElementById(id).value = '');
+  isAnon = false; toggleAnon(); toggleAnon();
+  selectedAmt = 50; selectedPay = 'post'; selectedCause = 'orphans';
+  document.querySelectorAll('.amount-btn').forEach((b,i) => b.classList.toggle('sel', i===1));
+  document.querySelectorAll('.pay-btn').forEach((b,i)    => b.classList.toggle('sel', i===0));
+  document.querySelectorAll('.cause-card').forEach((b,i) => b.classList.toggle('sel', i===0));
+  document.getElementById('successScreen').classList.remove('active');
+  document.getElementById('formScreen').classList.add('active');
+  window.scrollTo({ top:0, behavior:'smooth' });
+}
+function printReceipt() { window.print(); }
+function shareNow() {
+  const text = 'انضم إلى حملة رمضان الخيرية على FaithPath وتبرّع في سبيل الله! 🤲';
+  if (navigator.share) navigator.share({ title:'FaithPath', text }).catch(()=>{});
+  else navigator.clipboard.writeText(text).then(() => alert('تم نسخ الرابط!'));
+}
+function setDate() {
+  const d = new Date();
+  const days = ['الأحد','الإثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
+  document.getElementById('hijriDate').textContent = days[d.getDay()] + ' · ' + d.toLocaleDateString('fr-TN');
+}
+setDate();
+</script>
+</body>
+</html>
