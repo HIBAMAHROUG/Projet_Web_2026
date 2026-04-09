@@ -1,131 +1,87 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>????? ?????? - FaithPath</title>
+  <title>تسجيل الدخول - FaithPath</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body class="auth-page">
-  <header class="header auth-header">
-    <div class="header-wave">
-      <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-        <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="wave-fill"></path>
-        <path d="M0,0V15.81C13,21.25,27.93,25.68,44.5,28.41c69.53,11.11,139.8,6.43,209.31-2.47,69.42-8.91,138.39-22.4,207.76-21.18C511.39,6.9,575.37,22.63,639,38.83c73.11,18.62,147.28,32.45,222.05,21C951.31,48.69,1076.37,20.67,1200,47.42V0Z" opacity=".5" class="wave-fill"></path>
-        <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="wave-fill"></path>
-      </svg>
-    </div>
+<body class="auth-plain">
+  <div class="wrapper">
+      <div class="card fade">
+        <div class="glow"></div>
 
-    <nav class="navbar">
-      <div class="nav-container">
-        <div class="logo">
-          <img src="../img/m.png" alt="Mosquée" class="logo-img">
-          <span class="logo-text">Faith<span class="logo-highlight">Path</span></span>
+        <div class="icon fade" style="--delay: 0ms;">
+          <i class="fas fa-mosque"></i>
         </div>
 
-        <a href="page_acceuil.html" class="nav-link active">الرئيسية</a>
-      </div>
-    </nav>
+        <p class="bismillah fade" style="--delay: 120ms;">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+        <h1 class="fade" style="--delay: 220ms;">فَاذْكُرُونِي أَذْكُرْكُمْ</h1>
 
-    <div class="hero-section" id="accueil">
-      <div class="hero-content">
-        <div class="decorative-icons-top">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-moon"></i>
-          <i class="fas fa-star"></i>
-        </div>
-        <div class="hero-badge">
-          <i class="fas fa-moon"></i>
-          <span>بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</span>
-          <i class="fas fa-moon"></i>
-        </div>
-        <h2 class="hero-title">تسجيل الدخول</h2>
-        <p class="hero-subtitle"><strong>عد إلى مسارك الإيماني وواصل رحلتك.</strong></p>
-        <div class="decorative-icons-bottom">
-          <i class="fas fa-star"></i>
-          <i class="fas fa-moon"></i>
-          <i class="fas fa-star"></i>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <main class="auth-main">
-    <div class="wrapper">
-    <div class="card fade">
-      <div class="glow"></div>
-
-      <div class="icon fade" style="--delay: 0ms;">
-        <i class="fas fa-mosque"></i>
-      </div>
-
-      <p class="bismillah fade" style="--delay: 120ms;">?????? ??????? ???????????? ??????????</p>
-      <h1 class="fade" style="--delay: 220ms;">????????????? ????????????</h1>
-
-      <form class="form fade" style="--delay: 520ms;">
-        <div class="group">
-          <span class="icon-prepend">
-            <i class="fas fa-envelope"></i>
-          </span>
-          <label class="hidden" for="email">?????? ??????????</label>
-          <input id="email" type="text" class="field" placeholder="?????? ?????????? ?? ??? ????????" autocomplete="username" required>
-        </div>
-
-        <div class="group">
-          <span class="icon-prepend">
-            <i class="fas fa-lock"></i>
-          </span>
-          <label class="hidden" for="password">???? ??????</label>
-          <input id="password" type="password" class="field" placeholder="???? ??????" autocomplete="current-password" required>
-        </div>
-
-        <p class="hint">???? ?????? ???????? ????? ??????? ?? ??? ????????.</p>
-
-        <div class="meta">
-          <div class="check">
-            <input class="checkbox" type="checkbox" id="remember">
-            <label class="check-label" for="remember">???????</label>
+        <form class="form fade" style="--delay: 520ms;">
+          <div class="group">
+            <span class="icon-prepend">
+              <i class="fas fa-envelope"></i>
+            </span>
+            <label class="hidden" for="email">البريد الإلكتروني</label>
+            <input id="email" type="text" class="field" placeholder="البريد الإلكتروني" autocomplete="username" required>
           </div>
-          <a class="link" href="forgot-password.html">???? ???? ???????</a>
+
+          <div class="group">
+            <span class="icon-prepend">
+              <i class="fas fa-lock"></i>
+            </span>
+            <label class="hidden" for="password">كلمة المرور</label>
+            <input id="password" type="password" class="field" placeholder="كلمة المرور" autocomplete="current-password" required>
+          </div>
+
+          <p class="hint">سجّل الدخول باستخدام حسابك المعتاد.</p>
+
+          <div class="meta">
+            <div class="check">
+              <input class="checkbox" type="checkbox" id="remember">
+              <label class="check-label" for="remember">تذكرني</label>
+            </div>
+            <a class="link" href="forgot-password.html">نسيت كلمة المرور؟</a>
+          </div>
+
+          <div class="actions">
+            <button class="btn primary" type="submit">تسجيل الدخول</button>
+            <a href="signup.html" class="btn secondary">إنشاء حساب</a>
+          </div>
+        </form>
+
+        <div class="note fade" style="--delay: 640ms;">
+          <i class="fas fa-hands-praying"></i>
+          <span>عُدْ إلى الله... يعود لك كلّ شيء.</span>
         </div>
 
-        <div class="actions">
-          <button class="btn primary" type="submit">????? ??????</button>
-          <a href="signup.html" class="btn secondary">????? ????</a>
+        <div class="signature fade" style="--delay: 740ms;">
+          <span class="sig-icon"><i class="fas fa-circle-nodes"></i></span>
+          <span class="sig-text">faithpath</span>
+          <span class="sig-icon"><i class="fas fa-circle-nodes"></i></span>
         </div>
-      </form>
 
-      <div class="note fade" style="--delay: 640ms;">
-        <i class="fas fa-hands-praying"></i>
-        <span>??? ??? ????... ???? ?? ?? ???.</span>
+        <div class="decor decor-1"></div>
+        <div class="decor decor-2"></div>
       </div>
-
-      <div class="signature fade" style="--delay: 740ms;">
-        <span class="sig-icon"><i class="fas fa-circle-nodes"></i></span>
-        <span class="sig-text">faithpath</span>
-        <span class="sig-icon"><i class="fas fa-circle-nodes"></i></span>
-      </div>
-
-      <div class="decor decor-1"></div>
-      <div class="decor decor-2"></div>
-    </div>
-    </div>
-  </main>
-
-  <footer class="footer">
-    <div class="footer-simple">
-      <div class="footer-line-1">
-        <a href="page_acceuil.html">الرئيسية</a>
-      </div>
-    </div>
-  </footer>
+  </div>
 
   <script>
-    const API_URL = window.location.protocol === 'file:'
-      ? 'http://localhost/projet_web_2026/backend'
-      : 'backend';
+    function getProjectBaseUrl() {
+      const marker = '/projet_web_2026/';
+      const path = window.location.pathname || '';
+      const idx = path.indexOf(marker);
 
+      if (idx !== -1) {
+        return window.location.origin + '/projet_web_2026';
+      }
+
+      return 'http://localhost/projet_web_2026';
+    }
+
+    const API_URL = `${getProjectBaseUrl()}/backend`;
     const loginForm = document.querySelector('.form');
 
     if (loginForm) {
@@ -138,7 +94,7 @@
         const passwordValue = passwordInput.value;
 
         if (!emailValue || !passwordValue) {
-          alert('???? ????? ?????? ?????????? ????? ??????.');
+          alert('يرجى إدخال البريد الإلكتروني وكلمة المرور.');
           return;
         }
 
@@ -147,9 +103,9 @@
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
-              'Accept': 'application/json',
+              'Accept': 'application/json'
             },
-            body: JSON.stringify({ email: emailValue, password: passwordValue }),
+            body: JSON.stringify({ email: emailValue, password: passwordValue })
           });
 
           const raw = await response.text();
@@ -157,11 +113,11 @@
           try {
             data = JSON.parse(raw);
           } catch (e) {
-            data = { success: false, message: '??????? ??? ????? ?? ??????.' };
+            data = { success: false, message: 'استجابة غير صالحة من الخادم.' };
           }
 
           if (!response.ok || !data.success) {
-            alert(data.message || '??? ????? ??????.');
+            alert(data.message || 'تعذر تسجيل الدخول.');
             return;
           }
 
@@ -172,7 +128,7 @@
 
           window.location.href = 'page_acceuil.html';
         } catch (error) {
-          alert('???? ??????? ???????. ???? ?? ????? Apache ???? ?????? ??? localhost.');
+          alert('تعذر الاتصال بالخادم. افتح الموقع عبر http://localhost/projet_web_2026/start.html وتأكد أن Apache يعمل.');
         }
       });
     }

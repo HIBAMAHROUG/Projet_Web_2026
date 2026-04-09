@@ -7,7 +7,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;600;700;900&family=Amiri:wght@400;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link rel="stylesheet" href="styles.css">
 <link rel="stylesheet" href="quizz.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
@@ -158,83 +157,19 @@
 .fp-card.fp-on .fp-icon { animation:popIn .3s ease; }
 </style>
 </head>
-<body class="home-page">
-
-<aside class="aside-nav" id="asideNav">
-  <div class="aside-header">
-    <div class="aside-logo">
-      <i class="fas fa-mosque"></i>
-      <span>Faith<span>Path</span></span>
-    </div>
-    <button class="close-aside" id="closeAsideBtn">
-      <i class="fas fa-times"></i>
-    </button>
-  </div>
-  <ul class="aside-menu">
-    <li><a href="page_acceuil.html" class="aside-link" data-access="free">🔓 الرئيسية</a></li>
-    <li><a href="#quran" class="aside-link" data-access="free">🔓 القرآن الكريم</a></li>
-    <li><a href="asmaa_allah_alhousnaa_3d.html" class="aside-link" data-access="free">🔓 أسماء الله الحسنى</a></li>
-    <li><a href="#features" class="aside-link" data-access="locked">🔒 مسار الأنبياء</a></li>
-    <li><a href="#features" class="aside-link" data-access="free">🔓 التقويم الهجري</a></li>
-    <li><a href="prayertime.html" class="aside-link" data-access="free">🔓 أوقات الصلاة</a></li>
-    <li><a href="#features" class="aside-link" data-access="free">🔓 المسبحة الإلكترونية</a></li>
-    <li><a href="#features" class="aside-link" data-access="locked">🔒 قصة الصحابة</a></li>
-    <li><a href="7aseb_nafsak.html" class="aside-link active" data-access="free">🔓 حاسب نفسك</a></li>
-    <li><a href="quizz_acc.html" class="aside-link" data-access="free">🔓 اختبارات دينية</a></li>
-    <li><a href="#features" class="aside-link" data-access="locked">🔒 صدقة جارية</a></li>
-    <li><a href="#features" class="aside-link" data-access="free">🔓 أذكار الصباح والمساء</a></li>
-    <li><a href="#contact" class="aside-link" data-access="free">🔓 تواصل معنا</a></li>
-  </ul>
-  <div class="aside-footer">
-    <a href="start.html" id="asideAuthActionBtn" class="aside-link" data-access="free">🔓 تسجيل الدخول</a>
-    <div class="aside-search">
-      <i class="fas fa-search"></i>
-      <input type="text" placeholder="بحث...">
-    </div>
-    <div class="aside-profile">
-      <i class="far fa-user-circle"></i>
-      <span id="asideProfileName">أحمد</span>
-    </div>
-  </div>
-</aside>
-
-<div class="aside-overlay" id="asideOverlay"></div>
+<body>
 
 <header class="header">
-  <div class="header-wave">
-    <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
-      <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="wave-fill"></path>
-      <path d="M0,0V15.81C13,21.25,27.93,25.68,44.5,28.41c69.53,11.11,139.8,6.43,209.31-2.47,69.42-8.91,138.39-22.4,207.76-21.18C511.39,6.9,575.37,22.63,639,38.83c73.11,18.62,147.28,32.45,222.05,21C951.31,48.69,1076.37,20.67,1200,47.42V0Z" opacity=".5" class="wave-fill"></path>
-      <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="wave-fill"></path>
-    </svg>
-  </div>
-
-  <nav class="top-navbar">
-    <div class="nav-container">
-      <div class="logo">
-        <img src="../img/m.png" alt="FaithPath" class="logo-img">
-        <span class="logo-text">Faith<span class="logo-highlight">Path</span></span>
-      </div>
-
-      <button class="hamburger" id="hamburgerBtn" aria-label="القائمة">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-
-      <div class="nav-actions">
-        <a href="start.html" id="authActionBtn" class="auth-action-btn"><i class="fas fa-right-to-bracket"></i><span>إنشاء حساب / تسجيل الدخول</span></a>
-        <div class="search-box">
-          <i class="fas fa-search search-icon"></i>
-          <input type="text" placeholder="بحث..." class="search-input">
-        </div>
-        <i class="far fa-bell notification-icon"></i>
-        <div class="profile-badge">
-          <i class="far fa-user-circle profile-icon"></i>
-          <span class="profile-name" id="profileName">أحمد</span>
-        </div>
-      </div>
+  <nav class="navbar">
+    <div class="logo">
+      <div class="logo-icon">☽</div>
+      <div class="logo-text">Faith<span>Path</span></div>
     </div>
+    <div style="text-align:center">
+      <div class="bism" style="color:rgba(255,255,255,.75);font-size:.9rem">بسم الله الرحمن الرحيم</div>
+      <div id="hijriDate" style="font-size:.8rem;color:rgba(255,255,255,.55);font-family:'Amiri',serif"></div>
+    </div>
+    <div class="nav-badge"><i class="fa-solid fa-scale-balanced"></i> حاسب نفسك</div>
   </nav>
 </header>
 
@@ -761,24 +696,11 @@ function resetAll() {
 function setDate() {
   const days = ['الأحد','الإثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
   const d = new Date();
-  const hijriDateEl = document.getElementById('hijriDate');
-  if (hijriDateEl) {
-    hijriDateEl.textContent = days[d.getDay()] + ' · ' + d.toLocaleDateString('ar-SA');
-  }
+  document.getElementById('hijriDate').textContent =
+    days[d.getDay()] + ' · ' + d.toLocaleDateString('ar-SA');
 }
 
 buildAll(); setDate(); update();
 </script>
-
-<footer class="mini-footer" id="contact">
-  <div class="mini-footer-inner">
-    <p>© 2026 FaithPath. جميع الحقوق محفوظة</p>
-    <div class="mini-footer-links">
-      <a href="page_acceuil.html">الرئيسية</a>
-    </div>
-  </div>
-</footer>
-
-<script src="hamburger-menu.js"></script>
 </body>
 </html>

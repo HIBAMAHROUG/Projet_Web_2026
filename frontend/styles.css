@@ -483,6 +483,66 @@ h1 {
   overflow: hidden;
 }
 
+/* Standalone auth pages (start/signup/forgot/reset without header/footer) */
+body.auth-plain {
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 2.2rem 1rem 1.2rem;
+}
+
+body.auth-plain .wrapper {
+  max-width: 640px;
+  width: min(100%, 640px);
+}
+
+body.auth-plain .card {
+  border-radius: 2.4rem;
+  padding: 2.2rem 2rem 2.1rem;
+}
+
+body.auth-plain .welcome {
+  width: 100%;
+  max-width: 100%;
+  display: block;
+  line-height: 1.75;
+  font-size: 1.05rem;
+  margin-bottom: 1.1rem;
+  white-space: normal;
+}
+
+body.auth-plain .auth-heading {
+  font-size: 1.65rem;
+  line-height: 1.5;
+  margin-bottom: 0.75rem;
+  text-shadow: none;
+}
+
+body.auth-plain .meta {
+  margin-top: 0.2rem;
+}
+
+@media (max-width: 768px) {
+  body.auth-plain {
+    padding: 1.1rem 0.8rem 0.9rem;
+  }
+
+  body.auth-plain .card {
+    padding: 1.6rem 1.1rem 1.5rem;
+    border-radius: 1.8rem;
+  }
+
+  body.auth-plain .welcome {
+    font-size: 0.96rem;
+    padding: 0.35rem 0.9rem;
+  }
+
+  body.auth-plain .auth-heading {
+    font-size: 1.35rem;
+  }
+}
+
 @media (max-width: 480px) {
   .card {
     padding: 1.9rem 1.3rem;
@@ -6068,3 +6128,146 @@ body.is-authenticated .locked-feature {
 }
 
 /* Le reste de vos styles existants (features, quran, hadith, footer) restent inchangés */
+
+/* ===== DONATION PAGE SCOPED STYLES ===== */
+
+
+body.donation-page *, body.donation-page *::before, body.donation-page *::after{margin:0;padding:0;box-sizing:border-box}
+body.donation-page{
+  --e9:#0f3d2e;--e8:#145a3f;--e7:#1d6b4a;--e6:#2a7b57;
+  --e2:#cfe2d5;--e1:#e7f3ea;--s0:#fbf7f0;--s1:#f2eadf;--s2:#e7d8c8;
+  --br:#9f7a55;--gd:#c9a87c;--tr:all 0.3s cubic-bezier(.25,.46,.45,.94)
+}
+body.donation-page{
+  font-family:'Cairo',sans-serif;
+  background:
+    radial-gradient(circle at 20% 15%,rgba(255,255,255,.9),transparent 45%),
+    radial-gradient(circle at 80% 10%,rgba(207,226,213,.55),transparent 50%),
+    linear-gradient(140deg,#fcfaf6 0%,#f1e8dc 55%,#e8d8c8 100%);
+  min-height:100vh;color:#2e2a28;overflow-x:hidden
+}
+body.donation-page::before{
+  content:"";position:fixed;inset:0;
+  background-image:
+    radial-gradient(circle at 12px 12px,rgba(20,90,63,.08) 0,rgba(20,90,63,.08) 2px,transparent 2px),
+    radial-gradient(circle at 28px 28px,rgba(20,90,63,.06) 0,rgba(20,90,63,.06) 2px,transparent 2px);
+  background-size:40px 40px;opacity:.35;pointer-events:none;z-index:0
+}
+body.donation-page .header{background:linear-gradient(135deg,var(--e9),var(--e7));color:#fff;position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(0,0,0,.2)}
+body.donation-page .navbar{padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;max-width:1100px;margin:0 auto}
+body.donation-page .logo{display:flex;align-items:center;gap:.7rem}
+body.donation-page .logo-icon{width:42px;height:42px;background:linear-gradient(135deg,var(--gd),#b88f63);border-radius:50% 50% 30% 70%/60% 40% 60% 40%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:var(--e9);box-shadow:0 6px 14px rgba(0,0,0,.2)}
+body.donation-page .logo-text{font-size:1.6rem;font-weight:700;color:#fff;font-family:'Noto Kufi Arabic',serif}
+body.donation-page .logo-text span{color:var(--gd)}
+body.donation-page .nav-badge{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);padding:.4rem 1.2rem;border-radius:50px;font-size:1rem;font-weight:600;display:flex;align-items:center;gap:.5rem}
+body.donation-page .nav-badge i{color:var(--gd)}
+body.donation-page .pw{max-width:860px;margin:0 auto;padding:2.5rem 1.5rem 4rem;position:relative;z-index:1}
+body.donation-page .screen{display:none;animation:fiu .5s ease}
+body.donation-page .screen.active{display:block}
+@keyframes fiu{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+body.donation-page .wh{text-align:center;margin-bottom:2.5rem}
+body.donation-page .bc{width:90px;height:90px;background:linear-gradient(135deg,var(--e6),var(--e8));border-radius:50% 50% 30% 70%/60% 40% 60% 40%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;box-shadow:0 14px 28px -8px rgba(15,61,46,.6),0 0 0 3px rgba(251,247,240,.9) inset}
+body.donation-page .bc i{font-size:3.4rem;color:#fef7e9}
+body.donation-page .bism{font-family:'Noto Kufi Arabic',sans-serif;font-size:1.1rem;color:var(--e7);margin-bottom:.5rem}
+body.donation-page .wtit{font-family:'Noto Kufi Arabic','Amiri',serif;font-size:2.4rem;font-weight:700;color:var(--e9);text-shadow:2px 2px 0 #e2d5c0;margin-bottom:.7rem}
+body.donation-page .wsub{font-size:1.1rem;color:var(--br);background:rgba(207,226,213,.4);display:inline-block;padding:.3rem 1.8rem;border-radius:50px;border:1px solid rgba(173,200,186,.6)}
+body.donation-page .motiv-banner{background:linear-gradient(135deg,var(--e8) 0%,var(--e9) 60%,#0a2d20 100%);border-radius:1.6rem;padding:1.2rem 1.5rem;margin-bottom:2rem;display:flex;align-items:center;gap:1rem;box-shadow:0 12px 28px rgba(15,61,46,.28);position:relative;overflow:hidden}
+body.donation-page .motiv-banner::before{content:'☽';position:absolute;left:-10px;bottom:-10px;font-size:5rem;color:rgba(255,255,255,.05);font-family:'Amiri',serif;pointer-events:none}
+body.donation-page .motiv-icon-wrap{width:46px;height:46px;flex-shrink:0;background:rgba(255,255,255,.13);border-radius:50% 50% 35% 65%/55% 45% 55% 45%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;border:1px solid rgba(255,255,255,.15)}
+body.donation-page .motiv-text{font-family:'Noto Kufi Arabic',serif;font-size:.95rem;line-height:1.75;color:rgba(255,255,255,.92)}
+body.donation-page .motiv-text strong{color:var(--gd)}
+body.donation-page .cause-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-bottom:2rem}
+@media(max-width:620px){body.donation-page .cause-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:380px){body.donation-page .cause-grid{grid-template-columns:1fr}}
+body.donation-page .cause-card{background:rgba(255,255,255,.82);backdrop-filter:blur(10px);border-radius:1.8rem 1.8rem 1.8rem .6rem;border:2px solid var(--e2);padding:1.4rem 1rem;cursor:pointer;transition:var(--tr);text-align:center;box-shadow:0 12px 28px rgba(15,61,46,.08);position:relative;overflow:hidden}
+body.donation-page .cause-card::after{content:"\263E";position:absolute;bottom:-4px;left:12px;font-size:3rem;color:rgba(63,143,103,.1);font-family:'Amiri',serif;pointer-events:none}
+body.donation-page .cause-card:hover, body.donation-page .cause-card.sel{transform:translateY(-6px);border-color:var(--gd);box-shadow:0 20px 40px rgba(15,61,46,.18),0 0 0 3px rgba(201,168,124,.2)}
+body.donation-page .cause-card.sel{background:rgba(231,243,234,.9)}
+body.donation-page .cause-icon{width:62px;height:62px;background:linear-gradient(135deg,var(--e6),var(--e8));border-radius:50% 50% 30% 70%/60% 40% 60% 40%;display:flex;align-items:center;justify-content:center;margin:0 auto .85rem;box-shadow:0 10px 20px -6px rgba(15,61,46,.55);font-size:1.9rem;color:var(--s0);transition:var(--tr)}
+body.donation-page .cause-card:hover .cause-icon, body.donation-page .cause-card.sel .cause-icon{background:linear-gradient(135deg,var(--gd),#b88f63);color:var(--e9)}
+body.donation-page .cause-name{font-size:1rem;font-weight:700;color:var(--e9);margin-bottom:.25rem}
+body.donation-page .cause-desc{font-size:.82rem;color:var(--br)}
+body.donation-page .cause-badge{display:inline-block;margin-top:.6rem;background:var(--e1);color:var(--e7);padding:.2rem .9rem;border-radius:50px;font-size:.8rem;font-weight:600;border:1px solid var(--e2)}
+body.donation-page .cause-card.sel .cause-badge{background:var(--e7);color:#fff;border-color:var(--e7)}
+body.donation-page .section-block{margin-bottom:2.2rem;animation:fiu .5s ease both}
+body.donation-page .section-header{display:flex;align-items:center;gap:.8rem;margin-bottom:1.2rem}
+body.donation-page .sec-num{width:34px;height:34px;background:linear-gradient(135deg,var(--e7),var(--e8));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:700;color:#fff;flex-shrink:0;box-shadow:0 4px 10px rgba(15,61,46,.3)}
+body.donation-page .sec-title-text{font-family:'Noto Kufi Arabic',serif;font-size:1.15rem;font-weight:700;color:var(--e9)}
+body.donation-page .sec-emoji{font-size:1.2rem;margin-right:auto}
+body.donation-page .section-divider{height:1px;background:linear-gradient(90deg,rgba(207,226,213,.8),transparent);margin-bottom:2.2rem}
+body.donation-page .amount-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem;margin-bottom:1.2rem}
+@media(max-width:560px){body.donation-page .amount-grid{grid-template-columns:repeat(2,1fr)}}
+body.donation-page .amount-btn{background:rgba(255,255,255,.82);backdrop-filter:blur(10px);border:2px solid var(--e2);border-radius:1.4rem;padding:1rem .8rem;cursor:pointer;transition:var(--tr);text-align:center;box-shadow:0 8px 20px rgba(15,61,46,.07)}
+body.donation-page .amount-btn:hover, body.donation-page .amount-btn.sel{border-color:var(--gd);transform:translateY(-4px);box-shadow:0 16px 32px rgba(15,61,46,.16)}
+body.donation-page .amount-btn.sel{background:rgba(231,243,234,.95)}
+body.donation-page .amount-val{font-family:'Amiri',serif;font-size:1.7rem;font-weight:700;color:var(--e9);display:block;line-height:1.1}
+body.donation-page .amount-currency{font-size:.8rem;color:var(--br);font-weight:600}
+body.donation-page .amount-btn.sel .amount-val{color:var(--e7)}
+body.donation-page .custom-amount-wrap{background:rgba(255,255,255,.88);backdrop-filter:blur(10px);border:2px solid var(--e2);border-radius:1.4rem;padding:1rem 1.2rem;display:flex;align-items:center;gap:.8rem;box-shadow:0 8px 20px rgba(15,61,46,.06);transition:var(--tr)}
+body.donation-page .custom-amount-wrap:focus-within{border-color:var(--gd);box-shadow:0 12px 28px rgba(15,61,46,.14)}
+body.donation-page .custom-amount-wrap label{font-size:.9rem;font-weight:700;color:var(--br);white-space:nowrap}
+body.donation-page .custom-amount-input{flex:1;border:none;background:transparent;font-family:'Amiri',serif;font-size:1.6rem;font-weight:700;color:var(--e9);outline:none;text-align:left;min-width:0}
+body.donation-page .custom-amount-input::placeholder{color:var(--e2)}
+body.donation-page .curr-label{font-size:.9rem;font-weight:700;color:var(--br)}
+body.donation-page .form-card{background:rgba(255,255,255,.88);backdrop-filter:blur(12px);border-radius:2rem;padding:2rem 1.8rem;box-shadow:0 20px 40px rgba(15,61,46,.1);border:1px solid var(--e2);margin-bottom:1.5rem}
+body.donation-page .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+@media(max-width:540px){body.donation-page .form-row{grid-template-columns:1fr}}
+body.donation-page .form-group{display:flex;flex-direction:column;gap:.4rem}
+body.donation-page .form-group.full{grid-column:1/-1}
+body.donation-page .form-label{font-size:.88rem;font-weight:700;color:var(--e7);display:flex;align-items:center;gap:.4rem}
+body.donation-page .form-label i{color:var(--gd)}
+body.donation-page .form-input{background:rgba(231,243,234,.5);border:1.5px solid var(--e2);border-radius:1rem;padding:.8rem 1rem;font-family:'Cairo',sans-serif;font-size:1rem;color:var(--e9);outline:none;transition:var(--tr);width:100%}
+body.donation-page .form-input:focus{border-color:var(--gd);background:rgba(255,255,255,.95);box-shadow:0 0 0 3px rgba(201,168,124,.15)}
+body.donation-page .form-input::placeholder{color:#bbb}
+body.donation-page .pay-grid{display:grid;gap:.8rem;margin-bottom:1.2rem}
+body.donation-page .pay-btn{background:rgba(255,255,255,.82);border:2px solid var(--e2);border-radius:1.2rem;padding:.9rem .7rem;cursor:pointer;transition:var(--tr);text-align:center;box-shadow:0 6px 16px rgba(15,61,46,.06)}
+body.donation-page .pay-btn:hover, body.donation-page .pay-btn.sel{border-color:var(--gd);transform:translateY(-3px);background:rgba(231,243,234,.9);box-shadow:0 14px 28px rgba(15,61,46,.14)}
+body.donation-page .pay-icon{font-size:1.6rem;display:block;margin-bottom:.25rem}
+body.donation-page .pay-name{font-size:.82rem;font-weight:700;color:var(--e9)}
+body.donation-page .sb{width:100%;background:var(--e7);color:#fff;border:none;border-radius:50px;padding:1rem 2rem;font-size:1.25rem;font-weight:700;font-family:'Cairo',sans-serif;cursor:pointer;transition:var(--tr);box-shadow:0 10px 20px -6px rgba(15,61,46,.55);display:flex;align-items:center;justify-content:center;gap:.8rem}
+body.donation-page .sb:hover{background:var(--e8);transform:translateY(-3px)}
+body.donation-page .trust-row{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-top:1.2rem;margin-bottom:2rem}
+body.donation-page .trust-item{display:flex;align-items:center;gap:.4rem;font-size:.82rem;font-weight:600;color:var(--br)}
+body.donation-page .trust-item i{color:var(--e7);font-size:.95rem}
+body.donation-page .rc{background:rgba(255,255,255,.88);backdrop-filter:blur(12px);border-radius:3rem 3rem 3rem .8rem;padding:2.8rem 2rem;box-shadow:0 30px 50px rgba(15,61,46,.13);border:1px solid var(--e2);text-align:center;position:relative;overflow:hidden;margin-bottom:2rem}
+body.donation-page .rc::after{content:"\263E";position:absolute;bottom:-4px;left:20px;font-size:6rem;color:rgba(63,143,103,.08);font-family:'Amiri',serif}
+body.donation-page .riw{width:100px;height:100px;border-radius:50% 50% 30% 70%/60% 40% 60% 40%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.2rem;font-size:3.5rem;box-shadow:0 16px 30px -8px rgba(0,0,0,.3)}
+body.donation-page .gg{background:linear-gradient(135deg,var(--gd),#b88f63);color:var(--e9)}
+body.donation-page .rtit{font-family:'Noto Kufi Arabic','Amiri',serif;font-size:2rem;font-weight:700;color:var(--e9);margin-bottom:.5rem}
+body.donation-page .sd{font-family:'Amiri',serif;font-size:4rem;font-weight:700;color:var(--gd);line-height:1;margin:.5rem 0}
+body.donation-page .sl{font-size:1.05rem;color:var(--br);margin-bottom:1.5rem}
+body.donation-page .gm{background:var(--e1);border:1px solid var(--e2);border-radius:1rem;padding:1rem 1.5rem;font-size:1.05rem;font-weight:600;color:var(--e8);display:flex;align-items:center;justify-content:center;gap:.6rem}
+body.donation-page .gm i{color:var(--gd)}
+body.donation-page .receipt-box{background:rgba(255,255,255,.88);border:2px dashed var(--gd);border-radius:1.5rem;padding:1.5rem;margin-bottom:1.5rem;text-align:right}
+body.donation-page .receipt-title{font-family:'Noto Kufi Arabic',serif;font-size:1rem;font-weight:700;color:var(--e9);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
+body.donation-page .receipt-row{display:flex;justify-content:space-between;align-items:center;padding:.5rem 0;border-bottom:1px solid var(--e1);font-size:.95rem}
+body.donation-page .receipt-row:last-child{border-bottom:none}
+body.donation-page .receipt-row span:first-child{color:var(--br);font-weight:600}
+body.donation-page .receipt-row span:last-child{color:var(--e9);font-weight:700}
+body.donation-page .ra{display:flex;gap:1rem;justify-content:center;margin-top:1.5rem;flex-wrap:wrap}
+body.donation-page .ab{display:flex;flex-direction:column;align-items:center;gap:.5rem;background:rgba(255,255,255,.82);border:2px solid var(--e2);border-radius:1.5rem;padding:1.5rem 2rem;cursor:pointer;transition:var(--tr);color:var(--e9);box-shadow:0 10px 20px rgba(15,61,46,.08);min-width:130px;font-family:'Cairo',sans-serif}
+body.donation-page .ab:hover{border-color:var(--gd);transform:translateY(-5px);box-shadow:0 16px 32px rgba(15,61,46,.16)}
+body.donation-page .ab i{font-size:2.2rem;color:var(--e7)}
+body.donation-page .ab:hover i{color:var(--gd)}
+body.donation-page .ab span{font-size:.95rem;font-weight:700}
+body.donation-page .campaign-card{background:rgba(255,255,255,.88);backdrop-filter:blur(10px);border-radius:1.8rem;padding:1.4rem 1.8rem;margin-bottom:1.8rem;box-shadow:0 10px 24px rgba(15,61,46,.1);border:1px solid var(--e2)}
+body.donation-page .campaign-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.8rem}
+body.donation-page .campaign-title{font-family:'Noto Kufi Arabic',serif;font-size:1rem;font-weight:700;color:var(--e9)}
+body.donation-page .campaign-goal{font-size:.9rem;color:var(--br)}
+body.donation-page .prog-bar{height:12px;background:var(--e1);border-radius:50px;overflow:hidden;border:1px solid var(--e2)}
+body.donation-page .prog-fill{height:100%;background:linear-gradient(90deg,var(--e7),#3aaa6e,var(--gd));border-radius:50px;transition:width .7s ease}
+body.donation-page .campaign-stats{display:flex;gap:1.5rem;margin-top:.8rem;flex-wrap:wrap}
+body.donation-page .camp-stat span:first-child{font-family:'Amiri',serif;font-size:1.3rem;font-weight:700;color:var(--e9);display:block}
+body.donation-page .camp-stat span:last-child{font-size:.78rem;color:var(--br);font-weight:600}
+body.donation-page .sig{display:flex;align-items:center;justify-content:center;gap:.5rem;margin-top:2.5rem;font-size:1rem;color:#7f6f60}
+body.donation-page .sigt{font-family:'Noto Kufi Arabic','Amiri',serif;font-size:1.5rem;background:linear-gradient(135deg,var(--e7),#86a98f);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+body.donation-page .section-block:nth-child(1){animation-delay:.00s}
+body.donation-page .section-block:nth-child(2){animation-delay:.07s}
+body.donation-page .section-block:nth-child(3){animation-delay:.14s}
+body.donation-page .section-block:nth-child(4){animation-delay:.21s}
+body.donation-page .section-block:nth-child(5){animation-delay:.28s}
+body.donation-page .err{font-size:.82rem;color:#c0392b;font-weight:600;display:none;margin-top:.3rem;padding:.3rem .6rem;background:rgba(231,76,60,.07);border-radius:.5rem}
+body.donation-page .err.show{display:block}
+
+
+

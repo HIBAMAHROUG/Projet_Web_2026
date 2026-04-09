@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
@@ -7,158 +7,87 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;600;700;900&family=Amiri:wght@400;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --e9:#0f3d2e;--e8:#145a3f;--e7:#1d6b4a;--e6:#2a7b57;
-  --e2:#cfe2d5;--e1:#e7f3ea;--s0:#fbf7f0;--s1:#f2eadf;--s2:#e7d8c8;
-  --br:#9f7a55;--gd:#c9a87c;--tr:all 0.3s cubic-bezier(.25,.46,.45,.94)
-}
-body{
-  font-family:'Cairo',sans-serif;
-  background:
-    radial-gradient(circle at 20% 15%,rgba(255,255,255,.9),transparent 45%),
-    radial-gradient(circle at 80% 10%,rgba(207,226,213,.55),transparent 50%),
-    linear-gradient(140deg,#fcfaf6 0%,#f1e8dc 55%,#e8d8c8 100%);
-  min-height:100vh;color:#2e2a28;overflow-x:hidden
-}
-body::before{
-  content:"";position:fixed;inset:0;
-  background-image:
-    radial-gradient(circle at 12px 12px,rgba(20,90,63,.08) 0,rgba(20,90,63,.08) 2px,transparent 2px),
-    radial-gradient(circle at 28px 28px,rgba(20,90,63,.06) 0,rgba(20,90,63,.06) 2px,transparent 2px);
-  background-size:40px 40px;opacity:.35;pointer-events:none;z-index:0
-}
-.header{background:linear-gradient(135deg,var(--e9),var(--e7));color:#fff;position:sticky;top:0;z-index:100;box-shadow:0 4px 20px rgba(0,0,0,.2)}
-.navbar{padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;max-width:1100px;margin:0 auto}
-.logo{display:flex;align-items:center;gap:.7rem}
-.logo-icon{width:42px;height:42px;background:linear-gradient(135deg,var(--gd),#b88f63);border-radius:50% 50% 30% 70%/60% 40% 60% 40%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:var(--e9);box-shadow:0 6px 14px rgba(0,0,0,.2)}
-.logo-text{font-size:1.6rem;font-weight:700;color:#fff;font-family:'Noto Kufi Arabic',serif}
-.logo-text span{color:var(--gd)}
-.nav-badge{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);padding:.4rem 1.2rem;border-radius:50px;font-size:1rem;font-weight:600;display:flex;align-items:center;gap:.5rem}
-.nav-badge i{color:var(--gd)}
-.pw{max-width:860px;margin:0 auto;padding:2.5rem 1.5rem 4rem;position:relative;z-index:1}
-.screen{display:none;animation:fiu .5s ease}
-.screen.active{display:block}
-@keyframes fiu{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-.wh{text-align:center;margin-bottom:2.5rem}
-.bc{width:90px;height:90px;background:linear-gradient(135deg,var(--e6),var(--e8));border-radius:50% 50% 30% 70%/60% 40% 60% 40%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;box-shadow:0 14px 28px -8px rgba(15,61,46,.6),0 0 0 3px rgba(251,247,240,.9) inset}
-.bc i{font-size:3.4rem;color:#fef7e9}
-.bism{font-family:'Noto Kufi Arabic',sans-serif;font-size:1.1rem;color:var(--e7);margin-bottom:.5rem}
-.wtit{font-family:'Noto Kufi Arabic','Amiri',serif;font-size:2.4rem;font-weight:700;color:var(--e9);text-shadow:2px 2px 0 #e2d5c0;margin-bottom:.7rem}
-.wsub{font-size:1.1rem;color:var(--br);background:rgba(207,226,213,.4);display:inline-block;padding:.3rem 1.8rem;border-radius:50px;border:1px solid rgba(173,200,186,.6)}
-.motiv-banner{background:linear-gradient(135deg,var(--e8) 0%,var(--e9) 60%,#0a2d20 100%);border-radius:1.6rem;padding:1.2rem 1.5rem;margin-bottom:2rem;display:flex;align-items:center;gap:1rem;box-shadow:0 12px 28px rgba(15,61,46,.28);position:relative;overflow:hidden}
-.motiv-banner::before{content:'☽';position:absolute;left:-10px;bottom:-10px;font-size:5rem;color:rgba(255,255,255,.05);font-family:'Amiri',serif;pointer-events:none}
-.motiv-icon-wrap{width:46px;height:46px;flex-shrink:0;background:rgba(255,255,255,.13);border-radius:50% 50% 35% 65%/55% 45% 55% 45%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;border:1px solid rgba(255,255,255,.15)}
-.motiv-text{font-family:'Noto Kufi Arabic',serif;font-size:.95rem;line-height:1.75;color:rgba(255,255,255,.92)}
-.motiv-text strong{color:var(--gd)}
-.cause-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem;margin-bottom:2rem}
-@media(max-width:620px){.cause-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:380px){.cause-grid{grid-template-columns:1fr}}
-.cause-card{background:rgba(255,255,255,.82);backdrop-filter:blur(10px);border-radius:1.8rem 1.8rem 1.8rem .6rem;border:2px solid var(--e2);padding:1.4rem 1rem;cursor:pointer;transition:var(--tr);text-align:center;box-shadow:0 12px 28px rgba(15,61,46,.08);position:relative;overflow:hidden}
-.cause-card::after{content:"\263E";position:absolute;bottom:-4px;left:12px;font-size:3rem;color:rgba(63,143,103,.1);font-family:'Amiri',serif;pointer-events:none}
-.cause-card:hover,.cause-card.sel{transform:translateY(-6px);border-color:var(--gd);box-shadow:0 20px 40px rgba(15,61,46,.18),0 0 0 3px rgba(201,168,124,.2)}
-.cause-card.sel{background:rgba(231,243,234,.9)}
-.cause-icon{width:62px;height:62px;background:linear-gradient(135deg,var(--e6),var(--e8));border-radius:50% 50% 30% 70%/60% 40% 60% 40%;display:flex;align-items:center;justify-content:center;margin:0 auto .85rem;box-shadow:0 10px 20px -6px rgba(15,61,46,.55);font-size:1.9rem;color:var(--s0);transition:var(--tr)}
-.cause-card:hover .cause-icon,.cause-card.sel .cause-icon{background:linear-gradient(135deg,var(--gd),#b88f63);color:var(--e9)}
-.cause-name{font-size:1rem;font-weight:700;color:var(--e9);margin-bottom:.25rem}
-.cause-desc{font-size:.82rem;color:var(--br)}
-.cause-badge{display:inline-block;margin-top:.6rem;background:var(--e1);color:var(--e7);padding:.2rem .9rem;border-radius:50px;font-size:.8rem;font-weight:600;border:1px solid var(--e2)}
-.cause-card.sel .cause-badge{background:var(--e7);color:#fff;border-color:var(--e7)}
-.section-block{margin-bottom:2.2rem;animation:fiu .5s ease both}
-.section-header{display:flex;align-items:center;gap:.8rem;margin-bottom:1.2rem}
-.sec-num{width:34px;height:34px;background:linear-gradient(135deg,var(--e7),var(--e8));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem;font-weight:700;color:#fff;flex-shrink:0;box-shadow:0 4px 10px rgba(15,61,46,.3)}
-.sec-title-text{font-family:'Noto Kufi Arabic',serif;font-size:1.15rem;font-weight:700;color:var(--e9)}
-.sec-emoji{font-size:1.2rem;margin-right:auto}
-.section-divider{height:1px;background:linear-gradient(90deg,rgba(207,226,213,.8),transparent);margin-bottom:2.2rem}
-.amount-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.9rem;margin-bottom:1.2rem}
-@media(max-width:560px){.amount-grid{grid-template-columns:repeat(2,1fr)}}
-.amount-btn{background:rgba(255,255,255,.82);backdrop-filter:blur(10px);border:2px solid var(--e2);border-radius:1.4rem;padding:1rem .8rem;cursor:pointer;transition:var(--tr);text-align:center;box-shadow:0 8px 20px rgba(15,61,46,.07)}
-.amount-btn:hover,.amount-btn.sel{border-color:var(--gd);transform:translateY(-4px);box-shadow:0 16px 32px rgba(15,61,46,.16)}
-.amount-btn.sel{background:rgba(231,243,234,.95)}
-.amount-val{font-family:'Amiri',serif;font-size:1.7rem;font-weight:700;color:var(--e9);display:block;line-height:1.1}
-.amount-currency{font-size:.8rem;color:var(--br);font-weight:600}
-.amount-btn.sel .amount-val{color:var(--e7)}
-.custom-amount-wrap{background:rgba(255,255,255,.88);backdrop-filter:blur(10px);border:2px solid var(--e2);border-radius:1.4rem;padding:1rem 1.2rem;display:flex;align-items:center;gap:.8rem;box-shadow:0 8px 20px rgba(15,61,46,.06);transition:var(--tr)}
-.custom-amount-wrap:focus-within{border-color:var(--gd);box-shadow:0 12px 28px rgba(15,61,46,.14)}
-.custom-amount-wrap label{font-size:.9rem;font-weight:700;color:var(--br);white-space:nowrap}
-.custom-amount-input{flex:1;border:none;background:transparent;font-family:'Amiri',serif;font-size:1.6rem;font-weight:700;color:var(--e9);outline:none;text-align:left;min-width:0}
-.custom-amount-input::placeholder{color:var(--e2)}
-.curr-label{font-size:.9rem;font-weight:700;color:var(--br)}
-.form-card{background:rgba(255,255,255,.88);backdrop-filter:blur(12px);border-radius:2rem;padding:2rem 1.8rem;box-shadow:0 20px 40px rgba(15,61,46,.1);border:1px solid var(--e2);margin-bottom:1.5rem}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
-@media(max-width:540px){.form-row{grid-template-columns:1fr}}
-.form-group{display:flex;flex-direction:column;gap:.4rem}
-.form-group.full{grid-column:1/-1}
-.form-label{font-size:.88rem;font-weight:700;color:var(--e7);display:flex;align-items:center;gap:.4rem}
-.form-label i{color:var(--gd)}
-.form-input{background:rgba(231,243,234,.5);border:1.5px solid var(--e2);border-radius:1rem;padding:.8rem 1rem;font-family:'Cairo',sans-serif;font-size:1rem;color:var(--e9);outline:none;transition:var(--tr);width:100%}
-.form-input:focus{border-color:var(--gd);background:rgba(255,255,255,.95);box-shadow:0 0 0 3px rgba(201,168,124,.15)}
-.form-input::placeholder{color:#bbb}
-.pay-grid{display:grid;gap:.8rem;margin-bottom:1.2rem}
-.pay-btn{background:rgba(255,255,255,.82);border:2px solid var(--e2);border-radius:1.2rem;padding:.9rem .7rem;cursor:pointer;transition:var(--tr);text-align:center;box-shadow:0 6px 16px rgba(15,61,46,.06)}
-.pay-btn:hover,.pay-btn.sel{border-color:var(--gd);transform:translateY(-3px);background:rgba(231,243,234,.9);box-shadow:0 14px 28px rgba(15,61,46,.14)}
-.pay-icon{font-size:1.6rem;display:block;margin-bottom:.25rem}
-.pay-name{font-size:.82rem;font-weight:700;color:var(--e9)}
-.sb{width:100%;background:var(--e7);color:#fff;border:none;border-radius:50px;padding:1rem 2rem;font-size:1.25rem;font-weight:700;font-family:'Cairo',sans-serif;cursor:pointer;transition:var(--tr);box-shadow:0 10px 20px -6px rgba(15,61,46,.55);display:flex;align-items:center;justify-content:center;gap:.8rem}
-.sb:hover{background:var(--e8);transform:translateY(-3px)}
-.trust-row{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-top:1.2rem;margin-bottom:2rem}
-.trust-item{display:flex;align-items:center;gap:.4rem;font-size:.82rem;font-weight:600;color:var(--br)}
-.trust-item i{color:var(--e7);font-size:.95rem}
-.rc{background:rgba(255,255,255,.88);backdrop-filter:blur(12px);border-radius:3rem 3rem 3rem .8rem;padding:2.8rem 2rem;box-shadow:0 30px 50px rgba(15,61,46,.13);border:1px solid var(--e2);text-align:center;position:relative;overflow:hidden;margin-bottom:2rem}
-.rc::after{content:"\263E";position:absolute;bottom:-4px;left:20px;font-size:6rem;color:rgba(63,143,103,.08);font-family:'Amiri',serif}
-.riw{width:100px;height:100px;border-radius:50% 50% 30% 70%/60% 40% 60% 40%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.2rem;font-size:3.5rem;box-shadow:0 16px 30px -8px rgba(0,0,0,.3)}
-.gg{background:linear-gradient(135deg,var(--gd),#b88f63);color:var(--e9)}
-.rtit{font-family:'Noto Kufi Arabic','Amiri',serif;font-size:2rem;font-weight:700;color:var(--e9);margin-bottom:.5rem}
-.sd{font-family:'Amiri',serif;font-size:4rem;font-weight:700;color:var(--gd);line-height:1;margin:.5rem 0}
-.sl{font-size:1.05rem;color:var(--br);margin-bottom:1.5rem}
-.gm{background:var(--e1);border:1px solid var(--e2);border-radius:1rem;padding:1rem 1.5rem;font-size:1.05rem;font-weight:600;color:var(--e8);display:flex;align-items:center;justify-content:center;gap:.6rem}
-.gm i{color:var(--gd)}
-.receipt-box{background:rgba(255,255,255,.88);border:2px dashed var(--gd);border-radius:1.5rem;padding:1.5rem;margin-bottom:1.5rem;text-align:right}
-.receipt-title{font-family:'Noto Kufi Arabic',serif;font-size:1rem;font-weight:700;color:var(--e9);margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
-.receipt-row{display:flex;justify-content:space-between;align-items:center;padding:.5rem 0;border-bottom:1px solid var(--e1);font-size:.95rem}
-.receipt-row:last-child{border-bottom:none}
-.receipt-row span:first-child{color:var(--br);font-weight:600}
-.receipt-row span:last-child{color:var(--e9);font-weight:700}
-.ra{display:flex;gap:1rem;justify-content:center;margin-top:1.5rem;flex-wrap:wrap}
-.ab{display:flex;flex-direction:column;align-items:center;gap:.5rem;background:rgba(255,255,255,.82);border:2px solid var(--e2);border-radius:1.5rem;padding:1.5rem 2rem;cursor:pointer;transition:var(--tr);color:var(--e9);box-shadow:0 10px 20px rgba(15,61,46,.08);min-width:130px;font-family:'Cairo',sans-serif}
-.ab:hover{border-color:var(--gd);transform:translateY(-5px);box-shadow:0 16px 32px rgba(15,61,46,.16)}
-.ab i{font-size:2.2rem;color:var(--e7)}
-.ab:hover i{color:var(--gd)}
-.ab span{font-size:.95rem;font-weight:700}
-.campaign-card{background:rgba(255,255,255,.88);backdrop-filter:blur(10px);border-radius:1.8rem;padding:1.4rem 1.8rem;margin-bottom:1.8rem;box-shadow:0 10px 24px rgba(15,61,46,.1);border:1px solid var(--e2)}
-.campaign-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.8rem}
-.campaign-title{font-family:'Noto Kufi Arabic',serif;font-size:1rem;font-weight:700;color:var(--e9)}
-.campaign-goal{font-size:.9rem;color:var(--br)}
-.prog-bar{height:12px;background:var(--e1);border-radius:50px;overflow:hidden;border:1px solid var(--e2)}
-.prog-fill{height:100%;background:linear-gradient(90deg,var(--e7),#3aaa6e,var(--gd));border-radius:50px;transition:width .7s ease}
-.campaign-stats{display:flex;gap:1.5rem;margin-top:.8rem;flex-wrap:wrap}
-.camp-stat span:first-child{font-family:'Amiri',serif;font-size:1.3rem;font-weight:700;color:var(--e9);display:block}
-.camp-stat span:last-child{font-size:.78rem;color:var(--br);font-weight:600}
-.sig{display:flex;align-items:center;justify-content:center;gap:.5rem;margin-top:2.5rem;font-size:1rem;color:#7f6f60}
-.sigt{font-family:'Noto Kufi Arabic','Amiri',serif;font-size:1.5rem;background:linear-gradient(135deg,var(--e7),#86a98f);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.section-block:nth-child(1){animation-delay:.00s}
-.section-block:nth-child(2){animation-delay:.07s}
-.section-block:nth-child(3){animation-delay:.14s}
-.section-block:nth-child(4){animation-delay:.21s}
-.section-block:nth-child(5){animation-delay:.28s}
-.err{font-size:.82rem;color:#c0392b;font-weight:600;display:none;margin-top:.3rem;padding:.3rem .6rem;background:rgba(231,76,60,.07);border-radius:.5rem}
-.err.show{display:block}
-</style>
+<link rel="stylesheet" href="styles.css">
+
 </head>
-<body>
+<body class="home-page donation-page">
+
+<aside class="aside-nav" id="asideNav">
+  <div class="aside-header">
+    <div class="aside-logo">
+      <i class="fas fa-mosque"></i>
+      <span>Faith<span>Path</span></span>
+    </div>
+    <button class="close-aside" id="closeAsideBtn">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+  <ul class="aside-menu">
+    <li><a href="page_acceuil.html" class="aside-link" data-access="free">🔓 الرئيسية</a></li>
+    <li><a href="#quran" class="aside-link" data-access="free">🔓 القرآن الكريم</a></li>
+    <li><a href="asmaa_allah_alhousnaa_3d.html" class="aside-link" data-access="free">🔓 أسماء الله الحسنى</a></li>
+    <li><a href="#features" class="aside-link" data-access="locked">🔒 مسار الأنبياء</a></li>
+    <li><a href="#features" class="aside-link" data-access="free">🔓 التقويم الهجري</a></li>
+    <li><a href="prayertime.html" class="aside-link" data-access="free">🔓 أوقات الصلاة</a></li>
+    <li><a href="qibla.html" class="aside-link" data-access="free">🔓 اتجاه القبلة</a></li>
+    <li><a href="#features" class="aside-link" data-access="free">🔓 المسبحة الإلكترونية</a></li>
+    <li><a href="#features" class="aside-link" data-access="locked">🔒 قصة الصحابة</a></li>
+    <li><a href="7aseb_nafsak.html" class="aside-link" data-access="locked">🔒 حاسب نفسك</a></li>
+    <li><a href="quizz_acc.html" class="aside-link" data-access="locked">🔒 اختبارات دينية</a></li>
+    <li><a href="don.html" class="aside-link active" data-access="free">🔓 صدقة جارية</a></li>
+    <li><a href="#features" class="aside-link" data-access="free">🔓 أذكار الصباح والمساء</a></li>
+    <li><a href="#contact" class="aside-link" data-access="free">🔓 تواصل معنا</a></li>
+  </ul>
+  <div class="aside-footer">
+    <a href="start.html" id="asideAuthActionBtn" class="aside-link" data-access="free">🔓 تسجيل الدخول</a>
+    <div class="aside-search">
+      <i class="fas fa-search"></i>
+      <input type="text" placeholder="بحث...">
+    </div>
+    <div class="aside-profile">
+      <i class="far fa-user-circle"></i>
+      <span id="asideProfileName">أحمد</span>
+    </div>
+  </div>
+</aside>
+
+<div class="aside-overlay" id="asideOverlay"></div>
 
 <header class="header">
-  <nav class="navbar">
-    <div class="logo">
-      <div class="logo-icon">☽</div>
-      <div class="logo-text">Faith<span>Path</span></div>
+  <div class="header-wave">
+    <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+      <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="wave-fill"></path>
+      <path d="M0,0V15.81C13,21.25,27.93,25.68,44.5,28.41c69.53,11.11,139.8,6.43,209.31-2.47,69.42-8.91,138.39-22.4,207.76-21.18C511.39,6.9,575.37,22.63,639,38.83c73.11,18.62,147.28,32.45,222.05,21C951.31,48.69,1076.37,20.67,1200,47.42V0Z" opacity=".5" class="wave-fill"></path>
+      <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="wave-fill"></path>
+    </svg>
+  </div>
+
+  <nav class="top-navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <img src="img/m.png" alt="FaithPath" class="logo-img">
+        <span class="logo-text">Faith<span class="logo-highlight">Path</span></span>
+      </div>
+
+      <button class="hamburger" id="hamburgerBtn" aria-label="القائمة">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <div class="nav-actions">
+        <a href="start.html" id="authActionBtn" class="auth-action-btn"><i class="fas fa-right-to-bracket"></i><span>إنشاء حساب / تسجيل الدخول</span></a>
+        <div class="search-box">
+          <i class="fas fa-search search-icon"></i>
+          <input type="text" placeholder="بحث..." class="search-input">
+        </div>
+        <i class="far fa-bell notification-icon"></i>
+        <div class="profile-badge">
+          <i class="far fa-user-circle profile-icon"></i>
+          <span class="profile-name" id="profileName">أحمد</span>
+        </div>
+      </div>
     </div>
-    <div style="text-align:center">
-      <div style="font-family:'Noto Kufi Arabic',serif;font-size:.88rem;color:rgba(255,255,255,.75)">بسم الله الرحمن الرحيم</div>
-      <div id="hijriDate" style="font-size:.78rem;color:rgba(255,255,255,.5);font-family:'Amiri',serif"></div>
-    </div>
-    <div class="nav-badge"><i class="fa-solid fa-hand-holding-heart"></i> تبرّع الآن</div>
   </nav>
 </header>
 
@@ -515,5 +444,17 @@ function setDate() {
 }
 setDate();
 </script>
+
+<footer class="mini-footer" id="contact">
+  <div class="mini-footer-inner">
+    <p>© 2026 FaithPath. جميع الحقوق محفوظة</p>
+    <div class="mini-footer-links">
+      <a href="page_acceuil.html">الرئيسية</a>
+    </div>
+  </div>
+</footer>
+
+<script src="hamburger-menu.js"></script>
 </body>
 </html>
+
