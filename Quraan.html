@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>فيث باث · القرآن الكريم</title>
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Google Fonts + Arabic Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700;900&family=Cairo:wght@300;400;600;700;900&family=Noto+Kufi+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="Quraan.css">
+</head>
+<body>
+  <!-- Header with navigation -->
+  <header class="header">
+    <div class="navbar">
+      <div class="nav-container">
+        <div class="logo">
+         
+          <img src="image/logo.png" alt="شعار فيث باث" class="logo-img" onerror="this.src='https://placehold.co/50x50/145a3f/c9a87c?text=FP'">
+          
+        </div>
+        <div class="nav-menu">
+          <a href="#" class="nav-link">الرئيسية</a>
+          <a href="#" class="nav-link active">القرآن</a>
+          <a href="#" class="nav-link">الصلاة</a>
+          <a href="#" class="nav-link">الزكاة</a>
+          <a href="#" class="nav-link">المزيد</a>
+        </div>
+        <div class="nav-actions">
+          <div class="search-box">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" placeholder="بحث" class="search-input" id="searchInput">
+          </div>
+          <div class="user-profile">
+            <i class="far fa-bell notification-icon"></i>
+            <div class="profile-badge">
+              <i class="fas fa-user-circle profile-icon"></i>
+              <span class="profile-name">عمر</span>
+            </div>
+          </div>
+          <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quran Hero Section -->
+    <div class="quran-hero">
+      <div class="hero-badge">
+        <i class="fas fa-quran"></i>
+        <span>الْقُرْآنُ الْكَرِيمُ</span>
+        <i class="fas fa-quran"></i>
+      </div>
+      <div class="hero-title-arabic">سُوَرُ الْقُرْآنِ الْكَرِيمِ</div>
+      <div class="hero-sub">تَدَبَّرْ وَارْتِلْ — اخْتَرِ السُّورَةَ لِقِرَاءَتِهَا</div>
+    </div>
+    
+    <!-- Wave SVG -->
+    <div class="header-wave">
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+        <path class="wave-fill" d="M0,32L48,37.3C96,43,192,53,288,58.7C384,64,480,64,576,58.7C672,53,768,43,864,48C960,53,1056,75,1152,80C1248,85,1344,75,1392,69.3L1440,64L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z"></path>
+      </svg>
+    </div>
+  </header>
+
+  <!-- Main Quran Page Content -->
+  <main class="main-content">
+    <div class="container">
+      <!-- Page Header -->
+      <div class="quran-page-header">
+        <div class="section-icon">
+          <i class="fas fa-quran"></i>
+        </div>
+        <h2 class="section-title">سُوَرُ الْقُرْآنِ</h2>
+        <p class="section-subtitle">اخْتَرِ السُّورَةَ لِتَتَدَبَّرَ آيَاتِ اللَّهِ</p>
+        <div class="souar-count" id="souarCount">١١٤ سُورَةً</div>
+      </div>
+
+      <!-- Filter Bar -->
+      <div class="surah-filter-bar">
+        <div class="filter-search">
+          <i class="fas fa-search"></i>
+          <input type="text" id="searchInputFilter" placeholder="ابحث عن سورة (اسم أو رقم)">
+        </div>
+        <div class="filter-type" id="filterTypeContainer">
+          <span class="type-btn active" data-type="all">الكل</span>
+          <span class="type-btn" data-type="مكية">مَكِّيَّة</span>
+          <span class="type-btn" data-type="مدنية">مَدَنِيَّة</span>
+        </div>
+      </div>
+
+      <!--Audio-->
+      <audio id="quranAudio" preload="metadata"></audio>
+
+      <!-- Audio Player Bar -->
+      <div class="audio-player-bar" id="audioPlayerBar" style="display: none;">
+        <div class="audio-info">
+          <i class="fas fa-quran"></i>
+          <span id="currentSurahName">سورة الفاتحة</span>
+        </div>
+        <div class="audio-controls">
+          <button id="playPauseBtn" class="audio-btn">
+            <i class="fas fa-play"></i>
+          </button>
+          <button id="stopBtn" class="audio-btn">
+            <i class="fas fa-stop"></i>
+          </button>
+          <div class="audio-progress-container">
+            <div class="audio-progress" id="audioProgress"></div>
+          </div>
+          <span id="timeCurrent" class="audio-time">00:00</span>
+          <span id="timeDuration" class="audio-time">00:00</span>
+        </div>
+        <button id="closeAudioBtn" class="close-audio">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <!-- Surah Grid -->
+      <div id="surahGrid" class="surah-grid"></div>
+
+      <!-- Douaa Counter -->
+      <div class="quran-tasbih">
+        <div class="tasbih-text">
+          <i class="fas fa-hands-praying" style="font-size: 2rem; color: var(--gold);"></i>
+          <span>سُبْحَانَ اللَّهِ وَبِحَمْدِهِ</span>
+        </div>
+        <div class="tasbih-counter-box">
+          <span id="tasbihDisplay">٣٣</span>
+          <div class="tasbih-presets">
+            <button class="preset-btn" data-value="33">٣٣</button>
+            <button class="preset-btn" data-value="34">٣٤</button>
+            <button class="preset-btn" data-value="100">١٠٠</button>
+          </div>
+          <button class="tasbih-btn" id="tasbihPlus">+</button>
+          <button class="tasbih-btn" id="tasbihMinus">-</button>
+        </div>
+        <button class="tasbih-reset" id="tasbihReset"><i class="fas fa-undo-alt"></i> إعادة ضبط</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>فيث باث · صفحة القرآن الكريم · جميع الحقوق محفوظة</p>
+    <p style="opacity:0.8; margin-top:0.5rem;">
+      <i class="fas fa-star"></i> وَرَتِّلِ الْقُرْآنَ تَرْتِيلًا <i class="fas fa-star"></i>
+    </p>
+  </footer>
+
+  <!-- Main JavaScript -->
+  <script src="Quraan.js"></script>
+</body>
+</html>

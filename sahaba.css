@@ -1,0 +1,859 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --emerald-900: #0f3d2e;
+  --emerald-800: #145a3f;
+  --emerald-700: #1d6b4a;
+  --emerald-600: #2a7b57;
+  --emerald-500: #3f8f67;
+  --emerald-400: #5aa37c;
+  --emerald-300: #7fba99;
+  --emerald-200: #cfe2d5;
+  --emerald-100: #e7f3ea;
+  --sand-50: #fbf7f0;
+  --sand-100: #f2eadf;
+  --sand-200: #e7d8c8;
+  --sand-300: #dac6b2;
+  --bronze-400: #9f7a55;
+  --bronze-500: #8b6542;
+  --gold: #c9a87c;
+  --white-soft: #fff9f2;
+  
+  --shadow-sm: 0 5px 20px rgba(0,0,0,0.05);
+  --shadow-md: 0 10px 30px rgba(0,0,0,0.08);
+  --shadow-lg: 0 20px 40px rgba(0,0,0,0.12);
+  --shadow-hover: 0 30px 50px rgba(15,61,46,0.15);
+  
+  --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+body {
+  font-family: 'Cairo', sans-serif;
+  background: var(--sand-50);
+  color: #2e2a28;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* ===== HEADER ===== */
+.header {
+  position: relative;
+  background: linear-gradient(135deg, var(--emerald-900), var(--emerald-700));
+  color: white;
+  padding: 1rem 0 4rem;
+  overflow: hidden;
+}
+
+.header-wave {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  line-height: 0;
+  z-index: 2;
+}
+
+.header-wave svg {
+  width: 100%;
+  height: 80px;
+}
+
+.wave-fill {
+  fill: var(--sand-50);
+}
+
+/* Navbar */
+.navbar {
+  position: relative;
+  z-index: 10;
+  padding: 1rem 2rem;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+.nav-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.logo-img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+  border-radius: 12px;
+}
+
+.logo-text {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: white;
+  letter-spacing: 1px;
+}
+
+.logo-highlight {
+  color: var(--gold);
+  font-weight: 900;
+}
+
+.nav-menu {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  padding: 0.4rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.nav-link {
+  color: rgba(255,255,255,0.8);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: var(--transition);
+  padding: 0.45rem 1.05rem;
+  border-radius: 999px;
+  letter-spacing: 0.2px;
+}
+
+.nav-link:hover, .nav-link.active {
+  color: white;
+  background: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50px;
+  padding: 0.3rem 1rem;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.search-icon {
+  color: rgba(255,255,255,0.7);
+  font-size: 0.9rem;
+  margin-left: 0.5rem;
+}
+
+.search-input {
+  background: transparent;
+  border: none;
+  color: white;
+  padding: 0.5rem 0;
+  width: 150px;
+  font-size: 0.95rem;
+}
+
+.search-input::placeholder {
+  color: rgba(255,255,255,0.5);
+}
+
+.search-input:focus {
+  outline: none;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.notification-icon {
+  font-size: 1.3rem;
+  color: rgba(255,255,255,0.8);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.notification-icon:hover {
+  color: var(--gold);
+  transform: scale(1.1);
+}
+
+.profile-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255,255,255,0.15);
+  padding: 0.4rem 1rem;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.profile-badge:hover {
+  background: rgba(255,255,255,0.25);
+}
+
+.profile-icon {
+  font-size: 1.5rem;
+  color: var(--gold);
+}
+
+.profile-name {
+  font-weight: 600;
+}
+
+.menu-toggle {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: white;
+}
+
+/* Sahaba Hero Section */
+.sahaba-hero {
+  max-width: 1000px;
+  margin: 1rem auto 0;
+  padding: 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 3;
+  text-align: center;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(5px);
+  padding: 0.5rem 1.8rem;
+  border-radius: 50px;
+  margin-bottom: 1.5rem;
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.hero-badge i {
+  color: var(--gold);
+}
+
+.hero-title-arabic {
+  font-family: 'Amiri', serif;
+  font-size: 3.5rem;
+  font-weight: 900;
+  line-height: 1.2;
+  color: white;
+  text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.hero-sub {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  margin: 0.5rem 0 1rem;
+}
+
+/* ===== MAIN CONTENT ===== */
+.main-content {
+  background: var(--sand-50);
+  position: relative;
+  z-index: 1;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 3rem 2rem 5rem;
+}
+
+/* Page Header */
+.sahaba-page-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.section-icon {
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, var(--emerald-600), var(--emerald-800));
+  border-radius: 50% 50% 30% 70% / 60% 40% 60% 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  box-shadow: 0 10px 20px rgba(15,61,46,0.2);
+}
+
+.section-icon i {
+  font-size: 2.2rem;
+  color: white;
+}
+
+.section-title {
+  font-family: 'Amiri', serif;
+  font-size: 2.8rem;
+  color: var(--emerald-900);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+
+.section-subtitle {
+  font-size: 1.2rem;
+  color: var(--bronze-400);
+}
+
+.sahaba-count {
+  background: var(--emerald-100);
+  padding: 0.5rem 2rem;
+  border-radius: 50px;
+  display: inline-block;
+  color: var(--emerald-900);
+  font-weight: 600;
+  margin-top: 0.5rem;
+  border: 1px solid var(--emerald-300);
+}
+
+/* Filter Bar */
+.sahaba-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  background: white;
+  padding: 0.8rem 2rem;
+  border-radius: 80px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--emerald-200);
+  gap: 1rem;
+}
+
+.filter-search {
+  display: flex;
+  align-items: center;
+  background: var(--sand-100);
+  border-radius: 50px;
+  padding: 0.3rem 1.2rem;
+  width: 300px;
+}
+
+.filter-search i {
+  color: var(--bronze-400);
+  margin-left: 0.8rem;
+}
+
+.filter-search input {
+  border: none;
+  background: transparent;
+  padding: 0.7rem 0;
+  width: 100%;
+  font-size: 1rem;
+  font-family: 'Cairo', sans-serif;
+}
+
+.filter-search input:focus {
+  outline: none;
+}
+
+.filter-category {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.category-btn {
+  background: transparent;
+  border: 1px solid var(--emerald-300);
+  padding: 0.4rem 1.2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  color: var(--emerald-800);
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 0.85rem;
+}
+
+.category-btn.active, .category-btn:hover {
+  background: var(--emerald-800);
+  color: white;
+  border-color: var(--emerald-800);
+}
+
+/* Sahaba Grid */
+.sahaba-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.sahaba-card {
+  background: white;
+  border-radius: 2rem;
+  padding: 1.8rem 1.5rem 1.6rem 1.5rem;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+  border: 1px solid var(--emerald-200);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.sahaba-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--gold);
+}
+
+.sahaba-card::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, var(--emerald-200), transparent);
+  border-radius: 50%;
+  opacity: 0.4;
+}
+
+/* Card Header */
+.sahaba-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 2px solid var(--gold);
+  z-index: 2;
+}
+
+.sahaba-avatar {
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, var(--emerald-100), var(--emerald-200));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--gold);
+}
+
+.sahaba-avatar i {
+  font-size: 2.2rem;
+  color: var(--emerald-700);
+}
+
+.sahaba-info {
+  flex: 1;
+}
+
+.sahaba-name {
+  font-size: 1.8rem;
+  font-family: 'Amiri', serif;
+  font-weight: 700;
+  color: var(--emerald-900);
+  line-height: 1.2;
+}
+
+.sahaba-title {
+  font-size: 0.85rem;
+  color: var(--gold);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 0.2rem;
+}
+
+/* Sahaba Bio */
+.sahaba-bio {
+  margin: 1rem 0;
+  padding: 0.8rem;
+  background: var(--sand-100);
+  border-radius: 1rem;
+  font-size: 0.9rem;
+  color: var(--bronze-500);
+  line-height: 1.6;
+  text-align: center;
+  border: 1px solid var(--emerald-200);
+  z-index: 2;
+}
+
+/* Sahaba Stats */
+.sahaba-stats {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.8rem 0;
+  padding: 0.5rem 0.8rem;
+  background: var(--emerald-100);
+  border-radius: 40px;
+  font-size: 0.8rem;
+  color: var(--emerald-800);
+  z-index: 2;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.sahaba-stats span {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.sahaba-stats i {
+  color: var(--gold);
+}
+
+/* Sahaba Categories Badges */
+.sahaba-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+  z-index: 2;
+}
+
+.category-badge {
+  background: var(--emerald-200);
+  padding: 0.2rem 0.8rem;
+  border-radius: 50px;
+  font-size: 0.7rem;
+  color: var(--emerald-800);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.category-badge i {
+  font-size: 0.6rem;
+  color: var(--gold);
+}
+
+/* Sahaba Quote Section */
+.sahaba-quote {
+  background: linear-gradient(135deg, var(--emerald-800), var(--emerald-600));
+  border-radius: 2rem;
+  padding: 2rem;
+  margin: 2rem 0;
+  text-align: center;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.sahaba-quote::before {
+  content: '';
+  position: absolute;
+  top: -30px;
+  left: -30px;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, rgba(255,255,255,0.1), transparent);
+  border-radius: 50%;
+}
+
+.quote-icon {
+  font-size: 2.5rem;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+
+.quote-text {
+  font-size: 1.4rem;
+  font-family: 'Amiri', serif;
+  font-weight: 600;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.quote-source {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* Personal Counter */
+.personal-counter {
+  background: linear-gradient(135deg, var(--emerald-800), var(--emerald-600));
+  border-radius: 40px;
+  padding: 1.8rem 2rem;
+  margin-top: 2rem;
+  color: white;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--gold);
+}
+
+.counter-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.counter-header i {
+  color: var(--gold);
+  font-size: 1.8rem;
+}
+
+.counter-body {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.counter-display span {
+  font-size: 3.5rem;
+  font-weight: 700;
+  background: white;
+  color: var(--emerald-900);
+  padding: 0.3rem 1.5rem;
+  border-radius: 60px;
+  min-width: 120px;
+  display: inline-block;
+  text-align: center;
+}
+
+.counter-controls {
+  display: flex;
+  gap: 1rem;
+}
+
+.counter-btn {
+  background: var(--gold);
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--emerald-900);
+  transition: 0.1s;
+  box-shadow: 0 4px 0 #8b6542;
+}
+
+.counter-btn:active {
+  transform: translateY(4px);
+  box-shadow: 0 1px 0 #8b6542;
+}
+
+.counter-reset {
+  background: var(--emerald-200);
+  color: var(--emerald-900);
+  border: none;
+  padding: 0.6rem 1.5rem;
+  border-radius: 40px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.counter-presets {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.preset-preset {
+  background: rgba(255,255,255,0.2);
+  border: 1px solid var(--gold);
+  color: white;
+  padding: 0.4rem 1.2rem;
+  border-radius: 40px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.preset-preset:hover {
+  background: var(--gold);
+  color: var(--emerald-900);
+}
+
+.no-results {
+  text-align: center;
+  padding: 3rem;
+  background: white;
+  border-radius: 2rem;
+  grid-column: 1 / -1;
+  color: var(--bronze-400);
+}
+
+/* Modal for Sahabi Details */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(5px);
+}
+
+.modal-content {
+  background: white;
+  border-radius: 2rem;
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 2rem;
+  position: relative;
+  animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: var(--emerald-100);
+  border: none;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: var(--emerald-800);
+  transition: var(--transition);
+}
+
+.modal-close:hover {
+  background: var(--emerald-200);
+  transform: scale(1.05);
+}
+
+.modal-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.modal-avatar {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, var(--emerald-100), var(--emerald-200));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  border: 3px solid var(--gold);
+}
+
+.modal-avatar i {
+  font-size: 3rem;
+  color: var(--emerald-700);
+}
+
+.modal-name {
+  font-size: 2rem;
+  font-family: 'Amiri', serif;
+  color: var(--emerald-900);
+  margin-bottom: 0.3rem;
+}
+
+.modal-title {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.modal-section {
+  margin-top: 1.5rem;
+}
+
+.modal-section h4 {
+  color: var(--emerald-800);
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.modal-section p {
+  color: var(--bronze-500);
+  line-height: 1.6;
+}
+
+.modal-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+/* Footer */
+.footer {
+  background: var(--emerald-900);
+  color: white;
+  text-align: center;
+  padding: 2rem;
+  font-size: 0.95rem;
+  border-top: 3px solid var(--gold);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .nav-menu { display: none; }
+  .menu-toggle { display: block; }
+  .search-box { display: none; }
+  .sahaba-filter-bar { flex-direction: column; }
+  .filter-category { justify-content: center; }
+}
+
+@media (max-width: 768px) {
+  .hero-title-arabic { font-size: 2.2rem; }
+  .sahaba-grid { grid-template-columns: 1fr; }
+  .counter-body { flex-direction: column; }
+  .quote-text { font-size: 1.1rem; }
+}
+
+@media (max-width: 480px) {
+  .filter-search { width: 100%; }
+  .sahaba-name { font-size: 1.4rem; }
+  .modal-content { padding: 1.5rem; }
+}
