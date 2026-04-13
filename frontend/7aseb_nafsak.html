@@ -7,112 +7,692 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;600;700;900&family=Amiri:wght@400;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link rel="stylesheet" href="quizz.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
+/* ═══════════════════════════════════════════════════════════════════════
+   DESIGN TOKENS — couleurs & motifs centralisés
+═══════════════════════════════════════════════════════════════════════ */
+:root {
+  /* Verts (palette principale) */
+  --e9: #0f3d2e;
+  --e8: #145a3f;
+  --e7: #1d6b4a;
+  --e6: #2a7b57;
+  --e5: #3aaa6e;
+  --e2: #cfe2d5;
+  --e1: #e7f3ea;
+
+  /* Sables / beiges */
+  --s0: #fbf7f0;
+  --s1: #f2eadf;
+  --s2: #e7d8c8;
+
+  /* Accents */
+  --br: #9f7a55;
+  --gd: #c9a87c;
+  --gd-light: rgba(201,168,124,.18);
+  --gd-mid:   rgba(201,168,124,.35);
+
+  /* Transitions */
+  --tr: all 0.3s cubic-bezier(.25,.46,.45,.94);
+  --tr-fast: all 0.18s ease;
+
+  /* Radius */
+  --r-sm: 0.75rem;
+  --r-md: 1.25rem;
+  --r-lg: 1.6rem;
+  --r-xl: 2rem;
+
+  /* Ombres */
+  --sh-sm: 0 4px 12px rgba(15,61,46,.10);
+  --sh-md: 0 8px 22px rgba(15,61,46,.12);
+  --sh-lg: 0 16px 40px rgba(15,61,46,.18);
+  --sh-green: 0 4px 14px rgba(15,61,46,.28);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { height: 100%; }
+
+body {
+  font-family: 'Cairo', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: #2e2a28;
+  overflow-x: hidden;
+  position: relative;
+
+  /* Fond crème comme --islamic-cream */
+  background: #f5f1e8;
+}
+
+/* Motif de points */
+body::before {
+  content: "";
+  position: fixed; inset: 0;
+  background-image:
+    radial-gradient(circle at 12px 12px, rgba(20,90,63,.08) 0, rgba(20,90,63,.08) 2px, transparent 2px),
+    radial-gradient(circle at 28px 28px, rgba(20,90,63,.06) 0, rgba(20,90,63,.06) 2px, transparent 2px);
+  background-size: 40px 40px;
+  opacity: .35;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Orbe décoratif */
+body::after {
+  content: "";
+  position: fixed;
+  width: 520px; height: 520px;
+  border-radius: 45% 55% 70% 30% / 60% 30% 70% 40%;
+  top: -140px; left: -100px;
+  background: radial-gradient(circle, rgba(29,107,74,.22), transparent 70%);
+  filter: blur(10px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   NAVBAR — identique au projet de référence (page_acceuil.css)
+═══════════════════════════════════════════════════════════════════════ */
+.top-navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1200;
+  background: linear-gradient(135deg, rgba(20,90,63,.95), rgba(15,61,46,.95));
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 0.9rem 2rem;
+  border-bottom: 1px solid rgba(255,255,255,.15);
+  box-shadow: 0 8px 25px rgba(0,0,0,.20);
+}
+
+.nav-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  direction: rtl;
+}
+
+/* Logo — ordre 2 en RTL */
+.logo {
+  display: flex; align-items: center; gap: .7rem;
+  color: #fff; text-decoration: none;
+  order: 2;
+}
+.logo-img {
+  width: 40px; height: 40px;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,.2));
+}
+.logo-text {
+  font-size: 1.3rem; font-weight: 700;
+  letter-spacing: .5px; color: #fff;
+}
+.logo-text span { color: var(--gd); }
+
+/* Hamburger — ordre 1 */
+#hamburgerBtn {
+  order: 1;
+  display: flex; flex-direction: column;
+  justify-content: space-between;
+  width: 28px; height: 20px;
+  background: transparent; border: none;
+  cursor: pointer; padding: 0;
+  margin-inline-end: .5rem;
+  z-index: 1202;
+}
+#hamburgerBtn span {
+  display: block; width: 100%; height: 2.5px;
+  background: #fff; border-radius: 4px;
+  transition: var(--tr);
+}
+
+/* Actions — ordre 3 */
+.nav-actions {
+  order: 3;
+  display: flex; align-items: center; gap: 1rem;
+  margin-inline-start: auto;
+}
+.auth-action-btn {
+  display: inline-flex; align-items: center; gap: .45rem;
+  background: rgba(255,255,255,.12);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 999px;
+  padding: .45rem 1.2rem;
+  text-decoration: none; font-weight: 600; font-size: .85rem;
+  transition: var(--tr-fast); white-space: nowrap;
+}
+.auth-action-btn:hover {
+  background: var(--gd); color: var(--e9); border-color: var(--gd);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MENU LATÉRAL — avec logo en en-tête (aside-style)
+═══════════════════════════════════════════════════════════════════════ */
+.nav-menu {
+  display: flex;
+  position: fixed;
+  top: 0; right: -100%; bottom: 0;
+  width: min(320px, 85vw);
+  background: linear-gradient(180deg, var(--e8) 0%, var(--e9) 100%);
+  backdrop-filter: blur(15px);
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 0 0 2rem;
+  z-index: 1201;
+  gap: 0;
+  transition: right .32s cubic-bezier(.25,.46,.45,.94);
+  box-shadow: -5px 0 30px rgba(0,0,0,.3);
+  border-left: 2px solid rgba(201,168,124,.35);
+}
+.nav-menu.active { right: 0; }
+
+/* En-tête du menu avec logo */
+.nav-menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 1.4rem;
+  border-bottom: 1px solid rgba(255,255,255,.15);
+  margin-bottom: .8rem;
+}
+.nav-menu-logo {
+  display: flex; align-items: center; gap: .6rem;
+  color: #fff; text-decoration: none;
+}
+.nav-menu-logo img {
+  width: 36px; height: 36px;
+  filter: drop-shadow(0 3px 6px rgba(0,0,0,.25));
+}
+.nav-menu-logo-text {
+  font-size: 1.15rem; font-weight: 700; color: #fff;
+}
+.nav-menu-logo-text span { color: var(--gd); }
+.nav-menu-close {
+  width: 32px; height: 32px;
+  background: rgba(255,255,255,.12);
+  border: none; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; color: #fff; font-size: 1rem;
+  transition: var(--tr-fast);
+}
+.nav-menu-close:hover {
+  background: rgba(255,255,255,.25);
+  transform: rotate(90deg);
+}
+
+/* Liens */
+.nav-menu a {
+  color: rgba(255,255,255,.88);
+  text-decoration: none;
+  padding: .75rem 1.4rem;
+  transition: var(--tr-fast);
+  font-size: .95rem; display: block;
+  border-right: 3px solid transparent;
+}
+.nav-menu a:hover, .nav-menu a.active {
+  background: rgba(255,255,255,.12);
+  color: var(--gd);
+  border-right-color: var(--gd);
+}
+
+/* Overlay */
+.nav-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.5);
+  opacity: 0; visibility: hidden;
+  transition: var(--tr);
+  z-index: 1199;
+}
+.nav-overlay.active { opacity: 1; visibility: visible; }
+
+/* Masquer éléments desktop */
+.search-box, .profile-badge, .notification-icon { display: none !important; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   LAYOUT WRAPPER
+═══════════════════════════════════════════════════════════════════════ */
+.main-center-wrapper {
+  flex: 1 1 auto;
+  display: flex; align-items: flex-start; justify-content: center;
+  min-height: 0; min-width: 0;
+  padding-top: 74px; /* navbar height */
+}
+
+.pw {
+  max-width: 860px; width: 100%;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 2.5rem;
+  position: relative; z-index: 1;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   SCREEN SYSTEM
+═══════════════════════════════════════════════════════════════════════ */
+.screen { display: none; }
+.screen.active { display: block; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   HERO HEADER — style compatible avec title-block du projet de référence
+═══════════════════════════════════════════════════════════════════════ */
+.wh {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 2.5rem 2rem;
+  background: linear-gradient(135deg, rgba(255,253,251,.96) 0%, rgba(248,250,247,.92) 100%);
+  border: 1px solid rgba(207,226,213,.55);
+  border-radius: 1.5rem;
+  box-shadow:
+    0 20px 50px rgba(15,61,46,.08),
+    inset 0 1px 0 rgba(255,255,255,.85),
+    0 0 40px rgba(45,106,79,.04);
+  backdrop-filter: blur(8px);
+  position: relative; overflow: hidden;
+}
+
+/* Halo décoratif doré */
+.wh::before {
+  content: '';
+  position: absolute;
+  top: -30px; right: -30px;
+  width: 180px; height: 180px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(201,168,124,.15), transparent 70%);
+  pointer-events: none;
+}
+
+/* Croissant discret */
+.wh::after {
+  content: '☽';
+  position: absolute; left: -8px; bottom: -14px;
+  font-size: 5rem; font-family: 'Amiri', serif;
+  color: rgba(29,107,74,.07); pointer-events: none;
+}
+
+/* Icône — même forme que section-icon du projet */
+.bc {
+  width: 70px; height: 70px;
+  background: linear-gradient(135deg, var(--e6), var(--e8));
+  border-radius: 50% 50% 30% 70% / 60% 40% 60% 40%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto .9rem;
+  box-shadow: 0 10px 20px rgba(15,61,46,.22);
+  position: relative; z-index: 1;
+}
+.bc i { font-size: 2rem; color: #fef7e9; }
+
+/* Verset — style Amiri sobre */
+.bism {
+  font-family: 'Amiri', serif;
+  font-size: 1.05rem; line-height: 1.9;
+  color: var(--e7);
+  margin-bottom: .65rem;
+  font-style: italic;
+  position: relative; z-index: 1;
+}
+
+/* Titre — dégradé vert comme title-block h1 */
+.wtit {
+  font-family: 'Noto Kufi Arabic', serif;
+  font-size: 2rem; font-weight: 900;
+  background: linear-gradient(135deg, var(--e9) 0%, var(--e7) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: .4rem;
+  position: relative; z-index: 1;
+}
+
+/* Sous-titre — pill vert clair comme .welcome du projet */
+.wsub {
+  display: inline-block;
+  font-size: .92rem; font-weight: 600;
+  color: var(--e7);
+  background: rgba(207,226,213,.45);
+  padding: .28rem 1.5rem;
+  border-radius: 50px;
+  border: 1px solid rgba(173,200,186,.55);
+  backdrop-filter: blur(4px);
+  position: relative; z-index: 1;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PROGRESS CARD
+═══════════════════════════════════════════════════════════════════════ */
+.prog-card {
+  background: rgba(255,255,255,.9);
+  backdrop-filter: blur(10px);
+  border-radius: var(--r-xl);
+  padding: 1.4rem 1.8rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--sh-md);
+  border: 1px solid var(--e2);
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 1.2rem; flex-wrap: wrap;
+}
+
+.prog-left { flex: 1; min-width: 160px; }
+
+.prog-lbl {
+  font-size: .88rem; color: var(--br);
+  margin-bottom: .5rem; font-weight: 600;
+}
+
+.prog-bar {
+  height: 12px;
+  background: var(--e1);
+  border-radius: 50px;
+  overflow: hidden;
+  border: 1px solid var(--e2);
+}
+.prog-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--e7), var(--e5), var(--gd));
+  border-radius: 50px;
+  transition: width .7s cubic-bezier(.25,.46,.45,.94);
+}
+.prog-pct {
+  font-size: 1.05rem; font-weight: 700;
+  color: var(--e7); font-family: 'Amiri', serif;
+  margin-top: .45rem;
+}
+
+/* Timer ring */
+.trr {
+  position: relative;
+  width: 68px; height: 68px;
+  flex-shrink: 0;
+}
+.trr svg { transform: rotate(-90deg); }
+.tbg { fill: none; stroke: var(--e1); stroke-width: 5; }
+.tfg { fill: none; stroke: url(#ringGrad); stroke-width: 5; stroke-linecap: round; transition: stroke-dashoffset .7s cubic-bezier(.25,.46,.45,.94); }
+.tt {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Amiri', serif; font-size: .88rem; font-weight: 700;
+  color: var(--e8);
+}
+.trr.danger .tfg { stroke: #e74c3c; }
+.trr.danger .tt  { color: #e74c3c; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MOTIVATION BANNER
+═══════════════════════════════════════════════════════════════════════ */
+.motiv-banner {
+  background: linear-gradient(135deg, var(--e8) 0%, var(--e9) 60%, #0a2d20 100%);
+  border-radius: var(--r-lg);
+  padding: 1.2rem 1.5rem;
+  margin-bottom: 2rem;
+  display: flex; align-items: center; gap: 1rem;
+  box-shadow: 0 12px 28px rgba(15,61,46,.28);
+  position: relative; overflow: hidden;
+}
+.motiv-banner::before {
+  content: '☽';
+  position: absolute; left: -10px; bottom: -10px;
+  font-size: 5rem; color: rgba(255,255,255,.05);
+  font-family: 'Amiri', serif; pointer-events: none;
+}
+.motiv-icon-wrap {
+  width: 46px; height: 46px; flex-shrink: 0;
+  background: rgba(255,255,255,.13);
+  border-radius: 50% 50% 35% 65% / 55% 45% 55% 45%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem;
+  border: 1px solid rgba(255,255,255,.18);
+}
+.motiv-text {
+  font-family: 'Noto Kufi Arabic', serif;
+  font-size: .95rem; line-height: 1.8;
+  color: rgba(255,255,255,.92);
+}
+.motiv-text strong { color: var(--gd); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   SECTION BLOCKS
+═══════════════════════════════════════════════════════════════════════ */
+.section-block { margin-bottom: 2.2rem; }
+.section-header {
+  display: flex; align-items: center; gap: .8rem;
+  margin-bottom: 1.2rem;
+}
+.sec-num {
+  width: 34px; height: 34px;
+  background: linear-gradient(135deg, var(--e7), var(--e8));
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .9rem; font-weight: 700; color: #fff;
+  flex-shrink: 0; box-shadow: var(--sh-green);
+}
+.sec-title-text {
+  font-family: 'Noto Kufi Arabic', serif;
+  font-size: 1.12rem; font-weight: 700; color: var(--e9);
+}
+.sec-emoji { font-size: 1.2rem; margin-right: auto; }
+
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, rgba(207,226,213,.8), transparent);
+  margin-bottom: 2.2rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CARDS (fp-card)
+═══════════════════════════════════════════════════════════════════════ */
 .fp-card {
-  background: rgba(255,255,255,.85);
+  background: rgba(255,255,255,.86);
   backdrop-filter: blur(10px);
   border: 2px solid var(--e2);
-  border-radius: 1.6rem;
-  padding: 1.3rem 1rem 1rem;
+  border-radius: var(--r-lg);
+  padding: 1.25rem .95rem 1rem;
   cursor: pointer;
   transition: var(--tr);
   text-align: center;
-  box-shadow: 0 8px 22px rgba(15,61,46,.07);
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: .35rem;
+  box-shadow: var(--sh-sm);
+  position: relative; overflow: hidden;
+  display: flex; flex-direction: column; align-items: center;
+  gap: .3rem;
 }
 .fp-card::after {
   content: '';
   position: absolute; inset: 0;
-  background: radial-gradient(circle at 50% 0%, rgba(201,168,124,.13), transparent 65%);
+  background: radial-gradient(circle at 50% 0%, rgba(201,168,124,.14), transparent 65%);
   opacity: 0; transition: opacity .3s; pointer-events: none;
 }
-.fp-card:hover { transform: translateY(-6px); border-color: var(--gd); box-shadow: 0 20px 40px rgba(15,61,46,.16); }
+.fp-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--gd);
+  box-shadow: 0 18px 38px rgba(15,61,46,.16);
+}
 .fp-card:hover::after { opacity: 1; }
-.fp-card.fp-on { background: linear-gradient(160deg,rgba(231,243,234,.98),rgba(207,226,213,.6)); border-color: var(--e7); box-shadow: 0 14px 32px rgba(15,61,46,.2); }
-.fp-card.fp-on::after { opacity:1; background: radial-gradient(circle at 50% 0%,rgba(29,107,74,.1),transparent 65%); }
 
+.fp-card.fp-on {
+  background: linear-gradient(160deg, rgba(231,243,234,.98), rgba(207,226,213,.6));
+  border-color: var(--e7);
+  box-shadow: 0 12px 30px rgba(15,61,46,.2);
+}
+.fp-card.fp-on::after {
+  opacity: 1;
+  background: radial-gradient(circle at 50% 0%, rgba(29,107,74,.1), transparent 65%);
+}
+
+/* Icon */
 .fp-icon {
-  width: 60px; height: 60px;
+  width: 58px; height: 58px;
   border-radius: 50% 50% 35% 65% / 55% 45% 55% 45%;
   background: var(--e1); border: 2px solid var(--e2);
   display: flex; align-items: center; justify-content: center;
-  font-size: 1.7rem;
-  box-shadow: 0 6px 16px -4px rgba(15,61,46,.25);
-  transition: var(--tr); margin-bottom: .15rem; flex-shrink: 0; line-height: 1;
+  font-size: 1.65rem;
+  box-shadow: 0 6px 16px -4px rgba(15,61,46,.22);
+  transition: var(--tr); margin-bottom: .1rem; flex-shrink: 0; line-height: 1;
 }
-.fp-card:hover .fp-icon { transform: scale(1.12) rotate(-4deg); border-color: var(--gd); background: rgba(201,168,124,.15); }
+.fp-card:hover .fp-icon { transform: scale(1.12) rotate(-4deg); border-color: var(--gd); background: var(--gd-light); }
 .fp-card.fp-on .fp-icon { transform: scale(1.08); border-color: var(--e7); background: rgba(29,107,74,.1); }
 
-.fp-name { font-family:'Noto Kufi Arabic',serif; font-size:.95rem; font-weight:700; color:var(--e9); line-height:1.4; margin-top:.1rem; }
-.fp-sub  { font-size:.77rem; color:var(--br); line-height:1.3; }
+/* Text */
+.fp-name { font-family: 'Noto Kufi Arabic', serif; font-size: .92rem; font-weight: 700; color: var(--e9); line-height: 1.4; margin-top: .05rem; }
+.fp-sub  { font-size: .76rem; color: var(--br); line-height: 1.3; }
 
+/* Badge */
 .fp-badge {
   display: inline-flex; align-items: center; gap: .3rem;
   background: var(--e1); color: var(--br); border: 1px solid var(--e2);
-  border-radius: 50px; padding: .22rem .8rem;
-  font-size: .74rem; font-weight: 700; margin-top: .25rem;
-  transition: var(--tr); font-family:'Cairo',sans-serif;
+  border-radius: 50px; padding: .2rem .75rem;
+  font-size: .73rem; font-weight: 700; margin-top: .2rem;
+  transition: var(--tr); font-family: 'Cairo', sans-serif;
 }
 .fp-card.fp-on .fp-badge { background: var(--e7); color: #fff; border-color: var(--e7); }
 
+/* Tick */
 .fp-tick {
-  position: absolute; top:10px; left:10px;
-  width:22px; height:22px; border-radius:50%;
-  background: var(--e1); border:2px solid var(--e2);
-  display:flex; align-items:center; justify-content:center;
-  font-size:.65rem; color:var(--e7);
-  transition: var(--tr); opacity:0;
+  position: absolute; top: 9px; left: 9px;
+  width: 22px; height: 22px; border-radius: 50%;
+  background: var(--e1); border: 2px solid var(--e2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: .6rem; color: var(--e7);
+  transition: var(--tr); opacity: 0;
 }
-.fp-card.fp-on .fp-tick { opacity:1; background:var(--e7); border-color:var(--e7); color:#fff; }
+.fp-card.fp-on .fp-tick { opacity: 1; background: var(--e7); border-color: var(--e7); color: #fff; }
 
-.grid-5 { display:grid; grid-template-columns:repeat(5,1fr); gap:.9rem; }
-.grid-4 { display:grid; grid-template-columns:repeat(4,1fr); gap:.9rem; }
-.grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:.9rem; }
+/* ═══════════════════════════════════════════════════════════════════════
+   COUNTER (tasbeeh)
+═══════════════════════════════════════════════════════════════════════ */
+.fp-counter {
+  margin-top: .4rem;
+  display: flex; align-items: center; justify-content: center; gap: .5rem;
+}
+.fp-cnt-btn {
+  width: 28px; height: 28px; border-radius: 50%; border: none;
+  cursor: pointer; font-size: 1.1rem; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  transition: var(--tr);
+}
+.fp-cnt-minus { background: rgba(231,76,60,.12); color: #c0392b; }
+.fp-cnt-plus  { background: var(--e1); color: var(--e7); }
+.fp-cnt-minus:hover { background: rgba(231,76,60,.28); transform: scale(1.1); }
+.fp-cnt-plus:hover  { background: var(--e2); transform: scale(1.1); }
+.fp-cnt-num {
+  font-family: 'Amiri', serif; font-size: 1.4rem; font-weight: 900;
+  color: var(--e9); min-width: 28px; text-align: center;
+}
 
-@media(max-width:680px) { .grid-5{grid-template-columns:repeat(3,1fr);} .grid-4{grid-template-columns:repeat(2,1fr);} }
-@media(max-width:460px) { .grid-3{grid-template-columns:repeat(2,1fr);} .grid-5{grid-template-columns:repeat(2,1fr);} }
+/* ═══════════════════════════════════════════════════════════════════════
+   GRILLES
+═══════════════════════════════════════════════════════════════════════ */
+.grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); gap: .85rem; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: .85rem; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: .85rem; }
 
-.fp-counter { margin-top:.45rem; display:flex; align-items:center; justify-content:center; gap:.5rem; }
-.fp-cnt-btn { width:28px; height:28px; border-radius:50%; border:none; cursor:pointer; font-size:1.1rem; font-weight:700; display:flex; align-items:center; justify-content:center; transition:var(--tr); }
-.fp-cnt-minus { background:rgba(231,76,60,.12); color:#c0392b; }
-.fp-cnt-plus  { background:var(--e1); color:var(--e7); }
-.fp-cnt-minus:hover { background:rgba(231,76,60,.28); transform:scale(1.1); }
-.fp-cnt-plus:hover  { background:var(--e2); transform:scale(1.1); }
-.fp-cnt-num { font-family:'Amiri',serif; font-size:1.4rem; font-weight:900; color:var(--e9); min-width:28px; text-align:center; }
+@media (max-width: 680px) {
+  .grid-5 { grid-template-columns: repeat(3, 1fr); }
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 460px) {
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
+  .grid-5 { grid-template-columns: repeat(2, 1fr); }
+}
 
-.section-block { margin-bottom:2.4rem; }
-.section-header { display:flex; align-items:center; gap:.8rem; margin-bottom:1.3rem; }
-.sec-num { width:34px; height:34px; background:linear-gradient(135deg,var(--e7),var(--e8)); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:.9rem; font-weight:700; color:#fff; flex-shrink:0; box-shadow:0 4px 10px rgba(15,61,46,.3); }
-.sec-title-text { font-family:'Noto Kufi Arabic',serif; font-size:1.15rem; font-weight:700; color:var(--e9); }
-.sec-emoji { font-size:1.2rem; margin-right:auto; }
-.section-divider { height:1px; background:linear-gradient(90deg,rgba(207,226,213,.8),transparent); margin-bottom:2.4rem; }
+/* ═══════════════════════════════════════════════════════════════════════
+   BOUTON PRINCIPAL
+═══════════════════════════════════════════════════════════════════════ */
+.sb {
+  display: flex; align-items: center; justify-content: center; gap: .7rem;
+  width: 100%;
+  background: linear-gradient(135deg, var(--e7), var(--e8));
+  color: #fff; border: none; border-radius: var(--r-xl);
+  padding: 1rem 2rem;
+  font-family: 'Noto Kufi Arabic', serif;
+  font-size: 1.05rem; font-weight: 700;
+  cursor: pointer;
+  box-shadow: var(--sh-green);
+  transition: var(--tr);
+  margin-top: .5rem;
+}
+.sb:hover {
+  background: linear-gradient(135deg, var(--e6), var(--e7));
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(15,61,46,.35);
+}
+.sb i { font-size: 1.1rem; }
 
-.prog-card { background:rgba(255,255,255,.88); backdrop-filter:blur(10px); border-radius:2rem; padding:1.4rem 1.8rem; margin-bottom:1.8rem; box-shadow:0 10px 24px rgba(15,61,46,.1); border:1px solid var(--e2); display:flex; align-items:center; justify-content:space-between; gap:1rem; flex-wrap:wrap; }
-.prog-left { flex:1; min-width:160px; }
-.prog-lbl  { font-size:.88rem; color:var(--br); margin-bottom:.5rem; font-weight:600; }
-.prog-bar  { height:12px; background:var(--e1); border-radius:50px; overflow:hidden; border:1px solid var(--e2); }
-.prog-fill { height:100%; background:linear-gradient(90deg,var(--e7),#3aaa6e,var(--gd)); border-radius:50px; transition:width .7s cubic-bezier(.25,.46,.45,.94); }
-.prog-pct  { font-size:1.05rem; font-weight:700; color:var(--e7); font-family:'Amiri',serif; margin-top:.45rem; }
+/* ═══════════════════════════════════════════════════════════════════════
+   RÉSULTAT — SCORE CARD (rc / riw / rtit / sd / sl / ss…)
+═══════════════════════════════════════════════════════════════════════ */
+.rc {
+  background: rgba(255,255,255,.92);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--e2);
+  border-radius: var(--r-xl);
+  padding: 2rem 1.8rem 1.6rem;
+  text-align: center;
+  box-shadow: var(--sh-lg);
+  margin-bottom: 1.5rem;
+}
 
-.motiv-banner { background:linear-gradient(135deg,var(--e8) 0%,var(--e9) 60%,#0a2d20 100%); border-radius:1.6rem; padding:1.2rem 1.5rem; margin-bottom:2rem; display:flex; align-items:center; gap:1rem; box-shadow:0 12px 28px rgba(15,61,46,.28); position:relative; overflow:hidden; }
-.motiv-banner::before { content:'☽'; position:absolute; left:-10px; bottom:-10px; font-size:5rem; color:rgba(255,255,255,.05); font-family:'Amiri',serif; pointer-events:none; }
-.motiv-icon-wrap { width:46px; height:46px; flex-shrink:0; background:rgba(255,255,255,.13); border-radius:50% 50% 35% 65%/55% 45% 55% 45%; display:flex; align-items:center; justify-content:center; font-size:1.5rem; border:1px solid rgba(255,255,255,.15); }
-.motiv-text { font-family:'Noto Kufi Arabic',serif; font-size:.95rem; line-height:1.75; color:rgba(255,255,255,.92); }
-.motiv-text strong { color:var(--gd); }
+.riw {
+  width: 72px; height: 72px; border-radius: 50%;
+  margin: 0 auto .9rem;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2rem;
+}
+/* Variantes couleur */
+.riw.gg  { background: linear-gradient(135deg, var(--e1), var(--e2)); border: 2px solid var(--e7); }
+.riw.sg  { background: linear-gradient(135deg, #e8f6ee, #d4eedc);     border: 2px solid #4caf7d; }
+.riw.bg2 { background: linear-gradient(135deg, #fdf7ee, #f5e9d4);     border: 2px solid var(--gd); }
+.riw.lg  { background: linear-gradient(135deg, #fef3f0, #fde0d9);     border: 2px solid #e07060; }
 
-/* ── WARNING SALAH ─────────────────────────── */
+.rtit {
+  font-family: 'Noto Kufi Arabic', serif;
+  font-size: 1.5rem; font-weight: 900; color: var(--e9);
+  margin-bottom: .4rem;
+}
+.sd {
+  font-family: 'Amiri', serif;
+  font-size: 3rem; font-weight: 700; color: var(--e7);
+  line-height: 1; margin-bottom: .5rem;
+}
+.sl { font-size: .9rem; color: var(--br); margin-bottom: 1.2rem; }
+
+/* Stats row */
+.ss {
+  display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap;
+  margin-bottom: 1.4rem;
+  border-top: 1px solid var(--e2); padding-top: 1.1rem;
+}
+.ssi {
+  display: flex; flex-direction: column; align-items: center; gap: .25rem;
+}
+.ssn {
+  font-family: 'Amiri', serif; font-size: 1.7rem; font-weight: 700;
+}
+.cn   { color: var(--e7); }
+.tn2  { color: var(--br); }
+.ssl  { font-size: .78rem; color: #888; }
+
+/* Quote */
+.gm {
+  background: var(--e1); border-right: 3px solid var(--e7);
+  border-radius: var(--r-sm); padding: .75rem 1rem;
+  font-family: 'Noto Kufi Arabic', serif; font-size: .92rem;
+  color: var(--e9); text-align: right; line-height: 1.7;
+  display: flex; align-items: flex-start; gap: .5rem;
+}
+.gm i { color: var(--gd); margin-top: .15rem; flex-shrink: 0; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   WARNING SALAH
+═══════════════════════════════════════════════════════════════════════ */
 .prayer-warning {
   display: none;
   background: linear-gradient(135deg, #fdf0ee, #fce8e5);
   border: 2px solid #e74c3c;
-  border-radius: 1.5rem;
+  border-radius: var(--r-lg);
   padding: 1.3rem 1.5rem;
   margin-bottom: 1.5rem;
   animation: warnPop .4s cubic-bezier(.25,.46,.45,.94);
@@ -120,221 +700,418 @@
 .prayer-warning.show { display: flex; gap: 1rem; align-items: flex-start; }
 @keyframes warnPop { from{opacity:0;transform:scale(.96) translateY(-8px);} to{opacity:1;transform:scale(1) translateY(0);} }
 .warn-icon { font-size: 2rem; flex-shrink: 0; margin-top: .1rem; }
-.warn-body {}
 .warn-title { font-family:'Noto Kufi Arabic',serif; font-size:1.05rem; font-weight:700; color:#c0392b; margin-bottom:.4rem; }
 .warn-ayah  { font-family:'Amiri',serif; font-size:1.1rem; color:#8e2218; line-height:1.8; font-style:italic; }
 
-/* ── CHART ─────────────────────────────────── */
+/* ═══════════════════════════════════════════════════════════════════════
+   CHART BOX
+═══════════════════════════════════════════════════════════════════════ */
 .chart-box {
   background: rgba(255,255,255,.9);
-  border-radius: 1.8rem; padding: 1.5rem 1.5rem 1.2rem;
-  border: 1px solid var(--e2); box-shadow: 0 10px 24px rgba(15,61,46,.07);
+  border-radius: var(--r-xl);
+  padding: 1.5rem 1.5rem 1.2rem;
+  border: 1px solid var(--e2);
+  box-shadow: var(--sh-md);
   margin-bottom: 1.5rem;
 }
-.chart-box-title { font-family:'Noto Kufi Arabic',serif; font-size:1rem; font-weight:700; color:var(--e9); margin-bottom:1rem; display:flex; align-items:center; gap:.5rem; }
-.chart-box-title span { font-size:1.1rem; }
-.chart-wrap { position:relative; height:280px; }
+.chart-box-title {
+  font-family: 'Noto Kufi Arabic', serif; font-size: 1rem; font-weight: 700;
+  color: var(--e9); margin-bottom: 1rem;
+  display: flex; align-items: center; gap: .5rem;
+}
+.chart-box-title span { font-size: 1.1rem; }
+.chart-wrap { position: relative; height: 280px; }
 
-/* ── REVIEW ────────────────────────────────── */
-.review-grid { display:grid; grid-template-columns:1fr 1fr; gap:.7rem; margin-top:.5rem; }
-@media(max-width:500px){ .review-grid{grid-template-columns:1fr;} }
-.review-item { background:rgba(255,255,255,.85); border-radius:1rem; padding:.75rem 1rem; border:1px solid var(--e2); display:flex; align-items:center; gap:.6rem; font-size:.88rem; font-weight:600; color:var(--e9); }
-.review-item.ri-ok { border-right:3px solid #27ae60; }
-.review-item.ri-ko { border-right:3px solid #e74c3c; }
-.ri-dot { width:22px; height:22px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:.72rem; flex-shrink:0; }
-.ri-ok .ri-dot { background:rgba(39,174,96,.15); color:#27ae60; }
-.ri-ko .ri-dot { background:rgba(231,76,60,.1);  color:#e74c3c; }
+/* ═══════════════════════════════════════════════════════════════════════
+   REVIEW SECTION (rvs / rvt / review-grid)
+═══════════════════════════════════════════════════════════════════════ */
+.rvs {
+  background: rgba(255,255,255,.88);
+  border-radius: var(--r-xl);
+  padding: 1.3rem 1.4rem;
+  border: 1px solid var(--e2);
+  box-shadow: var(--sh-sm);
+}
+.rvt {
+  font-family: 'Noto Kufi Arabic', serif; font-size: 1rem; font-weight: 700;
+  color: var(--e9); margin-bottom: 1rem;
+  display: flex; align-items: center; gap: .5rem;
+}
+.rvt i { color: var(--e7); }
 
+.review-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .65rem; margin-top: .5rem; }
+@media (max-width: 500px) { .review-grid { grid-template-columns: 1fr; } }
+
+.review-item {
+  background: rgba(255,255,255,.85);
+  border-radius: var(--r-md);
+  padding: .72rem .95rem;
+  border: 1px solid var(--e2);
+  display: flex; align-items: center; gap: .6rem;
+  font-size: .86rem; font-weight: 600; color: var(--e9);
+  transition: var(--tr-fast);
+}
+.review-item:hover { transform: translateX(-2px); }
+.review-item.ri-ok { border-right: 3px solid #27ae60; }
+.review-item.ri-ko { border-right: 3px solid #e74c3c; }
+
+.ri-dot {
+  width: 22px; height: 22px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: .7rem; flex-shrink: 0;
+}
+.ri-ok .ri-dot { background: rgba(39,174,96,.15); color: #27ae60; }
+.ri-ko .ri-dot { background: rgba(231,76,60,.10);  color: #e74c3c; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ACTIONS RETOUR (ra / ab)
+═══════════════════════════════════════════════════════════════════════ */
+.ra {
+  display: flex; gap: 1rem; flex-wrap: wrap;
+}
+.ab {
+  flex: 1; min-width: 130px;
+  display: flex; align-items: center; justify-content: center; gap: .55rem;
+  padding: .85rem 1.4rem;
+  border-radius: var(--r-xl); border: none; cursor: pointer;
+  font-family: 'Noto Kufi Arabic', serif; font-size: .95rem; font-weight: 700;
+  transition: var(--tr);
+  background: rgba(255,255,255,.88);
+  color: var(--e8);
+  border: 1.5px solid var(--e2);
+  box-shadow: var(--sh-sm);
+}
+.ab:hover {
+  background: var(--e1); border-color: var(--e7);
+  transform: translateY(-2px);
+}
+.ab.rp {
+  background: linear-gradient(135deg, var(--e7), var(--e8));
+  color: #fff; border-color: transparent;
+  box-shadow: var(--sh-green);
+}
+.ab.rp:hover {
+  background: linear-gradient(135deg, var(--e6), var(--e7));
+  box-shadow: 0 8px 22px rgba(15,61,46,.35);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   SIGNATURE
+═══════════════════════════════════════════════════════════════════════ */
+.sig {
+  text-align: center; margin-top: 2.2rem;
+  display: flex; align-items: center; justify-content: center; gap: .6rem;
+  color: var(--gd); font-size: .9rem; font-family: 'Amiri', serif;
+  flex-wrap: wrap;
+}
+.sigt {
+  font-family: 'Cairo', sans-serif; font-size: 1rem; font-weight: 700;
+  color: var(--e8); letter-spacing: .5px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════════════════════════════ */
+.mini-footer {
+  background: linear-gradient(135deg, #1a3a2a, #2d6a4f);
+  color: rgba(255,255,255,.92);
+  border-top: 2px solid rgba(212,175,55,.45);
+  margin-top: auto;
+}
+.mini-footer-inner {
+  width: min(1200px, 96vw); margin: 0 auto;
+  padding: 1rem 0;
+  display: flex; justify-content: center; align-items: center;
+  gap: 1rem; flex-wrap: wrap; font-size: .92rem;
+  flex-direction: column; text-align: center;
+}
+.mini-footer p { color: rgba(255,255,255,.88); margin-bottom: .2rem; }
+.mini-footer-links { display: flex; align-items: center; gap: .9rem; flex-wrap: wrap; }
+.mini-footer-links a { color: rgba(255,255,255,.9); text-decoration: none; transition: var(--tr-fast); }
+.mini-footer-links a:hover { opacity: .72; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ANIMATIONS
+═══════════════════════════════════════════════════════════════════════ */
 @keyframes fadeUp { from{opacity:0;transform:translateY(18px);} to{opacity:1;transform:translateY(0);} }
 @keyframes popIn  { 0%{transform:scale(.8);opacity:0;} 70%{transform:scale(1.05);} 100%{transform:scale(1);opacity:1;} }
-.section-block { animation:fadeUp .45s ease both; }
-.section-block:nth-child(1){ animation-delay:.00s; }
-.section-block:nth-child(2){ animation-delay:.07s; }
-.section-block:nth-child(3){ animation-delay:.14s; }
-.section-block:nth-child(4){ animation-delay:.21s; }
-.section-block:nth-child(5){ animation-delay:.28s; }
-.section-block:nth-child(6){ animation-delay:.35s; }
-.fp-card.fp-on .fp-icon { animation:popIn .3s ease; }
+
+.section-block { animation: fadeUp .45s ease both; }
+.section-block:nth-child(1) { animation-delay:.00s; }
+.section-block:nth-child(2) { animation-delay:.07s; }
+.section-block:nth-child(3) { animation-delay:.14s; }
+.section-block:nth-child(4) { animation-delay:.21s; }
+.section-block:nth-child(5) { animation-delay:.28s; }
+.section-block:nth-child(6) { animation-delay:.35s; }
+
+.fp-card.fp-on .fp-icon { animation: popIn .3s ease; }
 </style>
 </head>
 <body>
 
-<header class="header">
-  <nav class="navbar">
+<!-- SVG gradient pour le ring -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%"   stop-color="#1d6b4a"/>
+      <stop offset="60%"  stop-color="#3aaa6e"/>
+      <stop offset="100%" stop-color="#c9a87c"/>
+    </linearGradient>
+  </defs>
+</svg>
+
+<!-- ═══ NAVBAR ═══════════════════════════════════════════════════════ -->
+<nav class="top-navbar">
+  <div class="nav-container">
     <div class="logo">
-      <div class="logo-icon">☽</div>
-      <div class="logo-text">Faith<span>Path</span></div>
+      <img src="img/m.png" alt="FaithPath" class="logo-img" onerror="this.style.display='none'">
+      <span class="logo-text">Faith<span>Path</span></span>
     </div>
-    <div style="text-align:center">
-      <div class="bism" style="color:rgba(255,255,255,.75);font-size:.9rem">بسم الله الرحمن الرحيم</div>
-      <div id="hijriDate" style="font-size:.8rem;color:rgba(255,255,255,.55);font-family:'Amiri',serif"></div>
-    </div>
-    <div class="nav-badge"><i class="fa-solid fa-scale-balanced"></i> حاسب نفسك</div>
-  </nav>
-</header>
-
-<div class="pw">
-
-<!-- ÉCRAN PRINCIPAL -->
-<div class="screen active" id="mainScreen">
-
-  <div class="wh">
-    <div class="bc"><i class="fa-solid fa-scale-balanced"></i></div>
-    <div class="bism">وَنَضَعُ الْمَوَازِينَ الْقِسْطَ لِيَوْمِ الْقِيَامَةِ</div>
-    <h1 class="wtit">حاسب نفسك</h1>
-    <div class="wsub">سجّل أعمالك اليومية وتابع تقدّمك الروحي</div>
-  </div>
-
-  <div class="prog-card">
-    <div class="prog-left">
-      <div class="prog-lbl">✨ إنجاز يومك</div>
-      <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
-      <div class="prog-pct" id="progPct">0%</div>
-    </div>
-    <div class="trr" id="timerRing">
-      <svg width="64" height="64" viewBox="0 0 64 64">
-        <circle class="tbg" cx="32" cy="32" r="27"/>
-        <circle class="tfg" cx="32" cy="32" r="27"
-          stroke-dasharray="169.6" stroke-dashoffset="169.6" id="scoreArc"/>
-      </svg>
-      <span class="tt" id="scoreNum">0%</span>
-    </div>
-  </div>
-
-  <div class="motiv-banner">
-    <div class="motiv-icon-wrap" id="motivIcon">🌿</div>
-    <div class="motiv-text" id="motivMsg">ابدأ يومك بتسجيل أعمالك الصالحة… <strong>اللهم أعنّا على ذكرك وشكرك وحسن عبادتك</strong></div>
-  </div>
-
-  <!-- § 1 -->
-  <div class="section-block">
-    <div class="section-header">
-      <div class="sec-num">١</div>
-      <span class="sec-title-text">الصلوات الخمس</span>
-      <span class="sec-emoji">🕌</span>
-    </div>
-    <div class="grid-5" id="prayerGrid"></div>
-  </div>
-  <div class="section-divider"></div>
-
-  <!-- § 2 -->
-  <div class="section-block">
-    <div class="section-header">
-      <div class="sec-num">٢</div>
-      <span class="sec-title-text">السنن الرواتب</span>
-      <span class="sec-emoji">⭐</span>
-    </div>
-    <div class="grid-4" id="sunnahGrid"></div>
-  </div>
-  <div class="section-divider"></div>
-
-  <!-- § 3 -->
-  <div class="section-block">
-    <div class="section-header">
-      <div class="sec-num">٣</div>
-      <span class="sec-title-text">أذكار الصباح والمساء</span>
-      <span class="sec-emoji">🌅</span>
-    </div>
-    <div class="grid-4" id="adhkarGrid"></div>
-  </div>
-  <div class="section-divider"></div>
-
-  <!-- § 4 -->
-  <div class="section-block">
-    <div class="section-header">
-      <div class="sec-num">٤</div>
-      <span class="sec-title-text">أذكار بعد الصلاة والتسبيح</span>
-      <span class="sec-emoji">📿</span>
-    </div>
-    <div class="grid-3" id="tasbeehGrid"></div>
-    <div style="margin-top:1rem" class="grid-3" id="postPrayerGrid"></div>
-  </div>
-  <div class="section-divider"></div>
-
-  <!-- § 5 -->
-  <div class="section-block">
-    <div class="section-header">
-      <div class="sec-num">٥</div>
-      <span class="sec-title-text">أعمال إضافية</span>
-      <span class="sec-emoji">💚</span>
-    </div>
-    <div class="grid-3" id="extrasGrid"></div>
-  </div>
-  <div class="section-divider"></div>
-
-  <!-- § 6 -->
-  <div class="section-block">
-    <div class="section-header">
-      <div class="sec-num">٦</div>
-      <span class="sec-title-text">تلاوة القرآن الكريم</span>
-      <span class="sec-emoji">📖</span>
-    </div>
-    <div class="grid-4" id="quranGrid"></div>
-  </div>
-
-  <button class="sb" onclick="showResult()" style="margin-top:.5rem">
-    <i class="fa-solid fa-chart-pie"></i> عرض ملخص يومي
-  </button>
-
-</div><!-- /mainScreen -->
-
-<!-- ÉCRAN RÉSULTAT -->
-<div class="screen" id="resultScreen">
-
-  <!-- Score card -->
-  <div class="rc">
-    <div class="riw gg" id="resultIcon">🏆</div>
-    <div class="rtit" id="resultTitle">يومٌ رائع!</div>
-    <div class="sd"   id="resultScore">0%</div>
-    <div class="sl"   id="resultMsg">سجّل أعمالك لترى نتيجتك</div>
-    <div class="ss">
-      <div class="ssi"><span class="ssn cn" id="rStatPrayers">0/5</span><span class="ssl">الصلوات</span></div>
-      <div class="ssi"><span class="ssn tn2" id="rStatAdhkar">0</span><span class="ssl">الأذكار</span></div>
-      <div class="ssi"><span class="ssn" style="color:var(--gd)" id="rStatExtras">0</span><span class="ssl">أعمال إضافية</span></div>
-    </div>
-    <div class="gm"><i class="fa-solid fa-quote-right"></i> <span id="resultQuote"></span></div>
-  </div>
-
-  <!-- Warning salah -->
-  <div class="prayer-warning" id="prayerWarning">
-    <div class="warn-icon">⚠️</div>
-    <div class="warn-body">
-      <div class="warn-title">لم تُسجِّل أيّ صلاة فريضة اليوم!</div>
-      <div class="warn-ayah">إِنَّ الصَّلَاةَ كَانَتْ عَلَى الْمُؤْمِنِينَ كِتَابًا مَّوْقُوتًا</div>
-    </div>
-  </div>
-
-  <!-- Chart AVANT تفصيل الأعمال -->
-  <div class="chart-box" id="chartBox">
-    <div class="chart-box-title"><span>📊</span> ملخص ما أنجزته اليوم</div>
-    <div class="chart-wrap"><canvas id="summaryChart"></canvas></div>
-  </div>
-
-  <!-- تفصيل -->
-  <div class="rvs">
-    <div class="rvt"><i class="fa-solid fa-list-check"></i> تفصيل الأعمال</div>
-    <div class="review-grid" id="reviewGrid"></div>
-  </div>
-
-  <div class="ra" style="margin-top:1.5rem">
-    <button class="ab" onclick="goBack()">
-      <i class="fa-solid fa-arrow-right"></i><span>تعديل</span>
+    <button class="hamburger" id="hamburgerBtn" aria-label="القائمة">
+      <span></span><span></span><span></span>
     </button>
-    <button class="ab rp" onclick="resetAll()">
-      <i class="fa-solid fa-rotate-right"></i><span>يوم جديد</span>
+    <div class="nav-actions">
+      <a href="start.html" id="authActionBtn" class="auth-action-btn">
+        <i class="fas fa-right-to-bracket"></i><span>إنشاء حساب / تسجيل الدخول</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- Menu latéral -->
+<div class="nav-menu" id="navMenu">
+
+  <!-- Logo en-tête du drawer -->
+  <div class="nav-menu-header">
+    <a href="page_acceuil.html" class="nav-menu-logo">
+      <img src="img/m.png" alt="FaithPath" onerror="this.style.display='none'">
+      <span class="nav-menu-logo-text">Faith<span>Path</span></span>
+    </a>
+    <button class="nav-menu-close" id="closeMenuBtn" aria-label="إغلاق">
+      <i class="fas fa-times"></i>
     </button>
   </div>
 
-</div><!-- /resultScreen -->
-
-<div class="sig">
-  <span>✦</span><span class="sigt">FaithPath</span><span>✦</span>
-  <span style="font-size:.88rem;color:#a09080">حاسب نفسك قبل أن تُحاسَب</span>
+  <a href="page_acceuil.html">🔓 الرئيسية</a>
+  <a href="#">🔓 القرآن الكريم</a>
+  <a href="asmaa_allah_alhousnaa_3d.html">🔓 أسماء الله الحسنى</a>
+  <a href="#">🔒 مسار الأنبياء</a>
+  <a href="hijri.html">🔓 التقويم الهجري</a>
+  <a href="prayertime.html">🔓 أوقات الصلاة</a>
+  <a href="tasbih.HTML">🔓 المسبحة الإلكترونية</a>
+  <a href="#">🔒 قصة الصحابة</a>
+  <a href="#" class="active">🔓 حاسب نفسك</a>
+  <a href="#">🔒 اختبارات دينية</a>
+  <a href="#">🔒 صدقة جارية</a>
+  <a href="#">🔓 أذكار الصباح والمساء</a>
+  <a href="#">🔓 تواصل معنا</a>
 </div>
+<div class="nav-overlay" id="navOverlay"></div>
 
-</div><!-- .pw -->
+<!-- ═══ CONTENU PRINCIPAL ══════════════════════════════════════════════ -->
+<div class="main-center-wrapper">
+  <div class="pw">
+
+    <!-- ── MAIN SCREEN ─────────────────────────────────────────── -->
+    <div class="screen active" id="mainScreen">
+
+      <!-- Hero -->
+      <div class="wh">
+        <div class="bc"><i class="fa-solid fa-scale-balanced"></i></div>
+        <div class="bism">وَنَضَعُ الْمَوَازِينَ الْقِسْطَ لِيَوْمِ الْقِيَامَةِ</div>
+        <h1 class="wtit">حاسب نفسك</h1>
+        <div class="wsub">سجّل أعمالك اليومية وتابع تقدّمك الروحي</div>
+      </div>
+
+      <!-- Progression -->
+      <div class="prog-card">
+        <div class="prog-left">
+          <div class="prog-lbl">✨ إنجاز يومك</div>
+          <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+          <div class="prog-pct" id="progPct">0%</div>
+        </div>
+        <div class="trr" id="timerRing">
+          <svg width="68" height="68" viewBox="0 0 68 68">
+            <circle class="tbg" cx="34" cy="34" r="28"/>
+            <circle class="tfg" cx="34" cy="34" r="28"
+              stroke-dasharray="175.9" stroke-dashoffset="175.9" id="scoreArc"/>
+          </svg>
+          <span class="tt" id="scoreNum">0%</span>
+        </div>
+      </div>
+
+      <!-- Bannière motivation -->
+      <div class="motiv-banner">
+        <div class="motiv-icon-wrap" id="motivIcon">🌿</div>
+        <div class="motiv-text" id="motivMsg">
+          ابدأ يومك بتسجيل أعمالك الصالحة… <strong>اللهم أعنّا على ذكرك وشكرك وحسن عبادتك</strong>
+        </div>
+      </div>
+
+      <!-- § 1 Prières -->
+      <div class="section-block">
+        <div class="section-header">
+          <div class="sec-num">١</div>
+          <span class="sec-title-text">الصلوات الخمس</span>
+          <span class="sec-emoji">🕌</span>
+        </div>
+        <div class="grid-5" id="prayerGrid"></div>
+      </div>
+      <div class="section-divider"></div>
+
+      <!-- § 2 Sunnah -->
+      <div class="section-block">
+        <div class="section-header">
+          <div class="sec-num">٢</div>
+          <span class="sec-title-text">السنن الرواتب</span>
+          <span class="sec-emoji">⭐</span>
+        </div>
+        <div class="grid-4" id="sunnahGrid"></div>
+      </div>
+      <div class="section-divider"></div>
+
+      <!-- § 3 Adhkar -->
+      <div class="section-block">
+        <div class="section-header">
+          <div class="sec-num">٣</div>
+          <span class="sec-title-text">أذكار الصباح والمساء</span>
+          <span class="sec-emoji">🌅</span>
+        </div>
+        <div class="grid-4" id="adhkarGrid"></div>
+      </div>
+      <div class="section-divider"></div>
+
+      <!-- § 4 Tasbeeh -->
+      <div class="section-block">
+        <div class="section-header">
+          <div class="sec-num">٤</div>
+          <span class="sec-title-text">أذكار بعد الصلاة والتسبيح</span>
+          <span class="sec-emoji">📿</span>
+        </div>
+        <div class="grid-3" id="tasbeehGrid"></div>
+        <div style="margin-top:1rem" class="grid-3" id="postPrayerGrid"></div>
+      </div>
+      <div class="section-divider"></div>
+
+      <!-- § 5 Extras -->
+      <div class="section-block">
+        <div class="section-header">
+          <div class="sec-num">٥</div>
+          <span class="sec-title-text">أعمال إضافية</span>
+          <span class="sec-emoji">💚</span>
+        </div>
+        <div class="grid-3" id="extrasGrid"></div>
+      </div>
+      <div class="section-divider"></div>
+
+      <!-- § 6 Quran -->
+      <div class="section-block">
+        <div class="section-header">
+          <div class="sec-num">٦</div>
+          <span class="sec-title-text">تلاوة القرآن الكريم</span>
+          <span class="sec-emoji">📖</span>
+        </div>
+        <div class="grid-4" id="quranGrid"></div>
+      </div>
+
+      <button class="sb" onclick="showResult()">
+        <i class="fa-solid fa-chart-pie"></i> عرض ملخص يومي
+      </button>
+
+    </div><!-- /mainScreen -->
+
+    <!-- ── RESULT SCREEN ────────────────────────────────────────── -->
+    <div class="screen" id="resultScreen">
+
+      <!-- Score card -->
+      <div class="rc">
+        <div class="riw gg" id="resultIcon">🏆</div>
+        <div class="rtit" id="resultTitle">يومٌ رائع!</div>
+        <div class="sd"   id="resultScore">0%</div>
+        <div class="sl"   id="resultMsg">سجّل أعمالك لترى نتيجتك</div>
+        <div class="ss">
+          <div class="ssi"><span class="ssn cn"  id="rStatPrayers">0/5</span><span class="ssl">الصلوات</span></div>
+          <div class="ssi"><span class="ssn tn2" id="rStatAdhkar">0</span><span class="ssl">الأذكار</span></div>
+          <div class="ssi"><span class="ssn" style="color:var(--gd)" id="rStatExtras">0</span><span class="ssl">أعمال إضافية</span></div>
+        </div>
+        <div class="gm"><i class="fa-solid fa-quote-right"></i> <span id="resultQuote"></span></div>
+      </div>
+
+      <!-- Warning -->
+      <div class="prayer-warning" id="prayerWarning">
+        <div class="warn-icon">⚠️</div>
+        <div class="warn-body">
+          <div class="warn-title">لم تُسجِّل أيّ صلاة فريضة اليوم!</div>
+          <div class="warn-ayah">إِنَّ الصَّلَاةَ كَانَتْ عَلَى الْمُؤْمِنِينَ كِتَابًا مَّوْقُوتًا</div>
+        </div>
+      </div>
+
+      <!-- Chart -->
+      <div class="chart-box" id="chartBox">
+        <div class="chart-box-title"><span>📊</span> ملخص ما أنجزته اليوم</div>
+        <div class="chart-wrap"><canvas id="summaryChart"></canvas></div>
+      </div>
+
+      <!-- Review -->
+      <div class="rvs">
+        <div class="rvt"><i class="fa-solid fa-list-check"></i> تفصيل الأعمال</div>
+        <div class="review-grid" id="reviewGrid"></div>
+      </div>
+
+      <!-- Actions -->
+      <div class="ra" style="margin-top:1.5rem">
+        <button class="ab" onclick="goBack()">
+          <i class="fa-solid fa-arrow-right"></i><span>تعديل</span>
+        </button>
+        <button class="ab rp" onclick="resetAll()">
+          <i class="fa-solid fa-rotate-right"></i><span>يوم جديد</span>
+        </button>
+      </div>
+
+    </div><!-- /resultScreen -->
+
+    <!-- Signature -->
+    <div class="sig">
+      <span>✦</span><span class="sigt">FaithPath</span><span>✦</span>
+      <span style="font-size:.88rem;color:#a09080">حاسب نفسك قبل أن تُحاسَب</span>
+    </div>
+
+  </div><!-- .pw -->
+</div><!-- .main-center-wrapper -->
+
+<!-- ═══ FOOTER ═══════════════════════════════════════════════════════ -->
+<footer class="mini-footer" id="contact">
+  <div class="mini-footer-inner">
+    <p>© 2026 FaithPath. جميع الحقوق محفوظة</p>
+    <div class="mini-footer-links">
+      <a href="page_acceuil.html">الرئيسية</a>
+    </div>
+  </div>
+</footer>
 
 <script>
+// ─── MENU ──────────────────────────────────────────────────────────────
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const navMenu      = document.getElementById('navMenu');
+const navOverlay   = document.getElementById('navOverlay');
+
+function toggleMenu() {
+  navMenu.classList.toggle('active');
+  navOverlay.classList.toggle('active');
+  document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+}
+function closeMenu() {
+  navMenu.classList.remove('active');
+  navOverlay.classList.remove('active');
+  document.body.style.overflow = '';
+}
+hamburgerBtn?.addEventListener('click', toggleMenu);
+navOverlay?.addEventListener('click', closeMenu);
+document.getElementById('closeMenuBtn')?.addEventListener('click', closeMenu);
+document.querySelectorAll('.nav-menu a').forEach(l => l.addEventListener('click', closeMenu));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+
+// ─── DONNÉES ───────────────────────────────────────────────────────────
 const PRAYERS = [
   { id:'fajr',    name:'الفجر',   icon:'🌙', sub:'قبل الشروق' },
   { id:'dhuhr',   name:'الظهر',   icon:'☀️', sub:'منتصف النهار' },
@@ -392,6 +1169,7 @@ const S = {
   tasbeeh:{}, postPrayer:{}, extras:{}, quran:null
 };
 
+// ─── CONSTRUCTION DES CARTES ────────────────────────────────────────────
 function makeCard({ id, name, sub, icon, badgeOff='لم يُفعل' }) {
   return `
   <div class="fp-card" id="${id}" onclick="fpToggle('${id}')">
@@ -436,6 +1214,7 @@ function buildAll() {
     QURAN_OPTS.map(q => makeCard({ id:'qo_'+q.id, name:q.name, sub:q.sub, icon:q.icon, badgeOff:q.sub })).join('');
 }
 
+// ─── BADGE HELPERS ──────────────────────────────────────────────────────
 function setBadge(cardId, text, on) {
   const card = document.getElementById(cardId);
   const b    = document.getElementById('bdg_'+cardId);
@@ -444,9 +1223,9 @@ function setBadge(cardId, text, on) {
   card.classList.toggle('fp-on', on);
 }
 function setCounterBadge(rawId, n) {
-  const t = TASBEEH.find(x => x.id === rawId);
+  const t    = TASBEEH.find(x => x.id === rawId);
   const done = n >= t.target;
-  const b = document.getElementById('bdg_tb_'+rawId);
+  const b    = document.getElementById('bdg_tb_'+rawId);
   if (b) b.textContent = done ? '✓ مكتمل' : n+' / '+t.target;
   document.getElementById('tb_'+rawId)?.classList.toggle('fp-on', done);
 }
@@ -478,7 +1257,7 @@ function selectQuran(cardId) {
 }
 function changeCount(e, rawId, delta) {
   e.stopPropagation();
-  const t = TASBEEH.find(x => 'tb_'+x.id === rawId);
+  const t   = TASBEEH.find(x => 'tb_'+x.id === rawId);
   const key = rawId.replace('tb_','');
   S.tasbeeh[key] = Math.max(0, Math.min(t.target, (S.tasbeeh[key]||0) + delta));
   document.getElementById('cn_'+rawId).textContent = S.tasbeeh[key];
@@ -486,6 +1265,7 @@ function changeCount(e, rawId, delta) {
   update();
 }
 
+// ─── CALCUL SCORE ───────────────────────────────────────────────────────
 function calcScore() {
   const pDone  = Object.values(S.prayers).filter(Boolean).length;
   const sDone  = Object.values(S.sunnah).filter(Boolean).length;
@@ -502,14 +1282,17 @@ function calcScore() {
   return { pct, pDone, sDone, aDone, tDone, ppDone, eDone, qPts };
 }
 
+// ─── UPDATE UI ──────────────────────────────────────────────────────────
 function update() {
   const s = calcScore();
   document.getElementById('progFill').style.width = s.pct+'%';
   document.getElementById('progPct').textContent  = s.pct+'%';
-  const c = 169.6;
+
+  const c = 175.9;
   document.getElementById('scoreArc').style.strokeDashoffset = c - c*s.pct/100;
   document.getElementById('scoreNum').textContent = s.pct+'%';
   document.getElementById('timerRing').classList.toggle('danger', s.pct<30 && s.pct>0);
+
   const motivs = [
     ['🌱','ابدأ يومك بتسجيل أعمالك… <strong>اللهم أعنّا على ذكرك وشكرك وحسن عبادتك</strong>'],
     ['🌿','لا تزال في البداية، <strong>خذ نفسك بالعزيمة والهمّة</strong>'],
@@ -523,10 +1306,9 @@ function update() {
   document.getElementById('motivMsg').innerHTML    = motivs[mi][1];
 }
 
-// ══════════ RESULT ══════════════════════════════
+// ─── RÉSULTAT ────────────────────────────────────────────────────────────
 function showResult() {
   const s = calcScore();
-
   document.getElementById('resultScore').textContent  = s.pct+'%';
   document.getElementById('rStatPrayers').textContent = s.pDone+'/5';
   document.getElementById('rStatAdhkar').textContent  = s.aDone+s.tDone+s.ppDone;
@@ -546,11 +1328,8 @@ function showResult() {
   document.getElementById('resultMsg').textContent   = s.pct+'% من أهداف يومك';
   document.getElementById('resultQuote').textContent = quote;
 
-  // ── Warning si aucune prière ──
-  const warn = document.getElementById('prayerWarning');
-  warn.classList.toggle('show', s.pDone === 0);
+  document.getElementById('prayerWarning').classList.toggle('show', s.pDone === 0);
 
-  // ── Review ──
   const items = [
     ...PRAYERS.map(p  => ({ label:'صلاة '+p.name,  done:!!S.prayers[p.id],  icon:p.icon })),
     ...SUNNAH.map(sv  => ({ label:sv.name,           done:!!S.sunnah[sv.id],  icon:sv.icon })),
@@ -568,46 +1347,35 @@ function showResult() {
 
   document.getElementById('mainScreen').classList.remove('active');
   document.getElementById('resultScreen').classList.add('active');
-  window.scrollTo({top:0,behavior:'smooth'});
+  window.scrollTo({top:0, behavior:'smooth'});
   buildChart(s);
 }
 
 function goBack() {
   document.getElementById('resultScreen').classList.remove('active');
   document.getElementById('mainScreen').classList.add('active');
-  window.scrollTo({top:0,behavior:'smooth'});
+  window.scrollTo({top:0, behavior:'smooth'});
 }
 
-// ══════════ CHART — UN SEUL DONUT ══════════════
+// ─── CHART ───────────────────────────────────────────────────────────────
 let summaryChart;
 function buildChart(s) {
-
-  // Construire les données : uniquement les éléments ACCOMPLIS
   const allItems = [
-    // Prières
     ...PRAYERS.map(p => ({ label: p.icon+' '+p.name, done: !!S.prayers[p.id], pct: S.prayers[p.id] ? 8 : 0 })),
-    // Adhkar
     { label:'🌄 أذكار الصباح',     done: !!S.adhkar['adhkar_sabah'],   pct: S.adhkar['adhkar_sabah']   ? 3.75 : 0 },
     { label:'🌆 أذكار المساء',     done: !!S.adhkar['adhkar_masaa'],   pct: S.adhkar['adhkar_masaa']   ? 3.75 : 0 },
     { label:'🌙 أذكار النوم',      done: !!S.adhkar['adhkar_nawm'],    pct: S.adhkar['adhkar_nawm']    ? 3.75 : 0 },
     { label:'🌞 أذكار الاستيقاظ', done: !!S.adhkar['adhkar_istiqaz'], pct: S.adhkar['adhkar_istiqaz'] ? 3.75 : 0 },
-    // Tasbeeh
     ...TASBEEH.map(t => ({ label: t.icon+' '+t.name, done: (S.tasbeeh[t.id]||0)>=t.target, pct: (S.tasbeeh[t.id]||0)>=t.target ? 3.33 : 0 })),
-    // Post-prayer
     ...POST_PRAYER.map(p => ({ label: p.icon+' '+p.name, done: !!S.postPrayer[p.id], pct: S.postPrayer[p.id] ? 1.66 : 0 })),
-    // Sunnah
     ...SUNNAH.map(sv => ({ label: sv.icon+' '+sv.name, done: !!S.sunnah[sv.id], pct: S.sunnah[sv.id] ? 1.25 : 0 })),
-    // Extras
     ...EXTRAS.map(e => ({ label: e.icon+' '+e.name, done: !!S.extras[e.id], pct: S.extras[e.id] ? 1.66 : 0 })),
-    // Quran
     { label: '📖 تلاوة القرآن', done: S.quran&&S.quran!=='q0', pct: S.quran&&S.quran!=='q0' ? Math.round((QURAN_OPTS.find(q=>q.id===S.quran)?.pts||0)*1) : 0 },
   ];
 
-  // Filtrer uniquement les accomplis
   const done = allItems.filter(i => i.done);
-
-  // Si rien d'accompli → message
   const chartBox = document.getElementById('chartBox');
+
   if (done.length === 0) {
     chartBox.innerHTML = `
       <div class="chart-box-title"><span>📊</span> ملخص ما أنجزته اليوم</div>
@@ -617,25 +1385,20 @@ function buildChart(s) {
     return;
   }
 
-  // Palette de couleurs
   const palette = [
     '#1d6b4a','#2a7b57','#3aaa6e','#c9a87c','#b88f63',
-    '#145a3f','#9f7a55','#cfe2d5','#e7d8c8','#86a98f',
-    '#5a9a72','#d4b896','#7fc99a','#a8845e','#4a8860',
-    '#c4956a','#6bb88a','#b07840','#3d7a5c','#dfc4a0',
+    '#145a3f','#9f7a55','#cfe2d5','#86a98f','#5a9a72',
+    '#d4b896','#7fc99a','#a8845e','#4a8860','#c4956a',
+    '#6bb88a','#b07840','#3d7a5c','#dfc4a0','#e7d8c8',
   ];
 
-  const labels = done.map(i => i.label);
-  const values = done.map(i => Math.max(i.pct, 2));
-  const colors = done.map((_,idx) => palette[idx % palette.length]);
-
-  // Pourcentages réels pour le tooltip
-  const total = done.reduce((a,i) => a+i.pct, 0);
+  const labels  = done.map(i => i.label);
+  const values  = done.map(i => Math.max(i.pct, 2));
+  const colors  = done.map((_,idx) => palette[idx % palette.length]);
+  const total   = done.reduce((a,i) => a+i.pct, 0);
   const realPcts = done.map(i => total > 0 ? Math.round(i.pct/total*100) : 0);
 
   if (summaryChart) summaryChart.destroy();
-
-  // Recréer le canvas proprement
   chartBox.innerHTML = `
     <div class="chart-box-title"><span>📊</span> ملخص ما أنجزته اليوم</div>
     <div class="chart-wrap" style="height:300px"><canvas id="summaryChart"></canvas></div>`;
@@ -658,19 +1421,11 @@ function buildChart(s) {
       plugins: {
         legend: {
           position: 'bottom',
-          labels: {
-            font: { family:'Cairo', size: 11 },
-            color: '#2e2a28',
-            boxWidth: 14,
-            padding: 10,
-          }
+          labels: { font:{family:'Cairo',size:11}, color:'#2e2a28', boxWidth:14, padding:10 }
         },
         tooltip: {
           callbacks: {
-            label: ctx => {
-              const pct = realPcts[ctx.dataIndex];
-              return ` ${ctx.label} — ${pct}%`;
-            }
+            label: ctx => ` ${ctx.label} — ${realPcts[ctx.dataIndex]}%`
           }
         }
       },
@@ -679,28 +1434,23 @@ function buildChart(s) {
   });
 }
 
-// ══════════ RESET ══════════════════════════════
+// ─── RESET ───────────────────────────────────────────────────────────────
 function resetAll() {
   if (!confirm('هل أنت متأكد من بدء يوم جديد؟')) return;
-  ['prayers','sunnah','adhkar','postPrayer','extras'].forEach(g=>{
-    Object.keys(S[g]).forEach(k=>S[g][k]=false);
+  ['prayers','sunnah','adhkar','postPrayer','extras'].forEach(g => {
+    Object.keys(S[g]).forEach(k => S[g][k] = false);
   });
-  TASBEEH.forEach(t=>{ S.tasbeeh[t.id]=0; });
+  TASBEEH.forEach(t => { S.tasbeeh[t.id] = 0; });
   S.quran = null;
   buildAll(); update();
   document.getElementById('resultScreen').classList.remove('active');
   document.getElementById('mainScreen').classList.add('active');
-  window.scrollTo({top:0,behavior:'smooth'});
+  window.scrollTo({top:0, behavior:'smooth'});
 }
 
-function setDate() {
-  const days = ['الأحد','الإثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
-  const d = new Date();
-  document.getElementById('hijriDate').textContent =
-    days[d.getDay()] + ' · ' + d.toLocaleDateString('ar-SA');
-}
-
-buildAll(); setDate(); update();
+// ─── INIT ────────────────────────────────────────────────────────────────
+buildAll();
+update();
 </script>
 </body>
 </html>

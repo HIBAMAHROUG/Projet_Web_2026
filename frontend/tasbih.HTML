@@ -1,87 +1,176 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, user-scalable=yes"
-    />
-    <title>المسبحة الإلكترونية</title>
-    <link rel="stylesheet" href="styletas.css" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>المسبحة الإلكترونية | FaithPath</title>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="tasbih.css" />
+</head>
 
-  <body>
-     <!-- ===== HEADER ===== -->
-    <header class="header">
-      <div class="user">
-        <i class="fa-solid fa-user"></i>
-        <span>المستخدم</span>
+<body>
+
+  <!-- ===== ASIDE NAV ===== -->
+  <aside class="aside-nav" id="asideNav">
+    <div class="aside-header">
+      <div class="aside-logo">
+        <img src="img/m.png" alt="FaithPath" class="aside-logo-img" onerror="this.style.display='none'">
+        <span>Faith<span>Path</span></span>
       </div>
-      <div class="user-box">
-        <i class="fa-solid fa-bell"></i>
-        <div class="search-box">
-          <input type="text" placeholder="...بحث" />
-          <i class="fa-solid fa-search"></i>
-        </div>
+      <button class="close-aside" id="closeAsideBtn">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <ul class="aside-menu">
+      <li><a href="page_acceuil.html" class="aside-link" data-access="free">🔓 الرئيسية</a></li>
+      <li><a href="#quran" class="aside-link" data-access="free">🔓 القرآن الكريم</a></li>
+      <li><a href="asmaa_allah_alhousnaa_3d.html" class="aside-link" data-access="free">🔓 أسماء الله الحسنى</a></li>
+      <li><a href="#features" class="aside-link" data-access="locked">🔒 مسار الأنبياء</a></li>
+      <li><a href="hijri.html" class="aside-link" data-access="free">🔓 التقويم الهجري</a></li>
+      <li><a href="prayertime.html" class="aside-link" data-access="free">🔓 أوقات الصلاة</a></li>
+      <li><a href="tasbih.html" class="aside-link active" data-access="free">🔓 المسبحة الإلكترونية</a></li>
+      <li><a href="#features" class="aside-link" data-access="locked">🔒 قصة الصحابة</a></li>
+      <li><a href="#features" class="aside-link" data-access="locked">🔒 حاسب نفسك</a></li>
+      <li><a href="#features" class="aside-link" data-access="locked">🔒 اختبارات دينية</a></li>
+      <li><a href="#features" class="aside-link" data-access="locked">🔒 صدقة جارية</a></li>
+      <li><a href="#features" class="aside-link" data-access="free">🔓 أذكار الصباح والمساء</a></li>
+      <li><a href="#contact" class="aside-link" data-access="free">🔓 تواصل معنا</a></li>
+    </ul>
+    <div class="aside-footer">
+      <a href="start.html" id="asideAuthActionBtn" class="aside-link" data-access="free">🔓 تسجيل الدخول</a>
+      <div class="aside-search">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="بحث...">
       </div>
-
-      <nav class="navbar">
-        <a href="#">الرئيسية</a>
-        <a href="#">القرآن الكريم</a>
-        <a href="#">أسماء الله الحسنى</a>
-        <a href="#">التقويم الهجري</a>
-        <a href="#">المسبحة الإلكترونية</a>
-        <a href="#">قصة الصحابة</a>
-        <a href="#">حاسب نفسك</a>
-        <a href="#">صدقة جارية</a>
-        <a href="#">أذكار</a>
-        <a href="#">اتصل بنا</a>
-      </nav>
-      <div class="logo">
-        <span class="logo-text">Faith<span>Path</span></span>
-        <i class="fa-solid fa-mosque"></i>
-      </div>
-    </header>
-    <div class="app">
-      <div class="tasbih-header">
-        <h1>📿 المسبحة الإلكترونية</h1>
-        <p>اذكر الله يطمئن قلبك 🤍</p>
-      </div>
-
-      <div class="tasbih-container">
-        <div class="tasbih">
-          <div class="circle" id="circle"></div>
-          <div class="center">
-            <div id="zikr">سبحان الله</div>
-            <div class="count" id="count">0</div>
-          </div>
-        </div>
-
-        <!-- INDICATEUR DE PROGRESSION -->
-        <div class="progress-indicator">
-          <div class="progress-bar-bg">
-            <div class="progress-fill" id="progressFill"></div>
-          </div>
-          <div class="progress-text" id="progressText">0 / 33</div>
-        </div>
-      </div>
-
-      <div class="controls">
-        <div class="btn-group">
-          <button onclick="changeZikr()" class="primary">🔄 تغيير الذكر</button>
-          <button onclick="reset()">🗑️ إعادة</button>
-        </div>
-
-        <div class="selector-group">
-          <label for="maxSelect">🎯 الحد الأقصى:</label>
-          <select id="maxSelect" name="maxx" onchange="changeMax()">
-            <option value="33">33</option>
-            <option value="99">99</option>
-            <option value="100">100</option>
-          </select>
-        </div>
+      <div class="aside-profile">
+        <i class="far fa-user-circle"></i>
+        <span id="asideProfileName">أحمد</span>
       </div>
     </div>
-    <script src="tasbih.js"></script>
-  </body>
+  </aside>
+
+  <!-- Overlay -->
+  <div class="aside-overlay" id="asideOverlay"></div>
+
+  <!-- ===== HEADER ===== -->
+  <header class="header" id="topHeader">
+    <nav class="top-navbar">
+      <div class="nav-container">
+
+        <div class="nav-right-group">
+          <div class="logo">
+            <img src="img/m.png" alt="FaithPath" class="logo-img" onerror="this.style.display='none'">
+            <span class="logo-text">Faith<span class="logo-highlight">Path</span></span>
+          </div>
+          <button class="hamburger" id="hamburgerBtn" aria-label="القائمة">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+
+        <div class="nav-actions">
+          <a href="start.html" id="authActionBtn" class="auth-action-btn">
+            <i class="fas fa-right-to-bracket"></i>
+            <span>إنشاء حساب / تسجيل الدخول</span>
+          </a>
+          <div class="search-box">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" placeholder="بحث..." class="search-input">
+          </div>
+          <i class="far fa-bell notification-icon"></i>
+          <div class="profile-badge">
+            <i class="far fa-user-circle profile-icon"></i>
+            <span class="profile-name" id="profileName">أحمد</span>
+          </div>
+        </div>
+
+      </div>
+    </nav>
+  </header>
+
+  <!-- ══════ PAGE TITLE ══════ -->
+  <div class="page-title-section">
+    <h1>المسبحة الإلكترونية</h1>
+    <p>اذكر الله يطمئن قلبك</p>
+  </div>
+
+  <!-- ══════ APP CARD ══════ -->
+  <div class="app">
+    <div class="tasbih-header">
+      <div class="brand-circle">
+        <i class="fas fa-circle-notch"></i>
+      </div>
+      <h1>📿 المسبحة الإلكترونية</h1>
+      <p>اذكر الله يطمئن قلبك 🤍</p>
+    </div>
+
+    <div class="tasbih-container">
+      <div class="tasbih">
+        <div class="circle" id="circle"></div>
+        <div class="center">
+          <div id="zikr">سبحان الله</div>
+          <div class="count" id="count">0</div>
+        </div>
+      </div>
+
+      <div class="progress-indicator">
+        <div class="progress-bar-bg">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-text" id="progressText">0 / 33</div>
+      </div>
+    </div>
+
+    <div class="controls">
+      <div class="btn-group">
+        <button onclick="changeZikr()" class="primary">🔄 تغيير الذكر</button>
+        <button onclick="reset()">🗑️ إعادة</button>
+      </div>
+      <div class="selector-group">
+        <label for="maxSelect">🎯 الحد الأقصى:</label>
+        <select id="maxSelect" name="maxx" onchange="changeMax()">
+          <option value="33">33</option>
+          <option value="99">99</option>
+          <option value="100">100</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="mini-footer" id="contact">
+    <div class="mini-footer-inner">
+      <p>© 2026 FaithPath. جميع الحقوق محفوظة</p>
+      <div class="mini-footer-links">
+        <a href="page_acceuil.html">الرئيسية</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="tasbih.js"></script>
+  <script>
+    const hamburgerBtn  = document.getElementById('hamburgerBtn');
+    const asideNav      = document.getElementById('asideNav');
+    const asideOverlay  = document.getElementById('asideOverlay');
+    const closeAsideBtn = document.getElementById('closeAsideBtn');
+    const header        = document.getElementById('topHeader');
+
+    function openAside()  { asideNav.classList.add('open'); asideOverlay.classList.add('show'); document.body.style.overflow = 'hidden'; }
+    function closeAside() { asideNav.classList.remove('open'); asideOverlay.classList.remove('show'); document.body.style.overflow = ''; }
+
+    if (hamburgerBtn)  hamburgerBtn.addEventListener('click', openAside);
+    if (closeAsideBtn) closeAsideBtn.addEventListener('click', closeAside);
+    if (asideOverlay)  asideOverlay.addEventListener('click', closeAside);
+
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+      const current = window.scrollY;
+      if (current > lastScroll && current > 80) header.classList.add('nav-hidden');
+      else header.classList.remove('nav-hidden');
+      lastScroll = current;
+    });
+  </script>
+</body>
 </html>

@@ -7,14 +7,120 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700&family=Noto+Kufi+Arabic:wght@400;600;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="quizz.css"/>
+<style>
+  .top-navbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1200;
+    background: linear-gradient(135deg, rgba(20,90,63,.95), rgba(15,61,46,.95));
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 0.9rem 2rem;
+    border-bottom: 1px solid rgba(255,255,255,.15);
+    box-shadow: 0 8px 25px rgba(0,0,0,.20);
+  }
+  .nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    direction: rtl;
+  }
+  .logo {
+    display: flex; align-items: center; gap: .7rem;
+    color: #fff; text-decoration: none;
+    order: 2;
+  }
+  .logo-img {
+    width: 40px; height: 40px;
+    filter: drop-shadow(0 4px 8px rgba(0,0,0,.2));
+  }
+  .logo-text {
+    font-size: 1.3rem; font-weight: 700;
+    letter-spacing: .5px; color: #fff;
+  }
+  .logo-text span { color: #c9a87c; }
+  .hamburger {
+    order: 1;
+    display: flex; flex-direction: column;
+    justify-content: space-between;
+    width: 28px; height: 20px;
+    background: transparent; border: none;
+    cursor: pointer; padding: 0;
+    margin-inline-end: .5rem;
+    z-index: 1202;
+  }
+  .hamburger span {
+    display: block; width: 100%; height: 2.5px;
+    background: #fff; border-radius: 4px;
+    transition: all 0.3s cubic-bezier(.25,.46,.45,.94);
+  }
+  .nav-actions {
+    order: 3;
+    display: flex; align-items: center; gap: 1rem;
+    margin-inline-start: auto;
+  }
+  .auth-action-btn {
+    display: inline-flex; align-items: center; gap: .45rem;
+    background: rgba(255,255,255,.12);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,.25);
+    border-radius: 999px;
+    padding: .45rem 1.2rem;
+    text-decoration: none; font-weight: 600; font-size: .85rem;
+    transition: all 0.18s ease; white-space: nowrap;
+  }
+  .auth-action-btn:hover {
+    background: #c9a87c; color: #0f3d2e; border-color: #c9a87c;
+  }
+  .mini-footer {
+    background: linear-gradient(135deg, #1a3a2a, #2d6a4f);
+    color: rgba(255,255,255,.92);
+    border-top: 2px solid rgba(212,175,55,.45);
+    margin-top: auto;
+  }
+  .mini-footer-inner {
+    width: min(1200px, 96vw); margin: 0 auto;
+    padding: 1rem 0;
+    display: flex; justify-content: center; align-items: center;
+    gap: 1rem; flex-wrap: wrap; font-size: .92rem;
+    flex-direction: column; text-align: center;
+  }
+  .mini-footer p { color: rgba(255,255,255,.88); margin-bottom: .2rem; }
+  .mini-footer-links { display: flex; align-items: center; gap: .9rem; flex-wrap: wrap; }
+  .mini-footer-links a { color: rgba(255,255,255,.9); text-decoration: none; transition: all 0.18s ease; }
+  .mini-footer-links a:hover { opacity: .72; }
+</style>
 </head>
-<body>
-<header class="header">
-<nav class="navbar">
-<div class="logo"><div class="logo-icon"><i class="fa-solid fa-star-and-crescent"></i></div><span class="logo-text">Faith<span>Path</span></span></div>
-<div class="nav-badge"><i class="fa-solid fa-scale-balanced"></i> الفقه الإسلامي</div>
+<body class="fp-unified">
+<!-- ═══ NAVBAR harmonisée avec quizz_acc.html/7aseb_nafsak.html ═══ -->
+<nav class="top-navbar">
+  <div class="nav-container">
+    <div class="logo">
+      <img src="img/m.png" alt="FaithPath" class="logo-img" onerror="this.style.display='none'">
+      <span class="logo-text">Faith<span>Path</span></span>
+    </div>
+    <button class="hamburger" id="hamburgerBtn" aria-label="القائمة">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-actions">
+      <a href="start.html" id="authActionBtn" class="auth-action-btn">
+        <i class="fas fa-right-to-bracket"></i><span>إنشاء حساب / تسجيل الدخول</span>
+      </a>
+    </div>
+  </div>
 </nav>
-</header>
+</div>
+<!-- ═══ FOOTER harmonisé avec quizz_acc.html/7aseb_nafsak.html ═══ -->
+<footer class="mini-footer" id="contact">
+  <div class="mini-footer-inner">
+    <p>© 2026 FaithPath. جميع الحقوق محفوظة</p>
+    <div class="mini-footer-links">
+      <a href="page_acceuil.html">الرئيسية</a>
+    </div>
+  </div>
+</footer>
 <div class="pw">
 <div id="sq" class="screen active">
 <div class="qh">

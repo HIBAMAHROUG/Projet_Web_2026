@@ -1,139 +1,1124 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>أنبياء الإسلام | FaithPath</title>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>أنبياء الإسلام | FaithPath</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700&family=Noto+Kufi+Arabic:wght@400;700;800&display=swap" rel="stylesheet"/>
+  <style>
+    /* ══════════════════════════════════════════
+       CSS VARIABLES & RESET
+    ══════════════════════════════════════════ */
+    :root {
+      --emerald-900: #0f3d2e;
+      --emerald-800: #145a3f;
+      --emerald-700: #1d6b4a;
+      --emerald-600: #2a7b57;
+      --emerald-500: #3f8f67;
+      --emerald-200: #cfe2d5;
+      --emerald-100: #e7f3ea;
+      --sand-50: #fbf7f0;
+      --sand-100: #f2eadf;
+      --sand-200: #e7d8c8;
+      --bronze-400: #9f7a55;
+      --gold: #c9a87c;
+      --islamic-dark: #1a3a2a;
+      --islamic-green: #2d6a4f;
+      --islamic-gold: #d4af37;
+      --islamic-cream: #f5f1e8;
+      --shadow-sm: 0 5px 20px rgba(0,0,0,0.05);
+      --shadow-md: 0 10px 30px rgba(0,0,0,0.08);
+      --transition: all 0.3s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
 
-    <link
-      href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    />
-    <link rel="stylesheet" href="pro.css">
-    <script defer src="prop.js"></script>
-  </head>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Cairo', sans-serif;
+    }
 
-  <body>
-    <!-- ===== HEADER ===== -->
-    <header class="header">
-      <div class="user">
-        <i class="fa-solid fa-user"></i>
-        <span>المستخدم</span>
+    body {
+      min-height: 100vh;
+      background-color: #f5f0e8;
+      color: #1a1a1a;
+      direction: rtl;
+      overflow-x: hidden;
+    }
+
+
+    /* ══════════════════════════════════════════
+       NAV-MENU (sidebar) harmonisée avec 7aseb_nafsak.html
+    ══════════════════════════════════════════ */
+    .nav-menu {
+      display: flex;
+      position: fixed;
+      top: 0; right: -100%; bottom: 0;
+      width: min(320px, 85vw);
+      background: linear-gradient(180deg, var(--emerald-800) 0%, var(--emerald-900) 100%);
+      backdrop-filter: blur(15px);
+      flex-direction: column;
+      justify-content: flex-start;
+      padding: 0 0 2rem;
+      z-index: 1201;
+      gap: 0;
+      transition: right .32s cubic-bezier(.25,.46,.45,.94);
+      box-shadow: -5px 0 30px rgba(0,0,0,.3);
+      border-left: 2px solid rgba(212,175,55,.35);
+    }
+    .nav-menu.active { right: 0; }
+
+    .nav-menu-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 1.4rem;
+      border-bottom: 1px solid rgba(255,255,255,.15);
+      margin-bottom: .8rem;
+    }
+    .nav-menu-logo {
+      display: flex; align-items: center; gap: .6rem;
+      color: #fff; text-decoration: none;
+    }
+    .nav-menu-logo img {
+      width: 36px; height: 36px;
+      filter: drop-shadow(0 3px 6px rgba(0,0,0,.25));
+    }
+    .nav-menu-logo-text {
+      font-size: 1.15rem; font-weight: 700; color: #fff;
+    }
+    .nav-menu-logo-text span { color: var(--gold); }
+    .nav-menu-close {
+      width: 32px; height: 32px;
+      background: rgba(255,255,255,.12);
+      border: none; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; color: #fff; font-size: 1rem;
+      transition: 0.18s ease;
+    }
+    .nav-menu-close:hover {
+      background: rgba(255,255,255,.25);
+      transform: rotate(90deg);
+    }
+    .nav-menu a {
+      color: rgba(255,255,255,.88);
+      text-decoration: none;
+      padding: .75rem 1.4rem;
+      transition: 0.18s ease;
+      font-size: .95rem; display: block;
+      border-right: 3px solid transparent;
+    }
+    .nav-menu a:hover, .nav-menu a.active {
+      background: rgba(255,255,255,.12);
+      color: var(--gold);
+      border-right-color: var(--gold);
+    }
+    .nav-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.5);
+      opacity: 0; visibility: hidden;
+      transition: .3s;
+      z-index: 1199;
+    }
+    .nav-overlay.active { opacity: 1; visibility: visible; }
+    .aside-search {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      background: rgba(255,255,255,0.12);
+      border-radius: 50px;
+      padding: 0.7rem 1rem;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+    .aside-search i { color: var(--gold); }
+    .aside-search input {
+      background: transparent;
+      border: none;
+      color: white;
+      flex: 1;
+      outline: none;
+      font-size: 0.9rem;
+    }
+    .aside-search input::placeholder { color: rgba(255,255,255,0.6); }
+    .aside-profile {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      background: rgba(255,255,255,0.12);
+      border-radius: 50px;
+      padding: 0.7rem 1rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .aside-profile:hover { background: rgba(255,255,255,0.25); }
+    .aside-profile i { font-size: 1.3rem; color: var(--gold); }
+    .aside-profile span { color: white; font-weight: 600; }
+
+    /* ══════════════════════════════════════════
+       TOP NAVBAR (from styles.css)
+    ══════════════════════════════════════════ */
+    .top-navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(135deg, var(--emerald-800), var(--emerald-900));
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+      z-index: 1000;
+      padding: 0.9rem 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      direction: rtl;
+    }
+
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      color: #fff;
+      text-decoration: none;
+      cursor: pointer;
+      order: 2;
+    }
+    .logo-img {
+      width: 40px;
+      height: 40px;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,.2));
+    }
+    .logo-text {
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: .5px;
+      color: #fff;
+    }
+    .logo-highlight { color: var(--gold); }
+
+
+    .hamburger {
+      order: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 28px;
+      height: 20px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      margin-inline-end: .5rem;
+      z-index: 1202;
+    }
+    .hamburger span {
+      display: block;
+      width: 100%;
+      height: 2.5px;
+      background: #fff;
+      border-radius: 4px;
+      transition: 0.18s ease;
+    }
+
+
+    .nav-actions {
+      order: 3;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-inline-start: auto;
+    }
+
+    .auth-action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: rgba(255,255,255,0.14);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 999px;
+      padding: 0.45rem 1rem;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.85rem;
+      transition: 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .auth-action-btn:hover { background: var(--gold); color: var(--emerald-900); }
+
+    .search-box {
+      background: rgba(255,255,255,0.12);
+      border-radius: 50px;
+      padding: 0.45rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      border: 1px solid rgba(255,255,255,0.25);
+    }
+
+    .search-icon { color: rgba(255,255,255,0.7); font-size: 0.85rem; }
+
+    .search-input {
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 0.9rem;
+      width: 140px;
+      outline: none;
+    }
+    .search-input::placeholder { color: rgba(255,255,255,0.65); }
+
+    .notification-icon { font-size: 1.2rem; color: rgba(255,255,255,0.85); cursor: pointer; }
+    .notification-icon:hover { color: var(--gold); }
+
+    .profile-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: rgba(255,255,255,0.12);
+      padding: 0.45rem 1.1rem;
+      border-radius: 50px;
+      cursor: pointer;
+      border: 1px solid rgba(255,255,255,0.15);
+      transition: 0.2s;
+    }
+    .profile-badge:hover { background: rgba(255,255,255,0.22); }
+    .profile-icon { font-size: 1.2rem; color: var(--gold); }
+    .profile-name { font-weight: 600; color: white; font-size: 0.9rem; }
+
+    /* ══════════════════════════════════════════
+       HEADER + WAVE
+    ══════════════════════════════════════════ */
+
+    .header {
+      position: relative;
+      background: linear-gradient(135deg, var(--islamic-dark), var(--islamic-green));
+      padding-top: 70px;  /* offset navbar fixe */
+      padding-bottom: 40px;
+      border-bottom: 1.5px solid var(--islamic-gold);
+      box-shadow: 0 2px 18px rgba(44, 62, 80, 0.04);
+    }
+
+    .header-wave { display: none !important; }
+
+    /* ══════════════════════════════════════════
+       HERO SECTION (from styles.css)
+    ══════════════════════════════════════════ */
+
+    .hero-section {
+      width: min(96vw, 1180px);
+      margin: 1.05rem auto 0.75rem;
+      padding: 1.15rem 1rem 1rem;
+      border-radius: 20px;
+      background:
+        linear-gradient(135deg, rgba(20,45,34,0.92), rgba(39,84,65,0.84)),
+        radial-gradient(circle at 18% 22%, rgba(212,175,55,0.14), transparent 32%),
+        radial-gradient(circle at 82% 78%, rgba(255,255,255,0.07), transparent 30%);
+      /* border supprimée */
+      box-shadow: 0 8px 24px rgba(22,46,36,0.13);
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-content { max-width: 850px; margin: 0 auto; text-align: center; }
+
+    .decorative-icons-top,
+    .decorative-icons-bottom {
+      margin: 0.4rem 0;
+      font-size: 0.8rem;
+      opacity: 0.8;
+      color: #f0d8a2;
+      display: flex;
+      justify-content: center;
+      gap: 0.65rem;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.82rem;
+      color: #f5ead3;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(212,175,55,0.18);
+      border-radius: 999px;
+      padding: 0.3rem 0.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero-title {
+      font-family: 'Noto Kufi Arabic', 'Amiri', serif;
+      font-size: clamp(1.6rem,3vw,2.15rem);
+      margin-bottom: 0.45rem;
+      line-height: 1.25;
+      color: #fbf4e7;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.18);
+    }
+
+    .hero-subtitle { font-size: 0.97rem; color: rgba(255,255,255,0.9); margin-bottom: 0.4rem; }
+
+    .hero-ayah {
+      font-family: 'Noto Kufi Arabic', 'Amiri', serif;
+      font-size: clamp(0.93rem,1.5vw,1.06rem);
+      color: #f0d8a2;
+      margin: 0;
+    }
+
+    .ayah-source { font-size: 0.82rem; color: rgba(255,255,255,0.72); margin-top: 0.16rem; }
+
+    /* ══════════════════════════════════════════
+       MAIN CONTENT
+    ══════════════════════════════════════════ */
+    .main-content { padding-bottom: 2rem; }
+    .container { max-width: 1180px; margin: 0 auto; padding: 0 1.2rem; }
+
+    /* ══════════════════════════════════════════
+       SUMMARY BANNER
+    ══════════════════════════════════════════ */
+    .summary-banner { margin: 1rem auto 0; max-width: 1180px; padding: 0 1.2rem; }
+
+    .summary-banner-inner {
+      background: linear-gradient(135deg, rgba(45,106,79,0.95), rgba(27,77,62,0.95));
+      border-radius: 22px;
+      padding: 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.18);
+      border: 1px solid rgba(212,175,55,0.28);
+      flex-wrap: wrap;
+    }
+
+    .summary-text-col { flex: 1; min-width: 200px; color: white; }
+
+    .summary-text-col h3 {
+      font-family: 'Amiri', serif;
+      font-size: 1.2rem;
+      color: #f4c27a;
+      margin-bottom: 0.6rem;
+    }
+
+    .summary-text-col p {
+      font-size: 0.88rem;
+      line-height: 1.8;
+      opacity: 0.9;
+      color: #d4edda;
+      margin: 0;
+    }
+
+    .summary-img-col img {
+      width: 200px;
+      border-radius: 14px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+      border: 3px solid rgba(244,194,122,0.5);
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .summary-img-col img:hover { transform: scale(1.03); }
+
+    .view-table-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 14px;
+      padding: 9px 20px;
+      background: var(--islamic-gold);
+      color: var(--islamic-dark);
+      border: none;
+      border-radius: 30px;
+      font-size: 0.88rem;
+      font-family: 'Cairo', sans-serif;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .view-table-btn:hover { background: #ffd966; transform: translateY(-2px); }
+
+    /* ══════════════════════════════════════════
+       FILTER PANEL
+    ══════════════════════════════════════════ */
+    .filter-panel {
+      margin: 1.2rem 0 1rem;
+      padding: 1rem 1.2rem;
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(255,253,249,0.98), rgba(247,240,230,0.96));
+      border: 1px solid rgba(183,143,74,0.18);
+      box-shadow: 0 10px 22px rgba(72,54,28,0.06);
+    }
+
+    .filter-title {
+      font-family: 'Noto Kufi Arabic', 'Amiri', serif;
+      color: #4e4030;
+      text-align: center;
+      margin-bottom: 0.8rem;
+      font-size: 1rem;
+    }
+
+    .filter-buttons { display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; }
+
+    .filter-btn {
+      padding: 0.52rem 1rem;
+      border: 1px solid rgba(183,143,74,0.18);
+      background: rgba(255,255,255,0.9);
+      color: #5a4631;
+      border-radius: 999px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 0.88rem;
+      font-weight: 700;
+      transition: transform 0.2s, background 0.2s;
+    }
+
+    .filter-btn:hover { transform: translateY(-1px); }
+
+    .filter-btn.active {
+      background: linear-gradient(135deg, var(--islamic-gold), #b88b22);
+      color: #fff;
+      border-color: rgba(212,175,55,0.55);
+    }
+
+    /* ══════════════════════════════════════════
+       SEARCH
+    ══════════════════════════════════════════ */
+    .search-section { margin-bottom: 1.2rem; }
+
+    #searchInput {
+      max-width: 400px;
+      padding: 0.75rem 1.2rem;
+      border: 1px solid rgba(183,143,74,0.2);
+      border-radius: 50px;
+      font-size: 0.95rem;
+      font-family: 'Cairo', sans-serif;
+      outline: none;
+      background: rgba(255,255,255,0.95);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      display: block;
+      margin: 0 auto;
+      width: 100%;
+      color: #3a3a3a;
+      transition: box-shadow 0.2s;
+    }
+
+    #searchInput:focus { box-shadow: 0 6px 20px rgba(183,143,74,0.22); }
+
+    /* ══════════════════════════════════════════
+       PROPHETS GRID
+    ══════════════════════════════════════════ */
+    .prophets-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px,1fr));
+      gap: 1.2rem;
+    }
+
+    .prophet-card {
+      background: linear-gradient(180deg, rgba(255,253,249,0.99), rgba(245,238,228,0.97));
+      border-radius: 20px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.35s cubic-bezier(0.2,0.9,0.4,1.1);
+      box-shadow: 0 8px 20px rgba(72,54,28,0.08);
+      border: 1px solid rgba(183,143,74,0.15);
+      animation: cardIn 0.45s ease both;
+    }
+
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .prophet-card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 18px 36px rgba(72,54,28,0.16);
+      border-color: rgba(212,175,55,0.35);
+    }
+
+    .card-header {
+      background: linear-gradient(135deg, var(--islamic-dark), var(--islamic-green));
+      padding: 1.3rem 1.2rem;
+      text-align: center;
+      color: white;
+      position: relative;
+    }
+
+    .prophet-number {
+      position: absolute;
+      top: 10px;
+      right: 14px;
+      background: rgba(255,255,255,0.18);
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 0.85rem;
+    }
+
+    .prophet-name-ar {
+      font-size: 1.65rem;
+      font-family: 'Amiri', serif;
+      margin-bottom: 4px;
+    }
+
+    .ululazm-badge {
+      display: inline-block;
+      background: var(--islamic-gold);
+      color: var(--islamic-dark);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 2px 10px;
+      border-radius: 20px;
+      margin-top: 4px;
+    }
+
+    .card-body { padding: 1.1rem 1.2rem; }
+
+    .prophet-info {
+      margin-bottom: 0.7rem;
+      font-size: 0.88rem;
+      color: #5a4631;
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .prophet-info strong { color: var(--islamic-green); min-width: 75px; }
+
+    .no-results { text-align: center; color: #7c674b; padding: 2.5rem; font-size: 1.1rem; }
+
+    /* ══════════════════════════════════════════
+       MODAL DETAILS
+    ══════════════════════════════════════════ */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      z-index: 3000;
+      justify-content: center;
+      align-items: center;
+      padding: 1.2rem;
+    }
+
+    .modal.active { display: flex; animation: fadeIn 0.3s ease; }
+
+    .modal-content {
+      background: #fefdfb;
+      border-radius: 24px;
+      max-width: 500px;
+      width: 100%;
+      max-height: 82vh;
+      overflow-y: auto;
+      animation: slideUp 0.4s ease;
+      border: 1px solid rgba(212,175,55,0.2);
+      box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+    }
+
+    .modal-header {
+      background: linear-gradient(135deg, var(--islamic-dark), var(--islamic-green));
+      padding: 1.5rem;
+      text-align: center;
+      color: white;
+      position: relative;
+      border-radius: 24px 24px 0 0;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 14px;
+      left: 18px;
+      background: rgba(255,255,255,0.15);
+      border: none;
+      color: white;
+      font-size: 1.2rem;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .close-modal:hover { background: rgba(255,255,255,0.28); }
+
+    .modal-prophet-name {
+      font-size: 1.9rem;
+      font-family: 'Amiri', serif;
+      margin-bottom: 3px;
+    }
+
+    .modal-body { padding: 1.4rem; }
+
+    .detail-item {
+      margin-bottom: 1rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid rgba(183,143,74,0.15);
+    }
+
+    .detail-label { font-weight: 700; color: var(--islamic-green); margin-bottom: 4px; }
+
+    .status-tag {
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .status-tag.ululazm { background: #fff3cd; color: #856404; }
+    .status-tag.early   { background: #d1ecf1; color: #0c5460; }
+
+    /* Image modal */
+    .img-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.9);
+      z-index: 4000;
+      justify-content: center;
+      align-items: center;
+      padding: 1.2rem;
+    }
+
+    .img-modal.active { display: flex; animation: fadeIn 0.3s ease; }
+
+    .img-modal img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 14px;
+      box-shadow: 0 10px 50px rgba(0,0,0,0.8);
+      border: 3px solid rgba(244,194,122,0.6);
+    }
+
+    .img-modal-close {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      background: rgba(255,255,255,0.15);
+      border: none;
+      color: white;
+      font-size: 1.4rem;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.2s;
+    }
+
+    .img-modal-close:hover { background: rgba(255,255,255,0.3); }
+
+    /* ══════════════════════════════════════════
+       MINI FOOTER (from styles.css)
+    ══════════════════════════════════════════ */
+    .mini-footer {
+      margin-top: 1.25rem;
+      background: linear-gradient(135deg, #1a3a2a 0%, #2d6a4f 100%);
+      box-shadow: 0 -10px 22px rgba(22,46,36,0.16);
+      border-top: 1px solid rgba(212,175,55,0.35);
+    }
+
+    .mini-footer-inner {
+      width: min(1200px, 96vw);
+      margin: 0 auto;
+      padding: 0.65rem 1rem;
+      font-size: 0.84rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .mini-footer-inner p { color: rgba(255,255,255,0.9); margin: 0; }
+
+    .mini-footer-links { display: flex; align-items: center; gap: 0.9rem; }
+
+    .mini-footer-links a {
+      color: rgba(255,255,255,0.92);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+
+    .mini-footer-links a:hover { opacity: 0.75; }
+
+    /* ══════════════════════════════════════════
+       KEYFRAMES
+    ══════════════════════════════════════════ */
+    @keyframes fadeIn   { from { opacity: 0; }             to { opacity: 1; }             }
+    @keyframes slideUp  { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* ══════════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .nav-actions { display: none; }
+      .top-navbar  { padding: 0.7rem 1.2rem; }
+    }
+
+    @media (max-width: 900px) {
+      .prophets-grid { grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); }
+    }
+
+    @media (max-width: 768px) {
+      .mini-footer-inner { justify-content: center; text-align: center; flex-direction: column; gap: 0.3rem; }
+    }
+
+    @media (max-width: 640px) {
+      .aside-nav { width: 280px; right: -280px; }
+      .logo-text  { font-size: 1.2rem; }
+    }
+
+    @media (max-width: 600px) {
+      .summary-img-col { display: none; }
+      .prophets-grid   { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 420px) {
+      .search-box        { display: none; }
+      .notification-icon { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+
+  <!-- ═══ MENU LATÉRAL (nav-menu) harmonisé avec 7aseb_nafsak.html ═══ -->
+  <div class="nav-menu" id="asideNav">
+    <div class="nav-menu-header">
+      <a href="page_acceuil.html" class="nav-menu-logo">
+        <img src="img/m.png" alt="FaithPath" onerror="this.style.display='none'">
+        <span class="nav-menu-logo-text">Faith<span>Path</span></span>
+      </a>
+      <button class="nav-menu-close" id="closeAsideBtn" aria-label="إغلاق">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <a href="page_acceuil.html">🔓 الرئيسية</a>
+    <a href="#quran">🔓 القرآن الكريم</a>
+    <a href="asmaa_allah_alhousnaa_3d.html">🔓 أسماء الله الحسنى</a>
+    <a href="#" class="active">🔓 مسار الأنبياء</a>
+    <a href="hijri.html">🔓 التقويم الهجري</a>
+    <a href="prayertime.html">🔓 أوقات الصلاة</a>
+    <a href="tasbih.HTML">🔓 المسبحة الإلكترونية</a>
+    <a href="#features">🔒 قصة الصحابة</a>
+    <a href="#features">🔒 حاسب نفسك</a>
+    <a href="#features">🔒 اختبارات دينية</a>
+    <a href="#features">🔒 صدقة جارية</a>
+    <a href="#features">🔓 أذكار الصباح والمساء</a>
+    <a href="#contact">🔓 تواصل معنا</a>
+    <div style="padding: 1.2rem 1.4rem 0;">
+      <a href="start.html" id="asideAuthActionBtn" class="auth-action-btn" style="display:inline-flex;margin-bottom:.7rem;">🔓 تسجيل الدخول</a>
+      <div class="aside-search" style="margin-bottom:.7rem;">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="بحث...">
       </div>
-      <div class="user-box">
-        <i class="fa-solid fa-bell"></i>
-        <div class="search-box">
-          <input type="text" placeholder="...بحث" />
-          <i class="fa-solid fa-search"></i>
+      <div class="aside-profile">
+        <i class="far fa-user-circle"></i>
+        <span id="asideProfileName">أحمد</span>
+      </div>
+    </div>
+  </div>
+  <div class="nav-overlay" id="asideOverlay"></div>
+
+  <!-- ══════ HEADER ══════ -->
+
+
+  <header class="header">
+    <!-- TOP NAVBAR harmonisée -->
+    <nav class="top-navbar">
+      <div class="nav-container">
+        <div style="display:flex;align-items:center;gap:.7rem;order:2;">
+          <button class="hamburger" id="hamburgerBtn" aria-label="القائمة">
+            <span></span><span></span><span></span>
+          </button>
+          <a href="page_acceuil.html" class="logo">
+            <img src="img/m.png" alt="FaithPath" class="logo-img" onerror="this.style.display='none'">
+            <span class="logo-text">Faith<span class="logo-highlight">Path</span></span>
+          </a>
+        </div>
+        <div class="nav-actions" style="order:3;">
+          <a href="start.html" id="authActionBtn" class="auth-action-btn">
+            <i class="fas fa-right-to-bracket"></i>
+            <span>إنشاء حساب / تسجيل الدخول</span>
+          </a>
         </div>
       </div>
+    </nav>
 
-      <nav class="navbar">
-        <a href="#">الرئيسية</a>
-        <a href="#">القرآن الكريم</a>
-        <a href="#">أسماء الله الحسنى</a>
-        <a href="#">التقويم الهجري</a>
-        <a href="#">المسبحة الإلكترونية</a>
-        <a href="#">قصة الصحابة</a>
-        <a href="#">حاسب نفسك</a>
-        <a href="#">صدقة جارية</a>
-        <a href="#">أذكار</a>
-        <a href="#">اتصل بنا</a>
-      </nav>
-      <div class="logo">
-        <span class="logo-text">Faith<span>Path</span></span>
-        <i class="fa-solid fa-mosque"></i>
+    <!-- HERO -->
+    <div class="hero-section" id="accueil">
+      <div class="hero-content">
+        <div class="decorative-icons-top">
+          <i class="fas fa-star"></i><i class="fas fa-moon"></i><i class="fas fa-star"></i>
+        </div>
+        <div class="hero-badge">
+          <i class="fas fa-moon"></i>
+          <span>بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</span>
+          <i class="fas fa-moon"></i>
+        </div>
+        <h2 class="hero-title">أنبياء الإسلام</h2>
+        <p class="hero-subtitle"><strong>خمسة وعشرون نبيًّا ذُكروا في القرآن الكريم</strong></p>
+        <p class="hero-ayah">﴿ وَمَا أَرْسَلْنَا مِن رَّسُولٍ إِلَّا لِيُطَاعَ بِإِذْنِ اللَّهِ ﴾</p>
+        <p class="ayah-source">سورة النساء - الآية 64</p>
+        <div class="decorative-icons-bottom">
+          <i class="fas fa-star"></i><i class="fas fa-mosque"></i><i class="fas fa-star"></i>
+        </div>
       </div>
-    </header>
-
-    <!-- ===== PAGE TITLE ===== -->
-    <div class="page-title-section">
-      <h1><span>أنبياء الإسلام</span></h1>
-      <h2>خمسة وعشرون نبيًّا ذُكروا في القرآن الكريم</h2>
     </div>
+  </header>
 
-    <!-- ===== SUMMARY IMAGE BANNER ===== -->
+  <!-- ══════ MAIN ══════ -->
+  <main class="main-content">
+
+    <!-- Summary Banner -->
     <div class="summary-banner">
       <div class="summary-banner-inner">
         <div class="summary-text-col">
           <h3>📜 ملخص تاريخ الأنبياء</h3>
-          <p>
-            يتضمن هذا الملخص أبرز المعلومات التاريخية عن أنبياء الله الكرام، بما
-            فيها الفترة الزمنية التقريبية لبعثة كل نبي، ومكان البعثة، ومكان
-            الوفاة.
-            <br /><br />
-            انقر على البطاقات أدناه لاستعراض تفاصيل كل نبي، أو اضغط على الصورة
-            لعرضها كاملة.
-          </p>
-          <button
-            class="view-table-btn"
-            onclick="
-              document.getElementById('imgModal').classList.add('active')
-            "
-          >
-            <i class="fa-solid fa-table"></i> عرض الجدول التاريخي
+          <p>يتضمن هذا الملخص أبرز المعلومات التاريخية عن أنبياء الله الكرام، بما فيها الفترة الزمنية التقريبية لبعثة كل نبي، ومكان البعثة، ومكان الوفاة.<br><br>انقر على البطاقات أدناه لاستعراض تفاصيل كل نبي، أو اضغط على الصورة لعرضها كاملة.</p>
+          <button class="view-table-btn" onclick="document.getElementById('imgModal').classList.add('active')">
+            <i class="fas fa-table"></i> عرض الجدول التاريخي
           </button>
         </div>
         <div class="summary-img-col">
-          <img
-            id="summaryThumb"
-            src="ملخص.jpg"
-            alt="ملخص"
-            onclick="
-              document.getElementById('imgModal').classList.add('active')
-            "
-            title="انقر للتكبير"
-          />
+          <img src="ملخص.jpg" alt="ملخص" onclick="document.getElementById('imgModal').classList.add('active')" title="انقر للتكبير">
         </div>
       </div>
     </div>
 
-    <!-- ===== MAIN CONTAINER ===== -->
+    <!-- Filters + Grid -->
     <div class="container">
-      <!-- Search & Filters -->
-      <div class="search-section">
-        <div style="display: flex; justify-content: center">
-          <input type="text" id="searchInput" placeholder="🔍 ابحث عن نبي..." />
-        </div>
+      <div class="filter-panel">
+        <h3 class="filter-title">تصفية الأنبياء حسب المكانة</h3>
         <div class="filter-buttons">
           <button class="filter-btn active" data-filter="all">📖 الجميع</button>
-          <button class="filter-btn" data-filter="ululazm">
-            ⭐ أولو العزم
-          </button>
-          <button class="filter-btn" data-filter="early">
-            🕋 الأنبياء الأوائل
-          </button>
+          <button class="filter-btn" data-filter="ululazm">⭐ أولو العزم</button>
+          <button class="filter-btn" data-filter="early">🕋 الأنبياء الأوائل</button>
         </div>
       </div>
 
-      <!-- Grid -->
+      <div class="search-section">
+        <input type="text" id="searchInput" placeholder="🔍 ابحث عن نبي...">
+      </div>
+
       <div class="prophets-grid" id="prophetsGrid"></div>
     </div>
+  </main>
 
-    <!-- ===== PROPHET DETAIL MODAL ===== -->
-    <div class="modal" id="modal">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button class="close-modal" id="closeModal">✕</button>
-          <div class="modal-prophet-name" id="modalNameAr"></div>
-        </div>
-        <div class="modal-body" id="modalBody"></div>
+  <!-- ══════ FOOTER ══════ -->
+  <footer class="mini-footer" id="contact">
+    <div class="mini-footer-inner">
+      <p>© 2026 FaithPath. جميع الحقوق محفوظة</p>
+      <div class="mini-footer-links">
+        <a href="page_acceuil.html">الرئيسية</a>
       </div>
     </div>
+  </footer>
 
-    <!-- ===== IMAGE LIGHTBOX MODAL ===== -->
-    <div class="img-modal" id="imgModal">
-      <button
-        class="img-modal-close"
-        onclick="document.getElementById('imgModal').classList.remove('active')"
-      >
-        ✕
-      </button>
-      <img src="ملخص.jpg" alt="ملخص تاريخ الأنبياء" id="imgModalFull" />
+  <!-- Detail Modal -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close-modal" id="closeModal">✕</button>
+        <div class="modal-prophet-name" id="modalNameAr"></div>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
     </div>
-  </body>
+  </div>
+
+  <!-- Image Modal -->
+  <div class="img-modal" id="imgModal">
+    <button class="img-modal-close" onclick="document.getElementById('imgModal').classList.remove('active')">✕</button>
+    <img src="ملخص.jpg" alt="ملخص تاريخ الأنبياء">
+  </div>
+
+  <!-- ══════════════════════════════════════════
+       JAVASCRIPT
+  ══════════════════════════════════════════ -->
+  <script>
+
+    /* ── Nav-menu (sidebar) toggle harmonisé ── */
+    const hamburgerBtn  = document.getElementById('hamburgerBtn');
+    const navMenu       = document.getElementById('asideNav');
+    const navOverlay    = document.getElementById('asideOverlay');
+    const closeAsideBtn = document.getElementById('closeAsideBtn');
+
+    const openAside  = () => {
+      navMenu.classList.add('active');
+      navOverlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const closeAside = () => {
+      navMenu.classList.remove('active');
+      navOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    };
+
+    hamburgerBtn.addEventListener('click',  openAside);
+    closeAsideBtn.addEventListener('click', closeAside);
+    navOverlay.addEventListener('click',  closeAside);
+
+    /* ── Auth display (localStorage) ── */
+    (function syncAuth() {
+      const user = localStorage.getItem('faithpath_user') || localStorage.getItem('userName') || null;
+      const name = user ? JSON.parse(user)?.name || user : null;
+      const authBtn     = document.getElementById('authActionBtn');
+      const asideBtn    = document.getElementById('asideAuthActionBtn');
+      const profileName = document.getElementById('profileName');
+      const asideName   = document.getElementById('asideProfileName');
+
+      if (name) {
+        if (authBtn)     { authBtn.innerHTML = `<i class="fas fa-user-circle"></i> ${name}`; }
+        if (asideBtn)    { asideBtn.textContent = `👤 ${name}`; }
+        if (profileName) profileName.textContent = name;
+        if (asideName)   asideName.textContent   = name;
+      }
+    })();
+
+    /* ── Data ── */
+    const prophets = [
+      {id:1,  nameAr:"آدَم عليه السلام",                   order:1,  people:"أبو البشر",                  miracles:"الخلق بيد الله وتعليم الأسماء",                 desc:"آدم هو أول نبي وأبو البشرية. خلقه الله بيديه وعلّمه أسماء كل شيء، ثم أسكنه الجنة ثم أنزله إلى الأرض.",                                                 category:"early"},
+      {id:2,  nameAr:"إِدْرِيس عليه السلام",              order:2,  people:"الأقوام القديمة",             miracles:"الحكمة والعلم",                                  desc:"إدريس عُرف بصدقه وحكمته. ذكره الله في القرآن بأنه كان صدّيقًا نبيًّا ورفعه مكانًا عليًّا.",                                                              category:"early"},
+      {id:3,  nameAr:"نُوح عليه السلام",                  order:3,  people:"قوم نوح",                    miracles:"السفينة والطوفان",                                 desc:"دعا نوح قومه تسعمائة وخمسين سنة. أنجاه الله مع المؤمنين في السفينة من الطوفان العظيم.",                                                                  category:"ululazm"},
+      {id:4,  nameAr:"هُود عليه السلام",                  order:4,  people:"قوم عاد",                    miracles:"الريح الصرصر",                                     desc:"أُرسل إلى قوم عاد الأقوياء المتجبرين. رفضوا دعوته فأهلكهم الله بريح صرصر عاتية.",                                                                        category:"early"},
+      {id:5,  nameAr:"صَالِح عليه السلام",                order:5,  people:"قوم ثمود",                   miracles:"الناقة",                                           desc:"أُرسل إلى ثمود الذين طلبوا آية، فأخرج الله الناقة من الصخرة، فعقروها فأخذتهم الصيحة.",                                                                   category:"early"},
+      {id:6,  nameAr:"إِبْرَاهِيم عليه السلام",          order:6,  people:"قوم بابل والعراق",           miracles:"النار لم تحرقه، إحياء الطير",                     desc:"أبو الأنبياء وخليل الرحمن. كسر الأصنام وبنى الكعبة مع ابنه إسماعيل. امتُحن بعظائم الأمور فصبر.",                                                       category:"ululazm"},
+      {id:7,  nameAr:"لُوط عليه السلام",                  order:7,  people:"أهل سدوم",                  miracles:"قلب المدينة",                                      desc:"ابن أخي إبراهيم، أُرسل إلى قوم منحرفين. أنجاه الله وأهلك قومه بقلب المدائن وإمطار الحجارة.",                                                          category:"early"},
+      {id:8,  nameAr:"إِسْمَاعِيل عليه السلام",          order:8,  people:"أهل الحجاز",                 miracles:"بئر زمزم",                                         desc:"ابن إبراهيم، نبيٌّ في بلاد الحجاز. شارك أباه في بناء الكعبة المشرفة وكان صادق الوعد.",                                                                 category:"early"},
+      {id:9,  nameAr:"إِسْحَاق عليه السلام",             order:9,  people:"أهل كنعان",                  miracles:"الولادة المعجزة",                                  desc:"ابن إبراهيم من سارة، وُلد بشارةً من الملائكة. أبو يعقوب، نبيٌّ في أرض كنعان.",                                                                        category:"early"},
+      {id:10, nameAr:"يَعْقُوب عليه السلام",             order:10, people:"أهل كنعان",                  miracles:"الرؤيا النبوية",                                   desc:"ابن إسحاق، أبو الأسباط الاثني عشر. لُقِّب بإسرائيل. امتُحن بفراق ابنه يوسف فصبر حتى عادت بصيرته.",                                                  category:"early"},
+      {id:11, nameAr:"يُوسُف عليه السلام",               order:11, people:"مصر الفرعونية",              miracles:"تأويل الأحلام",                                   desc:"ابن يعقوب، بِيع عبدًا ثم أصبح عزيز مصر. آتاه الله الحسن والحكمة وعلّمه تأويل الأحاديث.",                                                             category:"early"},
+      {id:12, nameAr:"أَيُّوب عليه السلام",              order:12, people:"أهل حوران",                  miracles:"الشفاء المعجز",                                   desc:"ضُرب به المثل في الصبر. ابتلاه الله بالمرض والفقر وفراق الأهل فصبر حتى كشف الله ضره.",                                                                category:"early"},
+      {id:13, nameAr:"شُعَيْب عليه السلام",              order:13, people:"أهل مدين",                   miracles:"ظل الغمام",                                        desc:"أُرسل إلى أهل مدين الذين كانوا يبخسون المكيال والميزان. لُقِّب بخطيب الأنبياء.",                                                                     category:"early"},
+      {id:14, nameAr:"مُوسَى عليه السلام",               order:14, people:"فرعون وبني إسرائيل",        miracles:"العصا، اليد البيضاء، فلق البحر",                  desc:"أحد أعظم الأنبياء، كلّمه الله تكليمًا. أُنزلت عليه التوراة. أنقذ بني إسرائيل من فرعون.",                                                               category:"ululazm"},
+      {id:15, nameAr:"هَارُون عليه السلام",              order:15, people:"فرعون وبني إسرائيل",        miracles:"العصا",                                            desc:"أخو موسى ووزيره. أعانه في تبليغ الرسالة، كان فصيح اللسان رحيم القلب.",                                                                               category:"early"},
+      {id:16, nameAr:"دَاوُود عليه السلام",              order:16, people:"بني إسرائيل",               miracles:"تسبيح الجبال، صناعة الدروع",                      desc:"نبيٌّ وملك، أُنزل عليه الزبور. قتل جالوت شابًّا. سخّر الله له الجبال والطير تسبّح معه.",                                                              category:"early"},
+      {id:17, nameAr:"سُلَيْمَان عليه السلام",           order:17, people:"الإنس والجن",               miracles:"منطق الطير، تسخير الريح والجن",                  desc:"ابن داود، ملكٌ لا يُضاهى سخّر الله له الجن والإنس والريح والطير. أوتي علم منطق الحيوانات.",                                                          category:"early"},
+      {id:18, nameAr:"إِلْيَاس عليه السلام",             order:18, people:"أهل بعلبك",                 miracles:"المطر بعد القحط",                                  desc:"أُرسل إلى قوم يعبدون البعل. دعاهم إلى توحيد الله فكذّبوه، فأُنجي من بينهم.",                                                                        category:"early"},
+      {id:19, nameAr:"الْيَسَع عليه السلام",             order:19, people:"بني إسرائيل",               miracles:"الشفاء",                                           desc:"خليفة إلياس ووارث نبوته. واصل الدعوة إلى توحيد الله في بني إسرائيل.",                                                                                category:"early"},
+      {id:20, nameAr:"يُونُس عليه السلام",               order:20, people:"أهل نينوى",                 miracles:"النجاة في بطن الحوت",                              desc:"ذهب مغاضبًا فابتلعه الحوت، فسبّح في الظلمات فنجّاه الله، وعاد إلى قومه فآمنوا.",                                                                   category:"early"},
+      {id:21, nameAr:"ذُو الْكِفْل عليه السلام",        order:21, people:"بني إسرائيل",               miracles:"الصبر والاستقامة",                                 desc:"نبيٌّ معروف بالصبر والثبات. يُرجَّح أنه حزقيال. ذكره الله في القرآن مع أيوب وإسماعيل.",                                                             category:"early"},
+      {id:22, nameAr:"زَكَرِيَّا عليه السلام",           order:22, people:"بني إسرائيل",               miracles:"الدعاء المستجاب",                                  desc:"كافل مريم وأبو يحيى. دعا ربّه في كبره أن يهبه ولدًا فاستجاب الله له.",                                                                              category:"early"},
+      {id:23, nameAr:"يَحْيَى عليه السلام",              order:23, people:"بني إسرائيل",               miracles:"الحكمة منذ الصغر",                                desc:"ابن زكريا، آتاه الله الحكم صبيًّا. كان تقيًّا حصورًا سيدًا. قُتل ظلمًا وهو شهيد.",                                                                category:"early"},
+      {id:24, nameAr:"عِيسَى عليه السلام",               order:24, people:"بني إسرائيل",               miracles:"يُكلّم في المهد، يُحيي الموتى، يُبرئ الأكمه والأبرص", desc:"المسيح ابن مريم، وُلد من غير أب، أيّده الله بروح القدس. بشّر بمحمد ولم يُصلب بل رُفع.", category:"ululazm"},
+      {id:25, nameAr:"مُحَمَّد صلى الله عليه وسلم",     order:25, people:"الإنسانية جمعاء",           miracles:"القرآن الكريم، الإسراء والمعراج، انشقاق القمر", desc:"خاتم الأنبياء والمرسلين، بُعث رحمةً للعالمين. أُنزل عليه القرآن. أتمّ الله به الرسالة.",   category:"ululazm"}
+    ];
+
+    let currentFilter = 'all', currentSearch = '';
+
+    /* ── Render ── */
+    function renderProphets() {
+      const grid = document.getElementById('prophetsGrid');
+      const filtered = prophets.filter(p => {
+        if (currentFilter === 'ululazm' && p.category !== 'ululazm') return false;
+        if (currentFilter === 'early'   && p.category === 'ululazm') return false;
+        if (currentSearch) {
+          const q = currentSearch;
+          return p.nameAr.includes(q) || p.people.includes(q) || p.miracles.includes(q);
+        }
+        return true;
+      });
+
+      if (!filtered.length) {
+        grid.innerHTML = '<div class="no-results">😔 لم يُعثر على نبيٍّ بهذا الاسم</div>';
+        return;
+      }
+
+      grid.innerHTML = filtered.map((p, i) => `
+        <div class="prophet-card" onclick="showDetails(${p.id})" style="animation-delay:${i * 0.05}s">
+          <div class="card-header">
+            <div class="prophet-number">${p.order}</div>
+            <div class="prophet-name-ar">${p.nameAr}</div>
+            ${p.category === 'ululazm' ? '<span class="ululazm-badge">أولو العزم</span>' : ''}
+          </div>
+          <div class="card-body">
+            <div class="prophet-info"><strong>👥 القوم :</strong>&nbsp;${p.people}</div>
+            <div class="prophet-info"><strong>✨ المعجزات :</strong>&nbsp;${p.miracles.length > 38 ? p.miracles.substring(0,38) + '…' : p.miracles}</div>
+          </div>
+        </div>`).join('');
+    }
+
+    /* ── Detail Modal ── */
+    function showDetails(id) {
+      const p = prophets.find(x => x.id === id);
+      if (!p) return;
+
+      document.getElementById('modalNameAr').textContent = p.nameAr;
+      document.getElementById('modalBody').innerHTML = `
+        <div class="detail-item">
+          <div class="detail-label">📜 الترتيب</div>
+          <div>النبي رقم ${p.order}</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-label">👥 القوم</div>
+          <div>${p.people}</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-label">✨ المعجزات</div>
+          <div>${p.miracles}</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-label">📖 نبذة</div>
+          <div style="line-height:1.7">${p.desc}</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-label">⭐ المكانة</div>
+          <span class="status-tag ${p.category}">
+            ${p.category === 'ululazm' ? 'من أولي العزم من الرسل' : 'نبيٌّ مرسل إلى قومه'}
+          </span>
+        </div>`;
+
+      document.getElementById('modal').classList.add('active');
+    }
+
+    /* ── Event Listeners ── */
+    document.getElementById('searchInput').addEventListener('input', e => {
+      currentSearch = e.target.value.trim();
+      renderProphets();
+    });
+
+    document.querySelectorAll('.filter-btn').forEach(btn =>
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentFilter = btn.dataset.filter;
+        renderProphets();
+      })
+    );
+
+    document.getElementById('closeModal').addEventListener('click', () =>
+      document.getElementById('modal').classList.remove('active')
+    );
+
+    document.getElementById('modal').addEventListener('click', e => {
+      if (e.target === document.getElementById('modal'))
+        document.getElementById('modal').classList.remove('active');
+    });
+
+    document.getElementById('imgModal').addEventListener('click', e => {
+      if (e.target === document.getElementById('imgModal'))
+        document.getElementById('imgModal').classList.remove('active');
+    });
+
+    /* ── Init ── */
+    renderProphets();
+  </script>
+</body>
 </html>

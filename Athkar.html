@@ -4,114 +4,608 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>فيث باث · الأذكار</title>
-  <!-- Font Awesome 6 -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- Google Fonts + Arabic Fonts -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700;900&family=Cairo:wght@300;400;600;700;900&family=Noto+Kufi+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="Athkar.css">
+
+  <style>
+  /* ═══════════════════════════════════════════════════════════════
+     DESIGN TOKENS — identiques à 7asebnafsak
+  ════════════════════════════════════════════════════════════════*/
+  :root {
+    --e9: #0f3d2e; --e8: #145a3f; --e7: #1d6b4a;
+    --e6: #2a7b57; --e5: #3aaa6e;
+    --e2: #cfe2d5; --e1: #e7f3ea;
+    --s0: #fbf7f0; --s1: #f2eadf; --s2: #e7d8c8;
+    --br: #9f7a55; --gd: #c9a87c;
+    --gd-light: rgba(201,168,124,.18);
+    --tr: all 0.3s cubic-bezier(.25,.46,.45,.94);
+    --tr-fast: all 0.18s ease;
+    --r-sm: 0.75rem; --r-md: 1.25rem; --r-lg: 1.6rem; --r-xl: 2rem;
+    --sh-sm: 0 4px 12px rgba(15,61,46,.10);
+    --sh-md: 0 8px 22px rgba(15,61,46,.12);
+    --sh-lg: 0 16px 40px rgba(15,61,46,.18);
+    --sh-green: 0 4px 14px rgba(15,61,46,.28);
+  }
+
+  /* ═══════════════════════════════════════════════════════════════
+     RESET & BODY
+  ════════════════════════════════════════════════════════════════*/
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { height: 100%; }
+  body {
+    font-family: 'Cairo', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    color: #2e2a28;
+    overflow-x: hidden;
+    background: #f5f1e8;
+    position: relative;
+  }
+  body::before {
+    content: "";
+    position: fixed; inset: 0;
+    background-image:
+      radial-gradient(circle at 12px 12px, rgba(20,90,63,.08) 0, rgba(20,90,63,.08) 2px, transparent 2px),
+      radial-gradient(circle at 28px 28px, rgba(20,90,63,.06) 0, rgba(20,90,63,.06) 2px, transparent 2px);
+    background-size: 40px 40px;
+    opacity: .35;
+    pointer-events: none;
+    z-index: 0;
+  }
+  body::after {
+    content: "";
+    position: fixed;
+    width: 520px; height: 520px;
+    border-radius: 45% 55% 70% 30% / 60% 30% 70% 40%;
+    top: -140px; left: -100px;
+    background: radial-gradient(circle, rgba(29,107,74,.22), transparent 70%);
+    filter: blur(10px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ═══════════════════════════════════════════════════════════════
+     NAVBAR — identique à 7asebnafsak
+  ════════════════════════════════════════════════════════════════*/
+  .top-navbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1200;
+    background: linear-gradient(135deg, rgba(20,90,63,.95), rgba(15,61,46,.95));
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 0.9rem 2rem;
+    border-bottom: 1px solid rgba(255,255,255,.15);
+    box-shadow: 0 8px 25px rgba(0,0,0,.20);
+  }
+  .nav-container {
+    max-width: 1400px; margin: 0 auto;
+    display: flex; align-items: center;
+    justify-content: space-between; direction: rtl;
+  }
+  .logo { display: flex; align-items: center; gap: .7rem; color: #fff; text-decoration: none; order: 2; }
+  .logo-img { width: 40px; height: 40px; filter: drop-shadow(0 4px 8px rgba(0,0,0,.2)); }
+  .logo-text { font-size: 1.3rem; font-weight: 700; letter-spacing: .5px; color: #fff; }
+  .logo-text span { color: var(--gd); }
+  #hamburgerBtn {
+    order: 1;
+    display: flex; flex-direction: column; justify-content: space-between;
+    width: 28px; height: 20px;
+    background: transparent; border: none; cursor: pointer; padding: 0;
+    margin-inline-end: .5rem; z-index: 1202;
+  }
+  #hamburgerBtn span {
+    display: block; width: 100%; height: 2.5px;
+    background: #fff; border-radius: 4px; transition: var(--tr);
+  }
+  .nav-actions { order: 3; display: flex; align-items: center; gap: 1rem; margin-inline-start: auto; }
+  .auth-action-btn {
+    display: inline-flex; align-items: center; gap: .45rem;
+    background: rgba(255,255,255,.12);
+    color: #fff; border: 1px solid rgba(255,255,255,.25);
+    border-radius: 999px; padding: .45rem 1.2rem;
+    text-decoration: none; font-weight: 600; font-size: .85rem;
+    transition: var(--tr-fast); white-space: nowrap;
+  }
+  .auth-action-btn:hover { background: var(--gd); color: var(--e9); border-color: var(--gd); }
+
+  /* ═══════════════════════════════════════════════════════════════
+     MENU LATÉRAL — identique à 7asebnafsak
+  ════════════════════════════════════════════════════════════════*/
+  .nav-menu {
+    display: flex;
+    position: fixed; top: 0; right: -100%; bottom: 0;
+    width: min(320px, 85vw);
+    background: linear-gradient(180deg, var(--e8) 0%, var(--e9) 100%);
+    backdrop-filter: blur(15px);
+    flex-direction: column; justify-content: flex-start;
+    padding: 0 0 2rem;
+    z-index: 1201; gap: 0;
+    transition: right .32s cubic-bezier(.25,.46,.45,.94);
+    box-shadow: -5px 0 30px rgba(0,0,0,.3);
+    border-left: 2px solid rgba(201,168,124,.35);
+  }
+  .nav-menu.active { right: 0; }
+  .nav-menu-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 1.4rem;
+    border-bottom: 1px solid rgba(255,255,255,.15);
+    margin-bottom: .8rem;
+  }
+  .nav-menu-logo { display: flex; align-items: center; gap: .6rem; color: #fff; text-decoration: none; }
+  .nav-menu-logo img { width: 36px; height: 36px; filter: drop-shadow(0 3px 6px rgba(0,0,0,.25)); }
+  .nav-menu-logo-text { font-size: 1.15rem; font-weight: 700; color: #fff; }
+  .nav-menu-logo-text span { color: var(--gd); }
+  .nav-menu-close {
+    width: 32px; height: 32px;
+    background: rgba(255,255,255,.12); border: none; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; color: #fff; font-size: 1rem; transition: var(--tr-fast);
+  }
+  .nav-menu-close:hover { background: rgba(255,255,255,.25); transform: rotate(90deg); }
+  .nav-menu a {
+    color: rgba(255,255,255,.88); text-decoration: none;
+    padding: .75rem 1.4rem; transition: var(--tr-fast);
+    font-size: .95rem; display: block;
+    border-right: 3px solid transparent;
+  }
+  .nav-menu a:hover, .nav-menu a.active {
+    background: rgba(255,255,255,.12); color: var(--gd); border-right-color: var(--gd);
+  }
+  .nav-overlay {
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,.5);
+    opacity: 0; visibility: hidden;
+    transition: var(--tr); z-index: 1199;
+  }
+  .nav-overlay.active { opacity: 1; visibility: visible; }
+
+  /* ═══════════════════════════════════════════════════════════════
+     EN-TÊTE PRINCIPAL — amélioré
+  ════════════════════════════════════════════════════════════════*/
+  .page-hero {
+    margin-top: 74px;
+    padding: 3.5rem 2rem 2.5rem;
+    text-align: center;
+    background: linear-gradient(160deg, var(--e9) 0%, var(--e8) 50%, #0a2d20 100%);
+    position: relative;
+    overflow: hidden;
+    border-bottom: 3px solid rgba(201,168,124,.4);
+    z-index: 1;
+  }
+  /* Motif géométrique décoratif */
+  .page-hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 80% 20%, rgba(201,168,124,.18) 0%, transparent 45%),
+      radial-gradient(circle at 15% 80%, rgba(29,107,74,.35) 0%, transparent 40%);
+    pointer-events: none;
+  }
+  /* Ornements arabesques */
+  .page-hero::after {
+    content: '❋';
+    position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 28rem;
+    color: rgba(255,255,255,.02);
+    pointer-events: none;
+    line-height: 1;
+  }
+
+  .hero-ornament {
+    font-family: 'Amiri', serif;
+    font-size: 1.5rem;
+    color: var(--gd);
+    letter-spacing: .5rem;
+    margin-bottom: 1rem;
+    position: relative; z-index: 1;
+    text-shadow: 0 2px 12px rgba(201,168,124,.4);
+  }
+
+  .hero-icon-wrap {
+    width: 80px; height: 80px; margin: 0 auto 1.2rem;
+    background: linear-gradient(135deg, rgba(255,255,255,.12), rgba(255,255,255,.06));
+    border: 2px solid rgba(201,168,124,.45);
+    border-radius: 50% 50% 35% 65% / 55% 45% 55% 45%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.2rem;
+    box-shadow: 0 12px 30px rgba(0,0,0,.3), inset 0 1px 0 rgba(255,255,255,.15);
+    position: relative; z-index: 1;
+    animation: floatIcon 4s ease-in-out infinite;
+  }
+  @keyframes floatIcon {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-6px); }
+  }
+
+  .hero-bismillah {
+    font-family: 'Amiri', serif;
+    font-size: 1.25rem;
+    color: rgba(255,255,255,.75);
+    margin-bottom: .8rem;
+    font-style: italic;
+    line-height: 2;
+    position: relative; z-index: 1;
+    letter-spacing: .03em;
+  }
+
+  .hero-title {
+    font-family: 'Noto Kufi Arabic', serif;
+    font-size: clamp(1.8rem, 5vw, 2.8rem);
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: .7rem;
+    position: relative; z-index: 1;
+    text-shadow: 0 4px 20px rgba(0,0,0,.3);
+    letter-spacing: .02em;
+  }
+  .hero-title span {
+    background: linear-gradient(135deg, var(--gd), #e8c88a);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Verset — nouveau & mis en valeur */
+  .hero-ayah-block {
+    display: inline-block;
+    margin: 0 auto 1.2rem;
+    background: rgba(255,255,255,.07);
+    border: 1px solid rgba(201,168,124,.3);
+    border-radius: var(--r-lg);
+    padding: .9rem 2rem;
+    position: relative; z-index: 1;
+    backdrop-filter: blur(6px);
+  }
+  .hero-ayah {
+    font-family: 'Amiri', serif;
+    font-size: 1.35rem;
+    color: #fff;
+    line-height: 2;
+    margin-bottom: .3rem;
+  }
+  .hero-ayah-ref {
+    font-family: 'Cairo', sans-serif;
+    font-size: .82rem;
+    color: var(--gd);
+    font-weight: 600;
+    letter-spacing: .04em;
+  }
+
+  .hero-desc {
+    display: inline-flex; align-items: center; gap: .5rem;
+    background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.2);
+    border-radius: 50px;
+    padding: .5rem 1.6rem;
+    font-size: .92rem; font-weight: 600;
+    color: rgba(255,255,255,.88);
+    position: relative; z-index: 1;
+  }
+  .hero-desc i { color: var(--gd); }
+
+  /* Vague de transition */
+  .hero-wave {
+    display: block; width: 100%; line-height: 0;
+    margin-top: -1px;
+    position: relative; z-index: 2;
+  }
+  .hero-wave svg { display: block; width: 100%; height: 60px; }
+  .hero-wave path { fill: #f5f1e8; }
+
+  /* ═══════════════════════════════════════════════════════════════
+     CONTENU PRINCIPAL
+  ════════════════════════════════════════════════════════════════*/
+  .main-content {
+    flex: 1 1 auto;
+    position: relative; z-index: 1;
+    padding: 2rem 0 3rem;
+  }
+  .container {
+    max-width: 860px; width: 100%;
+    margin: 0 auto; padding: 0 1.5rem;
+  }
+
+  /* Sous-titre de section */
+  .athkar-page-header {
+    text-align: center; margin-bottom: 2rem;
+    background: rgba(255,255,255,.88);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--e2);
+    border-radius: var(--r-xl);
+    padding: 2rem 1.5rem;
+    box-shadow: var(--sh-md);
+    position: relative; overflow: hidden;
+  }
+  .athkar-page-header::before {
+    content: '';
+    position: absolute; top: 0; right: 0;
+    width: 160px; height: 160px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(201,168,124,.12), transparent 70%);
+    pointer-events: none;
+  }
+  .section-icon {
+    width: 62px; height: 62px;
+    background: linear-gradient(135deg, var(--e6), var(--e8));
+    border-radius: 50% 50% 30% 70% / 60% 40% 60% 40%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto .9rem;
+    box-shadow: var(--sh-green);
+    position: relative; z-index: 1;
+  }
+  .section-icon i { font-size: 1.7rem; color: #fef7e9; }
+  .section-title {
+    font-family: 'Noto Kufi Arabic', serif;
+    font-size: 1.5rem; font-weight: 900;
+    background: linear-gradient(135deg, var(--e9), var(--e7));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    margin-bottom: .4rem;
+  }
+  .section-subtitle { font-size: .92rem; color: var(--br); margin-bottom: .8rem; }
+  .athkar-count {
+    display: inline-block;
+    background: var(--e1); color: var(--e7);
+    border: 1px solid var(--e2);
+    border-radius: 50px; padding: .25rem 1.2rem;
+    font-size: .88rem; font-weight: 700;
+    font-family: 'Cairo', sans-serif;
+  }
+
+  /* ═══════════════════════════════════════════════════════════════
+     COMPTEUR PERSONNEL
+  ════════════════════════════════════════════════════════════════*/
+  .personal-counter {
+    background: rgba(255,255,255,.9);
+    border-radius: var(--r-xl);
+    border: 1px solid var(--e2);
+    box-shadow: var(--sh-md);
+    overflow: hidden; margin-top: 2rem;
+  }
+  .counter-header {
+    background: linear-gradient(135deg, var(--e8), var(--e9));
+    color: #fff;
+    padding: 1rem 1.4rem;
+    display: flex; align-items: center; gap: .7rem;
+    font-family: 'Noto Kufi Arabic', serif;
+    font-size: 1rem; font-weight: 700;
+  }
+  .counter-header i { color: var(--gd); font-size: 1.1rem; }
+  .counter-body {
+    padding: 1.5rem;
+    display: flex; flex-direction: column; align-items: center; gap: 1rem;
+  }
+  .counter-display {
+    font-family: 'Amiri', serif;
+    font-size: 4rem; font-weight: 900;
+    color: var(--e8);
+    line-height: 1;
+    min-width: 120px; text-align: center;
+  }
+  .counter-controls { display: flex; align-items: center; gap: .8rem; flex-wrap: wrap; justify-content: center; }
+  .counter-btn {
+    width: 44px; height: 44px; border-radius: 50%; border: none;
+    background: var(--e1); color: var(--e7);
+    font-size: 1.3rem; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: var(--tr-fast); box-shadow: var(--sh-sm);
+  }
+  .counter-btn:hover { background: var(--e2); transform: scale(1.1); }
+  .counter-reset {
+    display: flex; align-items: center; gap: .4rem;
+    background: rgba(231,76,60,.1); color: #c0392b;
+    border: 1px solid rgba(231,76,60,.2);
+    border-radius: 50px; padding: .45rem 1.1rem;
+    font-size: .88rem; font-weight: 700; cursor: pointer;
+    font-family: 'Cairo', sans-serif; transition: var(--tr-fast);
+  }
+  .counter-reset:hover { background: rgba(231,76,60,.2); }
+  .counter-presets {
+    display: flex; gap: .6rem; justify-content: center;
+    padding: 0 1.5rem 1.5rem;
+  }
+  .preset-preset {
+    flex: 1; padding: .5rem;
+    background: var(--e1); color: var(--e8);
+    border: 1px solid var(--e2); border-radius: var(--r-md);
+    font-family: 'Amiri', serif; font-size: 1.2rem; font-weight: 700;
+    cursor: pointer; transition: var(--tr-fast);
+  }
+  .preset-preset:hover { background: var(--e7); color: #fff; border-color: var(--e7); }
+
+  /* ═══════════════════════════════════════════════════════════════
+     FOOTER — identique à 7asebnafsak
+  ════════════════════════════════════════════════════════════════*/
+  .mini-footer {
+    background: linear-gradient(135deg, #1a3a2a, #2d6a4f);
+    color: rgba(255,255,255,.92);
+    border-top: 2px solid rgba(212,175,55,.45);
+    margin-top: auto;
+    position: relative; z-index: 1;
+  }
+  .mini-footer-inner {
+    width: min(1200px, 96vw); margin: 0 auto;
+    padding: 1.2rem 0;
+    display: flex; justify-content: center; align-items: center;
+    gap: 1rem; flex-wrap: wrap; font-size: .92rem;
+    flex-direction: column; text-align: center;
+  }
+  .mini-footer p { color: rgba(255,255,255,.88); margin-bottom: .2rem; }
+  .mini-footer-links { display: flex; align-items: center; gap: .9rem; flex-wrap: wrap; }
+  .mini-footer-links a { color: rgba(255,255,255,.9); text-decoration: none; transition: var(--tr-fast); }
+  .mini-footer-links a:hover { color: var(--gd); }
+
+  /* ═══════════════════════════════════════════════════════════════
+     ANIMATIONS
+  ════════════════════════════════════════════════════════════════*/
+  @keyframes fadeUp { from{opacity:0;transform:translateY(16px);} to{opacity:1;transform:translateY(0);} }
+  .main-content .container > * { animation: fadeUp .45s ease both; }
+
+  @media (max-width: 480px) {
+    .hero-ayah { font-size: 1.1rem; }
+    .hero-title { font-size: 1.7rem; }
+    .hero-icon-wrap { width: 64px; height: 64px; font-size: 1.8rem; }
+  }
+  </style>
 </head>
 <body>
-  <!-- Header with navigation -->
-  <header class="header">
-    <div class="navbar">
-      <div class="nav-container">
-        <div class="logo">
-          <img src="image/logo.png" alt="شعار فيث باث" class="logo-img" onerror="this.src='https://placehold.co/50x50/145a3f/c9a87c?text=FP'">
-          <span class="logo-text">فيث<span class="logo-highlight">باث</span></span>
-        </div>
-        <div class="nav-menu">
-          <a href="#" class="nav-link">الرئيسية</a>
-          <a href="#" class="nav-link">القرآن</a>
-          <a href="#" class="nav-link active">الأذكار</a>
-          <a href="#" class="nav-link">الصلاة</a>
-          <a href="#" class="nav-link">الزكاة</a>
-          <a href="#" class="nav-link">المزيد</a>
-        </div>
-        <div class="nav-actions">
-          <div class="search-box">
-            <i class="fas fa-search search-icon"></i>
-            <input type="text" placeholder="بحث" class="search-input">
-          </div>
-          <div class="user-profile">
-            <i class="far fa-bell notification-icon"></i>
-            <div class="profile-badge">
-              <i class="fas fa-user-circle profile-icon"></i>
-              <span class="profile-name">عمر</span>
-            </div>
-          </div>
-          <div class="menu-toggle"><i class="fas fa-bars"></i></div>
-        </div>
-      </div>
-    </div>
 
-    <!-- Athkar Hero Section -->
-    <div class="athkar-hero">
-      <div class="hero-badge">
+<!-- ═══ NAVBAR ══════════════════════════════════════════════════════════ -->
+<nav class="top-navbar">
+  <div class="nav-container">
+    <div class="logo">
+      <img src="img/m.png" alt="FaithPath" class="logo-img" onerror="this.style.display='none'">
+      <span class="logo-text">Faith<span>Path</span></span>
+    </div>
+    <button class="hamburger" id="hamburgerBtn" aria-label="القائمة">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-actions">
+      <a href="start.html" id="authActionBtn" class="auth-action-btn">
+        <i class="fas fa-right-to-bracket"></i><span>إنشاء حساب / تسجيل الدخول</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- MENU LATÉRAL -->
+<div class="nav-menu" id="navMenu">
+  <div class="nav-menu-header">
+    <a href="page_acceuil.html" class="nav-menu-logo">
+      <img src="img/m.png" alt="FaithPath" onerror="this.style.display='none'">
+      <span class="nav-menu-logo-text">Faith<span>Path</span></span>
+    </a>
+    <button class="nav-menu-close" id="closeMenuBtn" aria-label="إغلاق">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+
+  <a href="page_acceuil.html">🔓 الرئيسية</a>
+  <a href="#">🔓 القرآن الكريم</a>
+  <a href="asmaa_allah_alhousnaa_3d.html">🔓 أسماء الله الحسنى</a>
+  <a href="#">🔒 مسار الأنبياء</a>
+  <a href="hijri.html">🔓 التقويم الهجري</a>
+  <a href="prayertime.html">🔓 أوقات الصلاة</a>
+  <a href="tasbih.HTML">🔓 المسبحة الإلكترونية</a>
+  <a href="#">🔒 قصة الصحابة</a>
+  <a href="7asebnafsak.html">🔓 حاسب نفسك</a>
+  <a href="#">🔒 اختبارات دينية</a>
+  <a href="#">🔒 صدقة جارية</a>
+  <a href="#" class="active">🔓 أذكار الصباح والمساء</a>
+  <a href="#">🔓 تواصل معنا</a>
+</div>
+<div class="nav-overlay" id="navOverlay"></div>
+
+<!-- ═══ EN-TÊTE PRINCIPAL ═══════════════════════════════════════════════ -->
+<header class="page-hero">
+  <div class="hero-ornament">۞ ۞ ۞</div>
+
+  <div class="hero-icon-wrap">🤲</div>
+
+  <div class="hero-bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+
+  <h1 class="hero-title">أذكار <span>اليوم والليلة</span></h1>
+
+  <div class="hero-ayah-block">
+    <div class="hero-ayah">﴿ أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ ﴾</div>
+    <div class="hero-ayah-ref">سورة الرعد · الآية ٢٨</div>
+  </div>
+
+  <div class="hero-desc">
+    <i class="fas fa-moon"></i>
+    اختر القسم وابدأ الذكر، واملأ يومك بالبركة والطمأنينة
+  </div>
+</header>
+
+<!-- Vague décorative -->
+<div class="hero-wave">
+  <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,20 C360,60 1080,0 1440,30 L1440,60 L0,60 Z"/>
+  </svg>
+</div>
+
+<!-- ═══ CONTENU PRINCIPAL ════════════════════════════════════════════════ -->
+<main class="main-content">
+  <div class="container">
+
+    <!-- En-tête de section -->
+    <div class="athkar-page-header">
+      <div class="section-icon">
         <i class="fas fa-hands-praying"></i>
-        <span>الأَذْكَارُ</span>
-        <i class="fas fa-hands-praying"></i>
       </div>
-      <div class="hero-title-arabic">أَذْكَارُ الْيَوْمِ وَاللَّيْلِ</div>
-      <div class="hero-sub">اخْتَرِ الْقِسْمَ لِتَتَذَكَّرَ اللَّهَ</div>
+      <h2 class="section-title">أَقْسَامُ الْأَذْكَارِ</h2>
+      <p class="section-subtitle">اخْتَرِ الْقِسْمَ لِعَرْضِ الْأَذْكَارِ</p>
+      <div class="athkar-count" id="categoriesCount">٦ أَقْسَامٍ</div>
     </div>
-    
-    <!-- Wave SVG -->
-    <div class="header-wave">
-      <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
-        <path class="wave-fill" d="M0,32L48,37.3C96,43,192,53,288,58.7C384,64,480,64,576,58.7C672,53,768,43,864,48C960,53,1056,75,1152,80C1248,85,1344,75,1392,69.3L1440,64L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z"></path>
-      </svg>
-    </div>
-  </header>
 
-  <!-- Main Content -->
-  <main class="main-content">
-    <div class="container">
-      <!-- Page Header -->
-      <div class="athkar-page-header">
-        <div class="section-icon">
-          <i class="fas fa-hands-praying"></i>
-        </div>
-        <h2 class="section-title">أَقْسَامُ الْأَذْكَارِ</h2>
-        <p class="section-subtitle">اخْتَرِ الْقِسْمَ لِعَرْضِ الْأَذْكَارِ</p>
-        <div class="athkar-count" id="categoriesCount">٦ أَقْسَامٍ</div>
+    <!-- Grille des catégories -->
+    <div class="categories-grid" id="categoriesGrid"></div>
+
+    <!-- Compteur personnel -->
+    <div class="personal-counter">
+      <div class="counter-header">
+        <i class="fas fa-hand-sparkles"></i>
+        <span>عَدَّادُ الْأَذْكَارِ الشَّخْصِيُّ</span>
       </div>
-
-      <!-- Categories Grid -->
-      <div class="categories-grid" id="categoriesGrid"></div>
-
-      <!-- Personal Counter -->
-      <div class="personal-counter">
-        <div class="counter-header">
-          <i class="fas fa-hand-sparkles"></i>
-          <span>عَدَّادُ الْأَذْكَارِ الشَّخْصِيُّ</span>
+      <div class="counter-body">
+        <div class="counter-display">
+          <span id="personalCounter">٠</span>
         </div>
-        <div class="counter-body">
-          <div class="counter-display">
-            <span id="personalCounter">٠</span>
-          </div>
-          <div class="counter-controls">
-            <button class="counter-btn" id="counterPlus"><i class="fas fa-plus"></i></button>
-            <button class="counter-btn" id="counterMinus"><i class="fas fa-minus"></i></button>
-            <button class="counter-reset" id="counterReset"><i class="fas fa-undo-alt"></i> إعادة ضبط</button>
-          </div>
-        </div>
-        <div class="counter-presets">
-          <button class="preset-preset" data-value="33">٣٣</button>
-          <button class="preset-preset" data-value="34">٣٤</button>
-          <button class="preset-preset" data-value="100">١٠٠</button>
+        <div class="counter-controls">
+          <button class="counter-btn" id="counterPlus"><i class="fas fa-plus"></i></button>
+          <button class="counter-btn" id="counterMinus"><i class="fas fa-minus"></i></button>
+          <button class="counter-reset" id="counterReset">
+            <i class="fas fa-undo-alt"></i> إعادة ضبط
+          </button>
         </div>
       </div>
+      <div class="counter-presets">
+        <button class="preset-preset" data-value="33">٣٣</button>
+        <button class="preset-preset" data-value="34">٣٤</button>
+        <button class="preset-preset" data-value="100">١٠٠</button>
+      </div>
     </div>
-  </main>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <p>فيث باث · صفحة الأذكار · جميع الحقوق محفوظة</p>
-    <p style="opacity:0.8; margin-top:0.5rem;">
-      <i class="fas fa-star"></i> الَّذِينَ آمَنُوا وَتَطْمَئِنُّ قُلُوبُهُمْ بِذِكْرِ اللَّهِ <i class="fas fa-star"></i>
-    </p>
-  </footer>
+  </div>
+</main>
 
-  <script src="Athkar.js"></script>
+<!-- ═══ FOOTER — identique à 7asebnafsak ════════════════════════════════ -->
+<footer class="mini-footer" id="contact">
+  <div class="mini-footer-inner">
+    <p>© 2026 FaithPath. جميع الحقوق محفوظة</p>
+    <div class="mini-footer-links">
+      <a href="page_acceuil.html">الرئيسية</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══ SCRIPTS ══════════════════════════════════════════════════════════ -->
+<script>
+/* ── MENU LATÉRAL ── */
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const navMenu      = document.getElementById('navMenu');
+const navOverlay   = document.getElementById('navOverlay');
+
+function toggleMenu() {
+  navMenu.classList.toggle('active');
+  navOverlay.classList.toggle('active');
+  document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+}
+function closeMenu() {
+  navMenu.classList.remove('active');
+  navOverlay.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+hamburgerBtn?.addEventListener('click', toggleMenu);
+navOverlay?.addEventListener('click', closeMenu);
+document.getElementById('closeMenuBtn')?.addEventListener('click', closeMenu);
+document.querySelectorAll('.nav-menu a').forEach(l => l.addEventListener('click', closeMenu));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+</script>
+
+<script src="Athkar.js"></script>
 </body>
 </html>
