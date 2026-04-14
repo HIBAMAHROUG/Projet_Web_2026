@@ -1,143 +1,1045 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>فيث باث · الصحابة الكرام</title>
-  <!-- Font Awesome 6 -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <!-- Google Fonts + Arabic Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700;900&family=Cairo:wght@300;400;600;700;900&family=Noto+Kufi+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="sahaba.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FaithPath – الصحابة الكرام</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;600;700;900&family=Amiri:wght@400;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<style>
+/* ═══════════════════════════════════════════════════════════════════════
+   DESIGN TOKENS — couleurs & motifs centralisés
+═══════════════════════════════════════════════════════════════════════ */
+:root {
+  --e9: #0f3d2e;
+  --e8: #145a3f;
+  --e7: #1d6b4a;
+  --e6: #2a7b57;
+  --e5: #3aaa6e;
+  --e2: #cfe2d5;
+  --e1: #e7f3ea;
+  --sand-50: #fbf7f0;
+  --s1: #f2eadf;
+  --s2: #e7d8c8;
+  --br: #9f7a55;
+  --gd: #c9a87c;
+  --gd-light: rgba(201,168,124,.18);
+  --gd-mid:   rgba(201,168,124,.35);
+  --tr: all 0.3s cubic-bezier(.25,.46,.45,.94);
+  --tr-fast: all 0.18s ease;
+  --r-sm: 0.75rem;
+  --r-md: 1.25rem;
+  --r-lg: 1.6rem;
+  --r-xl: 2rem;
+  --sh-sm: 0 4px 12px rgba(15,61,46,.10);
+  --sh-md: 0 8px 22px rgba(15,61,46,.12);
+  --sh-lg: 0 16px 40px rgba(15,61,46,.18);
+  --sh-green: 0 4px 14px rgba(15,61,46,.28);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { height: 100%; }
+
+body {
+  font-family: 'Cairo', sans-serif;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: #2e2a28;
+  overflow-x: hidden;
+  position: relative;
+  background: var(--sand-50);
+}
+
+body::before {
+  content: "";
+  position: fixed; inset: 0;
+  background-image:
+    radial-gradient(circle at 12px 12px, rgba(20,90,63,.08) 0, rgba(20,90,63,.08) 2px, transparent 2px),
+    radial-gradient(circle at 28px 28px, rgba(20,90,63,.06) 0, rgba(20,90,63,.06) 2px, transparent 2px);
+  background-size: 40px 40px;
+  opacity: .35;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  width: 520px; height: 520px;
+  border-radius: 45% 55% 70% 30% / 60% 30% 70% 40%;
+  top: -140px; left: -100px;
+  background: radial-gradient(circle, rgba(29,107,74,.22), transparent 70%);
+  filter: blur(10px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   HEADER WITH WAVE
+═══════════════════════════════════════════════════════════════════════ */
+.header {
+  position: relative;
+  background: linear-gradient(135deg, var(--e9), var(--e7));
+  color: white;
+  padding: 1rem 0 4rem;
+  overflow: hidden;
+}
+
+.header-wave {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  line-height: 0;
+  z-index: 2;
+}
+
+.header-wave svg {
+  width: 100%;
+  height: 80px;
+}
+
+.wave-fill {
+  fill: var(--sand-50);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   NAVBAR
+═══════════════════════════════════════════════════════════════════════ */
+.top-navbar {
+  position: relative;
+  z-index: 1200;
+  background: transparent;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 0.9rem 2rem;
+}
+
+.nav-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  direction: rtl;
+}
+
+.logo {
+  display: flex; align-items: center; gap: .7rem;
+  color: #fff; text-decoration: none;
+  order: 2;
+}
+.logo-img {
+  width: 40px; height: 40px;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,.2));
+}
+.logo-text {
+  font-size: 1.3rem; font-weight: 700;
+  letter-spacing: .5px; color: #fff;
+}
+.logo-text span { color: var(--gd); }
+
+#hamburgerBtn {
+  order: 1;
+  display: flex; flex-direction: column;
+  justify-content: space-between;
+  width: 28px; height: 20px;
+  background: transparent; border: none;
+  cursor: pointer; padding: 0;
+  margin-inline-end: .5rem;
+  z-index: 1202;
+}
+#hamburgerBtn span {
+  display: block; width: 100%; height: 2.5px;
+  background: #fff; border-radius: 4px;
+  transition: var(--tr);
+}
+
+.nav-actions {
+  order: 3;
+  display: flex; align-items: center; gap: 1rem;
+  margin-inline-start: auto;
+}
+.auth-action-btn {
+  display: inline-flex; align-items: center; gap: .45rem;
+  background: rgba(255,255,255,.12);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 999px;
+  padding: .45rem 1.2rem;
+  text-decoration: none; font-weight: 600; font-size: .85rem;
+  transition: var(--tr-fast); white-space: nowrap;
+}
+.auth-action-btn:hover {
+  background: var(--gd); color: var(--e9); border-color: var(--gd);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MENU LATÉRAL
+═══════════════════════════════════════════════════════════════════════ */
+.nav-menu {
+  display: flex;
+  position: fixed;
+  top: 0; right: -100%; bottom: 0;
+  width: min(320px, 85vw);
+  background: linear-gradient(180deg, var(--e8) 0%, var(--e9) 100%);
+  backdrop-filter: blur(15px);
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 0 0 2rem;
+  z-index: 1201;
+  gap: 0;
+  transition: right .32s cubic-bezier(.25,.46,.45,.94);
+  box-shadow: -5px 0 30px rgba(0,0,0,.3);
+  border-left: 2px solid rgba(201,168,124,.35);
+}
+.nav-menu.active { right: 0; }
+
+.nav-menu-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 1.4rem;
+  border-bottom: 1px solid rgba(255,255,255,.15);
+  margin-bottom: .8rem;
+}
+.nav-menu-logo {
+  display: flex; align-items: center; gap: .6rem;
+  color: #fff; text-decoration: none;
+}
+.nav-menu-logo img {
+  width: 36px; height: 36px;
+  filter: drop-shadow(0 3px 6px rgba(0,0,0,.25));
+}
+.nav-menu-logo-text {
+  font-size: 1.15rem; font-weight: 700; color: #fff;
+}
+.nav-menu-logo-text span { color: var(--gd); }
+.nav-menu-close {
+  width: 32px; height: 32px;
+  background: rgba(255,255,255,.12);
+  border: none; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; color: #fff; font-size: 1rem;
+  transition: var(--tr-fast);
+}
+.nav-menu-close:hover {
+  background: rgba(255,255,255,.25);
+  transform: rotate(90deg);
+}
+
+.nav-menu a {
+  color: rgba(255,255,255,.88);
+  text-decoration: none;
+  padding: .75rem 1.4rem;
+  transition: var(--tr-fast);
+  font-size: .95rem; display: block;
+  border-right: 3px solid transparent;
+}
+.nav-menu a:hover, .nav-menu a.active {
+  background: rgba(255,255,255,.12);
+  color: var(--gd);
+  border-right-color: var(--gd);
+}
+
+.nav-overlay {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,.5);
+  opacity: 0; visibility: hidden;
+  transition: var(--tr);
+  z-index: 1199;
+}
+.nav-overlay.active { opacity: 1; visibility: visible; }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   LAYOUT WRAPPER
+═══════════════════════════════════════════════════════════════════════ */
+.main-center-wrapper {
+  flex: 1 1 auto;
+  display: flex; align-items: flex-start; justify-content: center;
+  min-height: 0; min-width: 0;
+}
+
+.pw {
+  max-width: 1200px; width: 100%;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 2.5rem;
+  position: relative; z-index: 1;
+}
+
+/* Sahaba Hero Section */
+.sahaba-hero {
+  max-width: 1000px;
+  margin: 0 auto 2rem;
+  padding: 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 3;
+  text-align: center;
+}
+.hero-title-arabic {
+  font-family: 'Amiri', serif;
+  font-size: 3rem;
+  font-weight: 900;
+  line-height: 1.2;
+  color: var(--e8);
+  text-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+.hero-sub {
+  font-size: 1.1rem;
+  opacity: 0.8;
+  margin: 0.5rem 0 1rem;
+  color: var(--br);
+}
+
+/* Page Header */
+.sahaba-page-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.section-icon {
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, var(--e6), var(--e8));
+  border-radius: 50% 50% 30% 70% / 60% 40% 60% 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  box-shadow: 0 10px 20px rgba(15,61,46,0.2);
+}
+.section-icon i { font-size: 2.2rem; color: white; }
+.section-title {
+  font-family: 'Amiri', serif;
+  font-size: 2.5rem;
+  color: var(--e9);
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+}
+.section-subtitle {
+  font-size: 1.1rem;
+  color: var(--br);
+}
+.sahaba-count {
+  background: var(--e1);
+  padding: 0.5rem 2rem;
+  border-radius: 50px;
+  display: inline-block;
+  color: var(--e9);
+  font-weight: 600;
+  margin-top: 0.5rem;
+  border: 1px solid var(--e2);
+}
+
+/* Filter Bar */
+.sahaba-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  background: white;
+  padding: 0.8rem 2rem;
+  border-radius: 80px;
+  box-shadow: var(--sh-sm);
+  border: 1px solid var(--e2);
+  gap: 1rem;
+}
+.filter-search {
+  display: flex;
+  align-items: center;
+  background: var(--s1);
+  border-radius: 50px;
+  padding: 0.3rem 1.2rem;
+  width: 300px;
+}
+.filter-search i { color: var(--br); margin-left: 0.8rem; }
+.filter-search input {
+  border: none;
+  background: transparent;
+  padding: 0.7rem 0;
+  width: 100%;
+  font-size: 1rem;
+  font-family: 'Cairo', sans-serif;
+}
+.filter-search input:focus { outline: none; }
+.filter-category {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.category-btn {
+  background: transparent;
+  border: 1px solid var(--e2);
+  padding: 0.4rem 1.2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  color: var(--e8);
+  cursor: pointer;
+  transition: var(--tr);
+  font-size: 0.85rem;
+}
+.category-btn.active, .category-btn:hover {
+  background: var(--e8);
+  color: white;
+  border-color: var(--e8);
+}
+
+/* Sahaba Grid */
+.sahaba-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+.sahaba-card {
+  background: white;
+  border-radius: 2rem;
+  padding: 1.8rem 1.5rem 1.6rem;
+  box-shadow: var(--sh-md);
+  transition: var(--tr);
+  border: 1px solid var(--e2);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+.sahaba-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 30px 50px rgba(15,61,46,0.15);
+  border-color: var(--gd);
+}
+.sahaba-card::before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(circle, var(--e2), transparent);
+  border-radius: 50%;
+  opacity: 0.4;
+}
+.sahaba-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 2px solid beige;
+  z-index: 2;
+}
+.sahaba-avatar {
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, var(--e1), var(--e2));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--gd);
+}
+.sahaba-avatar i { font-size: 2.2rem; color: var(--e7); }
+.sahaba-info { flex: 1; }
+.sahaba-name {
+  font-size: 1.8rem;
+  font-family: 'Amiri', serif;
+  font-weight: 700;
+  color: var(--e9);
+  line-height: 1.2;
+}
+.sahaba-title {
+  font-size: 0.85rem;
+  color: var(--gd);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 0.2rem;
+}
+.sahaba-bio {
+  margin: 1rem 0;
+  padding: 0.8rem;
+  background: var(--s1);
+  border-radius: 1rem;
+  font-size: 0.9rem;
+  color: var(--br);
+  line-height: 1.6;
+  text-align: center;
+  border: 1px solid var(--e2);
+  z-index: 2;
+}
+.sahaba-stats {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.8rem 0;
+  padding: 0.5rem 0.8rem;
+  background: var(--e1);
+  border-radius: 40px;
+  font-size: 0.8rem;
+  color: var(--e8);
+  z-index: 2;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.sahaba-stats span { display: flex; align-items: center; gap: 0.3rem; }
+.sahaba-stats i { color: var(--gd); }
+.sahaba-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+  z-index: 2;
+}
+.category-badge {
+  background: var(--e2);
+  padding: 0.2rem 0.8rem;
+  border-radius: 50px;
+  font-size: 0.7rem;
+  color: var(--e8);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+.category-badge i { font-size: 0.6rem; color: var(--gd); }
+
+/* Quote */
+.sahaba-quote {
+  background: linear-gradient(135deg, var(--e8), var(--e6));
+  border-radius: 2rem;
+  padding: 2rem;
+  margin: 2rem 0;
+  text-align: center;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+.sahaba-quote::before {
+  content: '';
+  position: absolute;
+  top: -30px;
+  left: -30px;
+  width: 150px;
+  height: 150px;
+  background: radial-gradient(circle, rgba(255,255,255,0.1), transparent);
+  border-radius: 50%;
+}
+.quote-icon { font-size: 2.5rem; color: var(--gd); margin-bottom: 1rem; }
+.quote-text {
+  font-size: 1.4rem;
+  font-family: 'Amiri', serif;
+  font-weight: 600;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+.quote-source { font-size: 0.9rem; opacity: 0.8; }
+
+/* Personal Counter */
+.personal-counter {
+  background: linear-gradient(135deg, var(--e8), var(--e6));
+  border-radius: 40px;
+  padding: 1.8rem 2rem;
+  margin-top: 2rem;
+  color: white;
+  box-shadow: var(--sh-lg);
+  border: 1px solid var(--gd);
+}
+.counter-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+.counter-header i { color: var(--gd); font-size: 1.8rem; }
+.counter-body {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+}
+.counter-display span {
+  font-size: 3.5rem;
+  font-weight: 700;
+  background: white;
+  color: var(--e9);
+  padding: 0.3rem 1.5rem;
+  border-radius: 60px;
+  min-width: 120px;
+  display: inline-block;
+  text-align: center;
+}
+.counter-controls { display: flex; gap: 1rem; }
+.counter-btn {
+  background: var(--gd);
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--e9);
+  transition: 0.1s;
+  box-shadow: 0 4px 0 #8b6542;
+}
+.counter-btn:active { transform: translateY(4px); box-shadow: 0 1px 0 #8b6542; }
+.counter-reset {
+  background: var(--e2);
+  color: var(--e9);
+  border: none;
+  padding: 0.6rem 1.5rem;
+  border-radius: 40px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.counter-presets {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+.preset-preset {
+  background: rgba(255,255,255,0.2);
+  border: 1px solid var(--gd);
+  color: white;
+  padding: 0.4rem 1.2rem;
+  border-radius: 40px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--tr);
+}
+.preset-preset:hover { background: var(--gd); color: var(--e9); }
+
+.no-results {
+  text-align: center;
+  padding: 3rem;
+  background: white;
+  border-radius: 2rem;
+  grid-column: 1 / -1;
+  color: var(--br);
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(5px);
+}
+.modal-content {
+  background: white;
+  border-radius: 2rem;
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 2rem;
+  position: relative;
+  animation: modalFadeIn 0.3s ease;
+}
+@keyframes modalFadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: var(--e1);
+  border: none;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: var(--e8);
+  transition: var(--tr);
+}
+.modal-close:hover { background: var(--e2); transform: scale(1.05); }
+.modal-header { text-align: center; margin-bottom: 1.5rem; }
+.modal-avatar {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(135deg, var(--e1), var(--e2));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  border: 3px solid var(--gd);
+}
+.modal-avatar i { font-size: 3rem; color: var(--e7); }
+.modal-name {
+  font-size: 2rem;
+  font-family: 'Amiri', serif;
+  color: var(--e9);
+  margin-bottom: 0.3rem;
+}
+.modal-title { color: var(--gd); font-weight: 600; }
+.modal-section { margin-top: 1.5rem; }
+.modal-section h4 {
+  color: var(--e8);
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.modal-section p { color: var(--br); line-height: 1.6; }
+.modal-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+/* Footer */
+.mini-footer {
+  background: linear-gradient(135deg, #1a3a2a, #2d6a4f);
+  color: rgba(255,255,255,.92);
+  border-top: 2px solid rgba(212,175,55,.45);
+  margin-top: auto;
+}
+.mini-footer-inner {
+  width: min(1200px, 96vw); margin: 0 auto;
+  padding: 1rem 0;
+  display: flex; justify-content: center; align-items: center;
+  gap: 1rem; flex-wrap: wrap; font-size: .92rem;
+  flex-direction: column; text-align: center;
+}
+.mini-footer p { color: rgba(255,255,255,.88); margin-bottom: .2rem; }
+.mini-footer-links { display: flex; align-items: center; gap: .9rem; flex-wrap: wrap; }
+.mini-footer-links a { color: rgba(255,255,255,.9); text-decoration: none; transition: var(--tr-fast); }
+.mini-footer-links a:hover { opacity: .72; }
+
+.sig {
+  text-align: center; margin-top: 2rem;
+  display: flex; align-items: center; justify-content: center; gap: .6rem;
+  color: var(--gd); font-size: .9rem; font-family: 'Amiri', serif;
+  flex-wrap: wrap;
+}
+.sigt {
+  font-family: 'Cairo', sans-serif; font-size: 1rem; font-weight: 700;
+  color: var(--e8); letter-spacing: .5px;
+}
+
+@media (max-width: 680px) {
+  .sahaba-grid { grid-template-columns: 1fr; }
+  .sahaba-filter-bar { flex-direction: column; }
+  .filter-category { justify-content: center; }
+  .filter-search { width: 100%; }
+  .hero-title-arabic { font-size: 2rem; }
+}
+@media (max-width: 460px) {
+  .sahaba-name { font-size: 1.4rem; }
+  .quote-text { font-size: 1.1rem; }
+  .counter-body { flex-direction: column; }
+}
+</style>
 </head>
 <body>
-  <!-- Header with navigation -->
-  <header class="header">
-    <div class="navbar">
-      <div class="nav-container">
-        <div class="logo">
-          <img src="image/logo.png" alt="شعار فيث باث" class="logo-img" onerror="this.src='https://placehold.co/50x50/145a3f/c9a87c?text=FP'">
-          <span class="logo-text">فيث<span class="logo-highlight">باث</span></span>
-        </div>
-        <div class="nav-menu">
-          <a href="#" class="nav-link">الرئيسية</a>
-          <a href="#" class="nav-link">القرآن</a>
-          <a href="#" class="nav-link">الأذكار</a>
-          <a href="#" class="nav-link active">الصحابة</a>
-          <a href="#" class="nav-link">الصلاة</a>
-          <a href="#" class="nav-link">المزيد</a>
-        </div>
-        <div class="nav-actions">
-          <div class="search-box">
-            <i class="fas fa-search search-icon"></i>
-            <input type="text" placeholder="بحث" class="search-input" id="globalSearchInput">
-          </div>
-          <div class="user-profile">
-            <i class="far fa-bell notification-icon"></i>
-            <div class="profile-badge">
-              <i class="fas fa-user-circle profile-icon"></i>
-              <span class="profile-name">عمر</span>
-            </div>
-          </div>
-          <div class="menu-toggle"><i class="fas fa-bars"></i></div>
-        </div>
+
+<!-- Header with wave -->
+<header class="header">
+  <!-- Navbar inside header -->
+  <nav class="top-navbar">
+    <div class="nav-container">
+      <div class="logo">
+        <img src="https://placehold.co/40x40/145a3f/c9a87c?text=FP" alt="FaithPath" class="logo-img">
+        <span class="logo-text">Faith<span>Path</span></span>
+      </div>
+      <button class="hamburger" id="hamburgerBtn" aria-label="القائمة">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-actions">
+        <a href="#" id="authActionBtn" class="auth-action-btn">
+          <i class="fas fa-right-to-bracket"></i><span>إنشاء حساب / تسجيل الدخول</span>
+        </a>
       </div>
     </div>
+  </nav>
 
-    <!-- Sahaba Hero Section -->
-    <div class="sahaba-hero">
-      <div class="hero-badge">
-        <i class="fas fa-users"></i>
-        <span>الصَّحَابَةُ الْكِرَامُ</span>
+  <!-- Sahaba Hero Section inside header -->
+   <div class="sahaba-page-header">
+      <div class="section-icon">
         <i class="fas fa-users"></i>
       </div>
-      <div class="hero-title-arabic">الصَّحَابَةُ الْكِرَامُ</div>
-      <div class="hero-sub">رِجَالٌ صَدَقُوا مَا عَاهَدُوا اللَّهَ عَلَيْهِ — تَعَرَّفْ عَلَى سِيرَتِهِمْ</div>
+      <h2 class="section-title">الصَّحَابَةُ الْكِرَامُ</h2>
+      <p class="section-subtitle">تَعَرَّفْ عَلَى سِيرَةِ أَصْحَابِ رَسُولِ اللَّهِ ﷺ</p>
+      <div class="sahaba-count" id="sahabaCount">٠ صَحَابِيًّا</div>
     </div>
-    
-    <!-- Wave SVG -->
-    <div class="header-wave">
-      <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
-        <path class="wave-fill" d="M0,32L48,37.3C96,43,192,53,288,58.7C384,64,480,64,576,58.7C672,53,768,43,864,48C960,53,1056,75,1152,80C1248,85,1344,75,1392,69.3L1440,64L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z"></path>
-      </svg>
-    </div>
-  </header>
+  <!-- Wave SVG -->
+  <div class="header-wave">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+      <path class="wave-fill" d="M0,32L48,37.3C96,43,192,53,288,58.7C384,64,480,64,576,58.7C672,53,768,43,864,48C960,53,1056,75,1152,80C1248,85,1344,75,1392,69.3L1440,64L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z"></path>
+    </svg>
+  </div>
+</header>
 
-  <!-- Main Content -->
-  <main class="main-content">
-    <div class="container">
-      <!-- Page Header -->
-      <div class="sahaba-page-header">
-        <div class="section-icon">
-          <i class="fas fa-users"></i>
-        </div>
-        <h2 class="section-title">الصَّحَابَةُ الْكِرَامُ</h2>
-        <p class="section-subtitle">تَعَرَّفْ عَلَى سِيرَةِ أَصْحَابِ رَسُولِ اللَّهِ ﷺ</p>
-        <div class="sahaba-count" id="sahabaCount">٠ صَحَابِيًّا</div>
+<!-- Menu latéral -->
+<div class="nav-menu" id="navMenu">
+  <div class="nav-menu-header">
+    <a href="#" class="nav-menu-logo">
+      <img src="https://placehold.co/36x36/145a3f/c9a87c?text=FP" alt="FaithPath">
+      <span class="nav-menu-logo-text">Faith<span>Path</span></span>
+    </a>
+    <button class="nav-menu-close" id="closeMenuBtn" aria-label="إغلاق">
+      <i class="fas fa-times"></i>
+    </button>
+  </div>
+  <a href="#">🔓 الرئيسية</a>
+  <a href="#">🔓 القرآن الكريم</a>
+  <a href="#">🔓 أسماء الله الحسنى</a>
+  <a href="#">🔒 مسار الأنبياء</a>
+  <a href="#">🔓 التقويم الهجري</a>
+  <a href="#">🔓 أوقات الصلاة</a>
+  <a href="#">🔓 المسبحة الإلكترونية</a>
+  <a href="#">🔒 قصة الصحابة</a>
+  <a href="#" class="active">🔓 حاسب نفسك</a>
+  <a href="#">🔒 اختبارات دينية</a>
+  <a href="#">🔒 صدقة جارية</a>
+  <a href="#">🔓 أذكار الصباح والمساء</a>
+  <a href="#">🔓 تواصل معنا</a>
+</div>
+<div class="nav-overlay" id="navOverlay"></div>
+
+<!-- Main Content -->
+<div class="main-center-wrapper">
+  <div class="pw">
+
+
+    <!-- Filter Bar -->
+    <div class="sahaba-filter-bar">
+      <div class="filter-search">
+        <i class="fas fa-search"></i>
+        <input type="text" id="searchInput" placeholder="ابحث عن صحابي (اسم أو لقب)">
       </div>
-
-      <!-- Filter Bar -->
-      <div class="sahaba-filter-bar">
-        <div class="filter-search">
-          <i class="fas fa-search"></i>
-          <input type="text" id="searchInput" placeholder="ابحث عن صحابي (اسم أو لقب)">
-        </div>
-        <div class="filter-category" id="filterCategoryContainer">
-          <span class="category-btn active" data-category="all">الكل</span>
-          <span class="category-btn" data-category="ashara">العشرة المبشرين</span>
-          <span class="category-btn" data-category="badr">أهل بدر</span>
-          <span class="category-btn" data-category="muhajirun">المهاجرين</span>
-          <span class="category-btn" data-category="ansar">الأنصار</span>
-        </div>
-      </div>
-
-      <!-- Sahaba Grid -->
-      <div id="sahabaGrid" class="sahaba-grid"></div>
-
-      <!-- Sahaba Quote / Hadith -->
-      <div class="sahaba-quote">
-        <div class="quote-icon">
-          <i class="fas fa-quote-right"></i>
-        </div>
-        <div class="quote-text">
-          خَيْرُ النَّاسِ قَرْنِي، ثُمَّ الَّذِينَ يَلُونَهُمْ، ثُمَّ الَّذِينَ يَلُونَهُمْ
-        </div>
-        <div class="quote-source">— رَسُولُ اللَّهِ ﷺ</div>
-      </div>
-
-      <!-- Personal Counter -->
-      <div class="personal-counter">
-        <div class="counter-header">
-          <i class="fas fa-hand-sparkles"></i>
-          <span>عَدَّادُ الْأَذْكَارِ الشَّخْصِيُّ</span>
-        </div>
-        <div class="counter-body">
-          <div class="counter-display">
-            <span id="personalCounter">٠</span>
-          </div>
-          <div class="counter-controls">
-            <button class="counter-btn" id="counterPlus"><i class="fas fa-plus"></i></button>
-            <button class="counter-btn" id="counterMinus"><i class="fas fa-minus"></i></button>
-            <button class="counter-reset" id="counterReset"><i class="fas fa-undo-alt"></i> إعادة ضبط</button>
-          </div>
-        </div>
-        <div class="counter-presets">
-          <button class="preset-preset" data-value="33">٣٣</button>
-          <button class="preset-preset" data-value="34">٣٤</button>
-          <button class="preset-preset" data-value="100">١٠٠</button>
-        </div>
+      <div class="filter-category" id="filterCategoryContainer">
+        <span class="category-btn active" data-category="all">الكل</span>
+        <span class="category-btn" data-category="ashara">العشرة المبشرون</span>
+        <span class="category-btn" data-category="badr">أهل بدر</span>
+        <span class="category-btn" data-category="muhajirun">المهاجرون</span>
+        <span class="category-btn" data-category="ansar">الأنصار</span>
       </div>
     </div>
-  </main>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <p>فيث باث · صفحة الصحابة الكرام · جميع الحقوق محفوظة</p>
-    <p style="opacity:0.8; margin-top:0.5rem;">
-      <i class="fas fa-star"></i> رَضِيَ اللَّهُ عَنْهُمْ وَرَضُوا عَنْهُ <i class="fas fa-star"></i>
-    </p>
-  </footer>
+    <!-- Sahaba Grid -->
+    <div id="sahabaGrid" class="sahaba-grid"></div>
 
-  <script src="sahaba.js"></script>
+    <!-- Sahaba Quote -->
+    <div class="sahaba-quote">
+      <div class="quote-icon"><i class="fas fa-quote-right"></i></div>
+      <div class="quote-text">خَيْرُ النَّاسِ قَرْنِي، ثُمَّ الَّذِينَ يَلُونَهُمْ، ثُمَّ الَّذِينَ يَلُونَهُمْ</div>
+      <div class="quote-source">— رَسُولُ اللَّهِ ﷺ</div>
+    </div>
+
+    <!-- Personal Counter -->
+    <div class="personal-counter">
+      <div class="counter-header">
+        <i class="fas fa-hand-sparkles"></i>
+        <span>عَدَّادُ الْأَذْكَارِ الشَّخْصِيُّ</span>
+      </div>
+      <div class="counter-body">
+        <div class="counter-display"><span id="personalCounter">٠</span></div>
+        <div class="counter-controls">
+          <button class="counter-btn" id="counterPlus"><i class="fas fa-plus"></i></button>
+          <button class="counter-btn" id="counterMinus"><i class="fas fa-minus"></i></button>
+          <button class="counter-reset" id="counterReset"><i class="fas fa-undo-alt"></i> إعادة ضبط</button>
+        </div>
+      </div>
+      <div class="counter-presets">
+        <button class="preset-preset" data-value="33">٣٣</button>
+        <button class="preset-preset" data-value="34">٣٤</button>
+        <button class="preset-preset" data-value="100">١٠٠</button>
+      </div>
+    </div>
+
+    <!-- Signature -->
+    <div class="sig">
+      <span>✦</span><span class="sigt">FaithPath</span><span>✦</span>
+      <span style="font-size:.88rem;color:#a09080">الصحابة الكرام · رضي الله عنهم</span>
+    </div>
+
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="mini-footer" id="contact">
+  <div class="mini-footer-inner">
+    <p>© 2026 FaithPath. جميع الحقوق محفوظة</p>
+    <div class="mini-footer-links">
+      <a href="#">الرئيسية</a>
+      <a href="#">اتصل بنا</a>
+    </div>
+  </div>
+</footer>
+
+<!-- Modal -->
+<div id="sahabaModal" class="modal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
+<script>
+// Menu functions
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const navMenu = document.getElementById('navMenu');
+const navOverlay = document.getElementById('navOverlay');
+const closeMenuBtn = document.getElementById('closeMenuBtn');
+
+function toggleMenu() {
+  navMenu.classList.toggle('active');
+  navOverlay.classList.toggle('active');
+  document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+}
+function closeMenu() {
+  navMenu.classList.remove('active');
+  navOverlay.classList.remove('active');
+  document.body.style.overflow = '';
+}
+if (hamburgerBtn) hamburgerBtn.addEventListener('click', toggleMenu);
+if (navOverlay) navOverlay.addEventListener('click', closeMenu);
+if (closeMenuBtn) closeMenuBtn.addEventListener('click', closeMenu);
+document.querySelectorAll('.nav-menu a').forEach(l => l.addEventListener('click', closeMenu));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+
+// Arabic numbers
+function toArabicNumber(num) {
+  const arabicDigits = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+  return num.toString().split('').map(d => arabicDigits[d]).join('');
+}
+
+// Sahaba data
+const sahabaList = [
+  { id: 1, name: "أَبُو بَكْرٍ الصِّدِّيق", nickname: "عبد الله بن عثمان", title: "الصديق - أول الخلفاء الراشدين", category: ["ashara", "muhajirun", "badr"], bio: "أول من آمن من الرجال، وأحب الناس إلى رسول الله ﷺ، رفيقه في الهجرة، وأول الخلفاء الراشدين.", birthYear: "50 ق.هـ", deathYear: "13 هـ", age: "63", virtues: "أول من أسلم من الرجال، رفيق النبي في الغار" },
+  { id: 2, name: "عُمَرُ بْنُ الْخَطَّاب", nickname: "أبو حفص", title: "الفاروق - ثاني الخلفاء الراشدين", category: ["ashara", "muhajirun", "badr"], bio: "أحد العشرة المبشرين بالجنة، ثاني الخلفاء الراشدين، لقب بالفاروق لأنه فرق بين الحق والباطل.", birthYear: "40 ق.هـ", deathYear: "23 هـ", age: "63", virtues: "كان الإسلام يعز بعمر، من أعظم الصحابة فتحاً" },
+  { id: 3, name: "عُثْمَانُ بْنُ عَفَّان", nickname: "أبو عمرو", title: "ذو النورين - ثالث الخلفاء الراشدين", category: ["ashara", "muhajirun"], bio: "أحد العشرة المبشرين بالجنة، ثالث الخلفاء الراشدين، لقب بذي النورين لأنه تزوج ابنتي رسول الله ﷺ.", birthYear: "47 ق.هـ", deathYear: "35 هـ", age: "82", virtues: "جمع القرآن في مصحف واحد، كان حيياً كريماً" },
+  { id: 4, name: "عَلِيُّ بْنُ أَبِي طَالِب", nickname: "أبو الحسن", title: "أمير المؤمنين - رابع الخلفاء الراشدين", category: ["ashara", "muhajirun", "badr"], bio: "ابن عم رسول الله ﷺ وزوج ابنته فاطمة الزهراء، رابع الخلفاء الراشدين، وأحد العشرة المبشرين بالجنة.", birthYear: "23 ق.هـ", deathYear: "40 هـ", age: "63", virtues: "باب مدينة العلم، كان شجاعاً عالماً" },
+  { id: 5, name: "طَلْحَةُ بْنُ عُبَيْدِ اللَّهِ", nickname: "أبو محمد", title: "طلحة الخير - طلحة الفياض", category: ["ashara", "muhajirun", "badr"], bio: "أحد العشرة المبشرين بالجنة، ومن السابقين الأولين إلى الإسلام، كان سخياً كريماً.", birthYear: "28 ق.هـ", deathYear: "36 هـ", age: "64", virtues: "كان يسمى طلحة الفياض لكرمه" },
+  { id: 6, name: "الزُّبَيْرُ بْنُ الْعَوَّام", nickname: "أبو عبد الله", title: "حواري رسول الله", category: ["ashara", "muhajirun", "badr"], bio: "أحد العشرة المبشرين بالجنة، حواري رسول الله ﷺ، أول من سل سيفه في الإسلام.", birthYear: "28 ق.هـ", deathYear: "36 هـ", age: "64", virtues: "كان أول من سل سيفه في سبيل الله" },
+  { id: 7, name: "عَبْدُ الرَّحْمَنِ بْنُ عَوْف", nickname: "أبو محمد", title: "أغنى الصحابة", category: ["ashara", "muhajirun", "badr"], bio: "أحد العشرة المبشرين بالجنة، كان من أغنياء الصحابة وأنفق ماله كله في سبيل الله.", birthYear: "43 ق.هـ", deathYear: "32 هـ", age: "75", virtues: "كان تاجراً كريماً أنفق ماله في سبيل الله" },
+  { id: 8, name: "سَعْدُ بْنُ أَبِي وَقَّاص", nickname: "أبو إسحاق", title: "فاتح العراق", category: ["ashara", "muhajirun", "badr"], bio: "أحد العشرة المبشرين بالجنة، قائد جيش المسلمين في معركة القادسية، فاتح العراق.", birthYear: "23 ق.هـ", deathYear: "55 هـ", age: "78", virtues: "من الرماة المشهورين، استجاب الله دعوة النبي فيه" },
+  { id: 9, name: "سَعِيدُ بْنُ زَيْدٍ", nickname: "أبو الأعور", title: "أحد العشرة", category: ["ashara", "muhajirun", "badr"], bio: "أحد العشرة المبشرين بالجنة، أسلم قديماً قبل دخول النبي دار الأرقم.", birthYear: "26 ق.هـ", deathYear: "51 هـ", age: "77", virtues: "من السابقين إلى الإسلام" },
+  { id: 10, name: "أَبُو عُبَيْدَةَ بْنُ الْجَرَّاح", nickname: "عامر بن عبد الله", title: "أمين الأمة", category: ["ashara", "muhajirun", "badr"], bio: "أحد العشرة المبشرين بالجنة، لقبه رسول الله ﷺ بأمين الأمة.", birthYear: "40 ق.هـ", deathYear: "18 هـ", age: "58", virtues: "أمين هذه الأمة" },
+  { id: 11, name: "سَعْدُ بْنُ مُعَاذٍ", nickname: "أبو عمرو", title: "سيد الأوس", category: ["ansar", "badr"], bio: "سيد الأوس، اهتز لموته عرش الرحمن، حكم في بني قريظة بحكم الله.", birthYear: "قبل الهجرة", deathYear: "5 هـ", age: "37", virtues: "اهتز عرش الرحمن لموته" },
+  { id: 12, name: "مُصْعَبُ بْنُ عُمَيْر", nickname: "أبو عبد الله", title: "أول سفير في الإسلام", category: ["muhajirun", "badr"], bio: "أول من هاجر إلى المدينة، كان جميلاً وسيماً، استشهد في غزوة أحد.", birthYear: "قبل البعثة", deathYear: "3 هـ", age: "40", virtues: "أول سفير في الإسلام، استشهد في أحد" },
+  { id: 13, name: "بِلَالُ بْنُ رَبَاح", nickname: "أبو عبد الله", title: "مؤذن الرسول ﷺ", category: ["muhajirun"], bio: "مؤذن رسول الله ﷺ، كان من العبيد الذين عذبوا في الله ثم اشتراهم أبو بكر الصديق.", birthYear: "53 ق.هـ", deathYear: "20 هـ", age: "73", virtues: "أذن في الكعبة بعد فتح مكة" },
+  { id: 14, name: "خَالِدُ بْنُ الْوَلِيد", nickname: "أبو سليمان", title: "سيف الله المسلول", category: ["muhajirun"], bio: "قائد عسكري مسلم، لقب بسيف الله المسلول، لم يهزم في معركة قط.", birthYear: "30 ق.هـ", deathYear: "21 هـ", age: "51", virtues: "سيف الله المسلول، فاتح الشام" },
+  { id: 15, name: "أَبُو هُرَيْرَةَ", nickname: "عبد الرحمن بن صخر", title: "حافظ الأمة", category: ["muhajirun"], bio: "أكثر الصحابة رواية للحديث النبوي، لزم النبي ﷺ ولازمه.", birthYear: "19 ق.هـ", deathYear: "59 هـ", age: "78", virtues: "أكثر الصحابة رواية للحديث" },
+  { id: 16, name: "عَبْدُ اللَّهِ بْنُ عُمَرَ", nickname: "أبو عبد الرحمن", title: "فقيه الصحابة", category: ["muhajirun"], bio: "ابن عمر بن الخطاب، من أكثر الصحابة علماً وعبادة.", birthYear: "3 ق.هـ", deathYear: "73 هـ", age: "76", virtues: "كان شديد الاتباع للسنة" }
+];
+
+document.getElementById('sahabaCount').innerText = toArabicNumber(sahabaList.length) + ' صَحَابِيًّا';
+
+const grid = document.getElementById('sahabaGrid');
+const searchInput = document.getElementById('searchInput');
+const filterCategoryContainer = document.getElementById('filterCategoryContainer');
+let currentCategory = 'all';
+let searchTerm = '';
+
+function getSahabaIcon(sahaba) {
+  if (sahaba.category.includes('ashara')) return 'fa-crown';
+  if (sahaba.category.includes('badr')) return 'fa-star-of-life';
+  return 'fa-user-tie';
+}
+
+function getCategoryName(catId) {
+  const names = { ashara: 'العشرة المبشرون', badr: 'أهل بدر', muhajirun: 'المهاجرون', ansar: 'الأنصار' };
+  return names[catId] || catId;
+}
+
+const modal = document.getElementById('sahabaModal');
+
+function openModal(sahaba) {
+  const modalContent = document.getElementById('modalContent');
+  let badgesHtml = '';
+  sahaba.category.forEach(cat => { badgesHtml += `<span class="category-badge"><i class="fas fa-tag"></i> ${getCategoryName(cat)}</span>`; });
+  modalContent.innerHTML = `
+    <div class="modal-header">
+      <div class="modal-avatar"><i class="fas ${getSahabaIcon(sahaba)}"></i></div>
+      <div class="modal-name">${sahaba.name}</div>
+      <div class="modal-title">${sahaba.title}</div>
+      <div class="modal-title" style="color: var(--br); font-size: 0.9rem;">${sahaba.nickname}</div>
+    </div>
+    <div class="modal-section"><h4><i class="fas fa-user"></i> نبذة عن الصحابي</h4><p>${sahaba.bio}</p></div>
+    <div class="modal-section"><h4><i class="fas fa-calendar-alt"></i> معلومات شخصية</h4><p><strong>الميلاد:</strong> ${sahaba.birthYear} &nbsp;|&nbsp; <strong>الوفاة:</strong> ${sahaba.deathYear} &nbsp;|&nbsp; <strong>العمر:</strong> ${toArabicNumber(parseInt(sahaba.age))} سنة</p></div>
+    <div class="modal-section"><h4><i class="fas fa-star"></i> مناقبه وفضائله</h4><p>${sahaba.virtues}</p></div>
+    <div class="modal-badges">${badgesHtml}</div>
+  `;
+  modal.style.display = 'flex';
+}
+
+function closeModal() { modal.style.display = 'none'; }
+
+function renderSahaba() {
+  const filtered = sahabaList.filter(s => {
+    const matchesCategory = currentCategory === 'all' || s.category.includes(currentCategory);
+    const matchesSearch = s.name.includes(searchTerm) || s.nickname.includes(searchTerm) || s.title.includes(searchTerm) || s.bio.includes(searchTerm);
+    return matchesCategory && matchesSearch;
+  });
+  if (filtered.length === 0) { grid.innerHTML = `<div class="no-results"><i class="fas fa-users-slash" style="font-size:2rem;"></i><p>لا توجد نتائج</p></div>`; return; }
+  let html = '';
+  filtered.forEach(s => {
+    let badgesHtml = '';
+    s.category.slice(0, 2).forEach(cat => { badgesHtml += `<span class="category-badge"><i class="fas fa-tag"></i> ${getCategoryName(cat)}</span>`; });
+    html += `<div class="sahaba-card" data-id="${s.id}"><div class="sahaba-header"><div class="sahaba-avatar"><i class="fas ${getSahabaIcon(s)}"></i></div><div class="sahaba-info"><div class="sahaba-name">${s.name}</div><div class="sahaba-title"><i class="fas fa-medal"></i> ${s.title}</div></div></div><div class="sahaba-bio">${s.bio.length > 100 ? s.bio.substring(0, 100) + '...' : s.bio}</div><div class="sahaba-stats"><span><i class="fas fa-calendar-alt"></i> ${s.birthYear} - ${s.deathYear}</span><span><i class="fas fa-heart"></i> ${s.virtues.substring(0, 30)}...</span></div><div class="sahaba-categories">${badgesHtml}${s.category.length > 2 ? `<span class="category-badge"><i class="fas fa-plus"></i> +${s.category.length - 2}</span>` : ''}</div></div>`;
+  });
+  grid.innerHTML = html;
+  document.querySelectorAll('.sahaba-card').forEach(card => { card.addEventListener('click', function() { const sahaba = sahabaList.find(s => s.id === parseInt(this.dataset.id)); if (sahaba) openModal(sahaba); }); });
+}
+
+if (searchInput) searchInput.addEventListener('input', (e) => { searchTerm = e.target.value; renderSahaba(); });
+if (filterCategoryContainer) {
+  filterCategoryContainer.querySelectorAll('.category-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      filterCategoryContainer.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      currentCategory = this.dataset.category;
+      renderSahaba();
+    });
+  });
+}
+window.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+
+// Personal Counter
+let personalCount = 0;
+const personalDisplay = document.getElementById('personalCounter');
+const counterPlus = document.getElementById('counterPlus');
+const counterMinus = document.getElementById('counterMinus');
+const counterReset = document.getElementById('counterReset');
+const presetPresets = document.querySelectorAll('.preset-preset');
+const savedPersonal = localStorage.getItem('personalCounter');
+if (savedPersonal) { personalCount = parseInt(savedPersonal); if (personalDisplay) personalDisplay.textContent = toArabicNumber(personalCount); }
+function updatePersonalCounter(value) { if (value < 0) value = 0; personalCount = value; if (personalDisplay) personalDisplay.textContent = toArabicNumber(personalCount); localStorage.setItem('personalCounter', personalCount); }
+if (counterPlus) counterPlus.addEventListener('click', () => updatePersonalCounter(personalCount + 1));
+if (counterMinus) counterMinus.addEventListener('click', () => updatePersonalCounter(personalCount - 1));
+if (counterReset) counterReset.addEventListener('click', () => updatePersonalCounter(0));
+presetPresets.forEach(btn => { btn.addEventListener('click', () => { updatePersonalCounter(parseInt(btn.dataset.value)); }); });
+
+renderSahaba();
+window.closeModal = closeModal;
+</script>
 </body>
 </html>

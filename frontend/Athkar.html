@@ -6,14 +6,102 @@
   <title>فيث باث · الأذكار</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700;900&family=Cairo:wght@300;400;600;700;900&family=Noto+Kufi+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="Athkar.css">
   <style>
-    /* ── Logo inline avec le hamburger ── */
+    /* ── DESIGN TOKENS ─────────────────────────────────────────── */
+    :root {
+      --e9: #0f3d2e;
+      --e8: #145a3f;
+      --e7: #1d6b4a;
+      --e6: #2a7b57;
+      --e5: #3aaa6e;
+      --e2: #cfe2d5;
+      --e1: #e7f3ea;
+      --s0: #fbf7f0;
+      --s1: #f2eadf;
+      --s2: #e7d8c8;
+      --br: #9f7a55;
+      --gd: #c9a87c;
+      --gd-light: rgba(201,168,124,.18);
+      --tr: all 0.3s cubic-bezier(.25,.46,.45,.94);
+      --tr-fast: all 0.18s ease;
+      --r-sm: .75rem;
+      --r-md: 1.25rem;
+      --r-lg: 1.6rem;
+      --r-xl: 2rem;
+      --sh-sm: 0 4px 12px rgba(15,61,46,.10);
+      --sh-md: 0 8px 22px rgba(15,61,46,.12);
+      --sh-lg: 0 16px 40px rgba(15,61,46,.18);
+      --sh-hover: 0 20px 45px rgba(15,61,46,.20);
+      --sh-green: 0 4px 14px rgba(15,61,46,.28);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { height: 100%; }
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      color: #2e2a28;
+      overflow-x: hidden;
+      background: #f5f1e8;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed; inset: 0;
+      background-image: radial-gradient(circle at 12px 12px, rgba(20,90,63,.08) 0, rgba(20,90,63,.08) 2px, transparent 2px), radial-gradient(circle at 28px 28px, rgba(20,90,63,.06) 0, rgba(20,90,63,.06) 2px, transparent 2px);
+      background-size: 40px 40px;
+      opacity: .35;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      width: 520px; height: 520px;
+      border-radius: 45% 55% 70% 30% / 60% 30% 70% 40%;
+      top: -140px; left: -100px;
+      background: radial-gradient(circle, rgba(29,107,74,.22), transparent 70%);
+      filter: blur(10px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ═══ NAVBAR ── Menu à l'extrême droite (ordre: logo, user, hamburger) ═══ */
+    .top-navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1200;
+      background: linear-gradient(135deg, rgba(20,90,63,.95), rgba(15,61,46,.95));
+      backdrop-filter: blur(12px);
+      padding: .9rem 2rem;
+      border-bottom: 1px solid rgba(255,255,255,.15);
+      box-shadow: 0 8px 25px rgba(0,0,0,.20);
+    }
+
+    .nav-container {
+      max-width: 1400px; margin: 0 auto;
+      display: flex; align-items: center;
+      justify-content: space-between;
+      direction: rtl;
+    }
+
+    /* Logo à gauche (extrême droite visuellement car rtl) */
     .nav-logo-inline {
       display: flex;
       align-items: center;
       gap: .5rem;
-      order: 1;
       text-decoration: none;
     }
     .nav-logo-inline img {
@@ -28,10 +116,34 @@
     }
     .nav-logo-inline-text span { color: var(--gd); }
 
-    /* Hamburger est désormais order:2, logo inline order:1 */
-    .hamburger { order: 2; }
+    /* Hamburger à l'extrême droite */
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 28px;
+      height: 20px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 1202;
+    }
+    .hamburger span {
+      display: block;
+      width: 100%;
+      height: 2.5px;
+      background: #fff;
+      border-radius: 4px;
+      transition: var(--tr);
+    }
 
-    /* ── Nom d'utilisateur dans la navbar ── */
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
     .nav-username {
       display: flex;
       align-items: center;
@@ -47,157 +159,752 @@
     }
     .nav-username i { color: var(--gd); font-size: .8rem; }
 
-    /* Sur mobile, cacher le texte du bouton connexion */
-    @media (max-width: 480px) {
-      .auth-action-btn span { display: none; }
+    .auth-action-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      background: rgba(255,255,255,.12);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 999px;
+      padding: .45rem 1.2rem;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: .85rem;
+      transition: var(--tr-fast);
+      white-space: nowrap;
+    }
+    .auth-action-btn:hover { background: var(--gd); color: var(--e9); border-color: var(--gd); }
+
+    /* ═══ MENU LATÉRAL ═══════════════════════════════════════════ */
+    .nav-menu {
+      display: flex;
+      position: fixed; top: 0; right: -100%; bottom: 0;
+      width: min(320px, 85vw);
+      background: linear-gradient(180deg, var(--e8) 0%, var(--e9) 100%);
+      flex-direction: column;
+      padding: 0 0 2rem;
+      z-index: 1201;
+      transition: right .32s cubic-bezier(.25,.46,.45,.94);
+      box-shadow: -5px 0 30px rgba(0,0,0,.3);
+      border-left: 2px solid rgba(201,168,124,.35);
+    }
+    .nav-menu.active { right: 0; }
+
+    .nav-menu-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.2rem 1.4rem;
+      border-bottom: 1px solid rgba(255,255,255,.15);
+      margin-bottom: .8rem;
+    }
+    .nav-menu-logo {
+      display: flex; align-items: center; gap: .6rem;
+      color: #fff; text-decoration: none;
+    }
+    .nav-menu-logo img { width: 36px; height: 36px; }
+    .nav-menu-logo-text { font-size: 1.15rem; font-weight: 700; color: #fff; }
+    .nav-menu-logo-text span { color: var(--gd); }
+
+    .nav-menu-close {
+      width: 32px; height: 32px;
+      background: rgba(255,255,255,.12); border: none; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; color: #fff; font-size: 1rem; transition: var(--tr-fast);
+    }
+    .nav-menu-close:hover { background: rgba(255,255,255,.25); transform: rotate(90deg); }
+
+    .nav-menu a {
+      color: rgba(255,255,255,.88); text-decoration: none;
+      padding: .75rem 1.4rem; transition: var(--tr-fast);
+      font-size: .95rem; display: block;
+      border-right: 3px solid transparent;
+    }
+    .nav-menu a:hover,
+    .nav-menu a.active { background: rgba(255,255,255,.12); color: var(--gd); border-right-color: var(--gd); }
+
+    .nav-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.5);
+      opacity: 0; visibility: hidden;
+      transition: var(--tr); z-index: 1199;
+    }
+    .nav-overlay.active { opacity: 1; visibility: visible; }
+
+    /* ═══ PAGE HERO ═══════════════════════════════════════════════ */
+    .page-hero {
+      margin-top: 74px;
+      padding: 3.5rem 2rem 2.5rem;
+      text-align: center;
+      background: linear-gradient(160deg, var(--e9) 0%, var(--e8) 50%, #0a2d20 100%);
+      position: relative;
+      overflow: hidden;
+      border-bottom: 3px solid rgba(201,168,124,.4);
+      z-index: 1;
+    }
+    .hero-ornament {
+      font-family: 'Amiri', serif;
+      font-size: 1.5rem; color: var(--gd);
+      letter-spacing: .5rem; margin-bottom: 1rem;
+    }
+    .hero-icon-wrap {
+      width: 80px; height: 80px; margin: 0 auto 1.2rem;
+      background: linear-gradient(135deg, rgba(255,255,255,.12), rgba(255,255,255,.06));
+      border: 2px solid rgba(201,168,124,.45);
+      border-radius: 50% 50% 35% 65% / 55% 45% 55% 45%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.2rem;
+      box-shadow: 0 12px 30px rgba(0,0,0,.3);
+      animation: floatIcon 4s ease-in-out infinite;
+    }
+    @keyframes floatIcon {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+    .hero-bismillah {
+      font-family: 'Amiri', serif;
+      font-size: 1.25rem; color: rgba(255,255,255,.75);
+      margin-bottom: .8rem;
+    }
+    .hero-title {
+      font-family: 'Noto Kufi Arabic', serif;
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      font-weight: 900; color: #fff; margin-bottom: .7rem;
+    }
+    .hero-title span {
+      background: linear-gradient(135deg, var(--gd), #e8c88a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-ayah-block {
+      display: inline-block;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(201,168,124,.3);
+      border-radius: var(--r-lg);
+      padding: .9rem 2rem;
+      backdrop-filter: blur(6px);
+    }
+    .hero-ayah {
+      font-family: 'Amiri', serif;
+      font-size: 1.35rem; color: #fff;
+    }
+    .hero-ayah-ref {
+      font-family: 'Cairo', sans-serif;
+      font-size: .82rem; color: var(--gd);
+    }
+    .hero-wave {
+      display: block; width: 100%; line-height: 0;
+      margin-top: -1px; z-index: 2;
+    }
+    .hero-wave svg { display: block; width: 100%; height: 60px; }
+    .hero-wave path { fill: #f5f1e8; }
+
+    /* ═══ EN-TÊTE CATÉGORIE AVEC BOUTON RETOUR ═══════════════════ */
+    .cat-header {
+      background: linear-gradient(135deg, var(--e9), var(--e8));
+      border-bottom: 3px solid rgba(201,168,124,.45);
+      padding: 1rem 1.5rem;
+      position: sticky; top: 74px;
+      z-index: 100;
+      box-shadow: 0 4px 20px rgba(0,0,0,.25);
+    }
+    .cat-header-inner {
+      max-width: 900px; margin: 0 auto;
+      display: flex; align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      direction: rtl;
+    }
+    .cat-back-btn {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: rgba(255,255,255,.12);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 50px; padding: .5rem 1.1rem;
+      text-decoration: none; font-weight: 600; font-size: .88rem;
+      transition: var(--tr-fast);
+      cursor: pointer;
+    }
+    .cat-back-btn:hover { background: var(--gd); color: var(--e9); border-color: var(--gd); }
+    .cat-header-title { text-align: center; }
+    .cat-header-name {
+      font-family: 'Noto Kufi Arabic', serif;
+      font-size: 1.25rem; font-weight: 900;
+      color: #fff;
+    }
+
+    /* ═══ CONTENU PRINCIPAL ═══════════════════════════════════════ */
+    .main-content {
+      flex: 1 1 auto;
+      position: relative; z-index: 1;
+      padding: 2rem 0 3rem;
+    }
+
+    .page-categories { display: block; }
+    .page-category { display: none; }
+    body.category-view .page-categories { display: none; }
+    body.category-view .page-category { display: block; }
+    body.category-view .page-hero { display: none; }
+    body.category-view .hero-wave { display: none; }
+
+    .athkar-page-header {
+      text-align: center; margin-bottom: 2rem;
+      background: rgba(255,255,255,.88);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--e2);
+      border-radius: var(--r-xl);
+      padding: 2rem 1.5rem;
+      box-shadow: var(--sh-md);
+    }
+    .section-icon {
+      width: 62px; height: 62px;
+      background: linear-gradient(135deg, var(--e6), var(--e8));
+      border-radius: 50% 50% 30% 70% / 60% 40% 60% 40%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto .9rem;
+      box-shadow: var(--sh-green);
+    }
+    .section-icon i { font-size: 1.7rem; color: #fef7e9; }
+    .section-title {
+      font-family: 'Noto Kufi Arabic', serif;
+      font-size: 1.5rem; font-weight: 900;
+      background: linear-gradient(135deg, var(--e9), var(--e7));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      margin-bottom: .4rem;
+    }
+    .athkar-count {
+      display: inline-block;
+      background: var(--e1); color: var(--e7);
+      border: 1px solid var(--e2);
+      border-radius: 50px; padding: .25rem 1.2rem;
+      font-size: .88rem; font-weight: 700;
+    }
+
+    .categories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .category-card {
+      background: rgba(255,255,255,.92);
+      border-radius: var(--r-xl);
+      padding: 2rem 1.5rem;
+      box-shadow: var(--sh-md);
+      transition: var(--tr);
+      border: 1px solid var(--e2);
+      cursor: pointer;
+      text-align: center;
+    }
+    .category-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--sh-hover);
+      border-color: var(--gd);
+    }
+    .category-icon {
+      width: 78px; height: 78px;
+      background: linear-gradient(135deg, var(--e1), var(--e2));
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1rem;
+    }
+    .category-icon i { font-size: 2.4rem; color: var(--e7); }
+    .category-card h3 {
+      font-family: 'Amiri', serif;
+      font-size: 1.7rem; color: var(--e8);
+      margin-bottom: .5rem;
+    }
+    .category-desc { color: var(--br); font-size: .9rem; margin-bottom: .9rem; }
+    .category-count {
+      background: var(--e1); color: var(--e8);
+      border-radius: 50px; padding: .25rem 1rem;
+      display: inline-block; font-size: .85rem; font-weight: 600;
+    }
+
+    .athkar-filter-bar {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1.8rem;
+    }
+    .filter-search {
+      display: flex; align-items: center; gap: .7rem;
+      background: rgba(255,255,255,.92);
+      border: 1px solid var(--e2);
+      border-radius: 50px;
+      padding: .55rem 1.4rem;
+      width: 100%; max-width: 460px;
+    }
+    .filter-search i { color: var(--br); }
+    .filter-search input {
+      border: none; background: transparent;
+      font-family: 'Cairo', sans-serif;
+      font-size: .95rem;
+      width: 100%;
+    }
+    .filter-search input:focus { outline: none; }
+
+    .athkar-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.8rem;
+      margin-bottom: 2.5rem;
+    }
+    .athkar-card {
+      background: rgba(255,255,255,.92);
+      border-radius: var(--r-xl);
+      padding: 1.8rem 1.5rem;
+      box-shadow: var(--sh-md);
+      border: 1px solid var(--e2);
+    }
+    .athkar-header {
+      display: flex; align-items: center;
+      margin-bottom: 1.2rem;
+      padding-bottom: .8rem;
+      border-bottom: 2px solid var(--gd);
+    }
+    .athkar-icon {
+      width: 50px; height: 50px;
+      background: linear-gradient(135deg, var(--e1), var(--e2));
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .athkar-icon i { font-size: 1.4rem; color: var(--e7); }
+    .dhikr-content {
+      background: var(--e1);
+      border-radius: var(--r-lg);
+      padding: 1.4rem 1rem;
+      margin: .8rem 0;
+      text-align: center;
+    }
+    .dhikr-arabic {
+      font-family: 'Amiri', serif;
+      font-size: 1.55rem; line-height: 2.2;
+      color: var(--e9);
+    }
+    .dhikr-translation {
+      font-size: .88rem; color: var(--br);
+      border-top: 1px dashed var(--e2);
+      padding-top: .7rem;
+      margin-top: .7rem;
+    }
+    .dhikr-repetition {
+      background: var(--s1);
+      border-radius: 40px;
+      padding: .5rem 1rem;
+      margin: .8rem 0;
+      text-align: center;
+    }
+    .dhikr-counter-section {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: .8rem;
+    }
+    .dhikr-counter {
+      display: flex; align-items: center; gap: .4rem;
+      background: var(--s1); padding: .3rem .8rem;
+      border-radius: 40px;
+    }
+    .dhikr-counter span {
+      font-size: 1.3rem; font-weight: 700;
+      min-width: 36px; text-align: center;
+    }
+    .dhikr-count-btn {
+      background: var(--gd); border: none;
+      width: 30px; height: 30px; border-radius: 50%;
+      cursor: pointer;
+      transition: var(--tr-fast);
+    }
+    .dhikr-count-btn:hover { background: var(--br); color: #fff; }
+    .dhikr-reset-btn {
+      background: var(--e1); border: 1px solid var(--e2);
+      padding: .3rem .9rem; border-radius: 40px;
+      cursor: pointer;
+    }
+    .no-results {
+      text-align: center; padding: 3rem;
+      grid-column: 1/-1;
+    }
+
+    .personal-counter {
+      background: rgba(255,255,255,.9);
+      border-radius: var(--r-xl);
+      border: 1px solid var(--e2);
+      overflow: hidden; margin-top: 2rem;
+    }
+    .counter-header {
+      background: linear-gradient(135deg, var(--e8), var(--e9));
+      color: #fff;
+      padding: 1rem 1.4rem;
+      display: flex; align-items: center; gap: .7rem;
+    }
+    .counter-header i { color: var(--gd); }
+    .counter-body { padding: 1.5rem; text-align: center; }
+    .counter-display {
+      font-family: 'Amiri', serif;
+      font-size: 4rem; font-weight: 900;
+      color: var(--e8);
+    }
+    .counter-controls {
+      display: flex; align-items: center; gap: .8rem;
+      justify-content: center; margin-top: 1rem;
+    }
+    .counter-btn {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--e1); border: none;
+      cursor: pointer;
+    }
+    .counter-reset {
+      background: rgba(231,76,60,.1);
+      border: 1px solid rgba(231,76,60,.2);
+      border-radius: 50px; padding: .45rem 1.1rem;
+      cursor: pointer;
+    }
+    .counter-presets {
+      display: flex; gap: .6rem;
+      justify-content: center; padding: 0 1.5rem 1.5rem;
+    }
+    .preset-preset {
+      padding: .5rem;
+      background: var(--e1); border: 1px solid var(--e2);
+      border-radius: var(--r-md);
+      cursor: pointer;
+    }
+
+    .mini-footer {
+      background: linear-gradient(135deg, #1a3a2a, #2d6a4f);
+      color: rgba(255,255,255,.92);
+      border-top: 2px solid rgba(212,175,55,.45);
+      margin-top: auto;
+      text-align: center;
+      padding: 1.2rem;
+    }
+
+    @media (max-width: 600px) {
+      .categories-grid, .athkar-grid { grid-template-columns: 1fr; }
       .nav-username span.uname-text { display: none; }
+      .auth-action-btn span { display: none; }
     }
   </style>
 </head>
-<body class="page-main">
-
-  <!-- ═══ NAVBAR ═══════════════════════════════════════════ -->
+<body>
+  <!-- ═══ NAVBAR ═══════════════════════════════════════════════ -->
   <nav class="top-navbar">
     <div class="nav-container">
-
-      <!-- Logo inline (order 1) -->
-      <a href="page_acceuil.html" class="nav-logo-inline">
-        <img src="img/m.png" alt="FaithPath" onerror="this.style.display='none'">
+      <a href="#" class="nav-logo-inline" id="homeLogoLink">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23c9a87c'/%3E%3Ctext x='50' y='70' text-anchor='middle' fill='%23145a3f' font-size='50' font-weight='bold'%3Eف%3C/text%3E%3C/svg%3E" alt="FaithPath">
         <span class="nav-logo-inline-text">Faith<span>Path</span></span>
       </a>
-
-      <!-- Hamburger (order 2) -->
-      <button class="hamburger" id="hamburgerBtn" aria-label="القائمة">
-        <span></span><span></span><span></span>
-      </button>
-
-      <!-- Actions à droite (order 3) -->
       <div class="nav-actions">
-        <!-- Nom d'utilisateur (affiché si connecté) -->
-        <div class="nav-username" id="navUsername" style="display:none;">
-          <i class="fas fa-user-circle"></i>
-          <span class="uname-text" id="usernameText">المستخدم</span>
-        </div>
-        <!-- Bouton connexion (affiché si non connecté) -->
-        <a href="start.html" class="auth-action-btn" id="authBtn">
-          <i class="fas fa-right-to-bracket"></i>
-          <span>إنشاء حساب / تسجيل الدخول</span>
-        </a>
+        <div class="nav-username" id="navUsername" style="display:none;"><i class="fas fa-user-circle"></i><span class="uname-text" id="usernameText"></span></div>
+        <a href="#" class="auth-action-btn" id="authBtn"><i class="fas fa-right-to-bracket"></i><span>إنشاء حساب / تسجيل الدخول</span></a>
       </div>
-
+      <button class="hamburger" id="hamburgerBtn"><span></span><span></span><span></span></button>
     </div>
   </nav>
 
-  <!-- ═══ MENU LATÉRAL ═══════════════════════════════════════ -->
+  <!-- ═══ MENU LATÉRAL ═══════════════════════════════════════════ -->
   <div class="nav-menu" id="navMenu">
     <div class="nav-menu-header">
-      <a href="page_acceuil.html" class="nav-menu-logo">
-        <img src="img/m.png" alt="FaithPath" onerror="this.style.display='none'">
-        <span class="nav-menu-logo-text">Faith<span>Path</span></span>
-      </a>
-      <button class="nav-menu-close" id="closeMenuBtn" aria-label="إغلاق">
-        <i class="fas fa-times"></i>
-      </button>
+      <a href="#" class="nav-menu-logo"><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%23c9a87c'/%3E%3Ctext x='50' y='70' text-anchor='middle' fill='%23145a3f' font-size='50'%3Eف%3C/text%3E%3C/svg%3E"><span class="nav-menu-logo-text">Faith<span>Path</span></span></a>
+      <button class="nav-menu-close" id="closeMenuBtn"><i class="fas fa-times"></i></button>
     </div>
-    <a href="page_acceuil.html">🔓 الرئيسية</a>
+    <a href="#" class="active" id="menuHome">🔓 الرئيسية</a>
     <a href="#">🔓 القرآن الكريم</a>
-    <a href="asmaa_allah_alhousnaa_3d.html">🔓 أسماء الله الحسنى</a>
+    <a href="#">🔓 أسماء الله الحسنى</a>
     <a href="#">🔒 مسار الأنبياء</a>
-    <a href="hijri.html">🔓 التقويم الهجري</a>
-    <a href="prayertime.html">🔓 أوقات الصلاة</a>
-    <a href="tasbih.HTML">🔓 المسبحة الإلكترونية</a>
+    <a href="#">🔓 التقويم الهجري</a>
+    <a href="#">🔓 أوقات الصلاة</a>
+    <a href="#">🔓 المسبحة الإلكترونية</a>
     <a href="#">🔒 قصة الصحابة</a>
-    <a href="7asebnafsak.html">🔓 حاسب نفسك</a>
+    <a href="#">🔓 حاسب نفسك</a>
     <a href="#">🔒 اختبارات دينية</a>
     <a href="#">🔒 صدقة جارية</a>
-    <a href="Athkar.html" class="active">🔓 أذكار الصباح والمساء</a>
+    <a href="#" class="active">🔓 أذكار الصباح والمساء</a>
     <a href="#">🔓 تواصل معنا</a>
   </div>
   <div class="nav-overlay" id="navOverlay"></div>
 
-  <!-- ═══ EN-TÊTE PRINCIPAL ══════════════════════════════════ -->
-  <header class="page-hero">
-    <div class="hero-ornament">۞ ۞ ۞</div>
-    <div class="hero-icon-wrap">🤲</div>
-    <div class="hero-bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
-    <h1 class="hero-title">أذكار <span>اليوم والليلة</span></h1>
-    <div class="hero-ayah-block">
-      <div class="hero-ayah">﴿ أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ ﴾</div>
-      <div class="hero-ayah-ref">سورة الرعد · الآية 28</div>
-    </div>
-  </header>
+  <!-- ═══ VUE CATÉGORIES (PAGE PRINCIPALE) ═══════════════════════ -->
+  <div class="page-categories" id="pageCategories">
+    <header class="page-hero">
+      <div class="hero-ornament">۞ ۞ ۞</div>
+      <div class="hero-icon-wrap">🤲</div>
+      <div class="hero-bismillah">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+      <h1 class="hero-title">أذكار <span>اليوم والليلة</span></h1>
+      <div class="hero-ayah-block">
+        <div class="hero-ayah">﴿ أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ ﴾</div>
+        <div class="hero-ayah-ref">سورة الرعد · الآية 28</div>
+      </div>
+    </header>
+    <div class="hero-wave"><svg viewBox="0 0 1440 60"><path d="M0,20 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="#f5f1e8"/></svg></div>
 
-  <div class="hero-wave">
-    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,20 C360,60 1080,0 1440,30 L1440,60 L0,60 Z"/>
-    </svg>
+    <main class="main-content">
+      <div class="container">
+        <div class="athkar-page-header">
+          <div class="section-icon"><i class="fas fa-hands-praying"></i></div>
+          <h2 class="section-title">أَقْسَامُ الْأَذْكَارِ</h2>
+          <div class="athkar-count" id="categoriesCount"></div>
+        </div>
+        <div class="categories-grid" id="categoriesGrid"></div>
+        <div class="personal-counter">
+          <div class="counter-header"><i class="fas fa-hand-sparkles"></i><span>عَدَّادُ الْأَذْكَارِ الشَّخْصِيُّ</span></div>
+          <div class="counter-body">
+            <div class="counter-display"><span id="personalCounter">0</span></div>
+            <div class="counter-controls">
+              <button class="counter-btn" id="counterPlus"><i class="fas fa-plus"></i></button>
+              <button class="counter-btn" id="counterMinus"><i class="fas fa-minus"></i></button>
+              <button class="counter-reset" id="counterReset"><i class="fas fa-undo-alt"></i> إعادة ضبط</button>
+            </div>
+          </div>
+          <div class="counter-presets">
+            <button class="preset-preset" data-value="33">33</button>
+            <button class="preset-preset" data-value="34">34</button>
+            <button class="preset-preset" data-value="100">100</button>
+          </div>
+        </div>
+      </div>
+    </main>
   </div>
 
-  <!-- ═══ CONTENU PRINCIPAL ══════════════════════════════════ -->
-  <main class="main-content">
-    <div class="container">
-
-      <div class="athkar-page-header">
-        <div class="section-icon">
-          <i class="fas fa-hands-praying"></i>
-        </div>
-        <h2 class="section-title">أَقْسَامُ الْأَذْكَارِ</h2>
-        <div class="athkar-count" id="categoriesCount"></div>
+  <!-- ═══ VUE CATÉGORIE (DÉTAIL AVEC BOUTON RETOUR) ══════════════ -->
+  <div class="page-category" id="pageCategory">
+    <div class="cat-header">
+      <div class="cat-header-inner">
+        <button class="cat-back-btn" id="backToCategories"><i class="fas fa-arrow-right"></i><span> العودة للأقسام</span></button>
+        <div class="cat-header-title"><div class="cat-header-name" id="categoryNameDisplay">أَذْكَارُ الصَّبَاحِ</div></div>
+        <button class="cat-back-btn" id="homeBtnCategory"><i class="fas fa-home"></i></button>
       </div>
-
-      <!-- Grille injectée par Athkar.js -->
-      <div class="categories-grid" id="categoriesGrid"></div>
-
-      <!-- Compteur personnel -->
-      <div class="personal-counter">
-        <div class="counter-header">
-          <i class="fas fa-hand-sparkles"></i>
-          <span>عَدَّادُ الْأَذْكَارِ الشَّخْصِيُّ</span>
-        </div>
-        <div class="counter-body">
-          <div class="counter-display">
-            <span id="personalCounter">0</span>
-          </div>
-          <div class="counter-controls">
-            <button class="counter-btn" id="counterPlus"><i class="fas fa-plus"></i></button>
-            <button class="counter-btn" id="counterMinus"><i class="fas fa-minus"></i></button>
-            <button class="counter-reset" id="counterReset">
-              <i class="fas fa-undo-alt"></i> إعادة ضبط
-            </button>
-          </div>
-        </div>
-        <div class="counter-presets">
-          <button class="preset-preset" data-value="33">33</button>
-          <button class="preset-preset" data-value="34">34</button>
-          <button class="preset-preset" data-value="100">100</button>
-        </div>
-      </div>
-
     </div>
-  </main>
+    <main class="main-content">
+      <div class="container">
+        <div class="athkar-filter-bar">
+          <div class="filter-search"><i class="fas fa-search"></i><input type="text" id="searchInputFilter" placeholder="ابحث عن ذكر"></div>
+        </div>
+        <div id="athkarGrid" class="athkar-grid"></div>
+        <div class="personal-counter">
+          <div class="counter-header"><i class="fas fa-hand-sparkles"></i><span>عَدَّادُ الْأَذْكَارِ الشَّخْصِيُّ</span></div>
+          <div class="counter-body">
+            <div class="counter-display"><span id="personalCounter2">0</span></div>
+            <div class="counter-controls">
+              <button class="counter-btn" id="counterPlus2"><i class="fas fa-plus"></i></button>
+              <button class="counter-btn" id="counterMinus2"><i class="fas fa-minus"></i></button>
+              <button class="counter-reset" id="counterReset2"><i class="fas fa-undo-alt"></i> إعادة ضبط</button>
+            </div>
+          </div>
+          <div class="counter-presets">
+            <button class="preset-preset" data-value="33">33</button>
+            <button class="preset-preset" data-value="34">34</button>
+            <button class="preset-preset" data-value="100">100</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
 
-  <!-- ═══ FOOTER ══════════════════════════════════════════════ -->
+  <!-- ═══ FOOTER ═══════════════════════════════════════════════ -->
   <footer class="mini-footer">
-    <div class="mini-footer-inner">
-      <p>© 2026 FaithPath. جميع الحقوق محفوظة</p>
-      <div class="mini-footer-links">
-        <a href="page_acceuil.html">الرئيسية</a>
-      </div>
-    </div>
+    <p>© 2026 FaithPath. جميع الحقوق محفوظة</p>
   </footer>
 
   <script>
-    /* ── Afficher le nom d'utilisateur depuis localStorage ── */
-    const storedUsername = localStorage.getItem('username') || localStorage.getItem('userName') || localStorage.getItem('user');
+    // ═══════════════════════════════════════════════════════════════
+    // DONNÉES COMPLÈTES
+    // ═══════════════════════════════════════════════════════════════
+    const categories = [
+      { id: "sabah", name: "أَذْكَارُ الصَّبَاحِ", icon: "fa-sun", desc: "أذكار الصباح حصن المسلم", count: 5 },
+      { id: "masa", name: "أَذْكَارُ الْمَسَاءِ", icon: "fa-moon", desc: "أذكار المساء لتحصين النفس", count: 4 },
+      { id: "nawm", name: "أَذْكَارُ النَّوْمِ", icon: "fa-bed", desc: "أذكار قبل النوم", count: 3 },
+      { id: "food", name: "أَذْكَارُ الطَّعَامِ", icon: "fa-utensils", desc: "أذكار قبل وبعد الأكل", count: 3 },
+      { id: "masjid", name: "أَذْكَارُ الْمَسْجِدِ", icon: "fa-mosque", desc: "أذكار دخول وخروج المسجد", count: 2 },
+      { id: "wudu", name: "أَذْكَارُ الْوُضُوءِ", icon: "fa-tint", desc: "أذكار الوضوء", count: 3 }
+    ];
+
+    const athkarByCategory = {
+      sabah: [
+        { id: 1, name: "دعاء الصباح", arabic: "أَصْبَحْنَا وَأَصْبَحَ الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ", translation: "Nous avons commencé le matin et la royauté appartient à Allah. Louange à Allah. Nulle divinité à part Allah, unique, sans associé. À Lui la royauté et à Lui la louange, et Il est Capable de toute chose.", repetition: 1, icon: "fa-sun" },
+        { id: 2, name: "اللهم بك أصبحنا", arabic: "اللَّهُمَّ بِكَ أَصْبَحْنَا، وَبِكَ أَمْسَيْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ، وَإِلَيْكَ النُّشُورُ", translation: "Ô Allah, c'est par Toi que nous vivons le matin, c'est par Toi que nous vivons le soir, c'est par Toi que nous vivons, c'est par Toi que nous mourons, et vers Toi est la résurrection.", repetition: 1, icon: "fa-cloud-sun" },
+        { id: 3, name: "رضيت بالله ربا", arabic: "رَضِيتُ بِاللَّهِ رَبًّا، وَبِالْإِسْلَامِ دِينًا، وَبِمُحَمَّدٍ صَلَّى اللَّهُ عَلَيْهِ وَسَلَّمَ نَبِيًّا", translation: "Je suis satisfait d'Allah comme Seigneur, de l'Islam comme religion et de Muhammad (paix et bénédiction sur lui) comme prophète.", repetition: 3, icon: "fa-star" },
+        { id: 4, name: "حسبي الله لا إله إلا هو", arabic: "حَسْبِيَ اللَّهُ لَا إِلَهَ إِلَّا هُوَ، عَلَيْهِ تَوَكَّلْتُ وَهُوَ رَبُّ الْعَرْشِ الْعَظِيمِ", translation: "Allah me suffit, il n'y a de divinité que Lui. En Lui je place ma confiance, et Il est le Seigneur du Trône immense.", repetition: 7, icon: "fa-shield-alt" },
+        { id: 5, name: "بسم الله الذي لا يضر", arabic: "بِسْمِ اللَّهِ الَّذِي لَا يَضُرُّ مَعَ اسْمِهِ شَيْءٌ فِي الْأَرْضِ وَلَا فِي السَّمَاءِ وَهُوَ السَّمِيعُ الْعَلِيمُ", translation: "Au nom d'Allah, dont rien ne peut nuire avec Son nom, ni sur terre ni dans le ciel, et Il est l'Audient, l'Omniscient.", repetition: 3, icon: "fa-hand-peace" }
+      ],
+      masa: [
+        { id: 6, name: "دعاء المساء", arabic: "أَمْسَيْنَا وَأَمْسَى الْمُلْكُ لِلَّهِ، وَالْحَمْدُ لِلَّهِ، لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ", translation: "Nous avons commencé le soir et la royauté appartient à Allah. Louange à Allah. Nulle divinité à part Allah, unique, sans associé.", repetition: 1, icon: "fa-moon" },
+        { id: 7, name: "اللهم بك أمسينا", arabic: "اللَّهُمَّ بِكَ أَمْسَيْنَا، وَبِكَ نَحْيَا، وَبِكَ نَمُوتُ، وَإِلَيْكَ الْمَصِيرُ", translation: "Ô Allah, c'est par Toi que nous vivons le soir, c'est par Toi que nous vivons, c'est par Toi que nous mourons, et vers Toi est le retour.", repetition: 1, icon: "fa-cloud-moon" },
+        { id: 8, name: "آية الكرسي", arabic: "اللَّهُ لَا إِلَهَ إِلَّا هُوَ الْحَيُّ الْقَيُّومُ ۚ لَا تَأْخُذُهُ سِنَةٌ وَلَا نَوْمٌ ۚ لَهُ مَا فِي السَّمَاوَاتِ وَمَا فِي الْأَرْضِ", translation: "Allah! Point de divinité à part Lui, le Vivant, Celui qui subsiste par Lui-même. Ni somnolence ni sommeil ne Le saisissent.", repetition: 1, icon: "fa-throne" },
+        { id: 9, name: "قل هو الله أحد", arabic: "قُلْ هُوَ اللَّهُ أَحَدٌ * اللَّهُ الصَّمَدُ * لَمْ يَلِدْ وَلَمْ يُولَدْ * وَلَمْ يَكُن لَّهُ كُفُوًا أَحَدٌ", translation: "Dis: Il est Allah, Unique. Allah, l'Absolu. Il n'a pas enfanté et n'a pas été enfanté. Et nul n'est égal à Lui.", repetition: 3, icon: "fa-quran" }
+      ],
+      nawm: [
+        { id: 10, name: "دعاء النوم", arabic: "بِاسْمِكَ اللَّهُمَّ أَمُوتُ وَأَحْيَا", translation: "C'est par Ton nom, ô Allah, que je meurs et que je vis.", repetition: 1, icon: "fa-bed" },
+        { id: 11, name: "اللهم قني عذابك", arabic: "اللَّهُمَّ قِنِي عَذَابَكَ يَوْمَ تَبْعَثُ عِبَادَكَ", translation: "Ô Allah, protège-moi de Ton châtiment le jour où Tu ressusciteras Tes serviteurs.", repetition: 3, icon: "fa-shield-heart" },
+        { id: 12, name: "آخر آيتين من البقرة", arabic: "آمَنَ الرَّسُولُ بِمَا أُنزِلَ إِلَيْهِ مِن رَّبِّهِ وَالْمُؤْمِنُونَ", translation: "Le Messager a cru en ce qu'on a fait descendre vers lui de la part de son Seigneur, et aussi les croyants.", repetition: 1, icon: "fa-book" }
+      ],
+      food: [
+        { id: 13, name: "دعاء قبل الأكل", arabic: "اللَّهُمَّ بَارِكْ لَنَا فِيمَا رَزَقْتَنَا وَقِنَا عَذَابَ النَّارِ", translation: "Ô Allah, bénis ce que Tu nous as attribué et protège-nous du châtiment du Feu.", repetition: 1, icon: "fa-utensils" },
+        { id: 14, name: "دعاء بعد الأكل", arabic: "الْحَمْدُ لِلَّهِ الَّذِي أَطْعَمَنَا وَسَقَانَا وَجَعَلَنَا مُسْلِمِينَ", translation: "Louange à Allah qui nous a nourris, abreuvés et a fait de nous des musulmans.", repetition: 1, icon: "fa-thumbs-up" },
+        { id: 15, name: "بسم الله في أوله وآخره", arabic: "بِسْمِ اللَّهِ فِي أَوَّلِهِ وَآخِرِهِ", translation: "Au nom d'Allah au début et à la fin.", repetition: 1, icon: "fa-hand-sparkles" }
+      ],
+      masjid: [
+        { id: 16, name: "دخول المسجد", arabic: "اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ", translation: "Ô Allah, ouvre-moi les portes de Ta miséricorde.", repetition: 1, icon: "fa-mosque" },
+        { id: 17, name: "الخروج من المسجد", arabic: "اللَّهُمَّ إِنِّي أَسْأَلُكَ مِن فَضْلِكَ", translation: "Ô Allah, je Te demande de Ta grâce.", repetition: 1, icon: "fa-door-open" }
+      ],
+      wudu: [
+        { id: 18, name: "قبل الوضوء", arabic: "بِسْمِ اللَّهِ", translation: "Au nom d'Allah.", repetition: 1, icon: "fa-tint" },
+        { id: 19, name: "بعد الوضوء", arabic: "أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ", translation: "J'atteste qu'il n'y a de divinité qu'Allah, unique, sans associé, et que Muhammad est Son serviteur et Son messager.", repetition: 1, icon: "fa-hands-bubbles" },
+        { id: 20, name: "دعاء الوضوء", arabic: "اللَّهُمَّ اجْعَلْنِي مِنَ التَّوَّابِينَ وَاجْعَلْنِي مِنَ الْمُتَطَهِّرِينَ", translation: "Ô Allah, fais-moi être parmi ceux qui se repentent et parmi ceux qui se purifient.", repetition: 1, icon: "fa-water" }
+      ]
+    };
+
+    let currentCategory = "sabah";
+    let individualCounters = JSON.parse(localStorage.getItem('athkarCounters') || '{}');
+    let personalCount = parseInt(localStorage.getItem('personalCounter') || '0');
+
+    function saveCounters() { localStorage.setItem('athkarCounters', JSON.stringify(individualCounters)); }
+    function savePersonal() { localStorage.setItem('personalCounter', personalCount); }
+
+    function initCounters() {
+      Object.values(athkarByCategory).forEach(athkarList => {
+        athkarList.forEach(dhikr => {
+          if (individualCounters[dhikr.id] === undefined) individualCounters[dhikr.id] = 0;
+        });
+      });
+      saveCounters();
+    }
+    initCounters();
+
+    function renderCategories() {
+      const grid = document.getElementById('categoriesGrid');
+      if (!grid) return;
+      grid.innerHTML = categories.map(cat => `
+        <div class="category-card" data-category="${cat.id}">
+          <div class="category-icon"><i class="fas ${cat.icon}"></i></div>
+          <h3>${cat.name}</h3>
+          <div class="category-desc">${cat.desc}</div>
+          <div class="category-count">${cat.count} أذكار</div>
+        </div>
+      `).join('');
+      
+      document.querySelectorAll('.category-card').forEach(card => {
+        card.addEventListener('click', () => showCategory(card.dataset.category));
+      });
+      
+      const catCount = document.getElementById('categoriesCount');
+      if (catCount) catCount.textContent = categories.length + ' أقسام';
+    }
+
+    function showCategory(catId) {
+      currentCategory = catId;
+      const cat = categories.find(c => c.id === catId);
+      document.getElementById('categoryNameDisplay').innerText = cat?.name || "الأذكار";
+      renderAthkar();
+      document.body.classList.add('category-view');
+      window.scrollTo(0, 0);
+    }
+
+    function renderAthkar() {
+      const athkar = athkarByCategory[currentCategory] || [];
+      const searchTerm = document.getElementById('searchInputFilter')?.value || '';
+      const filtered = athkar.filter(d => d.name.includes(searchTerm) || d.arabic.includes(searchTerm));
+      const grid = document.getElementById('athkarGrid');
+      
+      if (filtered.length === 0) {
+        grid.innerHTML = '<div class="no-results"><i class="fas fa-book-open"></i><p>لا توجد أذكار تطابق بحثك</p></div>';
+        return;
+      }
+      
+      grid.innerHTML = filtered.map(dhikr => {
+        const val = individualCounters[dhikr.id] || 0;
+        return `
+          <div class="athkar-card">
+            <div class="athkar-header"><div class="athkar-icon"><i class="fas ${dhikr.icon}"></i></div></div>
+            <div class="dhikr-content">
+              <div class="dhikr-arabic">${dhikr.arabic}</div>
+              <div class="dhikr-translation">${dhikr.translation}</div>
+            </div>
+            <div class="dhikr-repetition"><i class="fas fa-repeat"></i> التكرار: ${dhikr.repetition} مرات</div>
+            <div class="dhikr-counter-section">
+              <div class="dhikr-counter">
+                <button class="dhikr-count-btn" data-id="${dhikr.id}" data-delta="-1"><i class="fas fa-minus"></i></button>
+                <span class="dhikr-count-display" data-id="${dhikr.id}">${val}</span>
+                <button class="dhikr-count-btn" data-id="${dhikr.id}" data-delta="1"><i class="fas fa-plus"></i></button>
+              </div>
+              <button class="dhikr-reset-btn" data-id="${dhikr.id}"><i class="fas fa-undo-alt"></i> إعادة</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+      
+      document.querySelectorAll('.dhikr-count-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const id = parseInt(btn.dataset.id);
+          const delta = parseInt(btn.dataset.delta);
+          individualCounters[id] = (individualCounters[id] || 0) + delta;
+          if (individualCounters[id] < 0) individualCounters[id] = 0;
+          saveCounters();
+          const span = document.querySelector(`.dhikr-count-display[data-id="${id}"]`);
+          if (span) span.innerText = individualCounters[id];
+        });
+      });
+      
+      document.querySelectorAll('.dhikr-reset-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const id = parseInt(btn.dataset.id);
+          individualCounters[id] = 0;
+          saveCounters();
+          const span = document.querySelector(`.dhikr-count-display[data-id="${id}"]`);
+          if (span) span.innerText = '0';
+        });
+      });
+    }
+
+    function updatePersonalDisplay() {
+      document.querySelectorAll('#personalCounter, #personalCounter2').forEach(el => { if (el) el.innerText = personalCount; });
+    }
+    function updatePersonal(value) { personalCount = Math.max(0, value); savePersonal(); updatePersonalDisplay(); }
+
+    function openMenu() {
+      document.getElementById('navMenu')?.classList.add('active');
+      document.getElementById('navOverlay')?.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeMenu() {
+      document.getElementById('navMenu')?.classList.remove('active');
+      document.getElementById('navOverlay')?.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    function goToHome() { document.body.classList.remove('category-view'); }
+
+    // Événements
+    document.getElementById('homeLogoLink')?.addEventListener('click', (e) => { e.preventDefault(); goToHome(); });
+    document.getElementById('homeBtnCategory')?.addEventListener('click', (e) => { e.preventDefault(); goToHome(); });
+    document.getElementById('backToCategories')?.addEventListener('click', () => goToHome());
+    document.getElementById('menuHome')?.addEventListener('click', (e) => { e.preventDefault(); closeMenu(); goToHome(); });
+    document.getElementById('hamburgerBtn')?.addEventListener('click', openMenu);
+    document.getElementById('closeMenuBtn')?.addEventListener('click', closeMenu);
+    document.getElementById('navOverlay')?.addEventListener('click', closeMenu);
+    document.getElementById('searchInputFilter')?.addEventListener('input', () => renderAthkar());
+    
+    document.querySelectorAll('#counterPlus, #counterPlus2').forEach(btn => btn?.addEventListener('click', () => updatePersonal(personalCount + 1)));
+    document.querySelectorAll('#counterMinus, #counterMinus2').forEach(btn => btn?.addEventListener('click', () => updatePersonal(personalCount - 1)));
+    document.querySelectorAll('#counterReset, #counterReset2').forEach(btn => btn?.addEventListener('click', () => updatePersonal(0)));
+    document.querySelectorAll('.preset-preset').forEach(btn => btn.addEventListener('click', () => updatePersonal(parseInt(btn.dataset.value))));
+    
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+    
+    const storedUsername = localStorage.getItem('username') || localStorage.getItem('userName');
     if (storedUsername) {
       const navUsername = document.getElementById('navUsername');
       const usernameText = document.getElementById('usernameText');
       const authBtn = document.getElementById('authBtn');
-      if (navUsername) { navUsername.style.display = 'flex'; }
-      if (usernameText) { usernameText.textContent = storedUsername; }
-      if (authBtn) { authBtn.style.display = 'none'; }
+      if (navUsername) navUsername.style.display = 'flex';
+      if (usernameText) usernameText.textContent = storedUsername;
+      if (authBtn) authBtn.style.display = 'none';
     }
+    
+    renderCategories();
+    updatePersonalDisplay();
   </script>
-  <script src="Athkar.js"></script>
 </body>
 </html>
