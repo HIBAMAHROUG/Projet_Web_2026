@@ -1,31 +1,41 @@
 <?php
-require 'confi.php';
+// ============================================================
+// signup.php — Création de compte
+// ============================================================
+
+ob_start();
+require __DIR__ . '/config.php';
 
 function respondJson($success, $message, $status = 200, $extra = []) {
+    ob_end_clean();
     http_response_code($status);
     header('Content-Type: application/json; charset=UTF-8');
-    echo json_encode(array_merge([
-        'success' => $success,
-        'message' => $message,
-    ], $extra), JSON_UNESCAPED_UNICODE);
+    header('Access-Control-Allow-Origin: *');
+    echo json_encode(
+        array_merge(['success' => $success, 'message' => $message], $extra),
+        JSON_UNESCAPED_UNICODE
+    );
     exit;
 }
-
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    respondJson(false, 'Methode non autorisee.', 405);
-}
-
-$payload = json_decode(file_get_contents('php://input'), true);
-$fullName = trim($payload['fullName'] ?? ($_POST['fullName'] ?? ''));
-$email = strtolower(trim($payload['email'] ?? ($_POST['email'] ?? '')));
-$password = $payload['password'] ?? ($_POST['password'] ?? '');
-$confirmPassword = $payload['confirmPassword'] ?? ($_POST['confirmPassword'] ?? '');
 
 function failWithLog($fullName, $email, $message, $status) {
     appendSignupSubmission($fullName, $email, false, $message);
     respondJson(false, $message, $status);
 }
 
+// --- Méthode ---
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    respondJson(false, 'Méthode non autorisée.', 405);
+}
+
+// --- Lecture des paramètres ---
+$payload         = json_decode(file_get_contents('php://input'), true) ?? [];
+$fullName        = trim($payload['fullName']        ?? ($_POST['fullName']        ?? ''));
+$email           = strtolower(trim($payload['email'] ?? ($_POST['email']          ?? '')));
+$password        =            $payload['password']   ?? ($_POST['password']       ?? '');
+$confirmPassword =            $payload['confirmPassword'] ?? ($_POST['confirmPassword'] ?? '');
+
+// --- Validations ---
 if ($fullName === '' || $email === '' || $password === '' || $confirmPassword === '') {
     failWithLog($fullName, $email, 'Tous les champs sont obligatoires.', 422);
 }
@@ -35,30 +45,32 @@ if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 }
 
 if (strlen($password) < 8) {
-    failWithLog($fullName, $email, 'Le mot de passe doit contenir au moins 8 caracteres.', 422);
+    failWithLog($fullName, $email, 'Le mot de passe doit contenir au moins 8 caractères.', 422);
 }
 
 if ($password !== $confirmPassword) {
     failWithLog($fullName, $email, 'Les mots de passe ne correspondent pas.', 422);
 }
 
-$existing = findUserByEmail($email);
-if ($existing) {
-    failWithLog($fullName, $email, 'Cet email est deja utilise.', 409);
+// --- Vérification unicité ---
+if (findUserByEmail($email)) {
+    failWithLog($fullName, $email, 'Cet email est déjà utilisé.', 409);
 }
 
+// --- Création du compte ---
 $hashed = password_hash($password, PASSWORD_BCRYPT);
-$user = createUser($fullName, $email, $hashed);
+$user   = createUser($fullName, $email, $hashed);
+
 if (!$user) {
-    failWithLog($fullName, $email, 'Cet email est deja utilise.', 409);
+    failWithLog($fullName, $email, 'Cet email est déjà utilisé.', 409);
 }
 
-appendSignupSubmission($fullName, $email, true, 'Compte cree avec succes.');
+appendSignupSubmission($fullName, $email, true, 'Compte créé avec succès.');
 
-respondJson(true, 'Compte cree avec succes.', 201, [
+respondJson(true, 'Compte créé avec succès.', 201, [
     'user' => [
-        'id' => $user['id'],
+        'id'       => $user['id'],
         'fullName' => $user['full_name'],
-        'email' => $user['email'],
+        'email'    => $user['email'],
     ],
 ]);
