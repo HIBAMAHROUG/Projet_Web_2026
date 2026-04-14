@@ -11,13 +11,14 @@ function respondJson($success, $message, $status = 200, $extra = []) {
     exit;
 }
 
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST' && $_SERVER['REQUEST_METHOD'] !== 'GET') {
     respondJson(false, 'Methode non autorisee.', 405);
 }
 
 $payload = json_decode(file_get_contents('php://input'), true);
-$email = strtolower(trim($payload['email'] ?? ($_POST['email'] ?? '')));
-$password = $payload['password'] ?? ($_POST['password'] ?? '');
+$email = strtolower(trim($payload['email'] ?? ($_POST['email'] ?? $_GET['email'] ?? '')));
+$password = $payload['password'] ?? ($_POST['password'] ?? $_GET['password'] ?? '');
 
 if ($email === '' || $password === '') {
     appendStartSubmission($email, false, 'Email et mot de passe obligatoires.');
@@ -45,3 +46,7 @@ respondJson(true, 'Connexion reussie.', 200, [
         'email' => $user['email'],
     ],
 ]);
+
+
+// test
+// http://localhost/projet_web_2026/backend/login.php?email=ton@email.com&password=tonmotdepasse

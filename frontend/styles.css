@@ -23,9 +23,7 @@
 
 body {
   font-family: 'Cairo', sans-serif;
-  background: radial-gradient(circle at 20% 15%, rgba(255, 255, 255, 0.9), transparent 45%),
-    radial-gradient(circle at 80% 10%, rgba(207, 226, 213, 0.55), transparent 50%),
-    linear-gradient(140deg, #fcfaf6 0%, #f1e8dc 55%, #e8d8c8 100%);
+  background: #f2eadf; /* beige stable */
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -73,32 +71,7 @@ body.auth-page .footer-simple {
   }
 }
 
-body::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image:
-    radial-gradient(circle at 12px 12px, rgba(20, 90, 63, 0.08) 0, rgba(20, 90, 63, 0.08) 2px, transparent 2px),
-    radial-gradient(circle at 28px 28px, rgba(20, 90, 63, 0.06) 0, rgba(20, 90, 63, 0.06) 2px, transparent 2px),
-    linear-gradient(45deg, rgba(20, 90, 63, 0.04) 25%, transparent 25%, transparent 75%, rgba(20, 90, 63, 0.04) 75%, rgba(20, 90, 63, 0.04)),
-    linear-gradient(-45deg, rgba(20, 90, 63, 0.04) 25%, transparent 25%, transparent 75%, rgba(20, 90, 63, 0.04) 75%, rgba(20, 90, 63, 0.04));
-  background-size: 40px 40px, 40px 40px, 80px 80px, 80px 80px;
-  opacity: 0.35;
-  pointer-events: none;
-}
 
-body::after {
-  content: "";
-  position: absolute;
-  width: 520px;
-  height: 520px;
-  border-radius: 45% 55% 70% 30% / 60% 30% 70% 40%;
-  top: -140px;
-  left: -100px;
-  background: radial-gradient(circle, rgba(29, 107, 74, 0.22), transparent 70%);
-  filter: blur(10px);
-  pointer-events: none;
-}
 
 .wrapper {
   max-width: 600px;
