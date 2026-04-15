@@ -4,58 +4,83 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>فيث باث · الأذكار</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700;900&family=Cairo:wght@300;400;600;700;900&family=Noto+Kufi+Arabic:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="athkar.css">
+  <link rel="stylesheet" href="style/Athkar.css">
 </head>
-<body class="page-category">
-
-  <!-- ═══ EN-TÊTE SOBRE (pas de navbar, pas de menu) ══════════ -->
-  <header class="cat-header">
-    <div class="cat-header-inner">
-      <a href="adhkar.html" class="cat-back-btn">
-        <i class="fas fa-arrow-right"></i>
-        <span>العودة للأقسام</span>
-      </a>
-      <div class="cat-header-title">
-        <div class="cat-header-icon" id="catHeaderIcon">🤲</div>
-        <div>
-          <div class="cat-header-label">أذكار اليوم والليلة</div>
-          <h1 class="cat-header-name" id="catHeaderName"></h1>
+<body>
+  <header class="header">
+    <div class="navbar">
+      <div class="nav-container">
+        <div class="logo">
+          <img src="images/logo.png" alt="شعار فيث باث" class="logo-img" onerror="this.src='https://placehold.co/50x50/145a3f/c9a87c?text=FP'">
+          <span class="logo-text">فيث<span class="logo-highlight">باث</span></span>
+        </div>
+        <div class="nav-menu">
+          <a href="Athkar.html" class="nav-link">الرئيسية</a>
+          <a href="#" class="nav-link">القرآن</a>
+          <a href="#" class="nav-link active">الأذكار</a>
+          <a href="#" class="nav-link">الصلاة</a>
+          <a href="#" class="nav-link">الزكاة</a>
+          <a href="#" class="nav-link">المزيد</a>
+        </div>
+        <div class="nav-actions">
+          <div class="search-box">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" placeholder="بحث" class="search-input" id="searchInput">
+          </div>
+          <div class="user-profile">
+            <i class="far fa-bell notification-icon"></i>
+            <div class="profile-badge">
+              <i class="fas fa-user-circle profile-icon"></i>
+              <span class="profile-name">عمر</span>
+            </div>
+          </div>
+          <div class="menu-toggle"><i class="fas fa-bars"></i></div>
         </div>
       </div>
-      <a href="page_acceuil.html" class="cat-home-btn">
-        <i class="fas fa-house"></i>
-      </a>
+    </div>
+
+    <div class="athkar-hero">
+      <div class="hero-badge">
+        <i class="fas fa-hands-praying"></i>
+        <span id="categoryHeroTitle">أَذْكَارُ الصَّبَاحِ</span>
+        <i class="fas fa-hands-praying"></i>
+      </div>
+      <div class="hero-title-arabic" id="categoryHeroSub">أَذْكَارُ الصَّبَاحِ</div>
+      <div class="hero-sub">اذْكُرِ اللَّهَ كَثِيرًا — تَدَبَّرْ وَارْتِلْ</div>
+    </div>
+    
+    <div class="header-wave">
+      <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+        <path class="wave-fill" d="M0,32L48,37.3C96,43,192,53,288,58.7C384,64,480,64,576,58.7C672,53,768,43,864,48C960,53,1056,75,1152,80C1248,85,1344,75,1392,69.3L1440,64L1440,120L1392,120C1344,120,1248,120,1152,120C1056,120,960,120,864,120C768,120,672,120,576,120C480,120,384,120,288,120C192,120,96,120,48,120L0,120Z"></path>
+      </svg>
     </div>
   </header>
 
-  <!-- ═══ CONTENU ════════════════════════════════════════════ -->
-  <main class="cat-main">
+  <main class="main-content">
     <div class="container">
-
-      <!-- Sous-titre de catégorie -->
-      <div class="cat-section-header">
+      <div class="athkar-page-header">
         <div class="section-icon">
           <i class="fas fa-hands-praying"></i>
         </div>
-        <h2 class="section-title" id="categoryTitle"></h2>
-        <p class="section-subtitle" id="categorySubtitle"></p>
-        <div class="athkar-count" id="athkarCount"></div>
+        <h2 class="section-title" id="categoryTitle">أَذْكَارُ الصَّبَاحِ</h2>
+        <p class="section-subtitle" id="categorySubtitle">أَذْكَارُ الصَّبَاحِ وَالْمَسَاءِ</p>
+        <div class="athkar-count" id="athkarCount">٠ ذِكْرًا</div>
       </div>
 
-      <!-- Barre de filtrage + recherche -->
       <div class="athkar-filter-bar">
         <div class="filter-search">
           <i class="fas fa-search"></i>
-          <input type="text" id="searchInputFilter" placeholder="ابحث عن ذكر...">
+          <input type="text" id="searchInputFilter" placeholder="ابحث عن ذكر">
         </div>
+        <a href="Athkar.html" class="back-button">
+          <i class="fas fa-arrow-right"></i> العودة للأقسام
+        </a>
       </div>
 
-      <!-- Grille des athkar → injectée par AthkarCategory.js -->
-      <div class="athkar-grid" id="athkarGrid"></div>
+      <div id="athkarGrid" class="athkar-grid"></div>
 
-      <!-- Compteur personnel -->
       <div class="personal-counter">
         <div class="counter-header">
           <i class="fas fa-hand-sparkles"></i>
@@ -68,9 +93,7 @@
           <div class="counter-controls">
             <button class="counter-btn" id="counterPlus"><i class="fas fa-plus"></i></button>
             <button class="counter-btn" id="counterMinus"><i class="fas fa-minus"></i></button>
-            <button class="counter-reset" id="counterReset">
-              <i class="fas fa-undo-alt"></i> إعادة ضبط
-            </button>
+            <button class="counter-reset" id="counterReset"><i class="fas fa-undo-alt"></i> إعادة ضبط</button>
           </div>
         </div>
         <div class="counter-presets">
@@ -79,21 +102,16 @@
           <button class="preset-preset" data-value="100">١٠٠</button>
         </div>
       </div>
-
     </div>
   </main>
 
-  <!-- ═══ FOOTER SOBRE ════════════════════════════════════════ -->
-  <footer class="cat-footer">
-    <div class="cat-footer-inner">
-      <span>© 2026 FaithPath · جميع الحقوق محفوظة</span>
-      <span class="cat-footer-sep">·</span>
-      <i class="fas fa-star cat-footer-star"></i>
-      <span>وَرَتِّلِ الْقُرْآنَ تَرْتِيلًا</span>
-      <i class="fas fa-star cat-footer-star"></i>
-    </div>
+  <footer class="footer">
+    <p>فيث باث · صفحة الأذكار · جميع الحقوق محفوظة</p>
+    <p style="opacity:0.8; margin-top:0.5rem;">
+      <i class="fas fa-star"></i> وَرَتِّلِ الْقُرْآنَ تَرْتِيلًا <i class="fas fa-star"></i>
+    </p>
   </footer>
 
-  <script src="adhkarCategory.js"></script>
+  <script src="script/AthkarCategory.js"></script>
 </body>
 </html>

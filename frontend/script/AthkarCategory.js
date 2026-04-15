@@ -22,6 +22,8 @@ const categoryNames = {
 };
 
 // Mettre à jour les titres de la page
+document.getElementById('categoryHeroTitle').innerText = categoryNames[categoryId]?.hero || "الأذكار";
+document.getElementById('categoryHeroSub').innerText = categoryNames[categoryId]?.title || "الأذكار";
 document.getElementById('categoryTitle').innerText = categoryNames[categoryId]?.title || "الأذكار";
 document.getElementById('categorySubtitle').innerText = categoryNames[categoryId]?.subtitle || "أذكار اليوم والليلة";
 

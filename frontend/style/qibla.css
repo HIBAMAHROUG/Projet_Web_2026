@@ -1,8 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700&family=Noto+Kufi+Arabic:wght@400;600;700&display=swap');
 
-/* ══════ RESET ══════ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* ══════ RESET ══════ */
+ *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 /* ══════ VARIABLES ══════ */
 :root {
   --emerald-900: #0f3d2e;

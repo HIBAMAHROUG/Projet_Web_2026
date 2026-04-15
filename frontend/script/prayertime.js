@@ -435,4 +435,4 @@ function hideManualLocation() {
     manualLocationDiv?.classList.add('hidden');
 }
 
-console.log("✅ Script opérationnel");
+console.log(" Script opérationnel");

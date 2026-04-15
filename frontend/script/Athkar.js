@@ -2,10 +2,9 @@
 // Athkar.js  –  Page principale : affichage des catégories + compteur
 // =====================================================================
 
-/* ── Utilitaire : convertit un nombre en chiffres arabes ── */
+/* ── Utilitaire : utilise les chiffres latins (1, 2, 3...) ── */
 function toArabicNumber(num) {
-  const arabicDigits = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
-  return num.toString().split('').map(d => arabicDigits[d] ?? d).join('');
+  return num.toString();
 }
 
 /* ── Liste des catégories ─────────────────────────────────────── */
@@ -57,7 +56,7 @@ const categories = [
 /* ── Afficher le nombre de catégories ────────────────────────── */
 const categoriesCountEl = document.getElementById('categoriesCount');
 if (categoriesCountEl) {
-  categoriesCountEl.textContent = toArabicNumber(categories.length) + ' أَقْسَامٍ';
+  categoriesCountEl.textContent = toArabicNumber(categories.length) + ' أقسام';
 }
 
 /* ── Générer les cartes des catégories ───────────────────────── */

@@ -1,4 +1,4 @@
-/* ============================================================
+/* Déplacé depuis ../prayertime.css *//* ============================================================
    prayertime.css — FaithPath | أوقات الصلاة
    CSS autonome : base + navbar + prayer times + footer
    Compatible avec prayertime.html & styles.css du site
@@ -19,7 +19,7 @@
 /* ===== DESIGN TOKENS ===== */
 :root {
   --emerald-900: #0f3d2e;
-  --emerald-800: #145a3f;
+  /* Moving to frontend/style/prayertime.css */
   --emerald-700: #1d6b4a;
   --emerald-600: #2a7b57;
   --emerald-500: #3f8f67;

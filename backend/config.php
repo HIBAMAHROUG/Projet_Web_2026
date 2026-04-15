@@ -82,6 +82,10 @@ function ensureNosqlStoreExists() {
     }
 }
 
+// Fonction centrale de gestion des données :
+// Ouvre le fichier JSON, applique un verrou pour éviter les accès concurrents,
+// charge les données, exécute le callback fourni (lecture/écriture),
+// puis sauvegarde les modifications et libère le verrou.
 function withStore(callable $callback) {
     ensureNosqlStoreExists();
 

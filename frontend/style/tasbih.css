@@ -205,6 +205,7 @@ body {
   color: rgba(255,255,255,.92);
   border-top: 2px solid rgba(212,175,55,.45);
   box-shadow: 0 -8px 22px rgba(13,43,31,.18);
+  
 }
 .mini-footer-inner {
   width: min(1200px, 96vw); margin: 0 auto;
