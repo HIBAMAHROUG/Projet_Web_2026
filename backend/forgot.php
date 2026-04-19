@@ -1,4 +1,3 @@
-
 <?php
 // Affichage des erreurs pour le debug local
 ini_set('display_errors', 1);
@@ -279,9 +278,21 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     respondJson(false, 'Methode non autorisee.', 405);
 }
 
+// Fonction utilitaire pour sécuriser les entrées utilisateur
+function getParam($array, $key, $default = null, $pattern = null) {
+    if (isset($array[$key])) {
+        $value = trim($array[$key]);
+        if ($pattern && !preg_match($pattern, $value)) {
+            return $default;
+        }
+        return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+    }
+    return $default;
+}
+
 $payload = json_decode(file_get_contents('php://input'), true);
-$email = trim($payload['email'] ?? ($_POST['email'] ?? ''));
-$mode = strtolower(trim($payload['mode'] ?? ($_POST['mode'] ?? 'link')));
+$email = strtolower(getParam($payload, 'email', getParam($_POST, 'email', ''), '/^[^@\s]+@[^@\s]+\.[^@\s]+$/'));
+$mode = strtolower(getParam($payload, 'mode', getParam($_POST, 'mode', 'link'), '/^(link|code)$/'));
 
 if (!in_array($mode, ['link', 'code'], true)) {
     respondJson(false, 'Mode invalide. Utilisez link ou code.', 422);

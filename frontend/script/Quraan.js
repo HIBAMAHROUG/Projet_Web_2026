@@ -180,24 +180,62 @@ function renderSouar() {
     return;
   }
   grid.innerHTML = filtered.map(s => `
-    <div class="surah-card" data-id="${s.id}" data-name="${s.name}" data-audio="${s.audioUrl}">
-      <div class="surah-header">
-        <span class="surah-number">${toArabicNumber(s.id)}</span>
-        <div style="flex:1">
-          <div class="surah-name">${s.name}</div>
-          <div class="surah-translit">${s.translit}</div>
-        </div>
-      </div>
-      <div class="ayah-preview">
-        <div class="ayah-arabic">${s.arabicAyah}</div>
-        <div class="ayah-translation">${s.translation}</div>
-      </div>
-      <div class="surah-meta">
-        <span class="meta-item"><i class="fas fa-book-open"></i> ${toArabicNumber(s.verses)} آيات</span>
-        <span class="meta-item"><i class="fas fa-moon"></i> ${s.type}</span>
-        <span class="meta-item"><i class="fas fa-headphones"></i> استماع</span>
-      </div>
-    </div>`).join('');
+    grid.innerHTML = '';
+    filtered.forEach(s => {
+      const card = document.createElement('div');
+      card.className = 'surah-card';
+      card.dataset.id = s.id;
+      card.dataset.name = s.name;
+      card.dataset.audio = s.audioUrl;
+      // Header
+      const header = document.createElement('div');
+      header.className = 'surah-header';
+      const numberSpan = document.createElement('span');
+      numberSpan.className = 'surah-number';
+      numberSpan.textContent = toArabicNumber(s.id);
+      header.appendChild(numberSpan);
+      const flexDiv = document.createElement('div');
+      flexDiv.style.flex = '1';
+      const nameDiv = document.createElement('div');
+      nameDiv.className = 'surah-name';
+      nameDiv.textContent = s.name;
+      const translitDiv = document.createElement('div');
+      translitDiv.className = 'surah-translit';
+      translitDiv.textContent = s.translit;
+      flexDiv.appendChild(nameDiv);
+      flexDiv.appendChild(translitDiv);
+      header.appendChild(flexDiv);
+      card.appendChild(header);
+      // Ayah preview
+      const ayahPreview = document.createElement('div');
+      ayahPreview.className = 'ayah-preview';
+      const ayahArabic = document.createElement('div');
+      ayahArabic.className = 'ayah-arabic';
+      ayahArabic.textContent = s.arabicAyah;
+      const ayahTrans = document.createElement('div');
+      ayahTrans.className = 'ayah-translation';
+      ayahTrans.textContent = s.translation;
+      ayahPreview.appendChild(ayahArabic);
+      ayahPreview.appendChild(ayahTrans);
+      card.appendChild(ayahPreview);
+      // Meta
+      const metaDiv = document.createElement('div');
+      metaDiv.className = 'surah-meta';
+      const meta1 = document.createElement('span');
+      meta1.className = 'meta-item';
+      meta1.innerHTML = '<i class="fas fa-book-open"></i> ' + toArabicNumber(s.verses) + ' آيات';
+      const meta2 = document.createElement('span');
+      meta2.className = 'meta-item';
+      meta2.innerHTML = '<i class="fas fa-moon"></i> ' + s.type;
+      const meta3 = document.createElement('span');
+      meta3.className = 'meta-item';
+      meta3.innerHTML = '<i class="fas fa-headphones"></i> استماع';
+      metaDiv.appendChild(meta1);
+      metaDiv.appendChild(meta2);
+      metaDiv.appendChild(meta3);
+      card.appendChild(metaDiv);
+      grid.appendChild(card);
+    });
 
   document.querySelectorAll('.surah-card').forEach(card => {
     card.addEventListener('click', function() {

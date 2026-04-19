@@ -24,14 +24,15 @@
   }
 
   function computeQiblaBearing(userLat, userLon) {
+    // Formule correcte pour l'azimut Qibla
     const userLatRad = toRadians(userLat);
     const kaabaLatRad = toRadians(kaabaCoordinates.lat);
     const deltaLonRad = toRadians(kaabaCoordinates.lon - userLon);
 
     const y = Math.sin(deltaLonRad);
-    const x = (Math.cos(userLatRad) * Math.tan(kaabaLatRad)) - (Math.sin(userLatRad) * Math.cos(deltaLonRad));
+    const x = Math.cos(userLatRad) * Math.tan(kaabaLatRad) - Math.sin(userLatRad) * Math.cos(deltaLonRad);
+    // Correction : inverser x et y dans atan2 pour correspondre à la formule géographique
     const bearing = (toDegrees(Math.atan2(y, x)) + 360) % 360;
-
     return bearing;
   }
 

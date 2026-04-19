@@ -8,6 +8,43 @@ document.addEventListener('DOMContentLoaded', function() {
   const navMenu = document.getElementById('navMenu') || document.getElementById('asideNav');
   let navOverlay = document.getElementById('navOverlay') || document.getElementById('asideOverlay');
 
+  // === Affichage du nom de l'utilisateur connecté ===
+  function updateUserNameInMenu() {
+    try {
+      const user = JSON.parse(localStorage.getItem('faithpathCurrentUser'));
+      console.log('[DEBUG] Utilisateur localStorage:', user);
+      if (user && user.fullName) {
+        // Aside menu
+        const asideProfileName = document.getElementById('asideProfileName');
+        if (asideProfileName) {
+          asideProfileName.textContent = user.fullName;
+          console.log('[DEBUG] asideProfileName trouvé, nom affiché:', user.fullName);
+        } else {
+          console.warn('[DEBUG] asideProfileName introuvable dans le DOM');
+        }
+        // Header (profileName)
+        const headerProfileName = document.getElementById('headerProfileName');
+        if (headerProfileName) {
+          headerProfileName.textContent = user.fullName;
+        }
+        // Header (profile-name)
+        const profileName = document.getElementById('profileName');
+        if (profileName) {
+          profileName.textContent = user.fullName;
+          console.log('[DEBUG] profileName trouvé, nom affiché:', user.fullName);
+        }
+      } else {
+        console.warn('[DEBUG] Aucun utilisateur connecté ou nom manquant');
+      }
+    } catch (e) {
+      console.error('[DEBUG] Erreur parsing utilisateur:', e);
+    }
+  }
+  updateUserNameInMenu();
+
+  // Pour garantir l'affichage même si le DOM est lent à charger
+  window.addEventListener('load', updateUserNameInMenu);
+
   if (!menuToggle || !navMenu) {
     console.warn('Menu toggle or nav menu elements not found');
     return;
@@ -98,17 +135,27 @@ document.addEventListener('DOMContentLoaded', function() {
       { text: 'تمت إضافة محتوى جديد في أسماء الله الحسنى', time: 'اليوم' }
     ];
 
-    panel.innerHTML = '<div class="fp-panel-title">الإشعارات</div>' + notifications.map(function(item) {
-      return [
-        '<div class="fp-notif-item">',
-        '<span class="fp-notif-dot"></span>',
-        '<div class="fp-notif-text">',
-        item.text,
-        '<span class="fp-notif-time">',
-        item.time,
-        '</span></div></div>'
-      ].join('');
-    }).join('');
+    panel.innerHTML = '';
+    const titleDiv = document.createElement('div');
+    titleDiv.className = 'fp-panel-title';
+    titleDiv.textContent = 'الإشعارات';
+    panel.appendChild(titleDiv);
+    notifications.forEach(function(item) {
+      const notifItem = document.createElement('div');
+      notifItem.className = 'fp-notif-item';
+      const dot = document.createElement('span');
+      dot.className = 'fp-notif-dot';
+      notifItem.appendChild(dot);
+      const notifText = document.createElement('div');
+      notifText.className = 'fp-notif-text';
+      notifText.textContent = item.text;
+      const notifTime = document.createElement('span');
+      notifTime.className = 'fp-notif-time';
+      notifTime.textContent = item.time;
+      notifText.appendChild(notifTime);
+      notifItem.appendChild(notifText);
+      panel.appendChild(notifItem);
+    });
   }
 
   function getSearchCandidates() {
@@ -168,25 +215,39 @@ document.addEventListener('DOMContentLoaded', function() {
       });
 
     if (!results.length) {
-      panel.innerHTML = '<div class="fp-panel-title">نتائج البحث</div><div class="fp-no-result">لا توجد نتائج مطابقة لـ "' + rawValue + '"</div>';
+      panel.innerHTML = '';
+      const titleDiv = document.createElement('div');
+      titleDiv.className = 'fp-panel-title';
+      titleDiv.textContent = 'نتائج البحث';
+      panel.appendChild(titleDiv);
+      const noResultDiv = document.createElement('div');
+      noResultDiv.className = 'fp-no-result';
+      noResultDiv.textContent = 'لا توجد نتائج مطابقة لـ "' + rawValue + '"';
+      panel.appendChild(noResultDiv);
       positionPanel(panel, triggerInput || searchInput || searchIcon);
       openPanel(panel);
       return;
     }
 
-    panel.innerHTML = '<div class="fp-panel-title">نتائج البحث</div>' + results.map(function(item, index) {
-      return [
-        '<div class="fp-search-item" data-idx="',
-        String(index),
-        '">',
-        '<div class="fp-search-item-title">',
-        item.title,
-        '</div>',
-        '<div class="fp-search-item-snippet">',
-        item.snippet,
-        '</div></div>'
-      ].join('');
-    }).join('');
+    panel.innerHTML = '';
+    const titleDiv = document.createElement('div');
+    titleDiv.className = 'fp-panel-title';
+    titleDiv.textContent = 'نتائج البحث';
+    panel.appendChild(titleDiv);
+    results.forEach(function(item, index) {
+      const searchItem = document.createElement('div');
+      searchItem.className = 'fp-search-item';
+      searchItem.setAttribute('data-idx', String(index));
+      const title = document.createElement('div');
+      title.className = 'fp-search-item-title';
+      title.textContent = item.title;
+      const snippet = document.createElement('div');
+      snippet.className = 'fp-search-item-snippet';
+      snippet.textContent = item.snippet;
+      searchItem.appendChild(title);
+      searchItem.appendChild(snippet);
+      panel.appendChild(searchItem);
+    });
 
     panel.querySelectorAll('.fp-search-item').forEach(function(el) {
       el.addEventListener('click', function() {

@@ -25,8 +25,8 @@ if (!in_array($_SERVER['REQUEST_METHOD'], ['POST', 'GET'], true)) {
 
 // --- Lecture des paramètres (JSON body, POST ou GET) ---
 $payload  = json_decode(file_get_contents('php://input'), true) ?? [];
-$email    = strtolower(trim($payload['email']    ?? ($_POST['email']    ?? ($_GET['email']    ?? ''))));
-$password =            trim($payload['password'] ?? ($_POST['password'] ?? ($_GET['password'] ?? '')));
+$email    = strtolower(getParam($payload, 'email', getParam($_POST, 'email', getParam($_GET, 'email', '')), '/^[^@\s]+@[^@\s]+\.[^@\s]+$/'));
+$password = getParam($payload, 'password', getParam($_POST, 'password', getParam($_GET, 'password', '')));
 
 // --- Validation ---
 if ($email === '' || $password === '') {
@@ -58,3 +58,15 @@ respondJson(true, 'Connexion réussie.', 200, [
         'email'    => $user['email'],
     ],
 ]);
+
+// Fonction utilitaire pour sécuriser les entrées utilisateur
+function getParam($array, $key, $default = null, $pattern = null) {
+    if (isset($array[$key])) {
+        $value = trim($array[$key]);
+        if ($pattern && !preg_match($pattern, $value)) {
+            return $default;
+        }
+        return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+    }
+    return $default;
+}

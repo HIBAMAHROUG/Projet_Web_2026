@@ -1,3 +1,10 @@
+// Vérification CSRF pour les requêtes POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $csrfToken = getParam($payload, 'csrf_token', getParam($_POST, 'csrf_token', ''));
+    if (!$csrfToken || !verifyCsrfToken($csrfToken)) {
+        respondJson(false, 'CSRF token invalide ou manquant.', 403);
+    }
+}
 <?php
 // ============================================================
 // reset.php — Réinitialisation du mot de passe
@@ -22,20 +29,34 @@ function respondJson($success, $message, $status = 200, $extra = []) {
     exit;
 }
 
+// Fonctions utilitaires pour sécuriser les entrées utilisateur
+function getParam($array, $key, $default = null, $pattern = null) {
+    if (isset($array[$key])) {
+        $value = trim($array[$key]);
+        if ($pattern && !preg_match($pattern, $value)) {
+            return $default;
+        }
+        return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+    }
+    return $default;
+}
+
 $method  = $_SERVER['REQUEST_METHOD'];
 $payload = json_decode(file_get_contents('php://input'), true) ?? [];
 
-// Lecture action depuis GET ou body
-$action = strtolower(trim(
-    $payload['action'] ?? ($_POST['action'] ?? ($_GET['action'] ?? ''))
-));
+// Lecture action depuis GET ou body (filtrée)
+$action = strtolower(getParam($payload, 'action',
+    getParam($_POST, 'action',
+        getParam($_GET, 'action', '', '/^[a-zA-Z0-9_]{3,32}$/')
+    , '/^[a-zA-Z0-9_]{3,32}$/')
+, '/^[a-zA-Z0-9_]{3,32}$/'));
 
 // ============================================================
 // GET ?action=validate&token=XXX
 // Vérifie qu'un token de lien est encore valide
 // ============================================================
 if ($method === 'GET' && $action === 'validate') {
-    $token = trim($_GET['token'] ?? '');
+    $token = getParam($_GET, 'token', '', '/^[a-zA-Z0-9]+$/');
 
     if ($token === '') {
         respondJson(false, 'Token manquant.', 400);
@@ -55,13 +76,12 @@ if ($method === 'GET' && $action === 'validate') {
 // ============================================================
 if ($method === 'POST' && $action === 'forgot') {
 
-    $email = strtolower(trim($payload['email'] ?? ($_POST['email'] ?? '')));
-    $mode  = strtolower(trim($payload['mode']  ?? ($_POST['mode']  ?? 'code')));
+    $email = strtolower(getParam($payload, 'email', getParam($_POST, 'email', ''), '/^[^@\s]+@[^@\s]+\.[^@\s]+$/'));
+    $mode  = strtolower(getParam($payload, 'mode', getParam($_POST, 'mode', 'code'), '/^(link|code)$/'));
 
-    if (!in_array($mode, ['link', 'code'], true)) {
+    if ($mode === null) {
         respondJson(false, 'Mode invalide. Utilisez "link" ou "code".', 422);
     }
-
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         respondJson(false, 'Adresse email invalide.', 422);
     }
@@ -133,11 +153,11 @@ if ($method === 'POST' && $action === 'forgot') {
 // ============================================================
 if ($method === 'POST' && ($action === 'reset' || $action === '')) {
 
-    $token           = trim($payload['token']           ?? ($_POST['token']           ?? ''));
-    $email           = trim($payload['email']           ?? ($_POST['email']           ?? ''));
-    $code            = trim($payload['code']            ?? ($_POST['code']            ?? ''));
-    $password        =      $payload['password']        ?? ($_POST['password']        ?? '');
-    $confirmPassword =      $payload['confirmPassword'] ?? ($payload['password2'] ?? ($_POST['confirmPassword'] ?? ($_POST['password2'] ?? '')));
+    $token           = getParam($payload, 'token', getParam($_POST, 'token', ''), '/^[a-zA-Z0-9]+$/');
+    $email           = strtolower(getParam($payload, 'email', getParam($_POST, 'email', ''), '/^[^@\s]+@[^@\s]+\.[^@\s]+$/'));
+    $code            = getParam($payload, 'code', getParam($_POST, 'code', ''), '/^\d{6}$/');
+    $password        = getParam($payload, 'password', getParam($_POST, 'password', ''));
+    $confirmPassword = getParam($payload, 'confirmPassword', getParam($payload, 'password2', getParam($_POST, 'confirmPassword', getParam($_POST, 'password2', ''))));
 
     // --- Trouver l'enregistrement de réinitialisation ---
     $reset = null;

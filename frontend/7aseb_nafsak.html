@@ -848,6 +848,30 @@ body::after {
 </style>
 </head>
 <body>
+    <div id="navbar-container"></div>
+    <script src="script/auth.js"></script>
+    <script>
+      fetch('navbar.html')
+        .then(r => r.text())
+        .then(html => {
+          document.getElementById('navbar-container').innerHTML = html;
+          if (window.getCurrentUser && window.updateNavbar) {
+            updateNavbar(getCurrentUser());
+          }
+        });
+    </script>
+  <div id="navbar-container"></div>
+  <script src="script/auth.js"></script>
+  <script>
+    fetch('navbar.html')
+      .then(r => r.text())
+      .then(html => {
+        document.getElementById('navbar-container').innerHTML = html;
+        if (window.getCurrentUser && window.updateNavbar) {
+          updateNavbar(getCurrentUser());
+        }
+      });
+  </script>
 
 <!-- SVG gradient pour le ring -->
 <svg width="0" height="0" style="position:absolute">

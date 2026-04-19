@@ -100,56 +100,100 @@ function renderAthkar() {
     return matchesSearch;
   });
 
+  grid.innerHTML = '';
   if (filtered.length === 0) {
-    grid.innerHTML = `<div class="no-results"><i class="fas fa-book-open" style="font-size:2rem;"></i><p>لا توجد أذكار</p></div>`;
+    const noResultsDiv = document.createElement('div');
+    noResultsDiv.className = 'no-results';
+    const icon = document.createElement('i');
+    icon.className = 'fas fa-book-open';
+    icon.style.fontSize = '2rem';
+    noResultsDiv.appendChild(icon);
+    const p = document.createElement('p');
+    p.textContent = 'لا توجد أذكار';
+    noResultsDiv.appendChild(p);
+    grid.appendChild(noResultsDiv);
     return;
   }
-
-  let html = '';
   filtered.forEach(dhikr => {
     const counterValue = individualCounters[dhikr.id] || 0;
-    html += `
-      <div class="athkar-card">
-        <div class="athkar-header">
-          <div class="athkar-icon">
-            <i class="fas ${dhikr.icon}"></i>
-          </div>
-          <div class="athkar-title">
-            <div class="athkar-category">
-              <i class="fas fa-tag"></i>
-              <span>${categoryNames[categoryId]?.title || "ذكر"}</span>
-            </div>
-          </div>
-        </div>
-        
-        <div class="dhikr-content">
-          <div class="dhikr-arabic">${dhikr.arabic}</div>
-          <div class="dhikr-translation">${dhikr.translation}</div>
-        </div>
-        
-        <div class="dhikr-repetition">
-          <span><i class="fas fa-repeat"></i> التكرار: ${toArabicNumber(dhikr.repetition)} مرات</span>
-          <span><i class="fas fa-${dhikr.repetition > 1 ? 'star' : 'check'}"></i> سنة مؤكدة</span>
-        </div>
-        
-        <div class="dhikr-counter-section">
-          <div class="dhikr-counter">
-            <button class="dhikr-count-btn" data-action="minus" data-id="${dhikr.id}">
-              <i class="fas fa-minus"></i>
-            </button>
-            <span class="dhikr-count-display" data-id="${dhikr.id}">${toArabicNumber(counterValue)}</span>
-            <button class="dhikr-count-btn" data-action="plus" data-id="${dhikr.id}">
-              <i class="fas fa-plus"></i>
-            </button>
-          </div>
-          <button class="dhikr-reset-btn" data-action="reset" data-id="${dhikr.id}">
-            <i class="fas fa-undo-alt"></i> إعادة
-          </button>
-        </div>
-      </div>
-    `;
+    const card = document.createElement('div');
+    card.className = 'athkar-card';
+    // Header
+    const header = document.createElement('div');
+    header.className = 'athkar-header';
+    const iconDiv = document.createElement('div');
+    iconDiv.className = 'athkar-icon';
+    const icon = document.createElement('i');
+    icon.className = `fas ${dhikr.icon}`;
+    iconDiv.appendChild(icon);
+    header.appendChild(iconDiv);
+    const titleDiv = document.createElement('div');
+    titleDiv.className = 'athkar-title';
+    const catDiv = document.createElement('div');
+    catDiv.className = 'athkar-category';
+    const tagIcon = document.createElement('i');
+    tagIcon.className = 'fas fa-tag';
+    catDiv.appendChild(tagIcon);
+    const catSpan = document.createElement('span');
+    catSpan.textContent = categoryNames[categoryId]?.title || 'ذكر';
+    catDiv.appendChild(catSpan);
+    titleDiv.appendChild(catDiv);
+    header.appendChild(titleDiv);
+    card.appendChild(header);
+    // Content
+    const contentDiv = document.createElement('div');
+    contentDiv.className = 'dhikr-content';
+    const arabicDiv = document.createElement('div');
+    arabicDiv.className = 'dhikr-arabic';
+    arabicDiv.textContent = dhikr.arabic;
+    const transDiv = document.createElement('div');
+    transDiv.className = 'dhikr-translation';
+    transDiv.textContent = dhikr.translation;
+    contentDiv.appendChild(arabicDiv);
+    contentDiv.appendChild(transDiv);
+    card.appendChild(contentDiv);
+    // Repetition
+    const repDiv = document.createElement('div');
+    repDiv.className = 'dhikr-repetition';
+    const repSpan = document.createElement('span');
+    repSpan.innerHTML = `<i class="fas fa-repeat"></i> التكرار: ${toArabicNumber(dhikr.repetition)} مرات`;
+    const sunnaSpan = document.createElement('span');
+    sunnaSpan.innerHTML = `<i class="fas fa-${dhikr.repetition > 1 ? 'star' : 'check'}"></i> سنة مؤكدة`;
+    repDiv.appendChild(repSpan);
+    repDiv.appendChild(sunnaSpan);
+    card.appendChild(repDiv);
+    // Counter section
+    const counterSection = document.createElement('div');
+    counterSection.className = 'dhikr-counter-section';
+    const counterDiv = document.createElement('div');
+    counterDiv.className = 'dhikr-counter';
+    const minusBtn = document.createElement('button');
+    minusBtn.className = 'dhikr-count-btn';
+    minusBtn.dataset.action = 'minus';
+    minusBtn.dataset.id = dhikr.id;
+    minusBtn.innerHTML = '<i class="fas fa-minus"></i>';
+    const countSpan = document.createElement('span');
+    countSpan.className = 'dhikr-count-display';
+    countSpan.dataset.id = dhikr.id;
+    countSpan.textContent = toArabicNumber(counterValue);
+    const plusBtn = document.createElement('button');
+    plusBtn.className = 'dhikr-count-btn';
+    plusBtn.dataset.action = 'plus';
+    plusBtn.dataset.id = dhikr.id;
+    plusBtn.innerHTML = '<i class="fas fa-plus"></i>';
+    counterDiv.appendChild(minusBtn);
+    counterDiv.appendChild(countSpan);
+    counterDiv.appendChild(plusBtn);
+    counterSection.appendChild(counterDiv);
+    const resetBtn = document.createElement('button');
+    resetBtn.className = 'dhikr-reset-btn';
+    resetBtn.dataset.action = 'reset';
+    resetBtn.dataset.id = dhikr.id;
+    resetBtn.innerHTML = '<i class="fas fa-undo-alt"></i> إعادة';
+    counterSection.appendChild(resetBtn);
+    card.appendChild(counterSection);
+    grid.appendChild(card);
   });
-  grid.innerHTML = html;
 
   // Attacher les événements
   document.querySelectorAll('.dhikr-count-btn').forEach(btn => {

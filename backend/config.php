@@ -1,3 +1,20 @@
+// CSRF protection utilities
+function generateCsrfToken() {
+    if (session_status() !== PHP_SESSION_ACTIVE) {
+        session_start();
+    }
+    if (empty($_SESSION['csrf_token'])) {
+        $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+    }
+    return $_SESSION['csrf_token'];
+}
+
+function verifyCsrfToken($token) {
+    if (session_status() !== PHP_SESSION_ACTIVE) {
+        session_start();
+    }
+    return isset($_SESSION['csrf_token']) && hash_equals($_SESSION['csrf_token'], $token);
+}
 <?php
 // ============================================================
 // config.php — Configuration centrale + accès aux données
@@ -526,9 +543,21 @@ function sendResetCodeEmail($email, $code) {
     return ['sent' => $sent, 'status' => $status];
 }
 
+// Fonction utilitaire pour sécuriser l'accès aux variables serveur
+function getServerVar($key, $default = null, $pattern = null) {
+    if (isset($_SERVER[$key])) {
+        $value = trim($_SERVER[$key]);
+        if ($pattern && !preg_match($pattern, $value)) {
+            return $default;
+        }
+        return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+    }
+    return $default;
+}
+
 // --- Utilitaire : est-on en local ? ---
 function isLocalRequest() {
-    $ip   = $_SERVER['REMOTE_ADDR'] ?? '';
-    $host = strtolower($_SERVER['HTTP_HOST'] ?? '');
+    $ip   = getServerVar('REMOTE_ADDR', '');
+    $host = strtolower(getServerVar('HTTP_HOST', ''));
     return $ip === '127.0.0.1' || $ip === '::1' || str_contains($host, 'localhost');
 }

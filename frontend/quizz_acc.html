@@ -98,6 +98,16 @@
 </head>
 
 <body>
+            <div id="navbar-container"></div>
+            <script src="script/auth.js"></script>
+            <script>
+                fetch('navbar.html')
+                    .then(r => r.text())
+                    .then(html => {
+                        document.getElementById('navbar-container').innerHTML = html;
+                        if (window.updateNavbar) updateNavbar();
+                    });
+            </script>
         <!-- ═══ NAVBAR harmonisée avec 7aseb_nafsak.html ═══ -->
         <nav class="top-navbar">
             <div class="nav-container">

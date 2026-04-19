@@ -23,6 +23,18 @@ function failWithLog($fullName, $email, $message, $status) {
     respondJson(false, $message, $status);
 }
 
+// Fonction utilitaire pour sécuriser les entrées utilisateur
+function getParam($array, $key, $default = null, $pattern = null) {
+    if (isset($array[$key])) {
+        $value = trim($array[$key]);
+        if ($pattern && !preg_match($pattern, $value)) {
+            return $default;
+        }
+        return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+    }
+    return $default;
+}
+
 // --- Méthode ---
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     respondJson(false, 'Méthode non autorisée.', 405);
@@ -30,10 +42,10 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 // --- Lecture des paramètres ---
 $payload         = json_decode(file_get_contents('php://input'), true) ?? [];
-$fullName        = trim($payload['fullName']        ?? ($_POST['fullName']        ?? ''));
-$email           = strtolower(trim($payload['email'] ?? ($_POST['email']          ?? '')));
-$password        =            $payload['password']   ?? ($_POST['password']       ?? '');
-$confirmPassword =            $payload['confirmPassword'] ?? ($_POST['confirmPassword'] ?? '');
+$fullName        = getParam($payload, 'fullName', getParam($_POST, 'fullName', ''));
+$email           = strtolower(getParam($payload, 'email', getParam($_POST, 'email', ''), '/^[^@\s]+@[^@\s]+\.[^@\s]+$/'));
+$password        = getParam($payload, 'password', getParam($_POST, 'password', ''));
+$confirmPassword = getParam($payload, 'confirmPassword', getParam($_POST, 'confirmPassword', ''));
 
 // --- Validations ---
 if ($fullName === '' || $email === '' || $password === '' || $confirmPassword === '') {

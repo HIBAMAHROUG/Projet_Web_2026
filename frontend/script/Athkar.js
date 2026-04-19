@@ -64,16 +64,30 @@ function renderCategories() {
   const grid = document.getElementById('categoriesGrid');
   if (!grid) return;
 
-  grid.innerHTML = categories.map(cat => `
-    <a href="AthkarCategory.html?category=${cat.id}" class="category-card">
-      <div class="category-icon">
-        <i class="fas ${cat.icon}"></i>
-      </div>
-      <h3>${cat.name}</h3>
-      <div class="category-desc">${cat.desc}</div>
-      <div class="category-count">${toArabicNumber(cat.count)} أذكار</div>
-    </a>
-  `).join('');
+  grid.innerHTML = '';
+  categories.forEach(cat => {
+    const a = document.createElement('a');
+    a.href = `AthkarCategory.html?category=${encodeURIComponent(cat.id)}`;
+    a.className = 'category-card';
+    const iconDiv = document.createElement('div');
+    iconDiv.className = 'category-icon';
+    const icon = document.createElement('i');
+    icon.className = `fas ${cat.icon}`;
+    iconDiv.appendChild(icon);
+    a.appendChild(iconDiv);
+    const h3 = document.createElement('h3');
+    h3.textContent = cat.name;
+    a.appendChild(h3);
+    const descDiv = document.createElement('div');
+    descDiv.className = 'category-desc';
+    descDiv.textContent = cat.desc;
+    a.appendChild(descDiv);
+    const countDiv = document.createElement('div');
+    countDiv.className = 'category-count';
+    countDiv.textContent = `${toArabicNumber(cat.count)} أذكار`;
+    a.appendChild(countDiv);
+    grid.appendChild(a);
+  });
 }
 
 renderCategories();

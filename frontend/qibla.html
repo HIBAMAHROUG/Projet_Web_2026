@@ -1,3 +1,13 @@
+<div id="navbar-container"></div>
+  <script src="script/auth.js"></script>
+  <script>
+    fetch('navbar.html')
+      .then(r => r.text())
+      .then(html => {
+        document.getElementById('navbar-container').innerHTML = html;
+        if (window.updateNavbar) updateNavbar();
+      });
+  </script>
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -6,6 +16,286 @@
   <title>FaithPath • اتجاه القبلة</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="style/qibla.css">
+
+  <style>
+                  /* Disposition deux colonnes : boussole à gauche, infos à droite */
+                  .qibla-card {
+                    display: flex !important;
+                    flex-direction: row-reverse !important;
+                    align-items: stretch !important;
+                    gap: 2.5rem !important;
+                    justify-content: center !important;
+                  }
+                  .qibla-content {
+                    flex: 1 1 340px !important;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    min-width: 280px;
+                    max-width: 420px;
+                  }
+                  .qibla-visual {
+                    flex: 1 1 320px !important;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start !important;
+                    justify-content: center;
+                    min-width: 260px;
+                    max-width: 400px;
+                    margin-top: 0 !important;
+                  }
+                  .qibla-compass {
+                    margin-left: 0 !important;
+                    margin-right: auto !important;
+                  }
+                  @media (max-width: 900px) {
+                    .qibla-card {
+                      flex-direction: column !important;
+                      gap: 1.2rem !important;
+                    }
+                    .qibla-visual, .qibla-content {
+                      max-width: 100% !important;
+                      min-width: 0 !important;
+                      align-items: center !important;
+                    }
+                    .qibla-visual {
+                      align-items: center !important;
+                    }
+                  }
+              /* Suppression totale de la vague décorative et header ultra-mince */
+              .header-wave { display: none !important; height: 0 !important; min-height: 0 !important; }
+              .header { min-height: 48px !important; height: 48px !important; padding: 0 !important; border: none !important; box-shadow: none !important; }
+              .top-navbar { padding: 0.2rem 1.5rem !important; min-height: 0 !important; height: 48px !important; }
+              .nav-container { height: 40px !important; min-height: 0 !important; }
+              .logo-img { height: 28px !important; width: 28px !important; }
+              .logo-text { font-size: 1.25rem !important; }
+
+              /* Main plus large */
+              .main-content .container, .container {
+                max-width: 1100px !important;
+                width: 98vw !important;
+                margin: 0 auto !important;
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+              }
+              .qibla-card {
+                max-width: 900px !important;
+                width: 100% !important;
+              }
+            /* Header ultra compact */
+            .header-wave svg { height: 32px !important; min-height: 0 !important; }
+            .header-wave { min-height: 0 !important; margin-bottom: -12px !important; }
+            .header { min-height: unset !important; padding: 0 !important; }
+            .top-navbar { padding: 0.1rem 0.7rem !important; min-height: 0 !important; }
+            .nav-container { height: 32px !important; min-height: 0 !important; }
+            .logo-img { height: 22px !important; width: 22px !important; }
+            .logo-text { font-size: 1.1rem !important; }
+          /* Réduction de la marge supérieure de l’en-tête */
+          body, .header { margin-top: 0 !important; }
+          .header-wave { margin-bottom: -8px !important; }
+
+          /* Amélioration de la clarté du menu */
+          .top-navbar {
+            background: linear-gradient(90deg, #145a3f 80%, #1a3a2a 100%) !important;
+            box-shadow: 0 2px 12px rgba(20,90,63,0.10);
+            border-radius: 0 0 18px 18px;
+          }
+          .nav-container { background: none !important; }
+          .aside-nav, .aside-menu, .aside-link {
+            background: none !important;
+          }
+          .aside-nav {
+            background: linear-gradient(145deg, #145a3f 80%, #1a3a2a 100%) !important;
+            box-shadow: -10px 0 35px rgba(0, 0, 0, 0.25);
+          }
+          .aside-link {
+            color: #fff !important;
+            font-weight: 700 !important;
+            background: rgba(255,255,255,0.07) !important;
+            border-radius: 10px !important;
+            margin-bottom: 4px !important;
+            transition: background 0.2s, color 0.2s;
+          }
+          .aside-link.active, .aside-link:hover {
+            background: #c9a87c !important;
+            color: #145a3f !important;
+            box-shadow: 0 2px 8px #c9a87c33;
+          }
+      /* Réduction de la hauteur de l’en-tête */
+      .header-wave svg { height: 60px !important; min-height: 0 !important; }
+      .header { min-height: unset !important; }
+      .top-navbar { padding: 0.4rem 1.2rem !important; min-height: 0 !important; }
+      .nav-container { height: 44px !important; min-height: 0 !important; }
+      .logo-img { height: 32px !important; width: 32px !important; }
+    /* ─── Compass améliorée (override qibla.css sur la zone boussole uniquement) ─── */
+
+    /* Animation pulsation Kaaba */
+    @keyframes kaabaPulse {
+      0% { box-shadow: 0 0 0 0 rgba(201,168,124,0.18); }
+      70% { box-shadow: 0 0 16px 8px rgba(201,168,124,0.22); }
+      100% { box-shadow: 0 0 0 0 rgba(201,168,124,0.18); }
+    }
+
+    .qibla-compass {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .qibla-compass-ring {
+      position: relative;
+      width: 240px;
+      height: 240px;
+    }
+
+    /* SVG ticks ring */
+    .compass-ticks-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Corps de la boussole */
+    .compass-body {
+      position: absolute;
+      inset: 22px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 36% 36%, #ffffff 55%, #f4f8f5 100%);
+      border: 2px solid #c8ddd2;
+      box-shadow:
+        0 0 0 5px rgba(255,255,255,0.55),
+        0 0 0 7px #d5e8dc,
+        inset 0 3px 14px rgba(0,0,0,0.07);
+      z-index: 2;
+    }
+
+    /* Cardinaux */
+    .qibla-north, .qibla-south, .qibla-east, .qibla-west {
+      position: absolute;
+      font-size: 12px;
+      font-weight: 700;
+      z-index: 4;
+      line-height: 1;
+    }
+    .qibla-north { top: 27px; left: 50%; transform: translateX(-50%); font-size: 13px; color: #1a3a2a; }
+    .qibla-south { bottom: 27px; left: 50%; transform: translateX(-50%); color: #999; }
+    .qibla-east  { right: 27px; top: 50%; transform: translateY(-50%); color: #999; }
+    .qibla-west  { left: 27px; top: 50%; transform: translateY(-50%); color: #999; }
+
+    /* Aiguille container — tourne */
+    .qibla-arrow {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) rotate(0deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 5;
+      transition: transform 1.4s cubic-bezier(0.34, 1.3, 0.64, 1);
+      width: 38px;
+      height: 130px;
+      pointer-events: none;
+    }
+
+    .needle-svg {
+      width: 38px;
+      height: 130px;
+      overflow: visible;
+    }
+
+    /* Point central */
+    .qibla-center-dot {
+      position: absolute;
+      width: 14px; height: 14px;
+      background: #1a3a2a;
+      border-radius: 50%;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 6;
+      box-shadow: 0 0 0 3px white, 0 0 0 4.5px #c8ddd2;
+    }
+
+    /* Kaaba animée */
+    .compass-kaaba {
+      position: absolute;
+      bottom: 30px; left: 50%;
+      transform: translateX(-50%) scale(0.5);
+      background: #1a3a2a;
+      color: white;
+      width: 28px; height: 28px;
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px;
+      opacity: 0;
+      transition: opacity 0.5s 0.9s, transform 0.5s 0.9s;
+      z-index: 7;
+      box-shadow: 0 0 0 0 rgba(201,168,124,0.18);
+    }
+    .compass-kaaba.visible {
+      opacity: 1;
+      transform: translateX(-50%) scale(1);
+      animation: kaabaPulse 1.8s infinite;
+    }
+
+    /* Badge degrés */
+    .compass-degree-badge {
+      position: absolute;
+      top: -10px; right: -10px;
+      background: linear-gradient(90deg, #1a3a2a 80%, #c9a87c 100%);
+      color: white;
+      font-size: 11px; font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      opacity: 0;
+      transition: opacity 0.4s, box-shadow 0.3s;
+      z-index: 10;
+      white-space: nowrap;
+      box-shadow: 0 2px 8px rgba(201,168,124,0.13);
+    }
+    .compass-degree-badge.visible {
+      opacity: 1;
+      box-shadow: 0 0 0 3px #c9a87c, 0 2px 8px rgba(201,168,124,0.13);
+    }
+
+    @media (max-width: 600px) {
+      .qibla-compass-ring { width: 160px; height: 160px; }
+      .compass-ticks-svg { width: 160px; height: 160px; }
+      .needle-svg { width: 28px; height: 90px; }
+      .compass-body { inset: 12px; }
+      .compass-kaaba { width: 20px; height: 20px; font-size: 11px; bottom: 16px; }
+      .compass-degree-badge { top: -6px; right: -6px; font-size: 10px; padding: 2px 7px; }
+    }
+
+    /* Hint */
+    .qibla-hint {
+      font-size: 12.5px;
+      color: #7a9e8a;
+      text-align: center;
+      max-width: 200px;
+      line-height: 1.55;
+    }
+
+    /* Alert intégrée */
+    .qibla-alert {
+      display: none;
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-size: 13px;
+      margin-bottom: 1rem;
+      gap: 8px;
+      line-height: 1.5;
+      align-items: flex-start;
+    }
+    .qibla-alert.show  { display: flex; }
+    .qibla-alert.error   { background: #fef2f2; color: #991b1b; border: 0.5px solid #fca5a5; }
+    .qibla-alert.success { background: #f0fdf4; color: #166534; border: 0.5px solid #86efac; }
+    .qibla-alert i { margin-top: 1px; flex-shrink: 0; }
+  </style>
 </head>
 <body class="prayer-page">
   <aside class="aside-nav" id="asideNav">
@@ -66,15 +356,16 @@
             <span></span>
             <span></span>
           </button>
-
           <div class="logo">
             <img src="img/m.png" alt="FaithPath" class="logo-img">
             <span class="logo-text">Faith<span class="logo-highlight">Path</span></span>
           </div>
         </div>
-
         <div class="nav-actions">
-          <a href="start.html" id="authActionBtn" class="auth-action-btn"><i class="fas fa-right-to-bracket"></i><span>إنشاء حساب / تسجيل الدخول</span></a>
+          <a href="start.html" id="authActionBtn" class="auth-action-btn">
+            <i class="fas fa-right-to-bracket"></i>
+            <span>إنشاء حساب / تسجيل الدخول</span>
+          </a>
           <div class="search-box">
             <i class="fas fa-search search-icon"></i>
             <input type="text" placeholder="بحث..." class="search-input">
@@ -93,10 +384,18 @@
     <section class="qibla-section" id="qibla">
       <div class="container">
         <div class="qibla-card">
+
+          <!-- ── Info ── -->
           <div class="qibla-content">
             <div class="qibla-badge"><i class="fas fa-location-crosshairs"></i> Qibla Finder</div>
             <h2 class="qibla-title">اتجاه القبلة</h2>
             <p class="qibla-subtitle">اضغط على الزر لتحديد موقعك، ثم سنحسب الزاوية نحو الكعبة مباشرة.</p>
+
+            <!-- Alert -->
+            <div class="qibla-alert" id="qiblaAlert" role="alert">
+              <i id="alertIcon"></i>
+              <span id="alertMsg"></span>
+            </div>
 
             <div class="qibla-meta-grid">
               <div class="qibla-meta-item">
@@ -117,25 +416,59 @@
               </div>
             </div>
 
-            <button class="btn btn-primary qibla-action-btn" id="qiblaActionBtn" type="button">
-              <i class="fas fa-location-dot"></i>
-              تحديد اتجاه القبلة الآن
+            <button class="btn btn-primary qibla-action-btn" id="qiblaActionBtn" type="button" onclick="findQibla()">
+              <i class="fas fa-location-dot" id="btnIcon"></i>
+              <span id="btnText">تحديد اتجاه القبلة الآن</span>
             </button>
           </div>
 
+          <!-- ── Compass ── -->
           <div class="qibla-visual">
-            <div class="qibla-compass" aria-hidden="true">
-              <div class="qibla-compass-ring">
+            <div class="qibla-compass" aria-label="بوصلة اتجاه القبلة">
+              <div class="qibla-compass-ring" id="compassRing">
+
+                <!-- Ticks SVG (injecté par JS) -->
+                <svg class="compass-ticks-svg" viewBox="0 0 240 240" id="ticksSvg"></svg>
+
+                <!-- Corps -->
+                <div class="compass-body"></div>
+
+                <!-- Cardinaux -->
                 <span class="qibla-north">N</span>
                 <span class="qibla-east">E</span>
                 <span class="qibla-south">S</span>
                 <span class="qibla-west">W</span>
-                <div class="qibla-arrow" id="qiblaArrow"></div>
+
+                <!-- Aiguille -->
+                <div class="qibla-arrow" id="qiblaArrow">
+                  <svg class="needle-svg" viewBox="0 0 38 130" fill="none">
+                    <!-- Nord rouge -->
+                    <polygon points="19,2 26,54 19,46 12,54" fill="#e53e3e"/>
+                    <polygon points="19,2 19,46 12,54" fill="#b91c1c"/>
+                    <rect x="17.5" y="46" width="3" height="38" rx="1.5" fill="#e53e3e" opacity=".5"/>
+                    <!-- Sud gris -->
+                    <rect x="17.5" y="84" width="3" height="38" rx="1.5" fill="#a0aec0" opacity=".5"/>
+                    <polygon points="19,128 26,76 19,84 12,76" fill="#cbd5e0"/>
+                    <polygon points="19,128 19,84 12,76" fill="#a0aec0"/>
+                    <!-- Anneau central -->
+                    <circle cx="19" cy="65" r="7" fill="white" stroke="#d1d5db" stroke-width="1.5"/>
+                  </svg>
+                </div>
+
+                <!-- Point central -->
                 <div class="qibla-center-dot"></div>
+
+                <!-- Kaaba -->
+                <div class="compass-kaaba" id="kaabaIcon">🕋</div>
+
+                <!-- Badge degrés -->
+                <div class="compass-degree-badge" id="degreeBadge">0°</div>
+
               </div>
             </div>
-            <p class="qibla-hint">السهم يشير إلى اتجاه القبلة نسبة إلى الشمال الجغرافي.</p>
+            <p class="qibla-hint">السهم الأحمر يشير نحو القبلة من الشمال الجغرافي</p>
           </div>
+
         </div>
       </div>
     </section>
@@ -150,85 +483,178 @@
     </div>
   </footer>
 
-  <script src="script/qibla.js"></script>
   <script>
-    const currentUser = JSON.parse(localStorage.getItem('faithpathCurrentUser') || 'null');
-    const profileNameElement = document.getElementById('profileName');
+    /* ── Auth ──────────────────────────────────────── */
+    // Affichage du nom réel de l'utilisateur dans la navbar
+    const currentUser      = JSON.parse(localStorage.getItem('faithpathCurrentUser') || 'null');
+    const profileNameEl    = document.getElementById('profileName');
     const asideProfileName = document.getElementById('asideProfileName');
-    const authActionBtn = document.getElementById('authActionBtn');
-    const asideAuthActionBtn = document.getElementById('asideAuthActionBtn');
-    const isAuthenticated = !!(currentUser && currentUser.email);
+    const authActionBtn    = document.getElementById('authActionBtn');
+    const asideAuthBtn     = document.getElementById('asideAuthActionBtn');
+    const isAuthenticated  = !!(currentUser && currentUser.email);
 
-    if (isAuthenticated) {
-      document.body.classList.add('is-authenticated');
-    }
+    if (isAuthenticated) document.body.classList.add('is-authenticated');
+    if (currentUser?.fullName && profileNameEl)    profileNameEl.textContent = currentUser.fullName;
+    if (currentUser?.fullName && asideProfileName) asideProfileName.textContent = currentUser.fullName;
 
-    if (currentUser && currentUser.fullName && profileNameElement) {
-      profileNameElement.textContent = currentUser.fullName;
-    }
-
-    if (currentUser && currentUser.fullName && asideProfileName) {
-      asideProfileName.textContent = currentUser.fullName;
+    // Afficher le nom réel dans la navbar (badge)
+    if (isAuthenticated && currentUser?.fullName) {
+      const badge = document.querySelector('.profile-badge .profile-name');
+      if (badge) badge.textContent = currentUser.fullName;
     }
 
     if (isAuthenticated) {
-      if (authActionBtn) {
-        authActionBtn.innerHTML = '<i class="fas fa-user-check"></i><span>' + (currentUser.fullName || 'Utilisateur') + '</span>';
-        authActionBtn.href = '#';
-      }
-      if (asideAuthActionBtn) {
-        asideAuthActionBtn.innerHTML = '<i class="fas fa-user-check"></i><span>' + (currentUser.fullName || 'Utilisateur') + '</span>';
-        asideAuthActionBtn.href = '#';
-      }
+      const lbl = '<i class="fas fa-user-check"></i><span>' + (currentUser.fullName || 'Utilisateur') + '</span>';
+      if (authActionBtn) { authActionBtn.innerHTML = lbl; authActionBtn.href = '#'; }
+      if (asideAuthBtn)  { asideAuthBtn.innerHTML  = lbl; asideAuthBtn.href  = '#'; }
     }
 
-    (function() {
+    /* ── Aside ─────────────────────────────────────── */
+    (function () {
       const hamburger = document.getElementById('hamburgerBtn');
-      const asideNav = document.getElementById('asideNav');
-      const asideOverlay = document.getElementById('asideOverlay');
-      const closeAsideBtn = document.getElementById('closeAsideBtn');
+      const aside     = document.getElementById('asideNav');
+      const overlay   = document.getElementById('asideOverlay');
+      const closeBtn  = document.getElementById('closeAsideBtn');
 
-      function closeAside() {
-        if (asideNav) asideNav.classList.remove('active');
-        if (asideOverlay) asideOverlay.classList.remove('active');
-        document.body.style.overflow = '';
-      }
+      const open  = () => { aside.classList.add('active');    overlay.classList.add('active');    document.body.style.overflow = 'hidden'; };
+      const close = () => { aside.classList.remove('active'); overlay.classList.remove('active'); document.body.style.overflow = ''; };
 
-      function openAside() {
-        if (asideNav) asideNav.classList.add('active');
-        if (asideOverlay) asideOverlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
-      }
+      hamburger.addEventListener('click', () => aside.classList.contains('active') ? close() : open());
+      closeBtn.addEventListener('click', close);
+      overlay.addEventListener('click', close);
 
-      function toggleAside() {
-        if (asideNav && asideNav.classList.contains('active')) {
-          closeAside();
-        } else {
-          openAside();
-        }
-      }
-
-      if (hamburger) {
-        hamburger.addEventListener('click', toggleAside);
-      }
-
-      if (closeAsideBtn) {
-        closeAsideBtn.addEventListener('click', closeAside);
-      }
-
-      if (asideOverlay) {
-        asideOverlay.addEventListener('click', closeAside);
-      }
-
-      const asideLinks = document.querySelectorAll('.aside-link');
-      asideLinks.forEach(link => {
-        link.addEventListener('click', function() {
-          asideLinks.forEach(l => l.classList.remove('active'));
+      document.querySelectorAll('.aside-link').forEach(l => {
+        l.addEventListener('click', function () {
+          document.querySelectorAll('.aside-link').forEach(x => x.classList.remove('active'));
           this.classList.add('active');
-          closeAside();
+          close();
         });
       });
     })();
+
+    /* ── Compass ticks ─────────────────────────────── */
+    (function () {
+      const svg = document.getElementById('ticksSvg');
+      const cx = 120, cy = 120, r = 116;
+      let h = '';
+      for (let i = 0; i < 72; i++) {
+        const deg   = i * 5;
+        const isMaj = deg % 45 === 0;
+        const isMid = deg % 15 === 0 && !isMaj;
+        const len   = isMaj ? 14 : isMid ? 9 : 5;
+        const w     = isMaj ? 1.8 : isMid ? 1 : 0.7;
+        const col   = isMaj ? '#1a3a2a' : isMid ? '#7aaa8a' : '#c0d8c8';
+        const rad   = (deg - 90) * Math.PI / 180;
+        const x1 = (cx + r * Math.cos(rad)).toFixed(2);
+        const y1 = (cy + r * Math.sin(rad)).toFixed(2);
+        const x2 = (cx + (r - len) * Math.cos(rad)).toFixed(2);
+        const y2 = (cy + (r - len) * Math.sin(rad)).toFixed(2);
+        h += `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${col}" stroke-width="${w}" stroke-linecap="round"/>`;
+      }
+      svg.innerHTML = h;
+    })();
+
+    /* ── Alert ─────────────────────────────────────── */
+    function showAlert(msg, type) {
+      const box  = document.getElementById('qiblaAlert');
+      const icon = document.getElementById('alertIcon');
+      const text = document.getElementById('alertMsg');
+      box.className  = 'qibla-alert show ' + type;
+      icon.className = type === 'error' ? 'fas fa-circle-exclamation' : 'fas fa-circle-check';
+      text.textContent = msg;
+      clearTimeout(box._t);
+      if (type === 'success') box._t = setTimeout(() => { box.className = 'qibla-alert'; }, 6000);
+    }
+
+    /* ── Qibla math ────────────────────────────────── */
+    function toRad(d) { return d * Math.PI / 180; }
+
+    function calcQiblaAngle(lat, lng) {
+      const mLat = 21.4225, mLng = 39.8262;
+      const dLng = toRad(mLng - lng);
+      const y = Math.sin(dLng) * Math.cos(toRad(mLat));
+      const x = Math.cos(toRad(lat)) * Math.sin(toRad(mLat))
+              - Math.sin(toRad(lat)) * Math.cos(toRad(mLat)) * Math.cos(dLng);
+      return ((Math.atan2(y, x) * 180 / Math.PI) + 360) % 360;
+    }
+
+    function calcDistance(lat, lng) {
+      const R = 6371, mLat = 21.4225, mLng = 39.8262;
+      const dLat = toRad(mLat - lat);
+      const dLng = toRad(mLng - lng);
+      const a = Math.sin(dLat / 2) ** 2
+              + Math.cos(toRad(lat)) * Math.cos(toRad(mLat)) * Math.sin(dLng / 2) ** 2;
+      return Math.round(R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
+    }
+
+    /* ── Rotate compass ────────────────────────────── */
+    function rotateCompass(deg) {
+      const arrow = document.getElementById('qiblaArrow');
+      arrow.style.transform = 'translate(-50%, -50%) rotate(' + deg + 'deg)';
+      const badge = document.getElementById('degreeBadge');
+      badge.textContent = Math.round(deg) + '°';
+      badge.classList.add('visible');
+      document.getElementById('kaabaIcon').classList.add('visible');
+    }
+
+    /* ── Main finder ───────────────────────────────── */
+    function findQibla() {
+      document.getElementById('qiblaAlert').className = 'qibla-alert';
+
+      if (!navigator.geolocation) {
+        showAlert('متصفحك لا يدعم تحديد الموقع الجغرافي.', 'error');
+        return;
+      }
+
+      const btn    = document.getElementById('qiblaActionBtn');
+      const icon   = document.getElementById('btnIcon');
+      const txtEl  = document.getElementById('btnText');
+      const status = document.getElementById('qiblaStatus');
+
+      btn.disabled    = true;
+      icon.className  = 'fas fa-spinner fa-spin';
+      txtEl.textContent  = 'جاري تحديد الموقع...';
+      status.textContent = 'جاري التحديد...';
+
+      navigator.geolocation.getCurrentPosition(
+        function (pos) {
+          const lat   = pos.coords.latitude;
+          const lng   = pos.coords.longitude;
+          const angle = calcQiblaAngle(lat, lng);
+          const dist  = calcDistance(lat, lng);
+
+          status.textContent = 'تم التحديد ✓';
+          document.getElementById('qiblaAngle').textContent    = angle.toFixed(1) + '°';
+          document.getElementById('qiblaDistance').textContent = dist.toLocaleString() + ' km';
+          document.getElementById('qiblaLocation').textContent = lat.toFixed(4) + '°، ' + lng.toFixed(4) + '°';
+
+          rotateCompass(angle);
+
+          btn.disabled      = false;
+          icon.className    = 'fas fa-rotate';
+          txtEl.textContent = 'تحديث الاتجاه';
+
+          showAlert(
+            'تم التحديد — القبلة على زاوية ' + angle.toFixed(1) + '° ومسافة ' + dist.toLocaleString() + ' كم من مكة المكرمة',
+            'success'
+          );
+        },
+        function (err) {
+          btn.disabled      = false;
+          icon.className    = 'fas fa-location-dot';
+          txtEl.textContent = 'تحديد اتجاه القبلة الآن';
+          status.textContent = 'فشل التحديد';
+
+          const msgs = {
+            1: 'تم رفض الإذن. يرجى السماح بالوصول للموقع من إعدادات المتصفح.',
+            2: 'تعذّر الحصول على الموقع. تحقق من الاتصال بالإنترنت.',
+            3: 'انتهت مهلة الطلب. يرجى المحاولة مجدداً.'
+          };
+          showAlert(msgs[err.code] || 'خطأ غير معروف أثناء تحديد الموقع.', 'error');
+        },
+        { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+      );
+    }
   </script>
 </body>
 </html>

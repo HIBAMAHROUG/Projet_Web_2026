@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;600;700;900&family=Amiri:wght@400;700&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<!-- <link rel="stylesheet" href="style/styles.css"> -->
 <style>
 /* ═══════════════════════════════════════════════════════════════════════
    DESIGN TOKENS — couleurs & motifs centralisés
@@ -177,7 +178,7 @@ body::after {
 }
 
 /* ═══════════════════════════════════════════════════════════════════════
-   MENU LATÉRAL
+   MENU LATÉRAL IDENTIQUE À 7ASEB_NAFSAK.HTML
 ═══════════════════════════════════════════════════════════════════════ */
 .nav-menu {
   display: flex;
@@ -317,7 +318,7 @@ body::after {
 .section-title {
   font-family: 'Amiri', serif;
   font-size: 2.5rem;
-  color: var(--e9);
+  color: var(--gd);
   margin-bottom: 0.5rem;
   font-weight: 700;
 }
@@ -758,6 +759,18 @@ body::after {
 </style>
 </head>
 <body>
+  <div id="navbar-container"></div>
+  <script src="script/auth.js"></script>
+  <script>
+    fetch('navbar.html')
+      .then(r => r.text())
+      .then(html => {
+        document.getElementById('navbar-container').innerHTML = html;
+        if (window.updateNavbar) {
+          updateNavbar(getCurrentUser ? getCurrentUser() : null);
+        }
+      });
+  </script>
 
 <!-- Header with wave -->
 <header class="header">
@@ -765,16 +778,25 @@ body::after {
   <nav class="top-navbar">
     <div class="nav-container">
       <div class="logo">
-        <img src="https://placehold.co/40x40/145a3f/c9a87c?text=FP" alt="FaithPath" class="logo-img">
-        <span class="logo-text">Faith<span>Path</span></span>
+        <img src="img/m.png" alt="FaithPath" class="logo-img">
+        <span class="logo-text">Faith<span class="logo-highlight">Path</span></span>
       </div>
       <button class="hamburger" id="hamburgerBtn" aria-label="القائمة">
-        <span></span><span></span><span></span>
+        <span></span>
+        <span></span>
+        <span></span>
       </button>
       <div class="nav-actions">
-        <a href="#" id="authActionBtn" class="auth-action-btn">
-          <i class="fas fa-right-to-bracket"></i><span>إنشاء حساب / تسجيل الدخول</span>
-        </a>
+        <a href="start.html" id="authActionBtn" class="auth-action-btn"><i class="fas fa-right-to-bracket"></i><span>إنشاء حساب / تسجيل الدخول</span></a>
+        <div class="search-box">
+          <i class="fas fa-search search-icon"></i>
+          <input type="text" placeholder="بحث..." class="search-input">
+        </div>
+        <i class="far fa-bell notification-icon"></i>
+        <div class="profile-badge">
+          <i class="far fa-user-circle profile-icon"></i>
+          <span class="profile-name" id="profileName"></span>
+        </div>
       </div>
     </div>
   </nav>
@@ -785,6 +807,9 @@ body::after {
         <i class="fas fa-users"></i>
       </div>
       <h2 class="section-title">الصَّحَابَةُ الْكِرَامُ</h2>
+      <div class="ayah">
+        <span>﴿ مُّحَمَّدٌ رَّسُولُ اللَّهِ ۚ وَالَّذِينَ مَعَهُ أَشِدَّاءُ عَلَى الْكُفَّارِ رُحَمَاءُ بَيْنَهُمْ ﴾<br><span>الفتح: 29</span></span>
+      </div>
       <p class="section-subtitle">تَعَرَّفْ عَلَى سِيرَةِ أَصْحَابِ رَسُولِ اللَّهِ ﷺ</p>
       <div class="sahaba-count" id="sahabaCount">٠ صَحَابِيًّا</div>
     </div>
@@ -796,30 +821,30 @@ body::after {
   </div>
 </header>
 
-<!-- Menu latéral -->
+<!-- Menu latéral identique à 7ASEB_NAFSAK.HTML -->
 <div class="nav-menu" id="navMenu">
   <div class="nav-menu-header">
-    <a href="#" class="nav-menu-logo">
-      <img src="https://placehold.co/36x36/145a3f/c9a87c?text=FP" alt="FaithPath">
+    <a href="page_acceuil.html" class="nav-menu-logo">
+      <img src="img/m.png" alt="FaithPath" onerror="this.style.display='none'">
       <span class="nav-menu-logo-text">Faith<span>Path</span></span>
     </a>
     <button class="nav-menu-close" id="closeMenuBtn" aria-label="إغلاق">
       <i class="fas fa-times"></i>
     </button>
   </div>
-  <a href="#">🔓 الرئيسية</a>
-  <a href="#">🔓 القرآن الكريم</a>
-  <a href="#">🔓 أسماء الله الحسنى</a>
-  <a href="#">🔒 مسار الأنبياء</a>
-  <a href="#">🔓 التقويم الهجري</a>
-  <a href="#">🔓 أوقات الصلاة</a>
-  <a href="#">🔓 المسبحة الإلكترونية</a>
-  <a href="#">🔒 قصة الصحابة</a>
-  <a href="#" class="active">🔓 حاسب نفسك</a>
-  <a href="#">🔒 اختبارات دينية</a>
-  <a href="#">🔒 صدقة جارية</a>
-  <a href="#">🔓 أذكار الصباح والمساء</a>
-  <a href="#">🔓 تواصل معنا</a>
+  <a href="page_acceuil.html">🔓 الرئيسية</a>
+  <a href="Quraan.html">🔓 القرآن الكريم</a>
+  <a href="asmaa_allah_alhousnaa_3d.html">🔓 أسماء الله الحسنى</a>
+  <a href="prophetes.html">🔒 مسار الأنبياء</a>
+  <a href="hijri.html">🔓 التقويم الهجري</a>
+  <a href="prayertime.html">🔓 أوقات الصلاة</a>
+  <a href="tasbih.HTML">🔓 المسبحة الإلكترونية</a>
+  <a href="sahaba.html" class="active">🔒 قصة الصحابة</a>
+  <a href="7aseb_nafsak.html">🔓 حاسب نفسك</a>
+  <a href="quizz_acc.html">🔒 اختبارات دينية</a>
+  <a href="don.html">🔒 صدقة جارية</a>
+  <a href="Athkar.html">🔓 أذكار الصباح والمساء</a>
+  <a href="contact.html">🔓 تواصل معنا</a>
 </div>
 <div class="nav-overlay" id="navOverlay"></div>
 
@@ -836,7 +861,7 @@ body::after {
       </div>
       <div class="filter-category" id="filterCategoryContainer">
         <span class="category-btn active" data-category="all">الكل</span>
-        <span class="category-btn" data-category="ashara">العشرة المبشرون</span>
+        <span class="category-btn" data-category="ashara">العشرة المبشرين</span>
         <span class="category-btn" data-category="badr">أهل بدر</span>
         <span class="category-btn" data-category="muhajirun">المهاجرون</span>
         <span class="category-btn" data-category="ansar">الأنصار</span>
@@ -966,7 +991,7 @@ function getSahabaIcon(sahaba) {
 }
 
 function getCategoryName(catId) {
-  const names = { ashara: 'العشرة المبشرون', badr: 'أهل بدر', muhajirun: 'المهاجرون', ansar: 'الأنصار' };
+  const names = { ashara: 'العشرة المبشرين', badr: 'أهل بدر', muhajirun: 'المهاجرون', ansar: 'الأنصار' };
   return names[catId] || catId;
 }
 

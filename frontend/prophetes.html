@@ -796,6 +796,16 @@
   </style>
 </head>
 <body>
+  <div id="navbar-container"></div>
+  <script src="script/auth.js"></script>
+  <script>
+    fetch('navbar.html')
+      .then(r => r.text())
+      .then(html => {
+        document.getElementById('navbar-container').innerHTML = html;
+        if (window.updateNavbar) updateNavbar();
+      });
+  </script>
 
 
   <!-- ═══ MENU LATÉRAL (nav-menu) harmonisé avec 7aseb_nafsak.html ═══ -->
