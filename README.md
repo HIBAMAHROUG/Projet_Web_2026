@@ -1,6 +1,5 @@
 # FaithPath
-
-Mini rapport du projet web FaithPath.
+curl -fsSL https://cli.coderabbit.ai/install.sh | sh
 
 ## 1) Présentation
 
