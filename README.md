@@ -1,5 +1,4 @@
 # FaithPath
-curl -fsSL https://cli.coderabbit.ai/install.sh | sh
 
 ## 1) Présentation
 
