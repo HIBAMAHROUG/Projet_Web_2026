@@ -94,98 +94,87 @@
             <i class="fas fa-search search-icon"></i>
             <input type="text" placeholder="بحث..." class="search-input">
           </div>
-          <i class="far fa-bell notification-icon"></i>
-          <div class="profile-badge">
-            <i class="far fa-user-circle profile-icon"></i>
-            <span class="profile-name" id="profileName">أحمد</span>
-          </div>
-        </div>
-      </div>
-    </nav>
-  </header>
 
-  <!-- ══════ PAGE TITLE ══════ -->
-  <div class="page-title-section">
-    <h1>التقويم الهجري</h1>
-    <p>تصفّح الأشهر الهجرية وحوّل التواريخ واستعرض المناسبات الإسلامية</p>
-  </div>
+          <!-- ==================== ASIDE HAMBURGER NAVIGATION (MENU LATÉRAL) ==================== -->
+          <aside class="aside-nav" id="asideNav">
+            <div class="aside-header">
+              <div class="aside-logo">
+                <i class="fas fa-mosque"></i>
+                <span>Faith<span>Path</span></span>
+              </div>
+              <button class="close-aside" id="closeAsideBtn">
+                <i class="fas fa-times"></i>
+              </button>
+            </div>
+            <ul class="aside-menu">
+              <li><a href="page_acceuil.html" class="aside-link" data-access="free"><i class="fas fa-lock-open access-icon" aria-hidden="true"></i> الرئيسية</a></li>
+              <li><a href="Quraan.html" class="aside-link" data-access="free"><i class="fas fa-lock-open access-icon" aria-hidden="true"></i> القرآن الكريم</a></li>
+              <li><a href="asmaa_allah_alhousnaa_3d.html" class="aside-link" data-access="free"><i class="fas fa-lock-open access-icon" aria-hidden="true"></i> أسماء الله الحسنى</a></li>
+              <li><a href="prophetes.html" class="aside-link" data-access="free"><i class="fas fa-lock-open access-icon" aria-hidden="true"></i> مسار الأنبياء</a></li>
+              <li><a href="hijri.html" class="aside-link active" data-access="free"><i class="fas fa-lock-open access-icon" aria-hidden="true"></i> التقويم الهجري</a></li>
+              <li><a href="prayertime.html" class="aside-link" data-access="free"><i class="fas fa-lock-open access-icon" aria-hidden="true"></i> أوقات الصلاة</a></li>
+              <li><a href="qibla.html" class="aside-link" data-access="free"><i class="fas fa-lock-open access-icon" aria-hidden="true"></i> اتجاه القبلة</a></li>
+              <li><a href="tasbih.HTML" class="aside-link" data-access="free"><i class="fas fa-lock-open access-icon" aria-hidden="true"></i> المسبحة الإلكترونية</a></li>
+              <li><a href="sahaba.html" class="aside-link" data-access="free"><i class="fas fa-lock-open access-icon" aria-hidden="true"></i> قصة الصحابة</a></li>
+              <li><a href="7aseb_nafsak.html" class="aside-link" data-access="locked"><i class="fas fa-lock access-icon" aria-hidden="true"></i> حاسب نفسك</a></li>
+              <li><a href="quizz_acc.html" class="aside-link" data-access="locked"><i class="fas fa-lock access-icon" aria-hidden="true"></i> اختبارات دينية</a></li>
+              <li><a href="don.html" class="aside-link" data-access="free"><i class="fas fa-lock-open access-icon" aria-hidden="true"></i> صدقة جارية</a></li>
+              <li><a href="adhkar.html" class="aside-link" data-access="free"><i class="fas fa-lock-open access-icon" aria-hidden="true"></i> أذكار الصباح والمساء</a></li>
+              <li><a href="contact.html" class="aside-link" data-access="free"><i class="fas fa-lock-open access-icon" aria-hidden="true"></i> تواصل معنا</a></li>
+            </ul>
+            <div class="aside-footer">
+              <a href="start.html" id="asideAuthActionBtn" class="aside-link" data-access="free"><i class="fas fa-right-to-bracket" aria-hidden="true"></i> تسجيل الدخول</a>
+              <div class="aside-search">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="بحث...">
+              </div>
+              <div class="aside-profile">
+                <i class="far fa-user-circle"></i>
+                <span id="asideProfileName">أحمد</span>
+              </div>
+            </div>
+          </aside>
+          <!-- Overlay pour fermer le menu latéral -->
+          <div class="aside-overlay" id="asideOverlay"></div>
 
-  <!-- ══════ CALENDAR ══════ -->
-  <div class="container">
-
-    <!-- HEADER -->
-    <div class="cal-header">
-      <span class="ornament">❧ ✦ ❧</span>
-      <span class="h-month-name" id="hMonthName">رمضان</span>
-      <div class="h-year" id="hYear">١٤٤٧ هـ</div>
-      <div class="greg-range" id="gregRange"></div>
-      <div class="nav-row">
-        <button class="nav-btn" onclick="prevMonth()">◀ السابق</button>
-        <button class="today-btn" onclick="goToToday()">⊙ اليوم</button>
-        <button class="nav-btn" onclick="nextMonth()">التالي ▶</button>
-      </div>
-    </div>
-
-    <!-- TODAY CARD -->
-    <div class="today-card" id="todayCard"></div>
-
-    <!-- GRID -->
-    <div class="cal-body">
-      <div class="days-header" id="daysHeader"></div>
-      <div class="cal-grid" id="calGrid"></div>
-    </div>
-
-    <!-- CONVERTER -->
-    <div class="converter">
-      <span class="section-title">⇄ تحويل التواريخ</span>
-      <div class="conv-tabs">
-        <button class="conv-tab active" id="tab1" onclick="setTab(1)">ميلادي ← هجري</button>
-        <button class="conv-tab" id="tab2" onclick="setTab(2)">هجري ← ميلادي</button>
-      </div>
-
-      <!-- G → H -->
-      <div class="conv-form" id="convForm1">
-        <div class="fg">
-          <label>اليوم</label>
-          <input type="number" id="g_day" min="1" max="31" value="4" style="width:72px" />
-        </div>
-        <div class="fg">
-          <label>الشهر</label>
-          <select id="g_month" style="width:145px">
-            <option value="1">يناير</option>
-            <option value="2">فبراير</option>
-            <option value="3">مارس</option>
-            <option value="4" selected>أبريل</option>
-            <option value="5">مايو</option>
-            <option value="6">يونيو</option>
-            <option value="7">يوليو</option>
-            <option value="8">أغسطس</option>
-            <option value="9">سبتمبر</option>
-            <option value="10">أكتوبر</option>
-            <option value="11">نوفمبر</option>
-            <option value="12">ديسمبر</option>
-          </select>
-        </div>
-        <div class="fg">
-          <label>السنة</label>
-          <input type="number" id="g_year" value="2026" style="width:95px" />
-        </div>
-        <button class="conv-btn" onclick="convertGtoH()">تحويل</button>
-      </div>
-
-      <!-- H → G -->
-      <div class="conv-form" id="convForm2" style="display:none">
-        <div class="fg">
-          <label>اليوم</label>
-          <input type="number" id="h_day" min="1" max="30" value="1" style="width:72px" />
-        </div>
-        <div class="fg">
-          <label>الشهر الهجري</label>
-          <select id="h_month" style="width:165px"></select>
-        </div>
-        <div class="fg">
-          <label>السنة الهجرية</label>
-          <input type="number" id="h_year" value="1447" style="width:100px" />
+          <!-- ===== HEADER ===== -->
+          <header class="header">
+            <div class="header-wave">
+              <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" class="wave-fill"></path>
+                <path d="M0,0V15.81C13,21.25,27.93,25.68,44.5,28.41c69.53,11.11,139.8,6.43,209.31-2.47,69.42-8.91,138.39-22.4,207.76-21.18C511.39,6.9,575.37,22.63,639,38.83c73.11,18.62,147.28,32.45,222.05,21C951.31,48.69,1076.37,20.67,1200,47.42V0Z" opacity=".5" class="wave-fill"></path>
+                <path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" class="wave-fill"></path>
+              </svg>
+            </div>
+            <!-- Barre de navigation principale avec bouton hamburger -->
+            <nav class="top-navbar">
+              <div class="nav-container">
+                <div class="logo">
+                  <img src="img/m.png" alt="FaithPath" class="logo-img">
+                  <span class="logo-text">Faith<span class="logo-highlight">Path</span></span>
+                </div>
+                <!-- Hamburger Button (ouvre le menu latéral) -->
+                <button class="hamburger" id="hamburgerBtn" aria-label="القائمة">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </button>
+                <!-- Actions de droite (recherche + profil) -->
+                <div class="nav-actions">
+                  <a href="start.html" id="authActionBtn" class="auth-action-btn"><i class="fas fa-right-to-bracket"></i><span>إنشاء حساب / تسجيل الدخول</span></a>
+                  <div class="search-box">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" placeholder="بحث..." class="search-input">
+                  </div>
+                  <i class="far fa-bell notification-icon"></i>
+                  <div class="profile-badge">
+                    <i class="far fa-user-circle profile-icon"></i>
+                    <span class="profile-name" id="profileName">أحمد</span>
+                  </div>
+                </div>
+              </div>
+            </nav>
+          </header>
         </div>
         <button class="conv-btn" onclick="convertHtoG()">تحويل</button>
       </div>
