@@ -1,13 +1,3 @@
-    <div id="navbar-container"></div>
-    <script src="script/auth.js"></script>
-    <script>
-        fetch('navbar.html')
-            .then(r => r.text())
-            .then(html => {
-                document.getElementById('navbar-container').innerHTML = html;
-                if (window.updateNavbar) updateNavbar();
-            });
-    </script>
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -20,7 +10,18 @@
     <link rel="stylesheet" href="style/styles.css">
 </head>
 <body class="home-page">
-  
+
+        <div id="navbar-container"></div>
+        <script src="script/auth.js"></script>
+        <script>
+                fetch('navbar.html')
+                        .then(r => r.text())
+                        .then(html => {
+                                document.getElementById('navbar-container').innerHTML = html;
+                                if (window.updateNavbar) updateNavbar();
+                        });
+        </script>
+
     <!-- ==================== ASIDE HAMBURGER NAVIGATION (MENU LATÉRAL) ==================== -->
     <aside class="aside-nav" id="asideNav">
         <div class="aside-header">

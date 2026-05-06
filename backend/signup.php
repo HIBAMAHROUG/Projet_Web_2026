@@ -4,7 +4,7 @@
 // ============================================================
 
 ob_start();
-require __DIR__ . '/config.php';
+require_once __DIR__ . '/config.php';
 
 function respondJson($success, $message, $status = 200, $extra = []) {
     ob_end_clean();
@@ -24,15 +24,17 @@ function failWithLog($fullName, $email, $message, $status) {
 }
 
 // Fonction utilitaire pour sécuriser les entrées utilisateur
-function getParam($array, $key, $default = null, $pattern = null) {
-    if (isset($array[$key])) {
-        $value = trim($array[$key]);
-        if ($pattern && !preg_match($pattern, $value)) {
-            return $default;
+if (!function_exists('getParam')) {
+    function getParam($array, $key, $default = null, $pattern = null) {
+        if (isset($array[$key])) {
+            $value = trim($array[$key]);
+            if ($pattern && !preg_match($pattern, $value)) {
+                return $default;
+            }
+            return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
         }
-        return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+        return $default;
     }
-    return $default;
 }
 
 // --- Méthode ---

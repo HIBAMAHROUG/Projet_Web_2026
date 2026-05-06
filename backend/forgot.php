@@ -7,7 +7,7 @@
 // ============================================================
 
 ob_start();
-require __DIR__ . '/config.php';
+require_once __DIR__ . '/config.php';
 
 function respondJson($success, $message, $status = 200, $extra = []) {
     if (ob_get_level()) ob_end_clean();

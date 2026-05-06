@@ -12,15 +12,17 @@ function respondJson($success, $message, $status = 200) {
     exit;
 }
 
-function getParam($array, $key, $default = null, $pattern = null) {
-    if (isset($array[$key])) {
-        $value = trim($array[$key]);
-        if ($pattern && !preg_match($pattern, $value)) {
-            return $default;
+if (!function_exists('getParam')) {
+    function getParam($array, $key, $default = null, $pattern = null) {
+        if (isset($array[$key])) {
+            $value = trim($array[$key]);
+            if ($pattern && !preg_match($pattern, $value)) {
+                return $default;
+            }
+            return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
         }
-        return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+        return $default;
     }
-    return $default;
 }
 
 $payload = json_decode(file_get_contents('php://input'), true) ?? [];

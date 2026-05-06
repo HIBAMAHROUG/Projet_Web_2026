@@ -4,11 +4,13 @@ session_start();
 header('Content-Type: application/json');
 
 // Fonction utilitaire pour récupérer un paramètre GET de façon sécurisée
-function getParam($key, $default = null) {
-    if (isset($_GET[$key])) {
-        return htmlspecialchars(trim($_GET[$key]), ENT_QUOTES, 'UTF-8');
+if (!function_exists('getParam')) {
+    function getParam($key, $default = null) {
+        if (isset($_GET[$key])) {
+            return htmlspecialchars(trim($_GET[$key]), ENT_QUOTES, 'UTF-8');
+        }
+        return $default;
     }
-    return $default;
 }
 
 // Simuler une base de données utilisateur (à remplacer par une vraie requête SQL)
