@@ -24,7 +24,7 @@ function verifyCsrfToken($token) {
 ini_set('display_errors', 0);
 ini_set('display_startup_errors', 0);
 error_reporting(E_ALL);
-ini_set('error_log', __DIR__ . '/error.log');
+ini_set('error_log', 'C:/xampp/apache/logs/php_error.log');
 
 // --- Chargement du fichier .env ---
 function loadEnvFile($filePath) {
